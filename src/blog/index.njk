@@ -1,0 +1,42 @@
+---
+layout: base.njk
+title: Blog | Levi Huff
+description: Technical blog posts covering full-stack development, systems administration, accessibility, and process improvement in IT.
+---
+
+<section>
+  <h1>Blog</h1>
+  <p class="lead">Technical insights, project updates, and professional reflections</p>
+
+  {% if collections.posts.length > 0 %}
+  <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
+    {% for post in collections.posts | reverse %}
+    <article style="background: #ffffff; padding: 1.5rem; border: 1px solid #dcdcdc; border-radius: 6px;">
+      <h2 style="margin-bottom: 0.5rem;">
+        <a href="{{ post.url }}" style="text-decoration: none; color: #004a7c;">{{ post.data.title }}</a>
+      </h2>
+      {% if post.data.description %}
+      <p style="margin-bottom: 1rem; color: #333;">{{ post.data.description }}</p>
+      {% endif %}
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; font-size: 0.9rem; color: #555;">
+        {% if post.date %}
+        <time datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
+        {% endif %}
+        {% if post.data.tags %}
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          {% for tag in post.data.tags %}
+          <span style="background: #f0f6ff; border: 1px solid #d6e7ff; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.85rem; color: #004a7c;">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div style="text-align: center; padding: 3rem 1.5rem; background: #ffffff; border: 1px solid #dcdcdc; border-radius: 6px; margin-top: 2rem;">
+    <h2 style="margin-bottom: 1rem;">Coming Soon</h2>
+    <p>Blog posts are being prepared and will be available soon.</p>
+  </div>
+  {% endif %}
+</section>

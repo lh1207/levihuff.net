@@ -1,0 +1,13 @@
+{
+  "name": "levihuff.net",
+  "version": "1.0.0",
+  "description": "Personal portfolio website of Levi Huff",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "watch": "eleventy --watch"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
