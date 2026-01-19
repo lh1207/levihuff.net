@@ -253,14 +253,43 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: var(--space-sm) var(--space-lg);
+  min-height: 72px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: var(--text-lg);
+  color: var(--color-text);
+}
+
+.brand:hover .brand-name {
+  color: var(--color-primary);
+}
+
+.brand:hover {
+  text-decoration: none;
 }
 
 .profile-img {
   width: 56px;
   height: 56px;
-  border-radius: var(--radius-lg);
+  border-radius: 50%;
   display: block;
   transition: transform var(--transition-fast);
+  object-fit: cover;
 }
 
 .profile-img:hover {
@@ -270,14 +299,18 @@ header {
 .profile-img.large {
   width: 160px;
   height: 160px;
-  border-radius: var(--radius-xl);
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 nav ul {
   list-style: none;
   display: flex;
+  align-items: center;
   gap: var(--space-xl);
-  padding: var(--space-sm) 0;
+  padding: 0;
+  margin: 0;
+  height: 100%;
 }
 
 nav a {
@@ -405,6 +438,7 @@ nav a:focus::after {
    ======================================== */
 .blog-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--space-lg);
   margin-top: var(--space-xl);
 }
@@ -415,12 +449,26 @@ nav a:focus::after {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-fast);
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .blog-card:hover {
   border-color: var(--color-primary);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+}
+
+.blog-card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.blog-card h2 a {
+  position: relative;
+  z-index: 2;
 }
 
 .blog-card h2 {
@@ -536,6 +584,7 @@ nav a:focus::after {
    ======================================== */
 .project-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--space-lg);
   margin-top: var(--space-xl);
 }
@@ -546,11 +595,27 @@ nav a:focus::after {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-fast);
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
   border-color: var(--color-primary-light);
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.project-card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.project-card h2,
+.project-card .project-link {
+  position: relative;
+  z-index: 2;
 }
 
 .project-card h2 {

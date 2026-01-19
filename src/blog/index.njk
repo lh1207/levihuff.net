@@ -12,6 +12,7 @@ description: Technical blog posts covering full-stack development, systems admin
   <div class="blog-grid">
     {% for post in collections.posts | reverse %}
     <article class="blog-card">
+      <a href="{{ post.url }}" class="blog-card-link" aria-hidden="true"></a>
       <h2>
         <a href="{{ post.url }}">{{ post.data.title }}</a>
       </h2>

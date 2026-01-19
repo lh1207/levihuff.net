@@ -12,6 +12,8 @@ AeroAssist is a full-stack ticketing system I built to streamline ticket creatio
 
 **Repository:** [AeroAssist on GitHub](https://github.com/lh1207/AeroAssist)
 
+![AeroAssist Application Screenshot](/images/aeroassist/app.jpg)
+
 ## Project Overview
 
 Ticketing systems are essential tools for organizations to manage support requests, track issues, and maintain service quality. AeroAssist was developed to provide a comprehensive solution for ticket management, incorporating user management, workflow automation, and efficient data handling.
@@ -46,6 +48,8 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 - **Workflow Automation**: Automated ticket routing and status updates
 
 ## Key Features
+
+![AeroAssist Features](/images/aeroassist/features.jpg)
 
 ### Ticket Creation and Management
 - **Intuitive Ticket Forms**: Streamlined interface for creating new tickets
@@ -112,6 +116,26 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 - **Bootstrap**: Frontend framework for responsive UI design
 - **Entity Framework**: ORM for database operations (if used)
 - **Git**: Version control for code management
+
+## Getting Started
+
+![Getting Started with AeroAssist](/images/aeroassist/getting-started.jpg)
+
+To set up AeroAssist locally:
+1. Clone the repository
+2. Open in Visual Studio or Rider
+3. Restore NuGet packages
+4. Create an SQL Server database named "AeroAssist"
+5. Install Entity Framework Core tools
+6. Apply migrations
+7. Configure connection strings in `appsettings.json`
+8. Run the application
+
+## API Documentation
+
+![Swagger API Documentation](/images/aeroassist/swagger.jpg)
+
+Swagger OpenAPI documentation is available at `/swagger` for exploring and testing API endpoints.
 
 ## Project Structure
 
