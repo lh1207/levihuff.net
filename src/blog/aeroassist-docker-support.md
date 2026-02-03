@@ -14,6 +14,8 @@ I recently added Docker support to AeroAssist, making it much easier to deploy t
 
 **Pull Request:** [Add Docker Support - PR #37](https://github.com/lh1207/AeroAssist/pull/37)
 
+![Docker containers and server deployment](/images/aeroassist/containers.jpg)
+
 ## Why Docker?
 
 Running AeroAssist previously required manual setup of .NET, SQL Server, and configuration of connection strings and environment variables. Docker solves these problems by packaging everything into containers that work consistently across different environments.
@@ -117,6 +119,8 @@ Additional files included in this update:
 - **`.env.example`**: Template for environment variables
 
 ## Quick Start
+
+![Server infrastructure for containerized deployment](/images/aeroassist/server-deployment.jpg)
 
 Getting AeroAssist running with Docker is now straightforward:
 
