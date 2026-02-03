@@ -80,7 +80,7 @@ Clear documentation supports accessibility by:
 
 ## Testing for Accessibility
 
-![Professional testing application accessibility](/images/blog/screen-reader-user.jpg)
+![Dashboard showing testing metrics and analysis](/images/blog/accessibility-testing.jpg)
 
 Accessibility testing should be part of the development process:
 - Manual keyboard navigation testing
