@@ -4,6 +4,7 @@ description: Building a mobile application using Kotlin and Android SDK that use
 date: 2025-01-17
 tags: [mobile-development, android, kotlin, geolocation, app-development]
 layout: post.njk
+thumbnail: /images/locoquest/hero-outdoor-map.jpg
 ---
 
 # LocoQuest - Android Geolocation Scavenger Hunt Application

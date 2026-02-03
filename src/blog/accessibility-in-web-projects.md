@@ -4,6 +4,7 @@ description: Practical approaches to making web applications accessible and main
 date: 2025-01-05
 tags: [accessibility, web-development, best-practices]
 layout: post.njk
+thumbnail: /images/blog/accessibility-keyboard.jpg
 ---
 
 # Incorporating Accessibility into Web Projects

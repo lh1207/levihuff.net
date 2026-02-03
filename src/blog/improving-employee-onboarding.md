@@ -4,6 +4,7 @@ description: A practical approach to reducing manual steps and clarifying system
 date: 2025-01-15
 tags: [process-improvement, documentation, systems]
 layout: post.njk
+thumbnail: /images/blog/onboarding-hero.jpg
 ---
 
 # Improving Employee Onboarding Through Process Documentation

@@ -490,6 +490,14 @@ nav a:focus::after {
   margin-bottom: var(--space-md);
 }
 
+.blog-thumbnail {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
 .blog-meta {
   display: flex;
   gap: var(--space-md);

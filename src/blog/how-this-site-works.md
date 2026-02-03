@@ -4,6 +4,7 @@ description: A technical overview of how levihuff.net is built using Eleventy (1
 date: 2025-01-19
 tags: [eleventy, nodejs, static-site, web-development, github-actions]
 layout: post.njk
+thumbnail: /images/blog/site-build-terminal.jpg
 ---
 
 # How This Site Works - Building with Eleventy and Node.js

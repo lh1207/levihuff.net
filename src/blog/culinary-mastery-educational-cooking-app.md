@@ -4,6 +4,7 @@ description: A senior design project creating an accessible educational app for 
 date: 2025-01-20
 tags: [full-stack, education, web-development, senior-design, react-native, azure]
 layout: post.njk
+thumbnail: /images/culinary-mastery/hero-kitchen.jpg
 ---
 
 # Culinary Mastery - Building an Educational Cooking Platform

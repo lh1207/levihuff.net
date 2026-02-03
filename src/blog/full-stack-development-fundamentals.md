@@ -4,6 +4,7 @@ description: Practical insights on applying full stack concepts across frontend,
 date: 2025-01-10
 tags: [full-stack, development, education]
 layout: post.njk
+thumbnail: /images/blog/fullstack-workspace.jpg
 ---
 
 # Full Stack Development Fundamentals for IT Students

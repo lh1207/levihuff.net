@@ -4,6 +4,7 @@ description: Practical exposure to Linux, Windows, and macOS system administrati
 date: 2024-12-20
 tags: [systems-administration, linux, windows, education]
 layout: post.njk
+thumbnail: /images/blog/sysadmin-server-room.jpg
 ---
 
 # Systems Administration Learning Path for IT Students
