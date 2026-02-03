@@ -40,6 +40,8 @@ Semantic elements like `<nav>`, `<main>`, `<article>`, and `<section>` communica
 
 ### Keyboard Navigation
 
+![Person using keyboard for navigation](/images/blog/focus-typing.jpg)
+
 Ensuring all interactive elements are keyboard accessible is essential. Users should be able to:
 - Navigate through all links and buttons using the Tab key
 - Activate elements using Enter or Space
@@ -56,6 +58,8 @@ When semantic HTML isn't sufficient, ARIA attributes provide additional context:
 ```
 
 ### Color Contrast
+
+![Color swatches demonstrating contrast options](/images/blog/color-swatches.jpg)
 
 Text must have sufficient contrast against background colors. The Web Content Accessibility Guidelines (WCAG) specify minimum contrast ratios for different text sizes.
 
@@ -75,6 +79,8 @@ Clear documentation supports accessibility by:
 - Ensuring accessibility considerations aren't lost over time
 
 ## Testing for Accessibility
+
+![Professional testing application accessibility](/images/blog/screen-reader-user.jpg)
 
 Accessibility testing should be part of the development process:
 - Manual keyboard navigation testing
