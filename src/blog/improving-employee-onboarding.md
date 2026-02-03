@@ -8,6 +8,8 @@ layout: post.njk
 
 # Improving Employee Onboarding Through Process Documentation
 
+![Professional reviewing process documentation in office environment](/images/blog/onboarding-hero.jpg)
+
 Employee onboarding is a critical process that directly impacts new hire productivity and organizational efficiency. During my work at Tire Discounters, I identified opportunities to streamline the onboarding workflow by reducing manual steps and clarifying system handoffs between departments.
 
 ## The Challenge

@@ -12,6 +12,8 @@ Accessibility isn't just about compliance—it's about building apps that work f
 
 ## Why Accessibility Matters
 
+![Keyboard for accessible web navigation](/images/blog/accessibility-keyboard.jpg)
+
 Accessible web applications:
 - Work for users with disabilities
 - Provide better experiences for all users

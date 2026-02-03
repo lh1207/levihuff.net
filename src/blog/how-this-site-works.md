@@ -12,6 +12,8 @@ This site is built with Eleventy (11ty), a simple and flexible static site gener
 
 ## Why a Static Site?
 
+![Terminal showing Eleventy build process output](/images/blog/site-build-terminal.jpg)
+
 Static sites offer several advantages for a portfolio:
 
 - **Fast load times**: No server-side processing means pages load quickly

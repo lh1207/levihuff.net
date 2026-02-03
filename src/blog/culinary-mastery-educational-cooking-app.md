@@ -10,6 +10,8 @@ layout: post.njk
 
 Culinary Mastery is a web-based educational app that teaches foundational cooking skills through video tutorials, interactive quizzes, and personalized learning paths. I worked on this as part of the University of Cincinnati Senior Design program. The project fills a gap in accessible cooking education by using modern web technologies with secure backend services.
 
+![Tablet displaying cooking tutorial video on kitchen counter with fresh ingredients](/images/culinary-mastery/hero-kitchen.jpg)
+
 ## Project Overview
 
 I worked on this with Senior Design Group 7 at the University of Cincinnati during Fall 2024 and Spring 2025. The project creates a learning platform that goes beyond recipes, teaching fundamental techniques, safety practices, and cooking vocabulary.
@@ -26,6 +28,8 @@ At IT Expo, we presented how the app tackles real problems people face when lear
 At IT Expo, we showed the technical work, user experience design, and how it could help people feel more confident cooking and eat better. Being featured there shows the project successfully combined solid technical work with solving real problems.
 
 ## The Problem
+
+![Fresh cooking ingredients](/images/culinary-mastery/ingredients.jpg)
 
 Research indicates that many people, particularly young adults, lack confidence in cooking. Studies show that only about 62.5% of students feel capable of preparing meals from basic ingredients. As highlighted in the [IT Expo presentation](https://itexpo.live/2025/seniors/280), test groups frequently reported concerns about:
 
@@ -60,6 +64,8 @@ Culinary Mastery helps by providing:
 - **AI/LLM Integration**: Backend integration with AI services for generating written explanations and translations. This was included to learn how AI is being integrated into modern workflows, understand practical use cases, and explore how Azure handles AI services. The AI functionality is completely backend—users don't interact with it directly, and it's not marketed as an "AI feature."
 
 ## Key Features
+
+![Video-based learning interface](/images/culinary-mastery/video-learning.jpg)
 
 ### Video-Based Learning
 The app uses the YouTube API to deliver video tutorials. Each course includes:

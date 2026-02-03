@@ -12,6 +12,8 @@ LocoQuest is an Android app I built that uses geolocation to create an interacti
 
 **Repository:** [LocoQuest on GitHub](https://github.com/lh1207/LocoQuest)
 
+![Smartphone displaying map with location markers in outdoor exploration setting](/images/locoquest/hero-outdoor-map.jpg)
+
 ## Project Overview
 
 LocoQuest turns traditional scavenger hunts into a digital, location-based experience. Users get quests that guide them to specific locations where they can find benchmarks, landmarks, or points of interest. The app uses GPS to track location and provide navigation.
@@ -28,6 +30,8 @@ Traditional scavenger hunts and location-based activities face several limitatio
 LocoQuest solves these problems with a digital platform that combines GPS navigation, location verification, and game-like elements.
 
 ## Technical Architecture
+
+![LocoQuest UML class diagram showing app architecture](/images/locoquest/uml-class-diagram.png)
 
 ### Mobile Platform
 - **Kotlin**: Modern programming language for Android development
@@ -47,6 +51,8 @@ LocoQuest solves these problems with a digital platform that combines GPS naviga
 - **User Interface**: Native Android UI components and Material Design
 
 ## Key Features
+
+![LocoQuest app storyboard showing user interface flow](/images/locoquest/storyboard.png)
 
 ### Geolocation and Navigation
 - **GPS Tracking**: Real-time location tracking using device GPS
