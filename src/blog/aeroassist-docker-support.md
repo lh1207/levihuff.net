@@ -4,7 +4,7 @@ description: Containerizing the AeroAssist ticketing system with Docker and Dock
 date: 2026-01-26
 tags: [docker, containerization, devops, csharp, asp.net, home-lab]
 layout: post.njk
-thumbnail: /images/aeroassist/cloud-logo.png
+thumbnail: /images/aeroassist/cloud-logo-docker.png
 thumbnailLogo: true
 ---
 
