@@ -4,9 +4,12 @@ description: Practical exposure to Linux, Windows, and macOS system administrati
 date: 2024-12-20
 tags: [systems-administration, linux, windows, education]
 layout: post.njk
+thumbnail: /images/blog/sysadmin-server-room.jpg
 ---
 
 # Systems Administration Learning Path for IT Students
+
+![Server rack in professional data center environment](/images/blog/sysadmin-server-room.jpg)
 
 Systems administration requires understanding how different operating systems work, how to troubleshoot issues, and how to configure systems for reliability. As an IT student, gaining practical exposure to Linux, Windows, and macOS systems provides a foundation for professional work.
 

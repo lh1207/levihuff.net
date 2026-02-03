@@ -4,6 +4,7 @@ description: Practical approaches to making web applications accessible and main
 date: 2025-01-05
 tags: [accessibility, web-development, best-practices]
 layout: post.njk
+thumbnail: /images/blog/accessibility-keyboard.jpg
 ---
 
 # Incorporating Accessibility into Web Projects
@@ -11,6 +12,8 @@ layout: post.njk
 Accessibility isn't just about compliance—it's about building apps that work for everyone. Thinking about accessibility from the start makes apps more usable and easier to maintain.
 
 ## Why Accessibility Matters
+
+![Keyboard for accessible web navigation](/images/blog/accessibility-keyboard.jpg)
 
 Accessible web applications:
 - Work for users with disabilities
@@ -37,6 +40,8 @@ Semantic elements like `<nav>`, `<main>`, `<article>`, and `<section>` communica
 
 ### Keyboard Navigation
 
+![Person using keyboard for navigation](/images/blog/focus-typing.jpg)
+
 Ensuring all interactive elements are keyboard accessible is essential. Users should be able to:
 - Navigate through all links and buttons using the Tab key
 - Activate elements using Enter or Space
@@ -53,6 +58,8 @@ When semantic HTML isn't sufficient, ARIA attributes provide additional context:
 ```
 
 ### Color Contrast
+
+![Color swatches demonstrating contrast options](/images/blog/color-swatches.jpg)
 
 Text must have sufficient contrast against background colors. The Web Content Accessibility Guidelines (WCAG) specify minimum contrast ratios for different text sizes.
 
@@ -72,6 +79,8 @@ Clear documentation supports accessibility by:
 - Ensuring accessibility considerations aren't lost over time
 
 ## Testing for Accessibility
+
+![Dashboard showing testing metrics and analysis](/images/blog/accessibility-testing.jpg)
 
 Accessibility testing should be part of the development process:
 - Manual keyboard navigation testing
