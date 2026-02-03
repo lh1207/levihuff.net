@@ -498,6 +498,12 @@ nav a:focus::after {
   margin-bottom: var(--space-md);
 }
 
+.blog-thumbnail.logo {
+  object-fit: contain;
+  background: var(--color-bg-subtle);
+  padding: var(--space-md);
+}
+
 .blog-meta {
   display: flex;
   gap: var(--space-md);
@@ -660,6 +666,12 @@ nav a:focus::after {
   object-fit: cover;
   border-radius: var(--radius-md);
   margin-bottom: var(--space-md);
+}
+
+.project-img.logo {
+  object-fit: contain;
+  background: var(--color-bg-subtle);
+  padding: var(--space-md);
 }
 
 /* ========================================

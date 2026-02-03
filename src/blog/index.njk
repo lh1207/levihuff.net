@@ -14,7 +14,7 @@ description: Technical blog posts covering full-stack development, systems admin
     <article class="blog-card">
       <a href="{{ post.url }}" class="blog-card-link" aria-hidden="true"></a>
       {% if post.data.thumbnail %}
-      <img src="{{ post.data.thumbnail }}" alt="" class="blog-thumbnail">
+      <img src="{{ post.data.thumbnail }}" alt="" class="blog-thumbnail{% if post.data.thumbnailLogo %} logo{% endif %}">
       {% endif %}
       <h2>
         <a href="{{ post.url }}">{{ post.data.title }}</a>
