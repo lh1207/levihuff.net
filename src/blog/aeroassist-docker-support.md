@@ -104,7 +104,7 @@ volumes:
 ```
 
 This configuration provides:
-- **SQL Server 2022 Express**: Production-ready database
+- **SQL Server 2022**: Relational database
 - **Health checks**: Application waits for database to be ready
 - **Persistent volumes**: Database data survives container restarts
 - **Bridge networking**: Containers communicate on an isolated network
