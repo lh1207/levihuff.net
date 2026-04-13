@@ -1,17 +1,17 @@
 ---
 title: IT Support at Tire Discounters
-description: How I provided IT support across Cincinnati and Sharonville, worked down a backlogged ticket queue, and built a new MDT image with automated Lenovo driver installation and domain enrollment
+description: How I provided IT support across Cincinnati and Sharonville, cleared a backlogged ticket queue, improved employee onboarding documentation, and built a new MDT image with automated Lenovo driver installation and domain enrollment
 date: 2025-03-15
-tags: [it-support, mdt, windows-deployment, field-support, systems-administration]
+tags: [it-support, mdt, windows-deployment, field-support, systems-administration, process-improvement]
 layout: post.njk
-thumbnail: /images/blog/fullstack-workspace.jpg
+thumbnail: /images/blog/onboarding-hero.jpg
 ---
 
 # IT Support at Tire Discounters
 
-![Developer workspace with keyboard and code on screen](/images/blog/fullstack-workspace.jpg)
+![Professional reviewing process documentation in office environment](/images/blog/onboarding-hero.jpg)
 
-My role at Tire Discounters was a meaningful step in my professional development, not just technically, but in terms of understanding what a structured corporate IT environment looks and feels like. This post covers the major areas of that work: the support model across locations, clearing a backlogged ticketing system, and building a new MDT image that automated Lenovo driver installation and domain controller enrollment.
+My role at Tire Discounters was a meaningful step in my professional development, not just technically, but in terms of understanding what a structured corporate IT environment looks and feels like. This post covers the full scope of that work: the support model across locations, clearing a backlogged ticketing system, improving the employee onboarding process, and building a new MDT image that automated Lenovo driver installation and domain controller enrollment.
 
 ## A Different Kind of Professional Environment
 
@@ -35,6 +35,17 @@ My approach to working down the backlog involved:
 - **Working systematically through the remaining items** to get the backlog to a manageable state
 
 Getting the queue cleared wasn't just about closing numbers. It was about restoring a reliable support process that users could trust.
+
+## Improving Employee Onboarding
+
+Beyond ticket support, I identified opportunities to improve the employee onboarding workflow. The existing process had multiple manual steps and unclear transitions between systems, which caused delays in getting new hires up and running. I worked on documenting and streamlining that process, which involved:
+
+1. **Process Mapping**: Documenting each step from initial hire through system access provisioning
+2. **System Analysis**: Identifying all systems involved in the onboarding workflow
+3. **Handoff Documentation**: Clarifying responsibilities and transition points between departments
+4. **Redundancy Identification**: Finding steps where duplicate data entry could be reduced
+
+The documentation served as a reference for those running the process and helped make onboarding more consistent across departments. New hires were able to reach readiness more quickly once the steps were clearly defined and the handoff points were explicit.
 
 ## Building a New MDT Image
 
@@ -67,8 +78,9 @@ With the new image in place, deploying a Lenovo workstation went from a multi-st
 1. **Professional environment shapes professional habits**: Adapting to a formal corporate culture is a skill in itself, and one worth developing deliberately
 2. **Remote support demands clear communication**: Resolving issues over the phone requires being precise and patient in a way that on-site work does not
 3. **A healthy ticket queue requires active management**: Letting tickets accumulate creates a harder problem than dealing with them consistently
-4. **Automation in MDT pays off at scale**: The upfront work of building a reliable image eliminates recurring manual effort across every subsequent deployment
+4. **Documentation is foundational**: Clear process documentation reduces ambiguity and makes handoffs consistent
+5. **Automation in MDT pays off at scale**: The upfront work of building a reliable image eliminates recurring manual effort across every subsequent deployment
 
 ## Conclusion
 
-Tire Discounters was formative in ways that went beyond the technical work. The combination of supporting a distributed user base, clearing a backlogged queue, and building a deployment image that meaningfully improved the provisioning process gave me a well-rounded view of what IT support looks like in a professional corporate environment. It also reinforced that technical skills and professional conduct go hand in hand, and both matter.
+Tire Discounters was formative in ways that went beyond any single task. Supporting a distributed user base, clearing a backlogged queue, documenting the onboarding process, and building a deployment image that meaningfully improved provisioning all contributed to a well-rounded view of what IT support looks like in a professional corporate environment. It also reinforced that technical skills and professional conduct go hand in hand, and both matter.
