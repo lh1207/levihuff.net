@@ -9,7 +9,7 @@ thumbnail: /images/blog/openclaw-hero.jpg
 
 # Deploying OpenClaw on Windows with WSL2
 
-![Server rack with fiber optic cables lit up in the dark](/images/blog/openclaw-hero.jpg)
+![OpenClaw Logo, which has a cartoon crab with circle claws and rectangle legs](/images/blog/openclaw-hero.jpg)
 
 [OpenClaw](https://github.com/openclaw/openclaw) is an open-source personal AI assistant that runs locally on your hardware. It connects to chat apps like WhatsApp, Telegram and Discord and can act as an autonomous agent: managing calendars, clearing inboxes, controlling your browser, running system commands. The pitch is a self-hosted AI that actually does things, on your own machine, with your own models.
 
