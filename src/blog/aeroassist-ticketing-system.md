@@ -4,6 +4,8 @@ description: Building a comprehensive ticketing system using C#, ASP.NET, and MS
 date: 2025-01-18
 tags: [full-stack, csharp, asp.net, mssql, web-development, ticketing-system]
 layout: post.njk
+thumbnail: /images/aeroassist/cloud-logo.png
+thumbnailLogo: true
 ---
 
 # AeroAssist - Full-Stack Ticketing System Development
@@ -114,7 +116,7 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 - **ASP.NET**: Web application framework for building web applications
 - **MSSQL**: Microsoft SQL Server for relational database management
 - **Bootstrap**: Frontend framework for responsive UI design
-- **Entity Framework**: ORM for database operations (if used)
+- **Entity Framework**: ORM for database operations
 - **Git**: Version control for code management
 
 ## Getting Started

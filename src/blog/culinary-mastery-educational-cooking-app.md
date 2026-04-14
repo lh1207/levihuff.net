@@ -4,11 +4,14 @@ description: A senior design project creating an accessible educational app for 
 date: 2025-01-20
 tags: [full-stack, education, web-development, senior-design, react-native, azure]
 layout: post.njk
+thumbnail: /images/culinary-mastery/hero-kitchen.jpg
 ---
 
 # Culinary Mastery - Building an Educational Cooking Platform
 
 Culinary Mastery is a web-based educational app that teaches foundational cooking skills through video tutorials, interactive quizzes, and personalized learning paths. I worked on this as part of the University of Cincinnati Senior Design program. The project fills a gap in accessible cooking education by using modern web technologies with secure backend services.
+
+![Tablet displaying cooking tutorial video on kitchen counter with fresh ingredients](/images/culinary-mastery/hero-kitchen.jpg)
 
 ## Project Overview
 
@@ -26,6 +29,8 @@ At IT Expo, we presented how the app tackles real problems people face when lear
 At IT Expo, we showed the technical work, user experience design, and how it could help people feel more confident cooking and eat better. Being featured there shows the project successfully combined solid technical work with solving real problems.
 
 ## The Problem
+
+![Fresh cooking ingredients](/images/culinary-mastery/ingredients.jpg)
 
 Research indicates that many people, particularly young adults, lack confidence in cooking. Studies show that only about 62.5% of students feel capable of preparing meals from basic ingredients. As highlighted in the [IT Expo presentation](https://itexpo.live/2025/seniors/280), test groups frequently reported concerns about:
 
@@ -57,9 +62,11 @@ Culinary Mastery helps by providing:
 
 ### API Integration
 - **YouTube API**: Video hosting and streaming for tutorial content - videos are selected for quality and accuracy
-- **AI/LLM Integration**: Backend integration with AI services for generating written explanations and translations. This was included to learn how AI is being integrated into modern workflows, understand practical use cases, and explore how Azure handles AI services. The AI functionality is completely backend—users don't interact with it directly, and it's not marketed as an "AI feature."
+- **AI/LLM Integration**: Backend integration with AI services for generating written explanations and translations. This was included to learn how AI is being integrated into modern workflows, understand practical use cases, and explore how Azure handles AI services. The AI functionality is completely backend; users don't interact with it directly, and it's not marketed as an "AI feature."
 
 ## Key Features
+
+![Video-based learning interface](/images/culinary-mastery/video-learning.jpg)
 
 ### Video-Based Learning
 The app uses the YouTube API to deliver video tutorials. Each course includes:
@@ -137,7 +144,7 @@ AI is becoming part of daily workflows across many industries. Rather than treat
 
 - **Current Technology Trends**: AI and LLMs are increasingly common in software development, and understanding them is becoming essential
 - **Practical Learning**: We wanted hands-on experience with AI integration, not just theory
-- **Backend Implementation**: The AI functionality is completely backend—users never see or interact with it directly. It's not advertised as an "AI-powered" feature
+- **Backend Implementation**: The AI functionality is completely backend; users never see or interact with it directly. It's not advertised as an "AI-powered" feature
 - **Azure AI Services**: Learning how Azure handles AI services and what tools are available
 - **Use Case Exploration**: Understanding when and how AI makes sense in applications
 
@@ -203,7 +210,7 @@ Potential future improvements include:
 
 Culinary Mastery combines modern web development with accessibility, security, and good user experience. The project let me apply full-stack development skills to build an educational platform.
 
-Working on this senior design project taught me a lot about working on a team, using cloud services, and building apps that solve real problems. One of the most valuable aspects was learning how to integrate AI/LLM services in the backend—not as a marketing feature, but as a practical tool. Understanding how Azure handles AI services, exploring real use cases, and implementing AI integration helped me see how AI is becoming part of everyday development workflows. Focusing on accessibility and security from the start reinforced how important inclusive design and secure development are.
+Working on this senior design project taught me a lot about working on a team, using cloud services, and building apps that solve real problems. One of the most valuable aspects was learning how to integrate AI/LLM services in the backend, not as a marketing feature, but as a practical tool. Understanding how Azure handles AI services, exploring real use cases, and implementing AI integration helped me see how AI is becoming part of everyday development workflows. Focusing on accessibility and security from the start reinforced how important inclusive design and secure development are.
 
 For more information about the project:
 - [Culinary Mastery repository on GitHub](https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery)

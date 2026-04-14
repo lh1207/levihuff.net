@@ -4,6 +4,7 @@ description: Practical insights on applying full stack concepts across frontend,
 date: 2025-01-10
 tags: [full-stack, development, education]
 layout: post.njk
+thumbnail: /images/blog/fullstack-workspace.jpg
 ---
 
 # Full Stack Development Fundamentals for IT Students
@@ -39,6 +40,8 @@ The database stores and manages application data:
 - Backup and recovery considerations
 
 ## Practical Application
+
+![Developer workspace showing frontend and backend code side by side](/images/blog/fullstack-workspace.jpg)
 
 In both academic coursework and personal projects, I've applied full stack concepts to build applications that reflect real operational needs:
 

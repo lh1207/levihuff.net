@@ -4,6 +4,7 @@ description: A technical overview of how levihuff.net is built using Eleventy (1
 date: 2025-01-19
 tags: [eleventy, nodejs, static-site, web-development, github-actions]
 layout: post.njk
+thumbnail: /images/blog/site-build-terminal.jpg
 ---
 
 # How This Site Works - Building with Eleventy and Node.js
@@ -11,6 +12,8 @@ layout: post.njk
 This site is built with Eleventy (11ty), a simple and flexible static site generator that runs on Node.js. I chose this approach for its speed, simplicity, and the ability to write content in Markdown while maintaining full control over the HTML output.
 
 ## Why a Static Site?
+
+![Terminal showing Eleventy build process output](/images/blog/site-build-terminal.jpg)
 
 Static sites offer several advantages for a portfolio:
 
