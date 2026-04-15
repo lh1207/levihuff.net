@@ -1,0 +1,8 @@
+<div class="skills-section">
+  <h3>{{ group.heading }}</h3>
+  <ul>
+    {% for item in group.items %}
+      <li><strong>{{ item.label }}:</strong> {{ item.text }}</li>
+    {% endfor %}
+  </ul>
+</div>

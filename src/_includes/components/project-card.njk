@@ -1,0 +1,17 @@
+<article class="project-card">
+  {% if project.link %}
+    <a href="{{ project.link }}" target="_blank" rel="noopener" class="project-card-link" aria-hidden="true"></a>
+  {% endif %}
+  <img src="{{ project.image }}" alt="{{ project.imageAlt }}" class="{{ project.imageClass }}">
+  <h2>{{ project.title }}</h2>
+  <p>{{ project.description | safe }}</p>
+  {% for para in project.paragraphs %}
+    <p><strong>{{ para.label }}:</strong> {{ para.text }}</p>
+  {% endfor %}
+  {% if project.meta %}
+    <p class="project-meta">{{ project.meta }}</p>
+  {% endif %}
+  {% if project.link %}
+    <a href="{{ project.link }}" target="_blank" rel="noopener" class="project-link">{{ project.linkLabel }} &rarr;</a>
+  {% endif %}
+</article>
