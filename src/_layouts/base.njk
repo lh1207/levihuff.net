@@ -15,12 +15,29 @@
   <meta property="og:description" content="{{ description }}">
   {% endif %}
   <meta property="og:site_name" content="Levi Huff">
-  <link rel="icon" type="image/jpeg" href="/images/profile.jpg">
+  <meta property="og:image" content="https://levihuff.net/images/profile.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}Levi Huff">
+  {% if description %}
+  <meta name="twitter:description" content="{{ description }}">
+  {% endif %}
+  <meta name="twitter:image" content="https://levihuff.net/images/profile.jpg">
+  <link rel="icon" type="image/svg+xml" href="/images/profile.svg">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/profile.jpg">
   <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   {% include "components/nav.njk" %}
-  
+
   <main>
     {{ content | safe }}
   </main>
@@ -29,9 +46,58 @@
 
   <script>
     (function () {
+      // Year in footer
       var year = document.getElementById('year');
-      if (year) {
-        year.textContent = new Date().getFullYear();
+      if (year) year.textContent = new Date().getFullYear();
+
+      // Dark mode toggle
+      var root = document.documentElement;
+      var themeBtn = document.getElementById('theme-toggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+          var current = root.getAttribute('data-theme');
+          var isDark = current === 'dark' ||
+            (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var next = isDark ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+      }
+
+      // Hamburger menu
+      var navToggle = document.getElementById('nav-toggle');
+      var navMenu = document.getElementById('nav-menu');
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', String(!isOpen));
+          navMenu.classList.toggle('is-open', !isOpen);
+          if (!isOpen) {
+            var firstLink = navMenu.querySelector('a');
+            if (firstLink) firstLink.focus();
+          }
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMenu.classList.remove('is-open');
+            navToggle.focus();
+          }
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function (e) {
+          if (
+            navToggle.getAttribute('aria-expanded') === 'true' &&
+            !navMenu.contains(e.target) &&
+            !navToggle.contains(e.target)
+          ) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMenu.classList.remove('is-open');
+          }
+        });
       }
     })();
   </script>

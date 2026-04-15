@@ -2,7 +2,9 @@
   {% if project.link %}
     <a href="{{ project.link }}" target="_blank" rel="noopener" class="project-card-link" aria-hidden="true"></a>
   {% endif %}
-  <img src="{{ project.image }}" alt="{{ project.imageAlt }}" class="{{ project.imageClass }}">
+  <img src="{{ project.image }}" alt="{{ project.imageAlt }}" class="{{ project.imageClass }}"
+    width="{{ project.imageWidth }}" height="{{ project.imageHeight }}"
+    {% if project.imageLoading %}loading="{{ project.imageLoading }}"{% endif %}>
   <h2>{{ project.title }}</h2>
   <p>{{ project.description | safe }}</p>
   {% for para in project.paragraphs %}
