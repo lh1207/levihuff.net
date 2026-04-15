@@ -2,6 +2,7 @@ module.exports = function (eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/files");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("_headers");
 
@@ -41,6 +42,15 @@ module.exports = function (eleventyConfig) {
     } catch (error) {
       return "";
     }
+  });
+
+  // Add reading time filter
+  eleventyConfig.addFilter("readingTime", function (content) {
+    if (!content) return "";
+    const text = content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    const words = text.split(" ").filter(Boolean).length;
+    const minutes = Math.max(1, Math.ceil(words / 200));
+    return minutes + " min read";
   });
 
   // Add global currentYear for footer

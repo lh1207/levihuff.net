@@ -26,6 +26,7 @@ description: Technical blog posts covering full-stack development, systems admin
         {% if post.date %}
         <time datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
         {% endif %}
+        <span class="reading-time">{{ post.templateContent | readingTime }}</span>
         {% if post.data.tags %}
         <div class="tag-list">
           {% for tag in post.data.tags %}

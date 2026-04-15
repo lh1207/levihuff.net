@@ -12,6 +12,7 @@ layout: base.njk
       {% if date %}
       <time datetime="{{ date | dateIso }}">{{ date | dateReadable }}</time>
       {% endif %}
+      <span class="reading-time">{{ content | readingTime }}</span>
       {% if tags %}
       <div class="tag-list">
         {% for tag in tags %}

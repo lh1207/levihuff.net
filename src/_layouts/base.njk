@@ -36,13 +36,16 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   {% include "components/nav.njk" %}
 
-  <main>
+  <main id="main-content">
     {{ content | safe }}
   </main>
 
   {% include "components/footer.njk" %}
+
+  <button class="back-to-top" aria-label="Back to top" hidden>&#8679;</button>
 
   <script>
     (function () {
@@ -97,6 +100,20 @@
             navToggle.setAttribute('aria-expanded', 'false');
             navMenu.classList.remove('is-open');
           }
+        });
+      }
+
+      var btn = document.querySelector('.back-to-top');
+      if (btn) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 400) {
+            btn.removeAttribute('hidden');
+          } else {
+            btn.setAttribute('hidden', '');
+          }
+        }, { passive: true });
+        btn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
     })();
