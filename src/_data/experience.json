@@ -1,0 +1,12 @@
+[
+  {
+    "company": "Tire Discounters",
+    "focusAreas": "IT support, device deployment, ticketing",
+    "description": "Provided IT support across the Cincinnati and Sharonville offices, with remote phone support for other Midwest locations. Worked through a backlogged ticket queue and handled a range of on-site and remote support tasks. Documented and improved the employee onboarding workflow, clarifying system handoffs and reducing manual steps for new hires. Built a new MDT image that automated Lenovo driver installation, domain controller enrollment, and Windows 11 upgrades, reducing the manual work required per deployment."
+  },
+  {
+    "company": "Total Quality Logistics",
+    "focusAreas": "Systems administration, device lifecycle, PXE imaging",
+    "description": "Managed hardware through its full lifecycle, from PXE boot deployment using department-specific images to staging end-of-life machines for destruction. Coordinated equipment moves under deadlines and handled the pre-imaging checklist including I/O verification, UEFI-compatible adapters, and BIOS configuration."
+  }
+]

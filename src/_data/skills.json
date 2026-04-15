@@ -1,0 +1,47 @@
+[
+  {
+    "heading": "Programming Languages",
+    "items": [
+      { "label": "Backend", "text": "C#, Java, Python, Kotlin, VBScript" },
+      { "label": "Frontend", "text": "JavaScript, HTML, CSS" },
+      { "label": "Database", "text": "SQL, SQLite, Microsoft SQL Server" }
+    ]
+  },
+  {
+    "heading": "Frameworks & Technologies",
+    "items": [
+      { "label": "Web Development", "text": "ASP.NET, ASP.NET MVC, Spring, Node.js, Bootstrap, jQuery" },
+      { "label": "Mobile", "text": "Android SDK, ADB" },
+      { "label": "APIs", "text": "RESTful API Development, Swagger API" },
+      { "label": "Build Tools", "text": "Gradle, NuGet, npm" }
+    ]
+  },
+  {
+    "heading": "Systems & Infrastructure",
+    "items": [
+      { "label": "Operating Systems", "text": "Windows 10/11, Windows Server, Linux" },
+      { "label": "Virtualization", "text": "VMware, Hyper-V, Docker" },
+      { "label": "Cloud", "text": "Microsoft Azure" },
+      { "label": "Networking", "text": "Cisco Packet Tracer, Network Infrastructure Management" },
+      { "label": "Identity", "text": "Active Directory" }
+    ]
+  },
+  {
+    "heading": "Tools & Platforms",
+    "items": [
+      { "label": "Development", "text": "Microsoft Visual Studio, Visual Studio Code, Git" },
+      { "label": "Project Management", "text": "Jira" },
+      { "label": "Collaboration", "text": "Microsoft Office (Word, Excel, PowerPoint), Adobe Creative Cloud, Citrix" },
+      { "label": "Documentation", "text": "Markdown, Technical Writing" }
+    ]
+  },
+  {
+    "heading": "Professional Skills",
+    "items": [
+      { "label": "Technical", "text": "Technical Support, Computer Security, Automation, System Administration" },
+      { "label": "Management", "text": "Project Management, Strategy and Planning, Infrastructure Management, Innovation Management" },
+      { "label": "Operations", "text": "Supply Chain and Logistics, Employee Onboarding, Business Operations" },
+      { "label": "Soft Skills", "text": "Communication, Problem Solving, Leadership, Organization, Flexibility, Positive Attitude" }
+    ]
+  }
+]

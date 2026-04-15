@@ -9,14 +9,14 @@ description: Learn about Levi Huff's background in Information Technology, profe
     <div class="about-text">
       <h1>About Me</h1>
       <p>
-        I'm an Information Technology student at the University of Cincinnati, pursuing a Bachelor of Science in Information Technology with a focus on software and application development. I'm expected to graduate in May 2026.
+        I'm an Information Technology professional based in Cincinnati. I recently graduated from the University of Cincinnati with a Bachelor of Science in Information Technology, with a focus on software and application development.
       </p>
       <p>
         My experience spans academic coursework, personal projects, and professional work involving internal tools, automation, and systems support. I've worked with both development and IT support contexts, which has shaped a practical approach to building and improving systems.
       </p>
     </div>
     <div class="about-photo" aria-hidden="true">
-      <img src="/images/profile.jpg" alt="Levi Huff" class="profile-img large">
+      <img src="/images/profile.jpg" alt="Levi Huff" class="profile-img large" width="160" height="160">
     </div>
   </div>
 </section>
@@ -27,86 +27,28 @@ description: Learn about Levi Huff's background in Information Technology, profe
     <strong>University of Cincinnati</strong><br>
     Bachelor of Science in Information Technology<br>
     Focus: Software and Application Development<br>
-    Expected Graduation: May 2026
+    Graduated: May 2026
   </p>
 </section>
 
 <section class="page-section">
   <h2>Professional Experience</h2>
 
-  <img src="/images/about/workflow-documentation.jpg" alt="Abstract workflow documentation illustration showing connected process nodes" class="section-img">
+  <img src="/images/about/workflow-documentation.jpg" alt="Abstract workflow documentation illustration showing connected process nodes" class="section-img" width="1200" height="801" loading="lazy">
 
-  <div class="experience-card">
-    <h3>Tire Discounters</h3>
-    <p><strong>Focus Areas:</strong> IT support, device deployment, ticketing</p>
-    <p>
-      Provided IT support across the Cincinnati and Sharonville offices, with remote phone support for other Midwest locations. Worked through a backlogged ticket queue and handled a range of on-site and remote support tasks. Documented and improved the employee onboarding workflow, clarifying system handoffs and reducing manual steps for new hires. Built a new MDT image that automated Lenovo driver installation, domain controller enrollment, and Windows 11 upgrades, reducing the manual work required per deployment.
-    </p>
-  </div>
-
-  <div class="experience-card">
-    <h3>Total Quality Logistics</h3>
-    <p><strong>Focus Areas:</strong> Systems administration, device lifecycle, PXE imaging</p>
-    <p>
-      Managed hardware through its full lifecycle, from PXE boot deployment using department-specific images to staging end-of-life machines for destruction. Coordinated equipment moves under deadlines and handled the pre-imaging checklist including I/O verification, UEFI-compatible adapters, and BIOS configuration.
-    </p>
-  </div>
+  {% for entry in experience %}
+    {% include "components/experience-card.njk" %}
+  {% endfor %}
 </section>
 
 <section class="page-section">
   <h2>Technical Skills</h2>
 
-  <img src="/images/about/developer-workspace.jpg" alt="Developer workspace with keyboard and code on screen" class="section-img">
+  <img src="/images/about/developer-workspace.jpg" alt="Developer workspace with keyboard and code on screen" class="section-img" width="1200" height="799" loading="lazy">
 
-  <div class="skills-section">
-    <h3>Programming Languages</h3>
-    <ul>
-      <li><strong>Backend:</strong> C#, Java, Python, Kotlin, VBScript</li>
-      <li><strong>Frontend:</strong> JavaScript, HTML, CSS</li>
-      <li><strong>Database:</strong> SQL, SQLite, Microsoft SQL Server</li>
-    </ul>
-  </div>
-
-  <div class="skills-section">
-    <h3>Frameworks & Technologies</h3>
-    <ul>
-      <li><strong>Web Development:</strong> ASP.NET, ASP.NET MVC, Spring, Node.js, Bootstrap, jQuery</li>
-      <li><strong>Mobile:</strong> Android SDK, ADB</li>
-      <li><strong>APIs:</strong> RESTful API Development, Swagger API</li>
-      <li><strong>Build Tools:</strong> Gradle, NuGet, npm</li>
-    </ul>
-  </div>
-
-  <div class="skills-section">
-    <h3>Systems & Infrastructure</h3>
-    <ul>
-      <li><strong>Operating Systems:</strong> Windows 10/11, Windows Server, Linux</li>
-      <li><strong>Virtualization:</strong> VMware, Hyper-V, Docker</li>
-      <li><strong>Cloud:</strong> Microsoft Azure</li>
-      <li><strong>Networking:</strong> Cisco Packet Tracer, Network Infrastructure Management</li>
-      <li><strong>Identity:</strong> Active Directory</li>
-    </ul>
-  </div>
-
-  <div class="skills-section">
-    <h3>Tools & Platforms</h3>
-    <ul>
-      <li><strong>Development:</strong> Microsoft Visual Studio, Visual Studio Code, Git</li>
-      <li><strong>Project Management:</strong> Jira</li>
-      <li><strong>Collaboration:</strong> Microsoft Office (Word, Excel, PowerPoint), Adobe Creative Cloud, Citrix</li>
-      <li><strong>Documentation:</strong> Markdown, Technical Writing</li>
-    </ul>
-  </div>
-
-  <div class="skills-section">
-    <h3>Professional Skills</h3>
-    <ul>
-      <li><strong>Technical:</strong> Technical Support, Computer Security, Automation, System Administration</li>
-      <li><strong>Management:</strong> Project Management, Strategy and Planning, Infrastructure Management, Innovation Management</li>
-      <li><strong>Operations:</strong> Supply Chain and Logistics, Employee Onboarding, Business Operations</li>
-      <li><strong>Soft Skills:</strong> Communication, Problem Solving, Leadership, Organization, Flexibility, Positive Attitude</li>
-    </ul>
-  </div>
+  {% for group in skills %}
+    {% include "components/skill-group.njk" %}
+  {% endfor %}
 </section>
 
 <section class="page-section">
@@ -166,7 +108,7 @@ description: Learn about Levi Huff's background in Information Technology, profe
 <section class="page-section">
   <h2>Looking Ahead</h2>
   <p>
-    I am seeking internship or entry-level roles where I can continue learning, contribute to production systems, and support teams through reliable and thoughtful technical work. I'm particularly interested in opportunities that involve systems administration, software development, or process improvement.
+    I am looking for full-time roles where I can contribute to production systems and support teams through reliable and thoughtful technical work. I'm particularly interested in positions involving systems administration, software development, or process improvement.
   </p>
   <div class="cta-inline">
     <a href="/projects/">View projects</a>
