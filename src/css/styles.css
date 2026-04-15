@@ -418,25 +418,34 @@ nav a[aria-current="page"]::after {
   width: 100%;
 }
 
+/* Right side of header: nav + controls grouped together */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
 /* Header utility buttons (theme toggle + hamburger) */
 .header-controls {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
 }
 
 .theme-toggle,
 .nav-toggle {
   background: none;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
-  padding: var(--space-sm);
+  width: 36px;
+  height: 36px;
+  padding: 0;
   color: var(--color-text);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--transition-fast), background-color var(--transition-fast);
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
   line-height: 1;
 }
 
@@ -444,6 +453,7 @@ nav a[aria-current="page"]::after {
 .nav-toggle:hover {
   color: var(--color-primary);
   background-color: var(--color-accent);
+  border-color: var(--color-border);
 }
 
 /* Show moon in light mode, sun in dark mode */
@@ -1064,6 +1074,10 @@ footer {
     display: flex;
   }
 
+  .header-right {
+    gap: var(--space-sm);
+  }
+
   nav {
     position: fixed;
     top: 72px;
@@ -1139,6 +1153,15 @@ footer {
 @media (max-width: 480px) {
   .header-inner {
     padding: var(--space-sm) var(--space-md);
+  }
+
+  .header-inner .profile-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: var(--text-base);
   }
 
   .cta-grid {

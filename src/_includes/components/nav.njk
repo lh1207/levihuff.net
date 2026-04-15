@@ -4,13 +4,12 @@
       <img src="/images/profile.jpg" alt="Levi Huff" class="profile-img" width="56" height="56">
       <span class="brand-name">Levi Huff</span>
     </a>
+    <div class="header-right">
     <nav id="nav-menu" aria-label="Main navigation">
       <ul>
-        <li><a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>Home</a></li>
-        <li><a href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a></li>
-        <li><a href="/projects/" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects</a></li>
-        <li><a href="/blog/" {% if page.url == '/blog/' %}aria-current="page"{% endif %}>Blog</a></li>
-        <li><a href="/contact/" {% if page.url == '/contact/' %}aria-current="page"{% endif %}>Contact</a></li>
+        {% for item in navigation %}
+          <li><a href="{{ item.url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
       </ul>
     </nav>
     <div class="header-controls">
@@ -41,6 +40,7 @@
           <line x1="6" y1="6" x2="18" y2="18"/>
         </svg>
       </button>
+    </div>
     </div>
   </div>
 </header>
