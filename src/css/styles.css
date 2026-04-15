@@ -863,6 +863,199 @@ footer {
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 9999;
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
+  color: var(--color-bg-white);
+  text-decoration: none;
+}
+
+/* ========================================
+   Resume Page
+   ======================================== */
+.resume-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-lg);
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+.resume-contact a {
+  font-weight: 500;
+}
+
+.resume-download-banner {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: var(--space-xs);
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-download:hover,
+.btn-download:focus {
+  background: var(--color-primary-dark);
+  color: var(--color-bg-white);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.resume-section {
+  margin-top: var(--space-2xl);
+}
+
+.resume-section h2 {
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.resume-section .experience-card {
+  margin-top: var(--space-md);
+}
+
+.resume-section .experience-card:first-of-type {
+  margin-top: 0;
+}
+
+.resume-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+.resume-skills-grid h3 {
+  color: var(--color-primary);
+  font-size: var(--text-base);
+  margin-bottom: var(--space-sm);
+}
+
+.resume-skills-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resume-skills-grid li {
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   Back-to-Top Button
+   ======================================== */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  font-size: var(--text-xl);
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   Error Page (404)
+   ======================================== */
+.error-page {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.error-page-inner {
+  text-align: center;
+  max-width: 480px;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.04em;
+}
+
+.error-page h1 {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-sm);
+}
+
+.error-page .lead {
+  margin-bottom: var(--space-md);
+}
+
+.error-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-lg);
+}
+
+.error-nav li {
+  margin: 0;
+}
+
+.error-nav a {
+  font-weight: 600;
+}
+
 /* ========================================
    Responsive Design
    ======================================== */
