@@ -28,10 +28,16 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="apple-touch-icon" href="/images/profile.jpg">
   <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   {% include "components/nav.njk" %}
-  
+
   <main>
     {{ content | safe }}
   </main>
@@ -40,9 +46,58 @@
 
   <script>
     (function () {
+      // Year in footer
       var year = document.getElementById('year');
-      if (year) {
-        year.textContent = new Date().getFullYear();
+      if (year) year.textContent = new Date().getFullYear();
+
+      // Dark mode toggle
+      var root = document.documentElement;
+      var themeBtn = document.getElementById('theme-toggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+          var current = root.getAttribute('data-theme');
+          var isDark = current === 'dark' ||
+            (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var next = isDark ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+      }
+
+      // Hamburger menu
+      var navToggle = document.getElementById('nav-toggle');
+      var navMenu = document.getElementById('nav-menu');
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+          var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', String(!isOpen));
+          navMenu.classList.toggle('is-open', !isOpen);
+          if (!isOpen) {
+            var firstLink = navMenu.querySelector('a');
+            if (firstLink) firstLink.focus();
+          }
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMenu.classList.remove('is-open');
+            navToggle.focus();
+          }
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function (e) {
+          if (
+            navToggle.getAttribute('aria-expanded') === 'true' &&
+            !navMenu.contains(e.target) &&
+            !navToggle.contains(e.target)
+          ) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMenu.classList.remove('is-open');
+          }
+        });
       }
     })();
   </script>

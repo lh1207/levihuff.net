@@ -20,6 +20,10 @@
   --color-border: #dcdcdc;
   --color-border-light: #e8e8e8;
 
+  /* Code blocks — separate from text so dark mode doesn't invert them */
+  --color-code-bg: #1a1a1a;
+  --color-code-text: #ffffff;
+
   /* Typography */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
@@ -61,6 +65,66 @@
   /* Layout */
   --max-width: 1100px;
   --content-width: 70ch;
+}
+
+/* ========================================
+   Dark Mode — System Preference
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-primary: #5b9bd1;
+    --color-primary-dark: #4a85bd;
+    --color-primary-light: #6db3e8;
+    --color-accent: #1a2535;
+    --color-accent-border: #2a3850;
+
+    --color-text: #dde3ee;
+    --color-text-muted: #9ba3b5;
+    --color-text-light: #8892a4;
+
+    --color-bg: #111318;
+    --color-bg-white: #1a1d27;
+    --color-bg-subtle: #1f2233;
+
+    --color-border: #2e3244;
+    --color-border-light: #252a3a;
+
+    --color-code-bg: #0a0c12;
+    --color-code-text: #dde3ee;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ========================================
+   Dark Mode — Manual Toggle
+   ======================================== */
+:root[data-theme="dark"] {
+  --color-primary: #5b9bd1;
+  --color-primary-dark: #4a85bd;
+  --color-primary-light: #6db3e8;
+  --color-accent: #1a2535;
+  --color-accent-border: #2a3850;
+
+  --color-text: #dde3ee;
+  --color-text-muted: #9ba3b5;
+  --color-text-light: #8892a4;
+
+  --color-bg: #111318;
+  --color-bg-white: #1a1d27;
+  --color-bg-subtle: #1f2233;
+
+  --color-border: #2e3244;
+  --color-border-light: #252a3a;
+
+  --color-code-bg: #0a0c12;
+  --color-code-text: #dde3ee;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* ========================================
@@ -174,8 +238,8 @@ code {
 pre {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  background: var(--color-text);
-  color: var(--color-bg-white);
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   overflow-x: auto;
@@ -273,6 +337,7 @@ nav {
   font-weight: 600;
   font-size: var(--text-lg);
   color: var(--color-text);
+  transition: color var(--transition-fast);
 }
 
 .brand:hover .brand-name {
@@ -319,6 +384,7 @@ nav a {
   font-weight: 500;
   padding: var(--space-xs) 0;
   position: relative;
+  transition: color var(--transition-fast);
 }
 
 nav a::after {
@@ -341,6 +407,88 @@ nav a:focus {
 nav a:hover::after,
 nav a:focus::after {
   width: 100%;
+}
+
+/* Active nav link — current page */
+nav a[aria-current="page"] {
+  color: var(--color-primary);
+}
+
+nav a[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* Header utility buttons (theme toggle + hamburger) */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.theme-toggle,
+.nav-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-sm);
+  color: var(--color-text);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  line-height: 1;
+}
+
+.theme-toggle:hover,
+.nav-toggle:hover {
+  color: var(--color-primary);
+  background-color: var(--color-accent);
+}
+
+/* Show moon in light mode, sun in dark mode */
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+.theme-toggle .icon-moon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: none;
+  }
+}
+
+/* Show menu icon when closed, X when open */
+.nav-toggle .icon-close {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .icon-menu {
+  display: none;
+}
+
+.nav-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+/* Hide hamburger on desktop */
+.nav-toggle {
+  display: none;
 }
 
 /* ========================================
@@ -708,6 +856,12 @@ nav a:focus::after {
   background: var(--color-bg-subtle);
   border-left: 3px solid var(--color-primary);
   border-radius: var(--radius-sm);
+  transition: border-left-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.experience-card:hover {
+  border-left-color: var(--color-primary-light);
+  background-color: var(--color-accent);
 }
 
 .experience-card h3 {
@@ -835,12 +989,41 @@ footer {
 .footer-inner {
   max-width: var(--max-width);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
 }
 
 .footer-inner p {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  text-align: center;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.footer-link svg {
+  flex-shrink: 0;
+  fill: currentColor;
 }
 
 /* ========================================
@@ -876,9 +1059,42 @@ footer {
     padding: var(--space-lg) var(--space-md);
   }
 
+  /* Show hamburger, hide inline nav */
+  .nav-toggle {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg-white);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--transition-base), visibility var(--transition-base), transform var(--transition-base);
+    z-index: 99;
+    height: auto;
+  }
+
+  nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   nav ul {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
     gap: var(--space-md);
+    height: auto;
+  }
+
+  nav a {
+    font-size: var(--text-lg);
   }
 
   #hero {
@@ -922,13 +1138,7 @@ footer {
 
 @media (max-width: 480px) {
   .header-inner {
-    flex-direction: column;
-    gap: var(--space-md);
-    padding: var(--space-md);
-  }
-
-  nav ul {
-    justify-content: center;
+    padding: var(--space-sm) var(--space-md);
   }
 
   .cta-grid {
@@ -938,5 +1148,9 @@ footer {
 
   .card {
     width: 100%;
+  }
+
+  .footer-links {
+    gap: var(--space-lg);
   }
 }
