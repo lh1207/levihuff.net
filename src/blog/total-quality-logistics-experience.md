@@ -4,12 +4,12 @@ description: How I managed machine decommissioning by processor generation, coor
 date: 2024-08-10
 tags: [systems-administration, imaging, pxe-boot, it-operations]
 layout: post.njk
-thumbnail: /images/blog/sysadmin-server-room.jpg
+thumbnail: /images/blog/tql-workstations.jpg
 ---
 
 # Machine Lifecycle and PXE Imaging at Total Quality Logistics
 
-![Server rack in professional data center environment](/images/blog/sysadmin-server-room.jpg)
+![Rows of desktop workstations in an empty office](/images/blog/tql-workstations.jpg)
 
 During my time at Total Quality Logistics (TQL), I worked on the IT team supporting the internal infrastructure that keeps one of the country's largest freight brokerage operations running. The work was fast-paced and deadline-driven. When machines needed to move or be redeployed, there wasn't room for delays. This post covers the three main areas I focused on: managing machine decommissioning, coordinating hardware moves, and deploying machines through PXE boot.
 
