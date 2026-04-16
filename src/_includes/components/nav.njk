@@ -8,7 +8,8 @@
     <nav id="nav-menu" aria-label="Main navigation">
       <ul>
         {% for item in navigation %}
-          <li><a href="{{ item.url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {% set isActive = (item.url == "/" and page.url == "/") or (item.url != "/" and page.url.startsWith(item.url)) %}
+          <li><a href="{{ item.url }}"{% if isActive %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
         {% endfor %}
       </ul>
     </nav>
