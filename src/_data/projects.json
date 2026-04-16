@@ -28,14 +28,14 @@
     "imageLoading": "lazy",
     "description": "<strong>Android mobile application</strong> that uses geolocation to guide users to real-world benchmarks in an interactive scavenger hunt format.",
     "paragraphs": [
-      { "label": "Technologies", "text": "Kotlin, Android SDK, Geolocation APIs" },
-      { "label": "Key Features", "text": "GPS-based navigation, interactive quest system, location tracking" }
+      { "label": "Technologies", "text": "Kotlin, Android SDK, Firebase, Google Maps API, Geolocation APIs" },
+      { "label": "Key Features", "text": "GPS-based navigation, interactive quest system, Firebase backend for auth and data persistence" }
     ],
     "meta": null
   },
   {
     "title": "Culinary Mastery",
-    "link": "https://github.com/lh1207/CulinaryMastery",
+    "link": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery",
     "linkLabel": "View on GitHub",
     "image": "/images/culinary-mastery/hero-kitchen.jpg",
     "imageAlt": "Culinary Mastery educational platform showing video tutorial interface",
@@ -43,10 +43,11 @@
     "imageWidth": 1200,
     "imageHeight": 800,
     "imageLoading": "lazy",
-    "description": "<strong>Web application</strong> that integrates YouTube and OpenAI APIs to generate personalized cooking tutorials and interactive quizzes.",
+    "description": "<strong>Web-based cooking education platform</strong> delivering step-by-step video lessons with a secure Azure backend and backend AI integration.",
     "paragraphs": [
-      { "label": "Technologies", "text": "React Native, Node.js, YouTube API, Azure AI services" },
-      { "label": "Key Features", "text": "Personalized content generation, video integration, interactive learning" }
+      { "label": "Technologies", "text": "React Native, Node.js, YouTube API, Azure Cosmos DB, Azure AI Services" },
+      { "label": "Key Features", "text": "YouTube video integration, Azure Cosmos DB for user and course data, Firebase + Azure Authentication with 2FA, backend Azure AI for explanations and translations" },
+      { "label": "Context", "text": "University of Cincinnati Senior Design, Team 7 — presented at IT Expo 2025" }
     ],
     "meta": null
   },
