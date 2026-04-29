@@ -7,8 +7,6 @@ layout: post.njk
 thumbnail: /images/locoquest/hero-outdoor-map.jpg
 ---
 
-# LocoQuest - Android Geolocation Scavenger Hunt Application
-
 LocoQuest is an Android app I built that uses geolocation to create an interactive scavenger hunt. I built it with Kotlin and the Android SDK. The app guides users to real-world benchmarks and landmarks, turning exploration into a game.
 
 **Repository:** [LocoQuest on GitHub](https://github.com/lh1207/LocoQuest)

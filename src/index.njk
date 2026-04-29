@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Levi Huff | IT Professional & Developer
-description: Information Technology graduate from the University of Cincinnati specializing in full-stack development, systems administration, and process automation. Open to full-time roles in software development and IT.
+description: Information Technology student graduating May 2026 from the University of Cincinnati, specializing in full-stack development, systems administration, and process automation. Open to full-time roles in software development and IT.
 ---
 
 <!-- Hero -->
@@ -16,7 +16,7 @@ description: Information Technology graduate from the University of Cincinnati s
       </p>
 
       <p>
-        Recently graduated with a Bachelor of Science in Information Technology from the University of Cincinnati, with a focus on software and application development.
+        Graduating {{ site.graduationDate }} with a Bachelor of Science in Information Technology from the University of Cincinnati, with a focus on software and application development.
       </p>
 
       <p>
@@ -97,16 +97,16 @@ description: Information Technology graduate from the University of Cincinnati s
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Levi Huff",
-  "url": "https://levihuff.net",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
   "jobTitle": "IT Student & Developer",
   "alumniOf": {
     "@type": "CollegeOrUniversity",
     "name": "University of Cincinnati"
   },
   "sameAs": [
-    "https://github.com/lh1207",
-    "https://www.linkedin.com/in/levihuff1207/"
+    "{{ site.social.github }}",
+    "{{ site.social.linkedin }}"
   ]
 }
 </script>

@@ -7,8 +7,6 @@ layout: post.njk
 thumbnail: /images/blog/onboarding-hero.jpg
 ---
 
-# IT Support at Tire Discounters
-
 ![Professional reviewing process documentation in office environment](/images/blog/onboarding-hero.jpg)
 
 My role at Tire Discounters was a meaningful step in my professional development, not just technically, but in terms of understanding what a structured corporate IT environment looks and feels like. This post covers the full scope of that work: the support model across locations, clearing a backlogged ticketing system, improving the employee onboarding process, and building a new MDT image that automated Lenovo driver installation and domain controller enrollment.

@@ -8,8 +8,6 @@ thumbnail: /images/aeroassist/cloud-logo-docker.png
 thumbnailLogo: true
 ---
 
-# AeroAssist - Adding Docker Support for Home Lab Deployment
-
 I recently added Docker support to AeroAssist, making it much easier to deploy the ticketing system in home labs and containerized environments. This update includes a multi-stage Dockerfile, Docker Compose configuration, and several configuration enhancements to support containerized deployments.
 
 **Pull Request:** [Add Docker Support - PR #37](https://github.com/lh1207/AeroAssist/pull/37)

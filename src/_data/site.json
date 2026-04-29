@@ -1,5 +1,11 @@
 {
   "name": "Levi Huff",
   "url": "https://levihuff.net",
-  "email": "levihuff1207@gmail.com"
+  "email": "levihuff1207@gmail.com",
+  "graduationDate": "May 2026",
+  "social": {
+    "github": "https://github.com/lh1207",
+    "linkedin": "https://www.linkedin.com/in/levihuff1207/",
+    "handshake": "https://uc.joinhandshake.com/profiles/levihuff"
+  }
 }

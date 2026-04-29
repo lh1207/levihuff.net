@@ -11,8 +11,8 @@ description: Resume for Levi Huff, IT student and developer specializing in full
       <p class="lead">IT Student &amp; Developer — Cincinnati, OH</p>
       <div class="resume-contact">
         <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-        <a href="https://github.com/lh1207" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/levihuff1207/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="{{ site.social.github }}" target="_blank" rel="noopener">GitHub</a>
+        <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
         <a href="{{ site.url }}">{{ site.url | replace("https://", "") }}</a>
       </div>
     </div>
@@ -29,7 +29,7 @@ description: Resume for Levi Huff, IT student and developer specializing in full
   <div class="experience-card">
     <h3>University of Cincinnati</h3>
     <p><strong>Bachelor of Science in Information Technology</strong><br>
-    GPA: 3.56 &mdash; Expected Graduation: May 2026</p>
+    GPA: 3.56 &mdash; Expected Graduation: {{ site.graduationDate }}</p>
     <p><em>Coursework:</em> System Administration, Network Infrastructure, Database Management, Enterprise Application Development, Information Security, Web Server Development, Mobile Device Programming</p>
   </div>
 </section>
