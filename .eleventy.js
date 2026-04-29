@@ -1,4 +1,7 @@
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(pluginRss);
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/css");
@@ -27,11 +30,11 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("dateIso", function (date) {
     if (!date) return "";
-    try {
-      return new Date(date).toISOString();
-    } catch (error) {
-      return "";
+    const d = new Date(date);
+    if (isNaN(d.getTime())) {
+      throw new Error(`[dateIso] Invalid date: "${date}". Fix the date: field in this post's frontmatter.`);
     }
+    return d.toISOString();
   });
 
   eleventyConfig.addFilter("dateYMD", function (date) {
@@ -42,6 +45,12 @@ module.exports = function (eleventyConfig) {
     } catch (error) {
       return "";
     }
+  });
+
+  // Escape CDATA close sequence in feed content so XML stays valid
+  eleventyConfig.addFilter("safeCdata", function (str) {
+    if (!str) return "";
+    return str.replace(/\]\]>/g, "]]]]><![CDATA[>");
   });
 
   // Add reading time filter
