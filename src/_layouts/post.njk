@@ -17,7 +17,7 @@ isPost: true
       {% if tags %}
       <div class="tag-list">
         {% for tag in tags %}
-        <span class="tag">{{ tag }}</span>
+        <a href="/tags/{{ tag | tagSlug }}/" class="tag">{{ tag }}</a>
         {% endfor %}
       </div>
       {% endif %}

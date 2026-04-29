@@ -37,7 +37,7 @@ description: Technical blog posts covering full-stack development, systems admin
         {% if post.data.tags %}
         <div class="tag-list">
           {% for tag in post.data.tags %}
-          <span class="tag">{{ tag }}</span>
+          <a href="/tags/{{ tag | tagSlug }}/" class="tag">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}

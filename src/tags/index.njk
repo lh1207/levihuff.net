@@ -1,0 +1,20 @@
+---
+layout: base.njk
+title: Tags | Levi Huff
+description: Browse all tags used across the blog.
+eleventyExcludeFromCollections: true
+---
+
+<section>
+  <h1>All Tags</h1>
+  <p class="lead">{{ collections.tagList.length }} tag{% if collections.tagList.length != 1 %}s{% endif %} across {{ collections.posts.length }} posts</p>
+
+  <div class="tag-index">
+    {% for tag in collections.tagList %}
+    <a href="/tags/{{ tag | tagSlug }}/" class="tag-index-item">
+      <span class="tag">{{ tag }}</span>
+      <span class="tag-count">{{ collections[tag].length }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>

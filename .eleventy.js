@@ -35,6 +35,20 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("src/blog/**/*.md");
   });
 
+  // Deduplicated, sorted list of all tags used across posts — used to
+  // paginate /tags/<slug>/ pages and build the /tags/ index.
+  eleventyConfig.addCollection("tagList", function (collectionApi) {
+    const tagSet = new Set();
+    collectionApi.getFilteredByGlob("src/blog/**/*.md").forEach(item => {
+      (item.data.tags || []).forEach(tag => tagSet.add(tag));
+    });
+    return [...tagSet].sort();
+  });
+
+  // Shared slug helper — same transform used by tag permalinks and tag links.
+  const tagSlug = (tag) => tag.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-+|-+$/g, "");
+  eleventyConfig.addFilter("tagSlug", tagSlug);
+
   // Add date filters
   eleventyConfig.addFilter("dateReadable", function (date) {
     if (!date) return "";
