@@ -1,29 +1,30 @@
-# levihuff.net — Apache configuration for Porkbun static hosting
-# LIVE source of truth for caching and security headers.
-# The repo-root _headers file is a defensive artifact for any future
-# migration to Netlify / Cloudflare Pages; it is NOT served by Porkbun.
+# DEFENSIVE ARTIFACT — NOT DEPLOYED.
+# Porkbun static hosting rejects .htaccess uploads (FTP 553) and does not
+# run Apache. Retained as documentation of intended cache/security headers
+# if the site ever migrates to an Apache host. To activate, re-add
+# eleventyConfig.addPassthroughCopy("src/.htaccess") in .eleventy.js.
 
 # ── Cache-Control ──────────────────────────────────────────────────────────
 <IfModule mod_headers.c>
   # CSS/JS: no content-hash fingerprinting, so omit immutable. 1-day cache
   # means returning visitors get fast repeat loads; changes land within 24h.
   <FilesMatch "\.(css|js)$">
-    Header always set Cache-Control "public, max-age=86400"
+    Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 
   # Images, fonts, PDF: change rarely in practice; 1-week cache is safe.
   <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|otf|pdf)$">
-    Header always set Cache-Control "public, max-age=604800"
+    Header set Cache-Control "public, max-age=604800"
   </FilesMatch>
 
   # HTML — short cache; revalidate on each visit
   <FilesMatch "\.html$">
-    Header always set Cache-Control "public, max-age=3600, must-revalidate"
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
   </FilesMatch>
 
   # XML feeds and sitemaps — short cache
   <FilesMatch "\.(xml|txt)$">
-    Header always set Cache-Control "public, max-age=3600, must-revalidate"
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
   </FilesMatch>
 
   # ── Security Headers ────────────────────────────────────────────────────

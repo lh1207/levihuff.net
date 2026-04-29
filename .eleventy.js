@@ -27,7 +27,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/files");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("_headers");
-  eleventyConfig.addPassthroughCopy("src/.htaccess");
   eleventyConfig.addPassthroughCopy("src/humans.txt");
 
   // Create blog posts collection
