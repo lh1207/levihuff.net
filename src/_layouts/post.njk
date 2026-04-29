@@ -29,10 +29,21 @@ isPost: true
   </div>
 
   <footer class="post-footer">
-    <div class="post-nav">
-      <p class="post-author">Written by {{ site.name }}</p>
-      <a href="/blog/" class="back-link">&larr; Back to Blog</a>
-    </div>
+    {%- set previousPost = collections.posts | getPreviousCollectionItem -%}
+    {%- set nextPost = collections.posts | getNextCollectionItem -%}
+    <nav class="post-nav" aria-label="Post navigation">
+      <div class="post-nav-prev">
+        {% if previousPost %}
+        <a href="{{ previousPost.url }}" rel="prev">&larr; {{ previousPost.data.title }}</a>
+        {% endif %}
+      </div>
+      <a href="/blog/" class="back-link">All posts</a>
+      <div class="post-nav-next">
+        {% if nextPost %}
+        <a href="{{ nextPost.url }}" rel="next">{{ nextPost.data.title }} &rarr;</a>
+        {% endif %}
+      </div>
+    </nav>
   </footer>
 </article>
 
