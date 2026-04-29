@@ -1,6 +1,7 @@
 # DEFENSIVE ARTIFACT — NOT ACTIVE ON PORKBUN
-# Porkbun static hosting ignores this file. No custom headers are served on
-# the current host. Keep for any future migration to Netlify / Cloudflare Pages.
+# Porkbun uses Apache; this Netlify/Cloudflare Pages convention is silently
+# ignored on the current host. Live headers are served via src/.htaccess.
+# Keep this file for any future migration to Netlify / Cloudflare Pages.
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
