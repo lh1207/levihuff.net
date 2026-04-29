@@ -2,6 +2,6 @@ node_modules/
 _site/
 .DS_Store
 
-# Claude Code
-CLAUDE.md
-.claude/
+# Claude Code — local overrides and ephemeral agent state
+.claude/settings.local.json
+.claude/worktrees/
