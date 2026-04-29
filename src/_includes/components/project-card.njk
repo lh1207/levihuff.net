@@ -1,11 +1,12 @@
 <article class="project-card">
-  {% if project.link %}
-    <a href="{{ project.link }}" target="_blank" rel="noopener" class="project-card-link" aria-hidden="true"></a>
-  {% endif %}
   <img src="{{ project.image }}" alt="{{ project.imageAlt }}" class="{{ project.imageClass }}"
     width="{{ project.imageWidth }}" height="{{ project.imageHeight }}"
     {% if project.imageLoading %}loading="{{ project.imageLoading }}"{% endif %}>
-  <h2>{{ project.title }}</h2>
+  {% if project.link %}
+    <h2><a href="{{ project.link }}" target="_blank" rel="noopener">{{ project.title }}</a></h2>
+  {% else %}
+    <h2>{{ project.title }}</h2>
+  {% endif %}
   <p>{{ project.description | safe }}</p>
   {% for para in project.paragraphs %}
     <p><strong>{{ para.label }}:</strong> {{ para.text }}</p>
@@ -14,6 +15,6 @@
     <p class="project-meta">{{ project.meta }}</p>
   {% endif %}
   {% if project.link %}
-    <a href="{{ project.link }}" target="_blank" rel="noopener" class="project-link">{{ project.linkLabel }} &rarr;</a>
+    <span class="project-link" aria-hidden="true">{{ project.linkLabel }} &rarr;</span>
   {% endif %}
 </article>

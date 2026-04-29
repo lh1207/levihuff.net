@@ -756,22 +756,24 @@ nav a[aria-current="page"]::after {
   transform: translateY(-2px);
 }
 
-.project-card-link {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.project-card h2,
-.project-card .project-link {
-  position: relative;
-  z-index: 2;
-}
-
 .project-card h2 {
   font-size: var(--text-xl);
   margin-bottom: var(--space-sm);
+}
+
+.project-card h2 a {
   color: var(--color-primary);
+  text-decoration: none;
+}
+
+.project-card h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-card h2 a:hover {
+  color: var(--color-primary-light);
 }
 
 .project-card p {
