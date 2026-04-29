@@ -8,6 +8,8 @@ thumbnail: /images/aeroassist/cloud-logo.png
 thumbnailLogo: true
 ---
 
+# AeroAssist - Full-Stack Ticketing System Development
+
 AeroAssist is a full-stack ticketing system I built to streamline ticket creation, tracking, and management. I used C#, ASP.NET, Bootstrap, and MSSQL to create a practical solution for managing support tickets.
 
 **Repository:** [AeroAssist on GitHub](https://github.com/lh1207/AeroAssist)

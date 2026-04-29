@@ -1,6 +1,5 @@
 ---
 layout: base.njk
-isPost: true
 ---
 
 <article>
@@ -17,7 +16,7 @@ isPost: true
       {% if tags %}
       <div class="tag-list">
         {% for tag in tags %}
-        <a href="/tags/{{ tag | tagSlug }}/" class="tag">{{ tag }}</a>
+        <span class="tag">{{ tag }}</span>
         {% endfor %}
       </div>
       {% endif %}
@@ -29,40 +28,9 @@ isPost: true
   </div>
 
   <footer class="post-footer">
-    {%- set previousPost = collections.posts | getPreviousCollectionItem -%}
-    {%- set nextPost = collections.posts | getNextCollectionItem -%}
-    <nav class="post-nav" aria-label="Post navigation">
-      <div class="post-nav-prev">
-        {% if previousPost %}
-        <a href="{{ previousPost.url }}" rel="prev">&larr; {{ previousPost.data.title }}</a>
-        {% endif %}
-      </div>
-      <a href="/blog/" class="back-link">All posts</a>
-      <div class="post-nav-next">
-        {% if nextPost %}
-        <a href="{{ nextPost.url }}" rel="next">{{ nextPost.data.title }} &rarr;</a>
-        {% endif %}
-      </div>
-    </nav>
+    <div class="post-nav">
+      <p class="post-author">Written by Levi Huff</p>
+      <a href="/blog/" class="back-link">&larr; Back to Blog</a>
+    </div>
   </footer>
 </article>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": {{ title | dump | safe }},
-  "description": {{ description | dump | safe }},
-  "datePublished": "{{ date | dateIso }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ site.name }}",
-    "url": "{{ site.url }}"
-  },
-  "image": "{% if thumbnail %}{{ site.url }}{{ thumbnail }}{% else %}{{ site.url }}/images/profile.jpg{% endif %}",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "{{ site.url }}{{ page.url }}"
-  }
-}
-</script>

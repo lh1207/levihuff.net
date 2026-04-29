@@ -7,6 +7,8 @@ layout: post.njk
 thumbnail: /images/blog/accessibility-keyboard.jpg
 ---
 
+# Incorporating Accessibility into Web Projects
+
 Accessibility isn't just about compliance. It's about building apps that work for everyone. Thinking about accessibility from the start makes apps more usable and easier to maintain.
 
 ## Why Accessibility Matters

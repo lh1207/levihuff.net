@@ -7,6 +7,8 @@ layout: post.njk
 thumbnail: /images/blog/tql-workstations.jpg
 ---
 
+# Machine Lifecycle and PXE Imaging at Total Quality Logistics
+
 ![Rows of desktop workstations in an empty office](/images/blog/tql-workstations.jpg)
 
 During my time at Total Quality Logistics (TQL), I worked on the IT team supporting the internal infrastructure that keeps one of the country's largest freight brokerage operations running. The work was fast-paced and deadline-driven. When machines needed to move or be redeployed, there wasn't room for delays. This post covers the three main areas I focused on: managing machine decommissioning, coordinating hardware moves, and deploying machines through PXE boot.

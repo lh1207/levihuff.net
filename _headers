@@ -1,10 +1,6 @@
-# DEFENSIVE ARTIFACT — NOT ACTIVE ON PORKBUN
-# Porkbun uses Apache; this Netlify/Cloudflare Pages convention is silently
-# ignored on the current host. Live headers are served via src/.htaccess.
-# Keep this file for any future migration to Netlify / Cloudflare Pages.
 /*
   X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
