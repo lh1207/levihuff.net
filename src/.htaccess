@@ -1,7 +1,8 @@
-# levihuff.net — Apache configuration for Porkbun static hosting
-# LIVE source of truth for caching and security headers.
-# The repo-root _headers file is a defensive artifact for any future
-# migration to Netlify / Cloudflare Pages; it is NOT served by Porkbun.
+# DEFENSIVE ARTIFACT — NOT DEPLOYED.
+# Porkbun static hosting rejects .htaccess uploads (FTP 553) and does not
+# run Apache. Retained as documentation of intended cache/security headers
+# if the site ever migrates to an Apache host. To activate, re-add
+# eleventyConfig.addPassthroughCopy("src/.htaccess") in .eleventy.js.
 
 # ── Cache-Control ──────────────────────────────────────────────────────────
 <IfModule mod_headers.c>
