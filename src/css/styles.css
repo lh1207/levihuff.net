@@ -68,7 +68,12 @@
 }
 
 /* ========================================
-   Dark Mode — System Preference
+   Dark Mode
+   Applied via [data-theme="dark"]; system preference handled by
+   the pre-paint script in base.njk which sets the attribute before
+   first paint when no explicit preference is stored.
+   The @media fallback covers no-JS environments where the script
+   never runs and data-theme is never set.
    ======================================== */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -98,9 +103,6 @@
   }
 }
 
-/* ========================================
-   Dark Mode — Manual Toggle
-   ======================================== */
 :root[data-theme="dark"] {
   --color-primary: #5b9bd1;
   --color-primary-dark: #4a85bd;
@@ -601,15 +603,10 @@ nav a[aria-current="page"]::after {
   transform: translateY(-2px);
 }
 
-.blog-card-link {
+.blog-card h2 a::after {
+  content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
-}
-
-.blog-card h2 a {
-  position: relative;
-  z-index: 2;
 }
 
 .blog-card h2 {
@@ -761,22 +758,24 @@ nav a[aria-current="page"]::after {
   transform: translateY(-2px);
 }
 
-.project-card-link {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.project-card h2,
-.project-card .project-link {
-  position: relative;
-  z-index: 2;
-}
-
 .project-card h2 {
   font-size: var(--text-xl);
   margin-bottom: var(--space-sm);
+}
+
+.project-card h2 a {
   color: var(--color-primary);
+  text-decoration: none;
+}
+
+.project-card h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-card h2 a:hover {
+  color: var(--color-primary-light);
 }
 
 .project-card p {
