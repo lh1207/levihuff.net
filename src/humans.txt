@@ -1,0 +1,15 @@
+/* TEAM */
+Developer: Levi Huff
+Location: Cincinnati, Ohio, USA
+
+/* SITE */
+Language: English
+Doctype: HTML5
+Standards: WCAG 2.1 AA, RFC 9116
+
+/* TECHNOLOGY */
+Static Site Generator: Eleventy (11ty) 2.0
+Template Engine: Nunjucks
+CSS: Vanilla CSS with custom properties
+Deployment: GitHub Actions + FTP
+Hosting: Porkbun

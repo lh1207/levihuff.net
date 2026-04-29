@@ -7,8 +7,6 @@ layout: post.njk
 thumbnail: /images/culinary-mastery/hero-kitchen.jpg
 ---
 
-# Culinary Mastery - Building an Educational Cooking Platform
-
 Culinary Mastery is a web-based educational app that teaches foundational cooking skills through video tutorials, interactive quizzes, and personalized learning paths. I worked on this as part of the University of Cincinnati Senior Design program. The project fills a gap in accessible cooking education by using modern web technologies with secure backend services.
 
 ![Tablet displaying cooking tutorial video on kitchen counter with fresh ingredients](/images/culinary-mastery/hero-kitchen.jpg)

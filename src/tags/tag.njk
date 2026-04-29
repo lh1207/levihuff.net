@@ -1,0 +1,48 @@
+---
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag | tagSlug }}/"
+eleventyExcludeFromCollections: true
+layout: base.njk
+---
+
+<section>
+  <div class="blog-index-header">
+    <div>
+      <h1>#{{ tag }}</h1>
+      <p class="lead">{{ collections[tag].length }} post{% if collections[tag].length != 1 %}s{% endif %}</p>
+    </div>
+    <a href="/tags/" class="back-link">&larr; All tags</a>
+  </div>
+
+  <div class="blog-grid">
+    {% for post in collections[tag] | reverse %}
+    <article class="blog-card">
+      {% if post.data.thumbnail %}
+      <img src="{{ post.data.thumbnail }}" alt="" class="blog-thumbnail{% if post.data.thumbnailLogo %} logo{% endif %}" loading="lazy">
+      {% endif %}
+      <h2>
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+      </h2>
+      {% if post.data.description %}
+      <p>{{ post.data.description }}</p>
+      {% endif %}
+      <div class="blog-meta">
+        {% if post.date %}
+        <time datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
+        {% endif %}
+        <span class="reading-time">{{ post.templateContent | readingTime }}</span>
+        {% if post.data.tags %}
+        <div class="tag-list">
+          {% for t in post.data.tags %}
+          <a href="/tags/{{ t | tagSlug }}/" class="tag">{{ t }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

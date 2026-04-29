@@ -49,4 +49,18 @@ eleventyExcludeFromCollections: true
     <priority>0.6</priority>
   </url>
   {% endfor %}
+  <url>
+    <loc>{{ site.url }}/tags/</loc>
+    <lastmod>{{ today }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  {% for tag in collections.tagList %}
+  <url>
+    <loc>{{ site.url }}/tags/{{ tag | tagSlug }}/</loc>
+    <lastmod>{{ today }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  {% endfor %}
 </urlset>

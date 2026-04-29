@@ -7,8 +7,6 @@ layout: post.njk
 thumbnail: /images/blog/fullstack-workspace.jpg
 ---
 
-# Full Stack Development Fundamentals for IT Students
-
 Full stack development means understanding how frontend, backend, and database layers work together to build working applications. As an IT student, I've learned a lot by applying these concepts in academic and personal projects.
 
 ## Understanding the Layers
