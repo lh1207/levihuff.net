@@ -23,7 +23,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", mdLib);
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/images");
-  eleventyConfig.addPassthroughCopy("src/css");
+  // src/css is no longer passthrough-copied — Tailwind builds directly to _site/css/
   eleventyConfig.addPassthroughCopy("src/files");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("_headers");
