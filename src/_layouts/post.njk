@@ -4,62 +4,115 @@ isPost: true
 ---
 
 <article>
-  <header class="post-header">
-    <h1>{{ title }}</h1>
-    {% if description %}
-    <p class="lead">{{ description }}</p>
-    {% endif %}
-    <div class="blog-meta">
-      {% if date %}
-      <time datetime="{{ date | dateIso }}">{{ date | dateReadable }}</time>
+
+  {# Post header #}
+  <header class="py-16 md:py-20 border-b border-hair-1">
+    <div class="max-w-prose mx-auto px-4 md:px-6">
+
+      <a
+        href="/blog/"
+        class="font-jb text-mono-sm text-fg-3 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+        &larr; Blog
+      </a>
+
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-6">{{ title }}</h1>
+
+      {% if description %}
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4">{{ description }}</p>
       {% endif %}
-      <span class="reading-time">{{ content | readingTime }}</span>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <time datetime="{{ page.date | dateIso }}" class="font-jb text-mono-sm text-fg-3">{{ page.date | dateReadable }}</time>
+        <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+        <span class="font-jb text-mono-sm text-fg-3">{{ content | readingTime }}</span>
+      </div>
+
       {% if tags %}
-      <div class="tag-list">
+      <div class="mt-4 flex flex-wrap gap-2">
         {% for tag in tags %}
-        <a href="/tags/{{ tag | tagSlug }}/" class="tag">{{ tag }}</a>
+        {% if tag != "posts" %}
+        <a
+          href="/tags/{{ tag | tagSlug }}/"
+          class="font-jb text-mono-xs tracking-[0.04em] uppercase bg-amber/[0.10] border border-amber/[0.32] text-amber rounded-d-sm px-2 py-0.5 hover:bg-amber/[0.18] transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+          {{ tag }}
+        </a>
+        {% endif %}
         {% endfor %}
       </div>
       {% endif %}
+
     </div>
   </header>
 
-  <div class="post-content">
-    {{ content | safe }}
+  {# Post body #}
+  <div class="py-12 md:py-16">
+    <div class="post-content max-w-prose mx-auto px-4 md:px-6">
+      {{ content | safe }}
+    </div>
   </div>
 
-  <footer class="post-footer">
-    {%- set previousPost = collections.posts | getPreviousCollectionItem -%}
-    {%- set nextPost = collections.posts | getNextCollectionItem -%}
-    <nav class="post-nav" aria-label="Post navigation">
-      <div class="post-nav-prev">
-        {% if previousPost %}
-        <a href="{{ previousPost.url }}" rel="prev">&larr; {{ previousPost.data.title }}</a>
-        {% endif %}
+  {# Post footer nav #}
+  <footer class="border-t border-hair-1 py-10">
+    <div class="max-w-prose mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-3 gap-4 items-center">
+
+        <div class="text-left">
+          {% set previousPost = collections.posts | getPreviousCollectionItem %}
+          {% if previousPost %}
+          <a
+            href="{{ previousPost.url }}"
+            class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-2 font-plex text-sm font-medium px-4 py-2 rounded-d-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+            &larr; Previous
+          </a>
+          {% endif %}
+        </div>
+
+        <div class="text-center">
+          <a
+            href="/blog/"
+            class="font-jb text-mono-sm text-fg-3 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+            All posts
+          </a>
+        </div>
+
+        <div class="text-right">
+          {% set nextPost = collections.posts | getNextCollectionItem %}
+          {% if nextPost %}
+          <a
+            href="{{ nextPost.url }}"
+            class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-2 font-plex text-sm font-medium px-4 py-2 rounded-d-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+            Next &rarr;
+          </a>
+          {% endif %}
+        </div>
+
       </div>
-      <a href="/blog/" class="back-link">All posts</a>
-      <div class="post-nav-next">
-        {% if nextPost %}
-        <a href="{{ nextPost.url }}" rel="next">{{ nextPost.data.title }} &rarr;</a>
-        {% endif %}
-      </div>
-    </nav>
+    </div>
   </footer>
+
 </article>
 
+{# JSON-LD BlogPosting schema #}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": {{ title | dump | safe }},
   "description": {{ description | dump | safe }},
-  "datePublished": "{{ date | dateIso }}",
+  "datePublished": "{{ page.date | dateIso }}",
+  "dateModified": "{{ page.date | dateIso }}",
   "author": {
     "@type": "Person",
     "name": "{{ site.name }}",
     "url": "{{ site.url }}"
   },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}"
+  },
   "image": "{% if thumbnail %}{{ site.url }}{{ thumbnail }}{% else %}{{ site.url }}/images/profile.jpg{% endif %}",
+  "url": "{{ site.url }}{{ page.url }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ site.url }}{{ page.url }}"

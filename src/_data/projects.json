@@ -1,6 +1,30 @@
 [
   {
+    "title": "Windows Imaging and PXE Automation",
+    "featured": true,
+    "stack": "FOG, MDT, WDS, UEFI",
+    "summary": "Built a PXE boot and automated imaging pipeline at two co-op employers. Cut Windows 11 deployment from two hours to under 20 minutes per machine.",
+    "link": null,
+    "linkLabel": null,
+    "image": "/images/projects/it-provisioning.jpg",
+    "imageAlt": "IT workstation provisioning setup",
+    "imageClass": "project-img",
+    "imageWidth": 600,
+    "imageHeight": 400,
+    "imageLoading": "lazy",
+    "description": "<strong>Automated imaging pipeline</strong> built across two co-op employers using FOG Project and MDT. Eliminated manual installs and standardized Windows 11 deployments across departments.",
+    "paragraphs": [
+      { "label": "Stack",   "text": "FOG Project, MDT, Windows Deployment Services, UEFI/BIOS config" },
+      { "label": "Impact",  "text": "Reduced per-machine deployment time from roughly 2 hours to under 20 minutes. Automated Lenovo driver injection, domain enrollment, and department-specific image variants." },
+      { "label": "Context", "text": "Deployed at Tire Discounters (MDT image) and Total Quality Logistics (PXE pipeline with pre-imaging checklist for I/O verification and BIOS configuration)." }
+    ],
+    "meta": "Professional co-op project. Tire Discounters and Total Quality Logistics, 2022."
+  },
+  {
     "title": "AeroAssist",
+    "featured": true,
+    "stack": "C#, ASP.NET, MSSQL",
+    "summary": "Full-stack ticketing system for ticket creation, tracking, and workflow handoffs. Built and deployed end to end.",
     "link": "https://lh1207.github.io/AeroAssist/",
     "linkLabel": "View Site",
     "image": "/images/aeroassist/cloud-logo.png",
@@ -35,6 +59,9 @@
   },
   {
     "title": "Culinary Mastery",
+    "featured": true,
+    "stack": "React Native, Node.js, Azure AI",
+    "summary": "Cooking-education platform with Azure-backed auth and AI-driven explanations. UC Senior Design Group 7, IT Expo 2025.",
     "link": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery",
     "linkLabel": "View on GitHub",
     "image": "/images/culinary-mastery/hero-kitchen.jpg",
@@ -47,7 +74,7 @@
     "paragraphs": [
       { "label": "Technologies", "text": "React Native, Node.js, YouTube API, Azure Cosmos DB, Azure AI Services" },
       { "label": "Key Features", "text": "YouTube video integration, Azure Cosmos DB for user and course data, Firebase + Azure Authentication with 2FA, backend Azure AI for explanations and translations" },
-      { "label": "Context", "text": "University of Cincinnati Senior Design, Team 7 — presented at IT Expo 2025" }
+      { "label": "Context",      "text": "University of Cincinnati Senior Design, Team 7. Presented at IT Expo 2025." }
     ],
     "meta": null
   },
@@ -63,8 +90,8 @@
     "imageLoading": "lazy",
     "description": "<strong>Concept design project</strong> showcasing app design skills without code. UCRelief assists University of Cincinnati students with current challenges by providing up-to-date information.",
     "paragraphs": [
-      { "label": "Context", "text": "College advice rapidly becomes outdated. In 2000, student loans averaged $26,160, now it's $36,900. UCRelief addresses this gap for UC students." },
-      { "label": "Role", "text": "Designer (Concept Pitch)" },
+      { "label": "Context",  "text": "College advice rapidly becomes outdated. In 2000, student loans averaged $26,160, now it's $36,900. UCRelief addresses this gap for UC students." },
+      { "label": "Role",     "text": "Designer (Concept Pitch)" },
       { "label": "Timeline", "text": "January 2021 - April 2021" }
     ],
     "meta": null
@@ -81,7 +108,7 @@
     "imageLoading": "lazy",
     "description": "<strong>Professional project</strong> focused on automating computer imaging and provisioning processes to improve efficiency and accuracy.",
     "paragraphs": [
-      { "label": "Impact", "text": "Reduced manual configuration time, ensured consistent deployments, improved device readiness for end-users" },
+      { "label": "Impact",       "text": "Reduced manual configuration time, ensured consistent deployments, improved device readiness for end-users" },
       { "label": "Technologies", "text": "Automation tools, imaging software, device management systems" }
     ],
     "meta": "Professional work at Tire Discounters"
@@ -98,8 +125,8 @@
     "imageLoading": "lazy",
     "description": "<strong>Professional IT support work</strong> involving clearing a backlogged ticket queue, supporting multiple locations, and improving the employee onboarding process.",
     "paragraphs": [
-      { "label": "Impact", "text": "Restored a reliable support process, reduced onboarding ambiguity through process documentation, and handled on-site and remote requests across Cincinnati and Sharonville." },
-      { "label": "Approach", "text": "Triaged tickets by priority, documented onboarding workflows and system handoffs, and resolved issues on-site or over the phone depending on what each situation required." }
+      { "label": "Impact",    "text": "Restored a reliable support process, reduced onboarding ambiguity through process documentation, and handled on-site and remote requests across Cincinnati and Sharonville." },
+      { "label": "Approach",  "text": "Triaged tickets by priority, documented onboarding workflows and system handoffs, and resolved issues on-site or over the phone depending on what each situation required." }
     ],
     "meta": "Professional work at Tire Discounters"
   },
@@ -115,7 +142,7 @@
     "imageLoading": "lazy",
     "description": "<strong>Hands-on professional work</strong> managing hardware retirement based on processor generation standards.",
     "paragraphs": [
-      { "label": "Impact", "text": "Kept the hardware fleet current by identifying and staging machines for destruction once they no longer met OS or software requirements." },
+      { "label": "Impact",   "text": "Kept the hardware fleet current by identifying and staging machines for destruction once they no longer met OS or software requirements." },
       { "label": "Approach", "text": "Identified machines by processor generation, tracked assets through the decommissioning pipeline, and staged them for destruction by the appropriate team." }
     ],
     "meta": "Professional work at Total Quality Logistics"
@@ -132,7 +159,7 @@
     "imageLoading": "lazy",
     "description": "<strong>Day-to-day IT support work</strong> centered around helping employees move and get set up in new spaces.",
     "paragraphs": [
-      { "label": "Impact", "text": "Reduced frustration and downtime by making sure users were fully set up and ready to work as quickly as possible." },
+      { "label": "Impact",   "text": "Reduced frustration and downtime by making sure users were fully set up and ready to work as quickly as possible." },
       { "label": "Approach", "text": "Communicated directly with users, carefully broke down and moved equipment, then rebuilt and tested everything at the new location." }
     ],
     "meta": "Professional work at Total Quality Logistics"

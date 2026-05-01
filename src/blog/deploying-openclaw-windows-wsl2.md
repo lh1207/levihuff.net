@@ -37,7 +37,7 @@ The provider key name the UI generates is something like `"qwen3:8b - ollama"`, 
 
 ### What the Working Config Actually Requires
 
-- `gateway.mode: local` — set manually; the wizard and doctor both skip it
+- `gateway.mode: local`: set manually; the wizard and doctor both skip it
 - Provider-level `api` set to `openai-completions`, not overridden at the model level
 - `contextWindow` at 16,000 or above: OpenClaw enforces a minimum and kills the agent before it replies if you go lower
 - `http://localhost:11434/v1` for the Ollama endpoint, which works correctly with mirrored networking mode set in `.wslconfig`
