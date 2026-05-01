@@ -1,5 +1,8 @@
-<div class="experience-card">
-  <h3>{{ entry.company }}</h3>
-  <p><strong>Focus Areas:</strong> {{ entry.focusAreas }}</p>
-  <p>{{ entry.description }}</p>
+<div class="mb-8">
+  <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">EXPERIENCE</p>
+  <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">{{ entry.company }}</h3>
+  {% if entry.focusAreas %}
+  <p class="font-jb text-mono-sm text-fg-3 mt-1">{{ entry.focusAreas }}</p>
+  {% endif %}
+  <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">{{ entry.description }}</p>
 </div>

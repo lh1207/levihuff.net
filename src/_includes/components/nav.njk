@@ -1,47 +1,61 @@
-<header>
-  <div class="header-inner">
-    <a class="brand" href="/">
-      <img src="/images/profile.jpg" alt="" class="profile-img" width="56" height="56">
-      <span class="brand-name">Levi Huff</span>
+<header class="sticky top-0 z-50 h-[72px] flex items-center bg-[rgba(17,19,23,0.72)] backdrop-blur-[8px] border-b border-hair-1">
+  <div class="max-w-site mx-auto w-full px-4 md:px-6 flex items-center justify-between gap-6">
+
+    {# Brand wordmark #}
+    <a href="/" class="font-syne text-lg font-bold text-fg-1 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+      Levi Huff
     </a>
-    <div class="header-right">
-    <nav id="nav-menu" aria-label="Main navigation">
-      <ul>
+
+    {# Desktop nav #}
+    <nav id="nav-menu" aria-label="Main navigation" class="hidden md:block">
+      <ul class="flex items-center gap-1">
         {% for item in navigation %}
-          {% set isActive = (item.url == "/" and page.url == "/") or (item.url != "/" and page.url.startsWith(item.url)) %}
-          <li><a href="{{ item.url }}"{% if isActive %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        <li>
+          <a
+            href="{{ item.url }}"
+            {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}aria-current="page"{% endif %}
+            class="relative font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2
+              {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}text-fg-1 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:bg-amber after:rounded-full{% endif %}">
+            {{ item.label }}
+          </a>
+        </li>
         {% endfor %}
       </ul>
     </nav>
-    <div class="header-controls">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-      </button>
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
-        <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-        <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    </div>
+
+    {# Mobile hamburger #}
+    <button
+      id="nav-toggle"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Toggle navigation"
+      class="md:hidden flex items-center justify-center w-10 h-10 text-fg-2 hover:text-fg-1 transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+      <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+  </div>
+
+  {# Mobile nav drawer -- full-width panel below the header bar #}
+  <div id="mobile-nav" class="hidden absolute top-[72px] left-0 right-0 bg-surface-1 border-b border-hair-1 shadow-d-lg md:hidden">
+    <nav aria-label="Mobile navigation">
+      <ul class="max-w-site mx-auto px-4 py-4 flex flex-col gap-1">
+        {% for item in navigation %}
+        <li>
+          <a
+            href="{{ item.url }}"
+            {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}aria-current="page"{% endif %}
+            class="block font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 hover:bg-surface-2 transition-colors duration-[120ms]
+              {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}text-amber{% endif %}">
+            {{ item.label }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
   </div>
 </header>

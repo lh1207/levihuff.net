@@ -1,8 +1,11 @@
-<div class="skills-section">
-  <h3>{{ group.heading }}</h3>
-  <ul>
+<div class="mb-8">
+  <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-4">{{ group.heading }}</h3>
+  <dl class="space-y-2">
     {% for item in group.items %}
-      <li><strong>{{ item.label }}:</strong> {{ item.text }}</li>
+    <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+      <dt class="font-jb text-sm text-fg-3 sm:w-44 shrink-0">{{ item.label }}</dt>
+      <dd class="font-plex text-sm text-fg-2">{{ item.text }}</dd>
+    </div>
     {% endfor %}
-  </ul>
+  </dl>
 </div>
