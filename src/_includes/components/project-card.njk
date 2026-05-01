@@ -8,7 +8,7 @@
       width="{{ project.imageWidth }}"
       height="{{ project.imageHeight }}"
       loading="{{ project.imageLoading | default('lazy') }}"
-      class="w-full h-full object-cover {{ project.imageClass }}">
+      class="w-full h-full {% if 'logo' in (project.imageClass or '') %}object-contain p-6 bg-surface-1{% else %}object-cover{% endif %}">
   </div>
   {% endif %}
 
