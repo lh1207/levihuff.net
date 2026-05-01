@@ -2,6 +2,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const { tagSlug, dateReadable, dateIso, dateYMD, safeCdata, readingTime } = require("./src/filters");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
@@ -45,56 +46,18 @@ module.exports = function (eleventyConfig) {
   });
 
   // Shared slug helper — same transform used by tag permalinks and tag links.
-  const tagSlug = (tag) => tag.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-+|-+$/g, "");
   eleventyConfig.addFilter("tagSlug", tagSlug);
 
-  // Add date filters
-  eleventyConfig.addFilter("dateReadable", function (date) {
-    if (!date) return "";
-    try {
-      return new Date(date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      });
-    } catch (error) {
-      return "";
-    }
-  });
-
-  eleventyConfig.addFilter("dateIso", function (date) {
-    if (!date) return "";
-    const d = new Date(date);
-    if (isNaN(d.getTime())) {
-      throw new Error(`[dateIso] Invalid date: "${date}". Fix the date: field in this post's frontmatter.`);
-    }
-    return d.toISOString();
-  });
-
-  eleventyConfig.addFilter("dateYMD", function (date) {
-    if (!date) return "";
-    try {
-      const d = new Date(date);
-      return d.toISOString().split('T')[0];
-    } catch (error) {
-      return "";
-    }
-  });
+  // Date filters
+  eleventyConfig.addFilter("dateReadable", dateReadable);
+  eleventyConfig.addFilter("dateIso", dateIso);
+  eleventyConfig.addFilter("dateYMD", dateYMD);
 
   // Escape CDATA close sequence in feed content so XML stays valid
-  eleventyConfig.addFilter("safeCdata", function (str) {
-    if (!str) return "";
-    return str.replace(/\]\]>/g, "]]]]><![CDATA[>");
-  });
+  eleventyConfig.addFilter("safeCdata", safeCdata);
 
-  // Add reading time filter
-  eleventyConfig.addFilter("readingTime", function (content) {
-    if (!content) return "";
-    const text = content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-    const words = text.split(" ").filter(Boolean).length;
-    const minutes = Math.max(1, Math.ceil(words / 200));
-    return minutes + " min read";
-  });
+  // Reading time estimate
+  eleventyConfig.addFilter("readingTime", readingTime);
 
   // Add global currentYear for footer
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
