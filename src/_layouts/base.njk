@@ -45,32 +45,29 @@
   <link rel="icon" type="image/svg+xml" href="/images/profile.svg">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="apple-touch-icon" href="/images/profile.jpg">
-  <link rel="alternate" type="application/atom+xml" title="{{ site.name }} — Blog" href="/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.name }}: Blog" href="/feed.xml">
   <link rel="author" href="/humans.txt">
   <link rel="me" href="{{ site.social.github }}">
   <link rel="stylesheet" href="/css/styles.css">
-  <script>
-    (function () {
-      var t = localStorage.getItem('theme');
-      if (t) {
-        document.documentElement.setAttribute('data-theme', t);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap">
+  <script>document.documentElement.setAttribute('data-theme', 'dark');</script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
   {% include "components/nav.njk" %}
 
-  <main id="main-content">
+  <main id="main-content" class="bg-surface-1 text-fg-1">
     {{ content | safe }}
   </main>
 
   {% include "components/footer.njk" %}
 
-  <button class="back-to-top" aria-label="Back to top" hidden>&#8679;</button>
+  <button
+    class="back-to-top fixed bottom-6 right-6 z-50 w-11 h-11 flex items-center justify-center bg-surface-2 border border-hair-1 hover:border-hair-2 hover:bg-surface-3 text-fg-2 hover:text-fg-1 rounded-d-md shadow-d-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2"
+    aria-label="Back to top"
+    hidden>&#8679;</button>
 
   <script>
     (function () {
@@ -78,35 +75,21 @@
       var year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
 
-      // Dark mode toggle
-      var root = document.documentElement;
-      var themeBtn = document.getElementById('theme-toggle');
-      if (themeBtn) {
-        var initDark = root.getAttribute('data-theme') === 'dark' ||
-          (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        themeBtn.setAttribute('aria-pressed', String(initDark));
-
-        themeBtn.addEventListener('click', function () {
-          var current = root.getAttribute('data-theme');
-          var isDark = current === 'dark' ||
-            (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          var next = isDark ? 'light' : 'dark';
-          root.setAttribute('data-theme', next);
-          localStorage.setItem('theme', next);
-          themeBtn.setAttribute('aria-pressed', String(next === 'dark'));
-        });
-      }
-
       // Hamburger menu
       var navToggle = document.getElementById('nav-toggle');
-      var navMenu = document.getElementById('nav-menu');
-      if (navToggle && navMenu) {
+      var mobileNav = document.getElementById('mobile-nav');
+      var iconMenu = document.getElementById('icon-menu');
+      var iconClose = document.getElementById('icon-close');
+
+      if (navToggle && mobileNav) {
         navToggle.addEventListener('click', function () {
           var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
           navToggle.setAttribute('aria-expanded', String(!isOpen));
-          navMenu.classList.toggle('is-open', !isOpen);
+          mobileNav.classList.toggle('hidden', isOpen);
+          if (iconMenu) iconMenu.classList.toggle('hidden', !isOpen);
+          if (iconClose) iconClose.classList.toggle('hidden', isOpen);
           if (!isOpen) {
-            var firstLink = navMenu.querySelector('a');
+            var firstLink = mobileNav.querySelector('a');
             if (firstLink) firstLink.focus();
           }
         });
@@ -115,7 +98,9 @@
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
             navToggle.setAttribute('aria-expanded', 'false');
-            navMenu.classList.remove('is-open');
+            mobileNav.classList.add('hidden');
+            if (iconMenu) iconMenu.classList.remove('hidden');
+            if (iconClose) iconClose.classList.add('hidden');
             navToggle.focus();
           }
         });
@@ -124,19 +109,23 @@
         document.addEventListener('click', function (e) {
           if (
             navToggle.getAttribute('aria-expanded') === 'true' &&
-            !navMenu.contains(e.target) &&
+            !mobileNav.contains(e.target) &&
             !navToggle.contains(e.target)
           ) {
             navToggle.setAttribute('aria-expanded', 'false');
-            navMenu.classList.remove('is-open');
+            mobileNav.classList.add('hidden');
+            if (iconMenu) iconMenu.classList.remove('hidden');
+            if (iconClose) iconClose.classList.add('hidden');
           }
         });
 
-        // Close when a nav link is clicked (useful for anchor links or same-page navigation)
-        navMenu.querySelectorAll('a').forEach(function (link) {
+        // Close when a nav link is clicked
+        mobileNav.querySelectorAll('a').forEach(function (link) {
           link.addEventListener('click', function () {
             navToggle.setAttribute('aria-expanded', 'false');
-            navMenu.classList.remove('is-open');
+            mobileNav.classList.add('hidden');
+            if (iconMenu) iconMenu.classList.remove('hidden');
+            if (iconClose) iconClose.classList.add('hidden');
           });
         });
       }

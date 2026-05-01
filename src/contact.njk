@@ -4,46 +4,48 @@ title: Contact | Levi Huff
 description: Get in touch with Levi Huff for full-time opportunities or collaborative projects in software development and IT.
 ---
 
-<section>
-  <h1>Get in Touch</h1>
-  <p class="lead">
-    I'm open to full-time positions and collaborative opportunities. Feel free to reach out if you'd like to discuss potential opportunities or have questions about my work.
-  </p>
+<div class="bg-surface-1 text-fg-1">
+  <section class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
 
-  <div class="contact-grid">
-    <div class="contact-card">
-      <h2>Contact Information</h2>
-      <p>
-        <strong>Email:</strong><br>
-        <a href="mailto:{{ site.email }}" class="contact-link">{{ site.email }}</a>
-      </p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; CONTACT</p>
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Get in touch.</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">I'm open to full-time positions and collaborative opportunities. Feel free to reach out if you'd like to discuss potential opportunities or have questions about my work.</p>
 
-      <h3>Online Presence</h3>
-      <ul>
-        <li><a href="{{ site.social.github }}" target="_blank" rel="noopener">GitHub</a> - View my code repositories and projects</li>
-        <li><a href="{{ site.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a> - Connect on LinkedIn</li>
-        <li><a href="{{ site.social.handshake }}" target="_blank" rel="noopener">Handshake</a> - View my Handshake profile</li>
-      </ul>
-    </div>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
 
-    <div class="contact-card">
-      <h2>What I'm Looking For</h2>
-      <p>
-        I am currently seeking full-time roles in information technology, software development, or systems administration.
-      </p>
+        {# Contact info card #}
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">EMAIL</p>
+          <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2">Direct contact</h2>
+          <a href="mailto:{{ site.email }}" class="font-plex text-base text-amber hover:text-amber-hi transition-colors duration-[120ms] mt-3 block focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.email }}</a>
 
-      <h3>Areas of Interest</h3>
-      <ul>
-        <li>Software and application development</li>
-        <li>Systems administration and support</li>
-        <li>Process improvement and automation</li>
-        <li>Full-stack development projects</li>
-        <li>IT infrastructure and operations</li>
-      </ul>
+          <div class="mt-6 flex flex-col gap-3">
+            <a href="{{ site.social.github }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">GitHub &rarr;</a>
+            <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LinkedIn &rarr;</a>
+            {% if site.social.handshake %}
+            <a href="{{ site.social.handshake }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Handshake &rarr;</a>
+            {% endif %}
+          </div>
+        </div>
 
-      <div class="availability-note">
-        <p><strong>Availability:</strong> Available for full-time positions. Graduating {{ site.graduationDate }} from the University of Cincinnati.</p>
+        {# Looking for card #}
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">LOOKING FOR</p>
+          <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2">What I am seeking</h2>
+          <p class="font-plex text-sm text-fg-2 leading-relaxed mt-3">I am currently seeking full-time roles in information technology, software development, or systems administration.</p>
+          <ul class="mt-4 space-y-2">
+            <li class="font-plex text-sm text-fg-2">Software and application development</li>
+            <li class="font-plex text-sm text-fg-2">Systems administration and support</li>
+            <li class="font-plex text-sm text-fg-2">Process improvement and automation</li>
+            <li class="font-plex text-sm text-fg-2">Full-stack development projects</li>
+            <li class="font-plex text-sm text-fg-2">IT infrastructure and operations</li>
+          </ul>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3 mt-6">Availability: <span class="normal-case font-plex text-sm text-fg-2 tracking-normal">Available for full-time positions. Graduating {{ site.graduationDate }} from the University of Cincinnati.</span></p>
+        </div>
+
       </div>
+
     </div>
-  </div>
-</section>
+  </section>
+</div>

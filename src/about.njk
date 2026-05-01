@@ -4,114 +4,143 @@ title: About | Levi Huff
 description: Learn about Levi Huff's background in Information Technology, professional experience in systems administration and development, and technical skills.
 ---
 
-<section>
-  <div class="about-grid">
-    <div class="about-text">
-      <h1>About Me</h1>
-      <p>
+<div class="bg-surface-1 text-fg-1">
+
+  {# Page intro #}
+  <section class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; ABOUT</p>
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Levi Huff.</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
         I'm an Information Technology professional based in Cincinnati. I'm graduating {{ site.graduationDate }} from the University of Cincinnati with a Bachelor of Science in Information Technology, with a focus on software and application development.
       </p>
-      <p>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
         My experience spans academic coursework, personal projects, and professional work involving internal tools, automation, and systems support. I've worked with both development and IT support contexts, which has shaped a practical approach to building and improving systems.
       </p>
     </div>
-    <div class="about-photo" aria-hidden="true">
-      <img src="/images/profile.jpg" alt="" class="profile-img large" width="160" height="160">
+  </section>
+
+  {# Education #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / EDUCATION</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Education.</h2>
+      <div class="mt-8 bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 max-w-prose">
+        <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">DEGREE</p>
+        <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">University of Cincinnati</h3>
+        <p class="font-jb text-mono-sm text-fg-3 mt-1">Bachelor of Science in Information Technology</p>
+        <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Focus: Software and Application Development. Graduating {{ site.graduationDate }}. GPA: 3.56.</p>
+        <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3 mt-4">Coursework: <span class="normal-case font-plex text-sm text-fg-2 tracking-normal">System Administration, Network Infrastructure, Database Management, Enterprise Application Development, Information Security, Web Server Development, Mobile Device Programming</span></p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="page-section">
-  <h2>Education</h2>
-  <p>
-    <strong>University of Cincinnati</strong><br>
-    Bachelor of Science in Information Technology<br>
-    Focus: Software and Application Development<br>
-    Graduating: {{ site.graduationDate }}
-  </p>
-</section>
+  {# Experience #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / EXPERIENCE</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Professional experience.</h2>
 
-<section class="page-section">
-  <h2>Professional Experience</h2>
+      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
+        <img
+          src="/images/about/workflow-documentation.jpg"
+          alt="Abstract workflow documentation illustration showing connected process nodes"
+          class="w-full h-64 object-cover"
+          width="1200"
+          height="801"
+          loading="lazy">
+      </div>
 
-  <img src="/images/about/workflow-documentation.jpg" alt="Abstract workflow documentation illustration showing connected process nodes" class="section-img" width="1200" height="801" loading="lazy">
+      <div class="mt-8">
+        {% for entry in experience %}
+          {% include "components/experience-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
-  {% for entry in experience %}
-    {% include "components/experience-card.njk" %}
-  {% endfor %}
-</section>
+  {# Skills #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / SKILLS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
 
-<section class="page-section">
-  <h2>Technical Skills</h2>
+      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
+        <img
+          src="/images/about/developer-workspace.jpg"
+          alt="Developer workspace with keyboard and code on screen"
+          class="w-full h-64 object-cover"
+          width="1200"
+          height="799"
+          loading="lazy">
+      </div>
 
-  <img src="/images/about/developer-workspace.jpg" alt="Developer workspace with keyboard and code on screen" class="section-img" width="1200" height="799" loading="lazy">
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {% for group in skills %}
+          {% include "components/skill-group.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
 
-  {% for group in skills %}
-    {% include "components/skill-group.njk" %}
-  {% endfor %}
-</section>
+  {# Approach #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 04 / APPROACH</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">How I work.</h2>
+      <p class="font-plex text-base text-fg-1 leading-relaxed mt-4 max-w-prose">
+        I focus on understanding how systems are used in practice before making changes, with attention to maintainability, clarity, and user impact. My exposure to both development and IT support contexts has shaped a practical approach to building and improving systems.
+      </p>
+      <p class="font-plex text-base text-fg-1 leading-relaxed mt-4 max-w-prose">
+        I incorporate accessibility and documentation considerations into projects to support long-term use and maintenance. This includes semantic HTML, keyboard navigation, proper error handling, and clear documentation.
+      </p>
+    </div>
+  </section>
 
-<section class="page-section">
-  <h2>Approach</h2>
-  <p>
-    I focus on understanding how systems are used in practice before making changes, with attention to maintainability, clarity, and user impact. My exposure to both development and IT support contexts has shaped a practical approach to building and improving systems.
-  </p>
-  <p>
-    I incorporate accessibility and documentation considerations into projects to support long-term use and maintenance. This includes semantic HTML, keyboard navigation, proper error handling, and clear documentation.
-  </p>
-</section>
+  {# Hobbies #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / INTERESTS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Hobbies and interests.</h2>
 
-<section class="page-section">
-  <h2>Projects and Contributions</h2>
-  <p>
-    I've built and maintained internal and academic projects that solve real problems, like ticketing systems, data handling applications, and workflow tracking tools. These projects show how I apply full stack development concepts to solve practical problems.
-  </p>
-  <p>
-    For more details on specific projects, see the <a href="/projects/">Projects</a> page.
-  </p>
-</section>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">ART</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
+            I enjoy creating illustrations and exploring visual design as a creative outlet outside of technology.
+          </p>
+        </div>
 
-<section class="page-section">
-  <h2>Hobbies & Interests</h2>
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">RETRO TECH</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
+            I have a fascination with retro and niche technologies, exploring older computing systems, vintage hardware, and lesser-known platforms that shaped the technology landscape.
+          </p>
+        </div>
 
-  <div class="skills-section">
-    <h3>Art</h3>
-    <p>
-      I enjoy creating illustrations and exploring visual design as a creative outlet outside of technology.
-    </p>
-  </div>
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">MUSIC / TROMBONE</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
+            I play trombone and was a member of the University of Cincinnati Bearcat Marching Band from 2020 to 2024. Performed at the Goodyear Cotton Bowl Classic (2021), DCI Celebration Tour (2021), and Big 12 Basketball Tournament (2024).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="skills-section">
-    <h3>Retro & Niche Technologies</h3>
-    <p>
-      I have a fascination with retro and niche technologies, exploring older computing systems, vintage hardware, and lesser-known platforms that shaped the technology landscape.
-    </p>
-  </div>
+  {# Looking Ahead / CTA #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 06 / LOOKING AHEAD</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">What I am looking for.</h2>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
+        I am looking for full-time roles where I can contribute to production systems and support teams through reliable and thoughtful technical work. I'm particularly interested in positions involving systems administration, software development, or process improvement.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="/projects/" class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">View projects</a>
+        <a href="/contact/" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Get in touch</a>
+      </div>
+    </div>
+  </section>
 
-  <div class="skills-section">
-    <h3>Music - Trombone</h3>
-    <p>
-      I play trombone and was a member of the <strong>University of Cincinnati Bearcat Marching Band</strong> from 2020 to 2024. During my time with the band, I participated in numerous memorable events:
-    </p>
-    <ul>
-      <li><strong>Goodyear Cotton Bowl Classic 2021</strong> - Performed at AT&T Stadium in Arlington, Texas</li>
-      <li><strong>DCI (Drum Corps International) Celebration Tour 2021</strong> - Part of the special celebration events</li>
-      <li><strong>Big 12 Basketball Tournament 2024</strong> - Supported UC athletics during conference play</li>
-      <li>Countless football games at Nippert Stadium and basketball games at Fifth Third Arena</li>
-    </ul>
-    <p>
-      Being part of the Bearcat Marching Band was an incredible experience that taught me discipline, teamwork, and the value of being part of something larger than myself. I also performed with Concert Band and Pep Band during my university years.
-    </p>
-  </div>
-</section>
-
-<section class="page-section">
-  <h2>Looking Ahead</h2>
-  <p>
-    I am looking for full-time roles where I can contribute to production systems and support teams through reliable and thoughtful technical work. I'm particularly interested in positions involving systems administration, software development, or process improvement.
-  </p>
-  <div class="cta-inline">
-    <a href="/projects/">View projects</a>
-    <a href="/contact/">Get in touch</a>
-  </div>
-</section>
+</div>

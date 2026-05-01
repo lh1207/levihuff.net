@@ -1,20 +1,58 @@
-<article class="project-card">
-  <img src="{{ project.image }}" alt="{{ project.imageAlt }}" class="{{ project.imageClass }}"
-    width="{{ project.imageWidth }}" height="{{ project.imageHeight }}"
-    {% if project.imageLoading %}loading="{{ project.imageLoading }}"{% endif %}>
-  {% if project.link %}
-    <h2><a href="{{ project.link }}" target="_blank" rel="noopener">{{ project.title }}</a></h2>
-  {% else %}
-    <h2>{{ project.title }}</h2>
+<article class="bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden hover:border-hair-2 hover:-translate-y-0.5 hover:shadow-d-md transition-[transform,border-color,box-shadow] duration-[180ms]">
+
+  {% if project.image %}
+  <div class="h-52 bg-surface-inset overflow-hidden">
+    <img
+      src="{{ project.image }}"
+      alt="{{ project.imageAlt }}"
+      width="{{ project.imageWidth }}"
+      height="{{ project.imageHeight }}"
+      loading="{{ project.imageLoading | default('lazy') }}"
+      class="w-full h-full {% if 'logo' in (project.imageClass or '') %}object-contain p-6 bg-surface-1{% else %}object-cover{% endif %}">
+  </div>
   {% endif %}
-  <p>{{ project.description | safe }}</p>
-  {% for para in project.paragraphs %}
-    <p><strong>{{ para.label }}:</strong> {{ para.text }}</p>
-  {% endfor %}
-  {% if project.meta %}
-    <p class="project-meta">{{ project.meta }}</p>
-  {% endif %}
-  {% if project.link %}
-    <span class="project-link" aria-hidden="true">{{ project.linkLabel }} &rarr;</span>
-  {% endif %}
+
+  <div class="p-6">
+    {% if project.stack %}
+    <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">STACK &middot; {{ project.stack }}</p>
+    {% endif %}
+
+    <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2 leading-snug">
+      {% if project.link %}
+        <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ project.title }}</a>
+      {% else %}
+        {{ project.title }}
+      {% endif %}
+    </h2>
+
+    {% if project.description %}
+    <div class="font-plex text-sm text-fg-2 leading-relaxed mt-3">{{ project.description | safe }}</div>
+    {% endif %}
+
+    {% if project.paragraphs %}
+    <dl class="mt-4 space-y-2">
+      {% for para in project.paragraphs %}
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+        <dt class="font-jb text-sm text-amber sm:w-36 shrink-0">{{ para.label }}</dt>
+        <dd class="font-plex text-sm text-fg-2">{{ para.text }}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+    {% endif %}
+
+    {% if project.meta %}
+    <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-4 mt-4">{{ project.meta }}</p>
+    {% endif %}
+
+    {% if project.link %}
+    <a
+      href="{{ project.link }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 mt-5 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+      {{ project.linkLabel | default("View") }} &rarr;
+    </a>
+    {% endif %}
+  </div>
+
 </article>

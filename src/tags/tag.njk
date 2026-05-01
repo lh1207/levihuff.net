@@ -1,48 +1,54 @@
 ---
+layout: base.njk
 pagination:
   data: collections.tagList
   size: 1
   alias: tag
-permalink: "/tags/{{ tag | tagSlug }}/"
+permalink: /tags/{{ tag | tagSlug }}/
 eleventyExcludeFromCollections: true
-layout: base.njk
 ---
 
-<section>
-  <div class="blog-index-header">
-    <div>
-      <h1>#{{ tag }}</h1>
-      <p class="lead">{{ collections[tag].length }} post{% if collections[tag].length != 1 %}s{% endif %}</p>
-    </div>
-    <a href="/tags/" class="back-link">&larr; All tags</a>
-  </div>
+<div class="bg-surface-1 text-fg-1">
+  <section class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
 
-  <div class="blog-grid">
-    {% for post in collections[tag] | reverse %}
-    <article class="blog-card">
-      {% if post.data.thumbnail %}
-      <img src="{{ post.data.thumbnail }}" alt="" class="blog-thumbnail{% if post.data.thumbnailLogo %} logo{% endif %}" loading="lazy">
-      {% endif %}
-      <h2>
-        <a href="{{ post.url }}">{{ post.data.title }}</a>
-      </h2>
-      {% if post.data.description %}
-      <p>{{ post.data.description }}</p>
-      {% endif %}
-      <div class="blog-meta">
-        {% if post.date %}
-        <time datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
-        {% endif %}
-        <span class="reading-time">{{ post.templateContent | readingTime }}</span>
-        {% if post.data.tags %}
-        <div class="tag-list">
-          {% for t in post.data.tags %}
-          <a href="/tags/{{ t | tagSlug }}/" class="tag">{{ t }}</a>
-          {% endfor %}
-        </div>
-        {% endif %}
+      <a href="/tags/" class="font-jb text-mono-sm text-fg-3 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">&larr; All tags</a>
+
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mt-6" aria-hidden="true">&#9658; TAG</p>
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">{{ tag }}</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">{{ collections[tag].length }} post{% if collections[tag].length != 1 %}s{% endif %}</p>
+
+    </div>
+  </section>
+
+  <section class="pb-16 md:pb-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for post in collections[tag] | reverse %}
+        <article class="bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden hover:border-hair-2 hover:-translate-y-0.5 hover:shadow-d-md transition-[transform,border-color,box-shadow] duration-[180ms]">
+
+          {% if post.data.thumbnail %}
+          <div class="h-44 bg-surface-inset overflow-hidden">
+            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full object-cover {% if post.data.thumbnailLogo %}object-contain p-6{% endif %}">
+          </div>
+          {% endif %}
+
+          <div class="p-6">
+            <h2 class="font-syne text-lg font-semibold text-fg-1 leading-snug">
+              <a href="{{ post.url }}" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ post.data.title }}</a>
+            </h2>
+            {% if post.data.description %}
+            <p class="font-plex text-sm text-fg-2 leading-relaxed mt-2">{{ post.data.description }}</p>
+            {% endif %}
+            <div class="mt-4 flex flex-wrap items-center gap-2">
+              <span class="font-jb text-mono-sm text-fg-3">{{ post.date | dateReadable }}</span>
+              <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+              <span class="font-jb text-mono-sm text-fg-3">{{ post.templateContent | readingTime }}</span>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
       </div>
-    </article>
-    {% endfor %}
-  </div>
-</section>
+    </div>
+  </section>
+</div>

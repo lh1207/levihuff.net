@@ -1,20 +1,28 @@
 ---
 layout: base.njk
-title: Tags | Levi Huff
-description: Browse all tags used across the blog.
 eleventyExcludeFromCollections: true
+title: Tags | Levi Huff
 ---
 
-<section>
-  <h1>All Tags</h1>
-  <p class="lead">{{ collections.tagList.length }} tag{% if collections.tagList.length != 1 %}s{% endif %} across {{ collections.posts.length }} posts</p>
+<div class="bg-surface-1 text-fg-1">
+  <section class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
 
-  <div class="tag-index">
-    {% for tag in collections.tagList %}
-    <a href="/tags/{{ tag | tagSlug }}/" class="tag-index-item">
-      <span class="tag">{{ tag }}</span>
-      <span class="tag-count">{{ collections[tag].length }}</span>
-    </a>
-    {% endfor %}
-  </div>
-</section>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; TAGS</p>
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">All tags.</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">Browse posts by topic.</p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        {% for tag in collections.tagList %}
+        <a
+          href="/tags/{{ tag | tagSlug }}/"
+          class="inline-flex items-center gap-2 font-jb text-mono-xs tracking-[0.04em] uppercase bg-amber/[0.10] border border-amber/[0.32] text-amber rounded-d-sm px-3 py-1.5 hover:bg-amber/[0.18] transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+          {{ tag }}
+          <span class="text-fg-3 normal-case tracking-normal">{{ collections[tag].length }}</span>
+        </a>
+        {% endfor %}
+      </div>
+
+    </div>
+  </section>
+</div>

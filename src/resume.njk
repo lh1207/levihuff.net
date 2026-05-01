@@ -4,212 +4,287 @@ title: Resume | Levi Huff
 description: Resume for Levi Huff, IT student and developer specializing in full-stack development and systems administration. Available for internships and entry-level roles.
 ---
 
-<section>
-  <div class="resume-header">
-    <div class="resume-header-text">
-      <h1>Levi Huff</h1>
-      <p class="lead">IT Student &amp; Developer — Cincinnati, OH</p>
-      <div class="resume-contact">
-        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-        <a href="{{ site.social.github }}" target="_blank" rel="noopener">GitHub</a>
-        <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="{{ site.url }}">{{ site.url | replace("https://", "") }}</a>
+<div class="bg-surface-1 text-fg-1">
+
+  {# Header #}
+  <section class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; RESUME</p>
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Levi Huff.</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-2">IT Student and Developer, Cincinnati, OH</p>
+
+      <div class="mt-4 flex flex-wrap gap-4 font-jb text-sm text-fg-3">
+        <a href="mailto:{{ site.email }}" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.email }}</a>
+        <a href="{{ site.social.github }}" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">GitHub</a>
+        <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LinkedIn</a>
+        <a href="{{ site.url }}" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.url | replace("https://", "") }}</a>
+      </div>
+
+      <div class="mt-8">
+        <a href="/files/resume.pdf" download class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Download PDF</a>
       </div>
     </div>
-    <div class="resume-download-banner">
-      <a href="/files/resume.pdf" class="btn-download" download>
-        Download PDF
-      </a>
+  </section>
+
+  {# Education #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / EDUCATION</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Education.</h2>
+
+      <div class="mt-8">
+        <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">DEGREE</p>
+        <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">University of Cincinnati</h3>
+        <p class="font-jb text-mono-sm text-fg-3 mt-1">Bachelor of Science in Information Technology, GPA: 3.56, Expected Graduation: {{ site.graduationDate }}</p>
+        <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3 mt-3"><span class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">Coursework</span> <span class="normal-case font-plex text-sm text-fg-2 tracking-normal">System Administration, Network Infrastructure, Database Management, Enterprise Application Development, Information Security, Web Server Development, Mobile Device Programming</span></p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="resume-section">
-  <h2>Education</h2>
-  <div class="experience-card">
-    <h3>University of Cincinnati</h3>
-    <p><strong>Bachelor of Science in Information Technology</strong><br>
-    GPA: 3.56 &mdash; Expected Graduation: {{ site.graduationDate }}</p>
-    <p><em>Coursework:</em> System Administration, Network Infrastructure, Database Management, Enterprise Application Development, Information Security, Web Server Development, Mobile Device Programming</p>
-  </div>
-</section>
+  {# Professional Experience #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / EXPERIENCE</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Professional experience.</h2>
 
-<section class="resume-section">
-  <h2>Professional Experience</h2>
+      <div class="mt-8 space-y-10">
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">CO-OP</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">Tire Discounters</h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">Infrastructure and Cybersecurity Co-op, Cincinnati, OH, Aug 2022 to Dec 2022</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Engineered PowerShell scripts for Active Directory provisioning at a 1,200+ employee organization, reducing manual setup time by 40%.</li>
+            <li>Deployed Windows systems via MDT and SCCM imaging workflows, supporting 180+ retail locations nationwide.</li>
+            <li>Commuted between corporate headquarters and regional offices to standardize domain policies and GPO configurations, ensuring consistent system performance.</li>
+          </ul>
+        </div>
 
-  <div class="experience-card">
-    <h3>Tire Discounters</h3>
-    <p class="project-meta">Infrastructure &amp; Cybersecurity Co-op &mdash; Cincinnati, OH &mdash; Aug 2022 &ndash; Dec 2022</p>
-    <ul>
-      <li>Engineered PowerShell scripts for Active Directory provisioning at a 1,200+ employee organization, reducing manual setup time by 40%.</li>
-      <li>Deployed Windows systems via MDT and SCCM imaging workflows, supporting 180+ retail locations nationwide.</li>
-      <li>Commuted between corporate headquarters and regional offices to standardize domain policies and GPO configurations, ensuring consistent system performance.</li>
-    </ul>
-  </div>
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">INTERNSHIP</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">Total Quality Logistics</h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">IT Support Intern, Cincinnati, OH, Jan 2022 to Apr 2022</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Provisioned 50+ workstations for a Fortune 500 freight brokerage (10,000+ employees), streamlining new hire onboarding across multiple office locations.</li>
+            <li>Diagnosed and resolved hardware failures, achieving same-day turnaround on 90% of repair tickets to minimize employee downtime.</li>
+            <li>Documented 200+ technical support cases in Jira, contributing to the team knowledge base and improving resolution efficiency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="experience-card">
-    <h3>Total Quality Logistics</h3>
-    <p class="project-meta">IT Support Intern &mdash; Cincinnati, OH &mdash; Jan 2022 &ndash; Apr 2022</p>
-    <ul>
-      <li>Provisioned 50+ workstations for a Fortune 500 freight brokerage (10,000+ employees), streamlining new hire onboarding across multiple office locations.</li>
-      <li>Diagnosed and resolved hardware failures, achieving same-day turnaround on 90% of repair tickets to minimize employee downtime.</li>
-      <li>Documented 200+ technical support cases in Jira, contributing to the team knowledge base and improving resolution efficiency.</li>
-    </ul>
-  </div>
-</section>
+  {# Other Experience #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / OTHER EXPERIENCE</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Other experience.</h2>
 
-<section class="resume-section">
-  <h2>Other Experience</h2>
+      <div class="mt-8 space-y-10">
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">PART-TIME</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">Kroger</h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">E-Commerce Clerk, Washington Court House, OH, Jan 2025 to Present</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Achieve 98%+ pick-rate accuracy and 51%+ perfect-order accuracy while fulfilling 100+ daily orders using inventory management and point-of-sale systems in time-sensitive environments.</li>
+          </ul>
+        </div>
 
-  <div class="experience-card">
-    <h3>Kroger</h3>
-    <p class="project-meta">E-Commerce Clerk &mdash; Washington Court House, OH &mdash; Jan 2025 &ndash; Present</p>
-    <ul>
-      <li>Achieve 98%+ pick-rate accuracy and 51%+ perfect-order accuracy while fulfilling 100+ daily orders using inventory management and point-of-sale systems in time-sensitive environments.</li>
-    </ul>
-  </div>
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">PART-TIME</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">University of Cincinnati Conference and Event Services</h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">Event Staff, Aug 2023 to Dec 2024</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Configured AV equipment and IT systems for 100+ campus events annually, serving 46,000+ students and university guests.</li>
+            <li>Troubleshot connectivity issues in real-time, maintaining 99% event uptime and ensuring seamless presentations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="experience-card">
-    <h3>University of Cincinnati Conference &amp; Event Services</h3>
-    <p class="project-meta">Event Staff &mdash; Aug 2023 &ndash; Dec 2024</p>
-    <ul>
-      <li>Configured AV equipment and IT systems for 100+ campus events annually, serving 46,000+ students and university guests.</li>
-      <li>Troubleshot connectivity issues in real-time, maintaining 99% event uptime and ensuring seamless presentations.</li>
-    </ul>
-  </div>
-</section>
+  {# Projects #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 04 / PROJECTS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Projects.</h2>
 
-<section class="resume-section">
-  <h2>Projects</h2>
+      <div class="mt-8 space-y-10">
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">PROJECT</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">
+            <a href="https://lh1207.github.io/AeroAssist/" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">AeroAssist</a>
+          </h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">C#, ASP.NET Core, Entity Framework, SQL Server, Swagger/OpenAPI</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Full-stack ticketing application with CRUD operations for tickets and user management.</li>
+            <li>RESTful API with full Swagger/OpenAPI documentation.</li>
+            <li>Dockerized for consistent local development and deployment.</li>
+          </ul>
+          <div class="mt-3 flex flex-wrap gap-4 font-jb text-sm">
+            <a href="/blog/aeroassist-ticketing-system/" class="text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Read more &rarr;</a>
+            <a href="/blog/aeroassist-docker-support/" class="text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Docker write-up &rarr;</a>
+          </div>
+        </div>
 
-  <div class="experience-card">
-    <h3><a href="https://lh1207.github.io/AeroAssist/" target="_blank" rel="noopener">AeroAssist</a></h3>
-    <p class="project-meta">C#, ASP.NET Core, Entity Framework, SQL Server, Swagger/OpenAPI</p>
-    <ul>
-      <li>Full-stack ticketing application with CRUD operations for tickets and user management.</li>
-      <li>RESTful API with full Swagger/OpenAPI documentation.</li>
-      <li>Dockerized for consistent local development and deployment.</li>
-    </ul>
-    <p><a href="/blog/aeroassist-ticketing-system/">Read more &rarr;</a> &nbsp; <a href="/blog/aeroassist-docker-support/">Docker write-up &rarr;</a></p>
-  </div>
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">SENIOR DESIGN</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">
+            <a href="https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Culinary Mastery</a>
+          </h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">React Native, Node.js, YouTube API, Azure Cosmos DB, Azure AI Services, Senior Design Project</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Web-based cooking education platform delivering step-by-step video lessons via the YouTube API.</li>
+            <li>Node.js backend with Azure Cosmos DB for user data and course content; Azure Blob Storage for media.</li>
+            <li>Firebase and Azure Authentication for secure user accounts with 2FA support.</li>
+            <li>Backend Azure AI integration for generated explanations and translations.</li>
+            <li>Four-person senior design team; presented at the University of Cincinnati IT Expo 2025.</li>
+          </ul>
+          <div class="mt-3 font-jb text-sm">
+            <a href="/blog/culinary-mastery-educational-cooking-app/" class="text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Read more &rarr;</a>
+          </div>
+        </div>
 
-  <div class="experience-card">
-    <h3><a href="https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery" target="_blank" rel="noopener">Culinary Mastery</a></h3>
-    <p class="project-meta">React Native, Node.js, YouTube API, Azure Cosmos DB, Azure AI Services &mdash; Senior Design Project</p>
-    <ul>
-      <li>Web-based cooking education platform delivering step-by-step video lessons via the YouTube API.</li>
-      <li>Node.js backend with Azure Cosmos DB for user data and course content; Azure Blob Storage for media.</li>
-      <li>Firebase and Azure Authentication for secure user accounts with 2FA support.</li>
-      <li>Backend Azure AI integration for generated explanations and translations.</li>
-      <li>Four-person senior design team; presented at the University of Cincinnati IT Expo 2025.</li>
-    </ul>
-    <p><a href="/blog/culinary-mastery-educational-cooking-app/">Read more &rarr;</a></p>
-  </div>
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">PROJECT</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">
+            <a href="https://github.com/lh1207/LocoQuest" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LocoQuest</a>
+          </h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">Kotlin, Android SDK, Firebase, Google Maps API, Geolocation APIs</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>Android scavenger-hunt application using device GPS and Google Maps to guide users to real-world benchmarks.</li>
+            <li>Firebase backend for authentication and data persistence.</li>
+            <li>Interactive exploration format with location-based checkpoints.</li>
+          </ul>
+          <div class="mt-3 font-jb text-sm">
+            <a href="/blog/locquest-android-geolocation-app/" class="text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Read more &rarr;</a>
+          </div>
+        </div>
 
-  <div class="experience-card">
-    <h3><a href="https://github.com/lh1207/LocoQuest" target="_blank" rel="noopener">LocoQuest</a></h3>
-    <p class="project-meta">Kotlin, Android SDK, Firebase, Google Maps API, Geolocation APIs</p>
-    <ul>
-      <li>Android scavenger-hunt application using device GPS and Google Maps to guide users to real-world benchmarks.</li>
-      <li>Firebase backend for authentication and data persistence.</li>
-      <li>Interactive exploration format with location-based checkpoints.</li>
-    </ul>
-    <p><a href="/blog/locquest-android-geolocation-app/">Read more &rarr;</a></p>
-  </div>
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">PROJECT</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">Personal Portfolio Website</h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">Node.js, Eleventy (11ty), Nunjucks, CSS, GitHub Actions</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>This site, a static site built with the Eleventy framework and Nunjucks templating.</li>
+            <li>GitHub Actions CI/CD pipeline for automated builds and FTP deployment on push to <code class="font-jb text-mono-sm text-amber">main</code>.</li>
+          </ul>
+          <div class="mt-3 font-jb text-sm">
+            <a href="/blog/how-this-site-works/" class="text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">How it was built &rarr;</a>
+          </div>
+        </div>
 
-  <div class="experience-card">
-    <h3>Personal Portfolio Website</h3>
-    <p class="project-meta">Node.js, Eleventy (11ty), Nunjucks, CSS, GitHub Actions</p>
-    <ul>
-      <li>This site &mdash; static site built with the Eleventy framework and Nunjucks templating.</li>
-      <li>GitHub Actions CI/CD pipeline for automated builds and FTP deployment on push to <code>main</code>.</li>
-    </ul>
-    <p><a href="/blog/how-this-site-works/">How it was built &rarr;</a></p>
-  </div>
+        <div>
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">PROJECT</p>
+          <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">Infrastructure Automation Suite</h3>
+          <p class="font-jb text-mono-sm text-fg-3 mt-1">PowerShell, Active Directory, Windows Server</p>
+          <ul class="mt-3 space-y-1.5 font-plex text-base text-fg-2 leading-relaxed list-disc list-inside">
+            <li>PowerShell-driven AD user provisioning and bulk operations across enterprise domain controllers.</li>
+            <li>Automated new-hire onboarding workflows during the Tire Discounters co-op, reducing manual setup time by 40%.</li>
+          </ul>
+          <div class="mt-3 font-jb text-sm">
+            <a href="/blog/tire-discounters-it-support/" class="text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Full write-up &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="experience-card">
-    <h3>Infrastructure Automation Suite</h3>
-    <p class="project-meta">PowerShell, Active Directory, Windows Server</p>
-    <ul>
-      <li>PowerShell-driven AD user provisioning and bulk operations across enterprise domain controllers.</li>
-      <li>Automated new-hire onboarding workflows during the Tire Discounters co-op, reducing manual setup time by 40%.</li>
-    </ul>
-    <p><a href="/blog/tire-discounters-it-support/">Full write-up &rarr;</a></p>
-  </div>
-</section>
+  {# Technical Skills #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / SKILLS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
 
-<section class="resume-section">
-  <h2>Technical Skills</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Systems and Infrastructure</h3>
+          <ul class="space-y-1 font-plex text-sm text-fg-2">
+            <li>Windows Server, Azure AD, Active Directory</li>
+            <li>Intune, MDT, SCCM, GPO, Autopilot, BitLocker</li>
+          </ul>
+        </div>
 
-  <div class="resume-skills-grid">
-    <div>
-      <h3>Systems &amp; Infrastructure</h3>
-      <ul>
-        <li>Windows Server, Azure AD, Active Directory</li>
-        <li>Intune, MDT, SCCM, GPO, Autopilot, BitLocker</li>
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Automation and Scripting</h3>
+          <ul class="space-y-1 font-plex text-sm text-fg-2">
+            <li>PowerShell, Bash, Python</li>
+            <li>Task Scheduler</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Development</h3>
+          <ul class="space-y-1 font-plex text-sm text-fg-2">
+            <li>C#, ASP.NET, Java, Spring Boot, Kotlin</li>
+            <li>HTML, CSS, JavaScript, OOP</li>
+            <li>SQL Server, SQLite, REST APIs, Git</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Networking and Security</h3>
+          <ul class="space-y-1 font-plex text-sm text-fg-2">
+            <li>DHCP, DNS, VPN, VLAN, TCP/IP, SMTP</li>
+            <li>Firewall, Zero Trust, SIEM, Endpoint Security</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Support and Tools</h3>
+          <ul class="space-y-1 font-plex text-sm text-fg-2">
+            <li>Jira, ServiceNow, SysAid</li>
+            <li>Microsoft Office, Outlook, SharePoint</li>
+            <li>TeamViewer, RDP</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Platforms</h3>
+          <ul class="space-y-1 font-plex text-sm text-fg-2">
+            <li>Windows, Linux, macOS, Azure</li>
+            <li>Android, Docker, VMware</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Certifications #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 06 / CERTIFICATIONS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Certifications.</h2>
+
+      <ul class="mt-8 space-y-3">
+        <li class="flex items-baseline gap-3">
+          <span class="font-plex font-semibold text-fg-1">CompTIA A+</span>
+          <span class="font-jb text-mono-sm text-fg-3">Dec 2025</span>
+        </li>
+        <li class="flex items-baseline gap-3">
+          <span class="font-plex font-semibold text-fg-1">CompTIA IT Fundamentals+</span>
+          <span class="font-jb text-mono-sm text-fg-3">Apr 2024</span>
+        </li>
+        <li class="flex items-baseline gap-3">
+          <span class="font-plex font-semibold text-fg-1">CompTIA Network+</span>
+          <span class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">In progress</span>
+        </li>
       </ul>
     </div>
+  </section>
 
-    <div>
-      <h3>Automation &amp; Scripting</h3>
-      <ul>
-        <li>PowerShell, Bash, Python</li>
-        <li>Task Scheduler</li>
-      </ul>
+  {# Additional #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 07 / ADDITIONAL</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Additional.</h2>
+
+      <div class="mt-8">
+        <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">EXTRACURRICULAR</p>
+        <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">UC Bearcat Marching Band</h3>
+        <p class="font-jb text-mono-sm text-fg-3 mt-1">Trombone, 2020 to 2024</p>
+        <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Four-year member of the University of Cincinnati Bearcat Marching Band. Performed at the Goodyear Cotton Bowl Classic (2021), DCI Celebration Tour (2021), and Big 12 Basketball Tournament (2024).</p>
+      </div>
     </div>
+  </section>
 
-    <div>
-      <h3>Development</h3>
-      <ul>
-        <li>C#, ASP.NET, Java, Spring Boot, Kotlin</li>
-        <li>HTML, CSS, JavaScript, OOP</li>
-        <li>SQL Server, SQLite, REST APIs, Git</li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Networking &amp; Security</h3>
-      <ul>
-        <li>DHCP, DNS, VPN, VLAN, TCP/IP, SMTP</li>
-        <li>Firewall, Zero Trust, SIEM, Endpoint Security</li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Support &amp; Tools</h3>
-      <ul>
-        <li>Jira, ServiceNow, SysAid</li>
-        <li>Microsoft Office, Outlook, SharePoint</li>
-        <li>TeamViewer, RDP</li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Platforms</h3>
-      <ul>
-        <li>Windows, Linux, macOS, Azure</li>
-        <li>Android, Docker, VMware</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="resume-section">
-  <h2>Certifications</h2>
-  <div class="experience-card">
-    <ul>
-      <li><strong>CompTIA A+</strong> &mdash; Dec 2025</li>
-      <li><strong>CompTIA IT Fundamentals+</strong> &mdash; Apr 2024</li>
-      <li><em>In progress:</em> CompTIA Network+</li>
-    </ul>
-  </div>
-</section>
-
-<section class="resume-section">
-  <h2>Additional</h2>
-  <div class="experience-card">
-    <h3>UC Bearcat Marching Band</h3>
-    <p class="project-meta">Trombone &mdash; 2020&ndash;2024</p>
-    <p>Four-year member of the University of Cincinnati Bearcat Marching Band. Performed at the Goodyear Cotton Bowl Classic (2021), DCI Celebration Tour (2021), and Big 12 Basketball Tournament (2024).</p>
-  </div>
-</section>
+</div>
