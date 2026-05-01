@@ -5,6 +5,10 @@ module.exports = {
     './src/**/*.md',
     './src/**/*.html',
   ],
+  // Classes injected at build time (not in source files) that Tailwind would otherwise purge.
+  safelist: [
+    'header-anchor',
+  ],
   // data-theme="dark" is set on <html> by the inline bootstrap script in base.njk
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {

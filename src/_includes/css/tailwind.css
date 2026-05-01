@@ -275,12 +275,17 @@
     text-decoration: none;
     opacity: 0;
     margin-left: 0.5rem;
-    color: var(--fg-4);
+    color: var(--fg-3);
     transition: opacity 120ms;
   }
   .post-content h2:hover .header-anchor,
   .post-content h3:hover .header-anchor,
-  .post-content h4:hover .header-anchor {
+  .post-content h4:hover .header-anchor,
+  .post-content h2:focus-within .header-anchor,
+  .post-content h3:focus-within .header-anchor,
+  .post-content h4:focus-within .header-anchor,
+  .header-anchor:hover,
+  .header-anchor:focus {
     opacity: 1;
   }
 }
