@@ -7,7 +7,9 @@
     "dev:11ty": "eleventy --serve",
     "dev:css": "tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --watch",
     "build": "eleventy && tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --minify",
-    "watch": "eleventy --watch",
+    "watch": "npm-run-all --parallel watch:11ty watch:css",
+    "watch:11ty": "eleventy --watch",
+    "watch:css": "tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --watch",
     "test": "vitest run",
     "test:watch": "vitest"
   },
