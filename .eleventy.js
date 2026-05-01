@@ -12,7 +12,7 @@ module.exports = function (eleventyConfig) {
   const mdLib = markdownIt({ html: true, linkify: true, typographer: true })
     .use(markdownItAnchor, {
       permalink: markdownItAnchor.permalink.linkInsideHeader({
-        symbol: '<span aria-hidden="true">#</span><span class="sr-only">Permalink to this section</span>',
+        symbol: '#',
         placement: "after"
       }),
       slugify: (s) => s.toLowerCase().trim()
