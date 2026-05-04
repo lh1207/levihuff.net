@@ -1,6 +1,6 @@
 ---
-title: Full Stack Development Fundamentals for IT Students
-description: Practical insights on applying full stack concepts across frontend, backend, and database layers in academic and professional contexts
+title: Full-Stack Development Fundamentals for IT Students
+description: Practical insights on applying full-stack concepts across frontend, backend, and database layers in academic and professional contexts
 date: 2025-01-10
 tags: [full-stack, development, education]
 layout: post.njk
@@ -41,7 +41,7 @@ The database stores and manages application data:
 
 ![Developer workspace showing frontend and backend code side by side](/images/blog/fullstack-workspace.jpg)
 
-In both academic coursework and personal projects, I've applied full stack concepts to build applications that reflect real operational needs:
+In both academic coursework and personal projects, I've applied full-stack concepts to build applications that reflect real operational needs:
 
 ### Ticketing Systems
 
@@ -57,7 +57,7 @@ Workflow tracking applications illustrate how state management flows through all
 
 ## Key Considerations
 
-When building full stack applications, several factors are important:
+When building full-stack applications, several factors are important:
 
 1. **Data Flow**: Understanding how data moves from user input through processing to storage
 2. **Error Handling**: Implementing appropriate error handling at each layer
@@ -67,7 +67,7 @@ When building full stack applications, several factors are important:
 
 ## Academic vs. Professional Context
 
-Academic projects provide opportunities to experiment and learn, while professional work requires balancing functionality with maintainability and reliability. Both contexts contribute to understanding how full stack concepts apply in practice.
+Academic projects provide opportunities to experiment and learn, while professional work requires balancing functionality with maintainability and reliability. Both contexts contribute to understanding how full-stack concepts apply in practice.
 
 ## Conclusion
 
