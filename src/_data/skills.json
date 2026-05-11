@@ -1,47 +1,41 @@
 [
   {
-    "heading": "Programming Languages",
-    "items": [
-      { "label": "Backend", "text": "C#, Java, Python, Kotlin, VBScript" },
-      { "label": "Frontend", "text": "JavaScript, HTML, CSS" },
-      { "label": "Database", "text": "SQL, SQLite, Microsoft SQL Server" }
-    ]
-  },
-  {
-    "heading": "Frameworks & Technologies",
-    "items": [
-      { "label": "Web Development", "text": "ASP.NET, ASP.NET MVC, Spring, Node.js, Bootstrap, jQuery" },
-      { "label": "Mobile", "text": "Android SDK, ADB" },
-      { "label": "APIs", "text": "RESTful API Development, Swagger API" },
-      { "label": "Build Tools", "text": "Gradle, NuGet, npm" }
-    ]
-  },
-  {
     "heading": "Systems & Infrastructure",
     "items": [
-      { "label": "Operating Systems", "text": "Windows 10/11, Windows Server, Linux" },
-      { "label": "Virtualization", "text": "VMware, Hyper-V, Docker" },
-      { "label": "Cloud", "text": "Microsoft Azure" },
-      { "label": "Networking", "text": "Cisco Packet Tracer, Network Infrastructure Management" },
-      { "label": "Identity", "text": "Active Directory" }
+      { "label": "Windows",        "text": "Windows Server, Active Directory, Group Policy, BitLocker" },
+      { "label": "Deployment",     "text": "MDT, FOG, PXE, SCCM, Intune, Autopilot" },
+      { "label": "Virtualization", "text": "Proxmox, Docker, VMware" }
     ]
   },
   {
-    "heading": "Tools & Platforms",
+    "heading": "Networking & Security",
     "items": [
-      { "label": "Development", "text": "Microsoft Visual Studio, Visual Studio Code, Git" },
-      { "label": "Project Management", "text": "Jira" },
-      { "label": "Collaboration", "text": "Microsoft Office (Word, Excel, PowerPoint), Adobe Creative Cloud, Citrix" },
-      { "label": "Documentation", "text": "Markdown, Technical Writing" }
+      { "label": "Protocols", "text": "DHCP, DNS, VPN, VLAN, TCP/IP, SMTP" },
+      { "label": "Security",  "text": "Firewall, Zero Trust, SIEM, Endpoint Security, Pi-hole" }
     ]
   },
   {
-    "heading": "Professional Skills",
+    "heading": "Automation & Development",
     "items": [
-      { "label": "Technical", "text": "Technical Support, Computer Security, Automation, System Administration" },
-      { "label": "Management", "text": "Project Management, Strategy and Planning, Infrastructure Management, Innovation Management" },
-      { "label": "Operations", "text": "Supply Chain and Logistics, Employee Onboarding, Business Operations" },
-      { "label": "Soft Skills", "text": "Communication, Problem Solving, Leadership, Organization, Flexibility, Positive Attitude" }
+      { "label": "Scripting",  "text": "PowerShell, Bash, Python, Task Scheduler" },
+      { "label": "Backend",    "text": "C#, ASP.NET, Java, Kotlin" },
+      { "label": "Frontend",   "text": "HTML, CSS, JavaScript, React Native" },
+      { "label": "Data",       "text": "SQL Server, Firebase, REST APIs, Git" }
+    ]
+  },
+  {
+    "heading": "AI & Tools",
+    "items": [
+      { "label": "AI Platforms", "text": "Ollama, Open WebUI, Claude Code, Codex, Gemini 2.5 Pro" },
+      { "label": "Local LLM",    "text": "Local LLM inference, multi-model orchestration" }
+    ]
+  },
+  {
+    "heading": "Support & Platforms",
+    "items": [
+      { "label": "Ticketing", "text": "Jira, ServiceNow, SysAid" },
+      { "label": "Remote",    "text": "TeamViewer, RDP, SharePoint" },
+      { "label": "OS",        "text": "Windows, Linux, macOS, Azure, Android" }
     ]
   }
 ]
