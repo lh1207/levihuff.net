@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: npm run build
+        run: npm run test && npm run build
 
       - name: Upload to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
