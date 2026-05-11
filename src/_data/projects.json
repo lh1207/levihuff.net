@@ -1,5 +1,46 @@
 [
   {
+    "title": "Multi-LLM Dev Workflow",
+    "featured": true,
+    "stack": "Claude Code, Codex, Gemini, Ollama",
+    "summary": "Three-provider AI workflow routing tasks by model strength: Claude Code as orchestrator, Codex as async adversarial reviewer, Gemini for large-context analysis.",
+    "link": null,
+    "linkLabel": null,
+    "image": null,
+    "imageAlt": null,
+    "imageClass": null,
+    "imageWidth": null,
+    "imageHeight": null,
+    "imageLoading": null,
+    "description": "<strong>Architected a three-provider AI development workflow</strong> routing tasks by model strength and context window.",
+    "paragraphs": [
+      { "label": "Stack",   "text": "Claude Code, OpenAI Codex, Gemini 2.5 Pro, Ollama, Open WebUI, Mac Mini 24GB" },
+      { "label": "Design",  "text": "Claude Code as orchestrator (planning/writing), Codex as async adversarial reviewer, Gemini for large-context full-repo analysis." },
+      { "label": "Context", "text": "Documented with real failure cases at levihuff.net." }
+    ],
+    "meta": "Personal project, 2025–2026."
+  },
+  {
+    "title": "Proxmox Homelab & Docker Stack",
+    "featured": true,
+    "stack": "Proxmox, Docker, Pi-hole",
+    "summary": "Migrated self-hosted services from individual LXCs to a unified Docker stack; configured subnet static routing to isolate household services from upstream failures.",
+    "link": null,
+    "linkLabel": null,
+    "image": null,
+    "imageAlt": null,
+    "imageClass": null,
+    "imageWidth": null,
+    "imageHeight": null,
+    "imageLoading": null,
+    "description": "<strong>Self-hosted infrastructure stack</strong> running on Proxmox with Docker Compose and network-level DNS filtering.",
+    "paragraphs": [
+      { "label": "Stack",  "text": "Proxmox, Docker, Pi-hole, Uptime Kuma, Jellyfin, Bookstack, Home Assistant" },
+      { "label": "Impact", "text": "Migrated from individual LXCs to a unified Docker stack; subnet static routing isolates household service availability from upstream failures." }
+    ],
+    "meta": "Personal homelab project, ongoing."
+  },
+  {
     "title": "Windows Imaging and PXE Automation",
     "featured": true,
     "stack": "FOG, MDT, WDS, UEFI",
