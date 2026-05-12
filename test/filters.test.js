@@ -86,6 +86,10 @@ describe("dateYMD", () => {
   it("output matches YYYY-MM-DD format", () => {
     expect(dateYMD("2024-03-07")).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
+  it("accepts a Date object and returns YYYY-MM-DD", () => {
+    const d = new Date(Date.UTC(2024, 5, 1)); // June 1 2024 UTC — timezone-safe
+    expect(dateYMD(d)).toBe("2024-06-01");
+  });
 });
 
 describe("safeCdata", () => {

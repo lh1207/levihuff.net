@@ -2,6 +2,7 @@
   {
     "title": "Multi-LLM Dev Workflow",
     "featured": true,
+    "category": "ai",
     "stack": "Claude Code, Codex, Gemini, Ollama",
     "summary": "Three-provider AI workflow routing tasks by model strength: Claude Code as orchestrator, Codex as async adversarial reviewer, Gemini for large-context analysis.",
     "link": null,
@@ -23,6 +24,7 @@
   {
     "title": "Proxmox Homelab & Docker Stack",
     "featured": true,
+    "category": "infrastructure",
     "stack": "Proxmox, Docker, Pi-hole",
     "summary": "Migrated self-hosted services from individual LXCs to a unified Docker stack; configured subnet static routing to isolate household services from upstream failures.",
     "link": null,
@@ -43,6 +45,7 @@
   {
     "title": "Windows Imaging and PXE Automation",
     "featured": true,
+    "category": "infrastructure",
     "stack": "FOG, MDT, WDS, UEFI",
     "summary": "Built a PXE boot and automated imaging pipeline at two co-op employers. Cut Windows 11 deployment from two hours to under 20 minutes per machine.",
     "link": null,
@@ -64,6 +67,7 @@
   {
     "title": "AeroAssist",
     "featured": true,
+    "category": "software",
     "stack": "C#, ASP.NET, MSSQL",
     "summary": "Full-stack ticketing system for ticket creation, tracking, and workflow handoffs. Built and deployed end to end.",
     "link": "https://lh1207.github.io/AeroAssist/",
@@ -83,6 +87,7 @@
   },
   {
     "title": "LocoQuest",
+    "category": "software",
     "link": "https://github.com/lh1207/LocoQuest",
     "linkLabel": "View on GitHub",
     "image": "/images/locoquest/hero-outdoor-map.jpg",
@@ -101,6 +106,7 @@
   {
     "title": "Culinary Mastery",
     "featured": true,
+    "category": "software",
     "stack": "React Native, Node.js, Azure AI",
     "summary": "Cooking-education platform with Azure-backed auth and AI-driven explanations. UC Senior Design Group 7, IT Expo 2025.",
     "link": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery",
@@ -121,6 +127,7 @@
   },
   {
     "title": "UCRelief",
+    "category": "software",
     "link": "https://therelievers.weebly.com/",
     "linkLabel": "View Project",
     "image": "https://images.unsplash.com/photo-1758270705518-b61b40527e76?w=1200&h=800&fit=crop&auto=format&q=80",
@@ -139,6 +146,7 @@
   },
   {
     "title": "Computer Imaging and Provisioning Automation",
+    "category": "work",
     "link": null,
     "linkLabel": null,
     "image": "https://images.unsplash.com/photo-1643199121319-b3b5695e4acb?w=1200&h=800&fit=crop&auto=format&q=80",
@@ -156,6 +164,7 @@
   },
   {
     "title": "IT Support and Process Improvement",
+    "category": "work",
     "link": null,
     "linkLabel": null,
     "image": "https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?w=1200&h=800&fit=crop&auto=format&q=80",
@@ -173,6 +182,7 @@
   },
   {
     "title": "Machine Lifecycle and Decommissioning",
+    "category": "work",
     "link": null,
     "linkLabel": null,
     "image": "https://images.unsplash.com/photo-1717444309231-8ef42dfe2936?w=1200&h=800&fit=crop&auto=format&q=80",
@@ -190,6 +200,7 @@
   },
   {
     "title": "End-User Equipment Moves",
+    "category": "work",
     "link": null,
     "linkLabel": null,
     "image": "https://images.unsplash.com/photo-1742198865450-cf9ce4335a33?w=1200&h=800&fit=crop&auto=format&q=80",
