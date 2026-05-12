@@ -24,10 +24,39 @@ description: Technical blog posts covering full-stack development, systems admin
   <section class="pb-16 md:pb-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <div id="blog-app" v-cloak>
-        {# Vue mounts here; static fallback shown until hydration #}
-        <div v-if="false"></div>
+      {# Static fallback — always visible; Vue removes it on mount #}
+      <div id="blog-static" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% set postslist = collections.posts | reverse %}
+        {% for post in postslist %}
+        <article class="bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden hover:border-hair-2 hover:-translate-y-0.5 hover:shadow-d-md transition-[transform,border-color,box-shadow] duration-[180ms]">
+          {% if post.data.thumbnail %}
+          <div class="h-44 bg-surface-inset overflow-hidden">
+            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full {% if post.data.thumbnailLogo %}object-contain p-6{% else %}object-cover{% endif %}">
+          </div>
+          {% endif %}
+          <div class="p-6">
+            <h2 class="font-syne text-lg font-semibold text-fg-1 leading-snug">
+              <a href="{{ post.url }}" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ post.data.title }}</a>
+            </h2>
+            {% if post.data.description %}
+            <p class="font-plex text-sm text-fg-2 leading-relaxed mt-2">{{ post.data.description }}</p>
+            {% endif %}
+            <div class="mt-4 flex flex-wrap items-center gap-2">
+              <span class="font-jb text-mono-sm text-fg-3">{{ post.date | dateReadable }}</span>
+              <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+              <span class="font-jb text-mono-sm text-fg-3">{{ post.templateContent | readingTime }}</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {% for tag in post.data.tags %}{% if tag !== "posts" %}
+              <span class="font-jb text-mono-xs tracking-[0.04em] uppercase bg-amber/[0.10] border border-amber/[0.32] text-amber rounded-d-sm px-2 py-0.5">{{ tag }}</span>
+              {% endif %}{% endfor %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
 
+      <div id="blog-app" v-cloak>
         {# Tag filter chips #}
         <div class="flex flex-wrap gap-2 mb-8" v-if="allTags.length">
           <button
@@ -140,6 +169,9 @@ createApp({
         .map(p => ({ ...p, visibleTags: p.tags.filter(t => t !== 'posts') }))
         .filter(p => active === 'all' || p.tags.includes(active));
     }
+  },
+  mounted() {
+    document.getElementById('blog-static')?.remove();
   }
 }).mount('#blog-app');
 </script>

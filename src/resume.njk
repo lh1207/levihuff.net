@@ -195,14 +195,34 @@ description: Resume for Levi Huff — IT graduate and infrastructure specialist 
       <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / SKILLS</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
 
+      {# Static fallback — always visible; Vue removes it on mount #}
+      <div id="skills-static" class="mt-8 space-y-4">
+        {% for group in skills %}
+        <div>
+          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">{{ group.heading }}</h3>
+          <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+            <dl class="space-y-3">
+              {% for item in group.items %}
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <dt class="font-jb text-sm text-amber sm:w-40 shrink-0">{{ item.label }}</dt>
+                <dd class="font-plex text-sm text-fg-2">{{ item.text }}</dd>
+              </div>
+              {% endfor %}
+            </dl>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
       <div id="skills-app" class="mt-8" v-cloak>
         {# Tab buttons #}
-        <div role="tablist" aria-label="Skill categories" class="flex flex-wrap gap-2 mb-6">
+        <div role="tablist" aria-label="Skill categories" class="flex flex-wrap gap-2 mb-6" @keydown="onTabKey">
           <button
             v-for="(group, i) in groups"
             :key="group.heading"
             role="tab"
             :aria-selected="active === i"
+            :tabindex="active === i ? 0 : -1"
             :id="'tab-' + i"
             :aria-controls="'panel-' + i"
             @click="active = i"
@@ -339,6 +359,22 @@ createApp({
     activeGroup() {
       return this.groups[this.active] ?? null;
     }
+  },
+  methods: {
+    onTabKey(e) {
+      const len = this.groups.length;
+      let next = this.active;
+      if      (e.key === 'ArrowRight') { e.preventDefault(); next = (this.active + 1) % len; }
+      else if (e.key === 'ArrowLeft')  { e.preventDefault(); next = (this.active - 1 + len) % len; }
+      else if (e.key === 'Home')       { e.preventDefault(); next = 0; }
+      else if (e.key === 'End')        { e.preventDefault(); next = len - 1; }
+      else return;
+      this.active = next;
+      this.$nextTick(() => document.getElementById('tab-' + next)?.focus());
+    }
+  },
+  mounted() {
+    document.getElementById('skills-static')?.remove();
   }
 }).mount('#skills-app');
 </script>
