@@ -11,6 +11,14 @@ description: Portfolio of software development projects including full-stack app
       <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">All projects.</h1>
       <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">Selected professional co-op work and personal software projects.</p>
 
+      {# Static fallback — always visible; Vue removes it on mount #}
+      <div id="projects-static" class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for project in projects %}
+        {% set project = project %}
+        {% include "components/project-card.njk" %}
+        {% endfor %}
+      </div>
+
       <div id="projects-app" class="mt-12" v-cloak>
 
         {# Category filter chips #}
@@ -123,6 +131,9 @@ createApp({
       if (this.active === 'all') return this.projects;
       return this.projects.filter(p => p.category === this.active);
     }
+  },
+  mounted() {
+    document.getElementById('projects-static')?.remove();
   }
 }).mount('#projects-app');
 </script>
