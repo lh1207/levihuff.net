@@ -64,6 +64,10 @@ describe("dateIso", () => {
   it("throws for a date like 9999-99-99", () => {
     expect(() => dateIso("9999-99-99")).toThrow("[dateIso]");
   });
+  it("accepts a Date object input and returns a valid ISO string", () => {
+    const d = new Date(Date.UTC(2024, 5, 15)); // June 15 2024 UTC — timezone-safe
+    expect(dateIso(d)).toBe("2024-06-15T00:00:00.000Z");
+  });
 });
 
 describe("dateYMD", () => {
