@@ -126,6 +126,41 @@ describe("build smoke test", () => {
     expect(broken, `Broken links:\n${broken.join("\n")}`).toHaveLength(0);
   });
 
+  // Meta / OG tags
+  it("index.html has a non-empty <title>", () => {
+    const html = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    const match = html.match(/<title>([^<]*)<\/title>/i);
+    expect(match, "no <title> found").toBeTruthy();
+    expect(match[1].trim()).not.toBe("");
+  });
+
+  it("index.html has a meta description", () => {
+    const html = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    expect(html).toMatch(/<meta\s[^>]*name=["']description["'][^>]*>/i);
+  });
+
+  it("index.html has og:title and og:description meta tags", () => {
+    const html = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    expect(html).toMatch(/property=["']og:title["']/i);
+    expect(html).toMatch(/property=["']og:description["']/i);
+  });
+
+  // Individual blog post pages
+  it("at least one individual blog post page is built", () => {
+    const blogDir = resolve(siteDir, "blog");
+    const entries = readdirSync(blogDir, { withFileTypes: true });
+    const postDirs = entries.filter(
+      (e) => e.isDirectory() && existsSync(resolve(blogDir, e.name, "index.html"))
+    );
+    expect(postDirs.length).toBeGreaterThan(0);
+  });
+
+  // feed.xml has entries
+  it("feed.xml contains at least one <entry> element", () => {
+    const feed = readFileSync(resolve(siteDir, "feed.xml"), "utf8");
+    expect(feed).toMatch(/<entry>/i);
+  });
+
   // img alt text
   it("no <img> element in built HTML is missing an alt attribute", () => {
     const htmlFiles = findHtmlFiles(siteDir);

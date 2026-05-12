@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { createRequire } from "module";
-import { readdirSync, readFileSync } from "fs";
+import { readdirSync, readFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, resolve, extname } from "path";
 
@@ -8,7 +8,9 @@ const require = createRequire(import.meta.url);
 const matter = require("gray-matter");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const blogDir = resolve(__dirname, "../src/blog");
+const root = resolve(__dirname, "..");
+const blogDir = resolve(root, "src/blog");
+const imagesDir = resolve(root, "src/images");
 
 const blogFiles = readdirSync(blogDir).filter((f) => extname(f) === ".md");
 
@@ -72,6 +74,16 @@ describe("blog post frontmatter", () => {
         "string"
       );
       expect(data.thumbnail.trim(), `empty thumbnail in ${file}`).not.toBe("");
+    }
+  });
+
+  it("every post thumbnail file exists in src/images/", () => {
+    for (const file of blogFiles) {
+      const { data } = matter(readFileSync(resolve(blogDir, file), "utf8"));
+      if (!data.thumbnail) continue;
+      // thumbnail is root-relative e.g. /images/blog/foo.jpg → src/images/blog/foo.jpg
+      const imgPath = resolve(root, "src", data.thumbnail.replace(/^\//, ""));
+      expect(existsSync(imgPath), `missing image ${data.thumbnail} referenced in ${file}`).toBe(true);
     }
   });
 });
