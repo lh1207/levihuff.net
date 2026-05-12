@@ -11,11 +11,126 @@ description: Portfolio of software development projects including full-stack app
       <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">All projects.</h1>
       <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">Selected professional co-op work and personal software projects.</p>
 
-      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {% for project in projects %}
-          {% include "components/project-card.njk" %}
-        {% endfor %}
+      <div id="projects-app" class="mt-12">
+
+        {# Category filter chips #}
+        <div class="flex flex-wrap gap-2 mb-8">
+          <button
+            v-for="cat in categories"
+            :key="cat.value"
+            @click="active = cat.value"
+            :aria-pressed="active === cat.value"
+            :class="[
+              'font-jb text-mono-xs tracking-[0.04em] uppercase px-3 py-1.5 rounded-d-sm border transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2',
+              active === cat.value
+                ? 'bg-amber/[0.18] border-amber/[0.64] text-amber'
+                : 'bg-surface-2 border-hair-1 text-fg-3 hover:text-fg-1 hover:border-hair-2'
+            ]">
+            {% raw %}{{ cat.label }}{% endraw %}
+          </button>
+        </div>
+
+        {# Projects grid #}
+        <transition-group
+          tag="div"
+          name="card"
+          class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article
+            v-for="project in filteredProjects"
+            :key="project.title"
+            class="bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden hover:border-hair-2 hover:-translate-y-0.5 hover:shadow-d-md transition-[transform,border-color,box-shadow] duration-[180ms]">
+
+            <div v-if="project.image" class="h-52 bg-surface-inset overflow-hidden">
+              <img
+                :src="project.image"
+                :alt="project.imageAlt"
+                :width="project.imageWidth"
+                :height="project.imageHeight"
+                loading="lazy"
+                :class="['w-full h-full', project.imageClass === 'logo' ? 'object-contain p-6 bg-surface-1' : 'object-cover']">
+            </div>
+
+            <div class="p-6">
+              <p v-if="project.stack" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">STACK &middot; {% raw %}{{ project.stack }}{% endraw %}</p>
+
+              <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2 leading-snug">
+                <a
+                  v-if="project.link"
+                  :href="project.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+                  {% raw %}{{ project.title }}{% endraw %}
+                </a>
+                <span v-else>{% raw %}{{ project.title }}{% endraw %}</span>
+              </h2>
+
+              <div v-if="project.description" class="font-plex text-sm text-fg-2 leading-relaxed mt-3" v-html="project.description"></div>
+
+              <dl v-if="project.paragraphs && project.paragraphs.length" class="mt-4 space-y-2">
+                <div
+                  v-for="para in project.paragraphs"
+                  :key="para.label"
+                  class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                  <dt class="font-jb text-sm text-amber sm:w-36 shrink-0">{% raw %}{{ para.label }}{% endraw %}</dt>
+                  <dd class="font-plex text-sm text-fg-2">{% raw %}{{ para.text }}{% endraw %}</dd>
+                </div>
+              </dl>
+
+              <p v-if="project.meta" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-4 mt-4">{% raw %}{{ project.meta }}{% endraw %}</p>
+
+              <a
+                v-if="project.link"
+                :href="project.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 mt-5 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+                {% raw %}{{ project.linkLabel || 'View' }}{% endraw %} &rarr;
+              </a>
+            </div>
+
+          </article>
+        </transition-group>
+
+        <p v-if="!filteredProjects.length" class="font-plex text-base text-fg-3">No projects in this category.</p>
+
       </div>
     </div>
   </section>
 </div>
+
+<script type="module">
+import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.esm-browser.prod.js';
+
+const projects = {{ projects | dump | safe }};
+
+createApp({
+  data() {
+    return {
+      projects,
+      active: 'all',
+      categories: [
+        { value: 'all',            label: 'All' },
+        { value: 'software',       label: 'Software' },
+        { value: 'infrastructure', label: 'Infrastructure' },
+        { value: 'ai',             label: 'AI' },
+        { value: 'work',           label: 'Work' }
+      ]
+    };
+  },
+  computed: {
+    filteredProjects() {
+      if (this.active === 'all') return this.projects;
+      return this.projects.filter(p => p.category === this.active);
+    }
+  }
+}).mount('#projects-app');
+</script>
+
+<style>
+.card-enter-active,
+.card-leave-active { transition: opacity 0.2s ease, transform 0.2s ease; }
+.card-enter-from,
+.card-leave-to { opacity: 0; transform: translateY(8px); }
+.card-move { transition: transform 0.25s ease; }
+</style>

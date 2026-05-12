@@ -10,21 +10,21 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
   <section id="hero" class="py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; AI OPS &middot; IT INFRASTRUCTURE</p>
+      <p data-motion="hero-item" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; AI OPS &middot; IT INFRASTRUCTURE</p>
 
-      <h1 class="font-syne text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">
+      <h1 data-motion="hero-item" class="font-syne text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">
         Levi Huff
       </h1>
 
-      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
+      <p data-motion="hero-item" class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
         I deploy AI infrastructure, run enterprise IT, and ship the software that connects them.
       </p>
 
-      <p class="font-plex text-sm text-fg-3 mt-3 max-w-prose">
+      <p data-motion="hero-item" class="font-plex text-sm text-fg-3 mt-3 max-w-prose">
         University of Cincinnati IT, graduating {{ site.graduationDate }}. CompTIA A+ and ITF+. Cisco CCNA in progress. Co-op experience at Tire Discounters and Total Quality Logistics.
       </p>
 
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div data-motion="hero-item" class="mt-8 flex flex-wrap gap-3">
         <a
           href="/files/Levi_Huff_Resume.pdf"
           download="Levi_Huff_Resume.pdf"
@@ -45,15 +45,15 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
   <section id="what" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / WHAT I DO</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / WHAT I DO</p>
+      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
         Two tracks, one operator.
       </h2>
 
-      <div class="mt-8 grid gap-4 md:grid-cols-2">
+      <div data-motion="stagger" class="mt-8 grid gap-4 md:grid-cols-2">
 
         {# IT Infrastructure card #}
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 hover:border-hair-2 transition-colors duration-[180ms]">
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 hover:border-hair-2 transition-colors duration-[180ms]">
           <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">IT INFRASTRUCTURE</p>
           <h3 class="font-plex text-2xl font-semibold text-fg-1 mt-2 leading-snug">
             Operate the systems that keep an org running.
@@ -79,7 +79,7 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
         </div>
 
         {# AI Ops card #}
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 hover:border-hair-2 transition-colors duration-[180ms]">
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 hover:border-hair-2 transition-colors duration-[180ms]">
           <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">AI OPS</p>
           <h3 class="font-plex text-2xl font-semibold text-fg-1 mt-2 leading-snug">
             Stand up the AI services people actually use.
@@ -112,17 +112,17 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
   <section id="tools" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / TOOLS</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / TOOLS</p>
+      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
         Stack and tooling.
       </h2>
-      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
+      <p data-motion="section" class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
         Technologies I have deployed, maintained, or built with in production and co-op environments.
       </p>
 
-      <div class="mt-8 grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div data-motion="stagger" class="mt-8 grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {% for tool in tools %}
-        <div class="bg-surface-2 border border-hair-1 rounded-d-md p-4 hover:border-amber/[0.32] hover:-translate-y-0.5 hover:shadow-d-sm transition-[transform,border-color,box-shadow] duration-[180ms]">
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-md p-4 hover:border-amber/[0.32] hover:-translate-y-0.5 hover:shadow-d-sm transition-[transform,border-color,box-shadow] duration-[180ms]">
           <p class="font-jb text-sm text-fg-1">{{ tool.name }}</p>
           <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-4 mt-2">{{ tool.category }}</p>
         </div>
@@ -136,12 +136,12 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
   <section id="work" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / WORK</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / WORK</p>
+      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
         Selected work.
       </h2>
 
-      <div class="mt-8 grid gap-6 md:grid-cols-3">
+      <div data-motion="stagger" class="mt-8 grid gap-6 md:grid-cols-3">
         {% for project in projects %}
           {% if project.featured %}
             {% include "components/landing/project-card-mini.njk" %}

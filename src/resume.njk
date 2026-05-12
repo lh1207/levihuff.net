@@ -189,62 +189,54 @@ description: Resume for Levi Huff — IT graduate and infrastructure specialist 
     </div>
   </section>
 
-  {# Technical Skills #}
+  {# Technical Skills — Vue tab switcher #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
       <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / SKILLS</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
 
-      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Systems and Infrastructure</h3>
-          <ul class="space-y-1 font-plex text-sm text-fg-2">
-            <li>Windows Server, Azure AD, Active Directory</li>
-            <li>Intune, MDT, SCCM, GPO, Autopilot, BitLocker</li>
-          </ul>
+      <div id="skills-app" class="mt-8">
+        {# Tab buttons #}
+        <div role="tablist" aria-label="Skill categories" class="flex flex-wrap gap-2 mb-6">
+          <button
+            v-for="(group, i) in groups"
+            :key="group.heading"
+            role="tab"
+            :aria-selected="active === i"
+            :id="'tab-' + i"
+            :aria-controls="'panel-' + i"
+            @click="active = i"
+            :class="[
+              'font-jb text-mono-xs tracking-[0.04em] uppercase px-3 py-1.5 rounded-d-sm border transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2',
+              active === i
+                ? 'bg-amber/[0.18] border-amber/[0.64] text-amber'
+                : 'bg-surface-2 border-hair-1 text-fg-3 hover:text-fg-1 hover:border-hair-2'
+            ]">
+            {% raw %}{{ group.heading }}{% endraw %}
+          </button>
         </div>
 
-        <div>
-          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Automation and Scripting</h3>
-          <ul class="space-y-1 font-plex text-sm text-fg-2">
-            <li>PowerShell, Bash, Python</li>
-            <li>Task Scheduler</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Development</h3>
-          <ul class="space-y-1 font-plex text-sm text-fg-2">
-            <li>C#, ASP.NET, Java, Spring Boot, Kotlin</li>
-            <li>HTML, CSS, JavaScript, OOP</li>
-            <li>SQL Server, SQLite, REST APIs, Git</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Networking and Security</h3>
-          <ul class="space-y-1 font-plex text-sm text-fg-2">
-            <li>DHCP, DNS, VPN, VLAN, TCP/IP, SMTP</li>
-            <li>Firewall, Zero Trust, SIEM, Endpoint Security</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Support and Tools</h3>
-          <ul class="space-y-1 font-plex text-sm text-fg-2">
-            <li>Jira, ServiceNow, SysAid</li>
-            <li>Microsoft Office, Outlook, SharePoint</li>
-            <li>TeamViewer, RDP</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mb-3">Platforms</h3>
-          <ul class="space-y-1 font-plex text-sm text-fg-2">
-            <li>Windows, Linux, macOS, Azure</li>
-            <li>Android, Docker, VMware</li>
-          </ul>
-        </div>
+        {# Tab panels #}
+        <transition name="tab" mode="out-in">
+          <div
+            v-for="(group, i) in groups"
+            v-show="active === i"
+            :key="group.heading"
+            role="tabpanel"
+            :id="'panel-' + i"
+            :aria-labelledby="'tab-' + i"
+            class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+            <dl class="space-y-3">
+              <div
+                v-for="item in group.items"
+                :key="item.label"
+                class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <dt class="font-jb text-sm text-amber sm:w-40 shrink-0">{% raw %}{{ item.label }}{% endraw %}</dt>
+                <dd class="font-plex text-sm text-fg-2">{% raw %}{{ item.text }}{% endraw %}</dd>
+              </div>
+            </dl>
+          </div>
+        </transition>
       </div>
     </div>
   </section>
@@ -288,3 +280,68 @@ description: Resume for Levi Huff — IT graduate and infrastructure specialist 
   </section>
 
 </div>
+
+<script type="module">
+import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3/dist/vue.esm-browser.prod.js';
+
+createApp({
+  data() {
+    return {
+      active: 0,
+      groups: [
+        {
+          heading: 'Systems',
+          items: [
+            { label: 'Windows',    text: 'Windows Server, Azure AD, Active Directory' },
+            { label: 'Deployment', text: 'Intune, MDT, SCCM, GPO, Autopilot, BitLocker' }
+          ]
+        },
+        {
+          heading: 'Scripting',
+          items: [
+            { label: 'Languages', text: 'PowerShell, Bash, Python' },
+            { label: 'Scheduling', text: 'Task Scheduler' }
+          ]
+        },
+        {
+          heading: 'Development',
+          items: [
+            { label: 'Backend',  text: 'C#, ASP.NET, Java, Spring Boot, Kotlin' },
+            { label: 'Frontend', text: 'HTML, CSS, JavaScript, OOP' },
+            { label: 'Data',     text: 'SQL Server, SQLite, REST APIs, Git' }
+          ]
+        },
+        {
+          heading: 'Networking',
+          items: [
+            { label: 'Protocols', text: 'DHCP, DNS, VPN, VLAN, TCP/IP, SMTP' },
+            { label: 'Security',  text: 'Firewall, Zero Trust, SIEM, Endpoint Security' }
+          ]
+        },
+        {
+          heading: 'Support',
+          items: [
+            { label: 'Ticketing', text: 'Jira, ServiceNow, SysAid' },
+            { label: 'Office',    text: 'Microsoft Office, Outlook, SharePoint' },
+            { label: 'Remote',    text: 'TeamViewer, RDP' }
+          ]
+        },
+        {
+          heading: 'Platforms',
+          items: [
+            { label: 'OS',      text: 'Windows, Linux, macOS, Azure' },
+            { label: 'Infra',   text: 'Android, Docker, VMware' }
+          ]
+        }
+      ]
+    };
+  }
+}).mount('#skills-app');
+</script>
+
+<style>
+.tab-enter-active,
+.tab-leave-active { transition: opacity 0.15s ease, transform 0.15s ease; }
+.tab-enter-from { opacity: 0; transform: translateX(8px); }
+.tab-leave-to  { opacity: 0; transform: translateX(-8px); }
+</style>
