@@ -89,12 +89,27 @@ describe("build smoke test", () => {
     expect(html).toContain("/projects/");
   });
 
-  // CSS output check
-  it("_site/css/styles.css is non-empty", () => {
+  // Passthrough artifact checks — if these fail, a passthroughCopy was removed
+  it("_site/robots.txt is present (passthrough)", () => {
+    expect(existsSync(resolve(siteDir, "robots.txt"))).toBe(true);
+  });
+
+  it("_site/_headers is present (passthrough)", () => {
+    expect(existsSync(resolve(siteDir, "_headers"))).toBe(true);
+  });
+
+  it("_site/humans.txt is present (passthrough)", () => {
+    expect(existsSync(resolve(siteDir, "humans.txt"))).toBe(true);
+  });
+
+  // CSS output check — also asserts the production build ran (minified = 1-3 non-empty lines)
+  it("_site/css/styles.css is the minified production build", () => {
     const cssPath = resolve(siteDir, "css/styles.css");
     expect(existsSync(cssPath)).toBe(true);
     const css = readFileSync(cssPath, "utf8");
-    expect(css.trim().length).toBeGreaterThan(0);
+    expect(css.trim().length).toBeGreaterThan(1000);
+    const nonEmptyLines = css.split("\n").filter((l) => l.trim().length > 0);
+    expect(nonEmptyLines.length, "CSS has too many lines — looks like a dev build, not minified").toBeLessThanOrEqual(5);
   });
 
   // Internal link integrity
