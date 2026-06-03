@@ -1,0 +1,9 @@
+title = "gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allow example templates and angle-bracket placeholders ONLY"
+paths = [ '''.*\.env\.example$''' ]
+regexes = [ '''<[a-z0-9-]+>''' ]   # e.g. <api-key>, <token>

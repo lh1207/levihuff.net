@@ -2,5 +2,11 @@ node_modules/
 _site/
 .DS_Store
 
+# Secrets / local env — keep real secrets out of git
+.env
+*.env
+*.env.local
+!*.env.example   # but DO track the documented template
+
 # Claude Code — credentials, cache, and ephemeral agent state
 .claude/
