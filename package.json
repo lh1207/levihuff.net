@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Personal portfolio website of Levi Huff",
   "scripts": {
-    "start": "npm run build && npm-run-all --parallel dev:11ty dev:css",
+    "start": "npm run build && run-p dev:11ty dev:css",
     "dev:11ty": "eleventy --serve",
     "dev:css": "tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --watch",
     "build": "eleventy && tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --minify",
-    "watch": "npm-run-all --parallel watch:11ty watch:css",
+    "watch": "run-p watch:11ty watch:css",
     "watch:11ty": "eleventy --watch",
     "watch:css": "tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --watch",
     "test": "vitest run",
