@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { createRequire } from "module";
+import { readFileSync, readdirSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 
 const require = createRequire(import.meta.url);
 const projects = require("../src/_data/projects.json");
@@ -131,6 +134,36 @@ describe("infra.js", () => {
   it("no entry copy contains em dashes", () => {
     const text = JSON.stringify(infra);
     expect(text).not.toContain("—");
+  });
+});
+
+describe("source templates", () => {
+  const srcDir = resolve(dirname(fileURLToPath(import.meta.url)), "../src");
+
+  function findFiles(dir, ext) {
+    const results = [];
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = resolve(dir, entry.name);
+      if (entry.isDirectory()) {
+        results.push(...findFiles(full, ext));
+      } else if (entry.name.endsWith(ext)) {
+        results.push(full);
+      }
+    }
+    return results;
+  }
+
+  // Blog markdown is excluded: posts may quote real files verbatim inside
+  // code blocks, and quoted code is not site copy.
+  it("no .njk template contains em dashes", () => {
+    const offenders = [];
+    for (const file of findFiles(srcDir, ".njk")) {
+      const content = readFileSync(file, "utf8");
+      if (content.includes("—")) {
+        offenders.push(file.replace(srcDir, "src"));
+      }
+    }
+    expect(offenders, `Em dashes found in:\n${offenders.join("\n")}`).toHaveLength(0);
   });
 });
 
