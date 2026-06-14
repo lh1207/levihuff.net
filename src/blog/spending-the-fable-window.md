@@ -4,10 +4,10 @@ description: "A retrospective on using Claude Fable 5 only for first-pass work d
 date: 2026-06-13
 tags: [ai, claude-code, fable, opus, sonnet, mcp, ccusage, eleventy]
 layout: post.njk
-thumbnail: /images/blog/rebuilding-my-dev-setup-with-three-llms.jpg
+thumbnail: /images/blog/spending-the-fable-window.jpg
 ---
 
-![Three terminal panes in a tmux session running Claude Code against a codebase](/images/blog/rebuilding-my-dev-setup-with-three-llms.jpg)
+![A close-up of a monitor showing colorful source code, lit by blue and red light in a dark room](/images/blog/spending-the-fable-window.jpg)
 
 For a few weeks, Claude Fable 5 was free. Fable is the expensive one, the model that sits a rung above Opus, the one you are not supposed to leave running all day. It was supposed to stay free through June 22. It got cut early, before that date, for everyone, not just my plan. The window we actually got was shorter than the one on the announcement.
 
