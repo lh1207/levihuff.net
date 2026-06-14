@@ -1,0 +1,98 @@
+---
+layout: base.njk
+title: IT Infrastructure
+description: Levi Huff, IT infrastructure. Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, virtualization, and a self-hosted homelab. CompTIA A+, CCNA in progress.
+---
+
+<div class="bg-surface-1 text-fg-1">
+
+  {# Intro #}
+  <section id="hero" class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p data-motion="hero-item" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; INFRASTRUCTURE</p>
+      <h1 data-motion="hero-item" class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">IT infrastructure.</h1>
+      <p data-motion="hero-item" class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
+        Endpoint management, Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization. Built in production at Tire Discounters and Total Quality Logistics, and kept sharp in a homelab that runs every day.
+      </p>
+      <p data-motion="hero-item" class="font-plex text-sm text-fg-3 mt-3 max-w-prose">
+        CompTIA A+ and ITF+ certified. Cisco CCNA in progress. B.S. Information Technology, University of Cincinnati, {{ site.graduationDate }}.
+      </p>
+    </div>
+  </section>
+
+  {# Infrastructure projects #}
+  <section id="projects" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / PROJECTS</p>
+      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Infrastructure projects.</h2>
+      <p data-motion="section" class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
+        Production work from co-op roles plus the lab builds that back it up.
+      </p>
+
+      <div data-motion="stagger" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for entry in infra %}
+          {% if entry.section == "infrastructure" %}
+            {% include "components/infra-card.njk" %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# Homelab #}
+  <section id="homelab" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / HOMELAB</p>
+      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Homelab.</h2>
+      <p data-motion="section" class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
+        A Proxmox node on a Dell Optiplex running the services below, with Tailscale for secure remote access. Everything is containerized, documented in BookStack, and monitored with Uptime Kuma.
+      </p>
+
+      <div data-motion="stagger" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for entry in infra %}
+          {% if entry.section == "homelab" %}
+            {% include "components/infra-card.njk" %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# AI ops: secondary, staying-current layer #}
+  <section id="ai-ops" class="border-t border-hair-1 mt-4 py-10 md:py-12">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3" aria-hidden="true">&#9658; 03 / STAYING CURRENT</p>
+      <h2 data-motion="section" class="font-syne text-2xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">AI ops.</h2>
+      <p data-motion="section" class="font-plex text-base text-fg-3 leading-relaxed mt-3 max-w-prose">
+        The industry moves fast, so part of running infrastructure is keeping up with it. These are smaller builds that apply the same homelab discipline to local AI tooling.
+      </p>
+
+      <div data-motion="stagger" class="mt-6 grid gap-4 md:grid-cols-3">
+        {% for entry in infra %}
+          {% if entry.section == "ai-ops" %}
+          <article data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-md p-5 hover:border-hair-2 transition-colors duration-[180ms]">
+            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-4">{{ entry.stack | join(", ") }}</p>
+            <h3 class="font-plex text-base font-semibold text-fg-1 mt-2 leading-snug">
+              <a href="/infrastructure/{{ entry.slug }}/" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ entry.name }}</a>
+            </h3>
+            <p class="font-plex text-sm text-fg-3 mt-2 leading-relaxed">{{ entry.summary }}</p>
+          </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# Contact band #}
+  <section class="border-t border-hair-1 py-10 md:py-12">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-plex text-lg text-fg-2 max-w-prose">
+        Want the full picture?
+        <a href="/resume/" class="text-amber hover:text-amber-hi font-semibold transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">View the resume</a>
+        or email
+        <a href="mailto:{{ site.email }}" class="text-amber hover:text-amber-hi font-semibold transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.email }}</a>.
+      </p>
+    </div>
+  </section>
+
+</div>

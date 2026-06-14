@@ -74,7 +74,7 @@
     import { animate, inView, stagger } from 'https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm';
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // Hero stagger — only on the homepage
+      // Hero stagger: only on the homepage
       const hero = document.getElementById('hero');
       if (hero) {
         const items = hero.querySelectorAll('[data-motion="hero-item"]');
@@ -83,7 +83,7 @@
         }
       }
 
-      // Section reveal — headings and content blocks
+      // Section reveal: headings and content blocks
       inView('[data-motion="section"]', ({ target }) => {
         animate(target, { opacity: [0, 1], y: [20, 0] }, { duration: 0.45, easing: [0.25, 0.1, 0.25, 1] });
       }, { margin: '-8% 0px' });

@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { createRequire } from "module";
+import { readFileSync, readdirSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 
 const require = createRequire(import.meta.url);
 const projects = require("../src/_data/projects.json");
@@ -7,6 +10,7 @@ const experience = require("../src/_data/experience.json");
 const skills = require("../src/_data/skills.json");
 const navigation = require("../src/_data/navigation.json");
 const site = require("../src/_data/site.json");
+const infra = require("../src/_data/infra.js");
 
 describe("projects.json", () => {
   it("is a non-empty array", () => {
@@ -50,6 +54,116 @@ describe("projects.json", () => {
         expect(typeof para.text).toBe("string");
       }
     }
+  });
+});
+
+describe("infra.js", () => {
+  const SECTIONS = ["infrastructure", "homelab", "ai-ops"];
+  const KINDS = ["project", "service"];
+
+  it("is a non-empty array", () => {
+    expect(Array.isArray(infra)).toBe(true);
+    expect(infra.length).toBeGreaterThan(0);
+  });
+
+  it("every entry has the required string fields", () => {
+    for (const e of infra) {
+      for (const field of ["slug", "name", "role", "status", "summary"]) {
+        expect(typeof e[field], `${field} on "${e.name || e.slug}"`).toBe("string");
+        expect(e[field].trim()).not.toBe("");
+      }
+    }
+  });
+
+  it("slugs are unique and url-safe", () => {
+    const slugs = infra.map((e) => e.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const slug of slugs) {
+      expect(slug).toMatch(/^[a-z0-9-]+$/);
+    }
+  });
+
+  it("section and kind are from the allowed sets", () => {
+    for (const e of infra) {
+      expect(SECTIONS, `section on "${e.slug}"`).toContain(e.section);
+      expect(KINDS, `kind on "${e.slug}"`).toContain(e.kind);
+    }
+  });
+
+  it("stack is a non-empty array of strings", () => {
+    for (const e of infra) {
+      expect(Array.isArray(e.stack), `stack on "${e.slug}"`).toBe(true);
+      expect(e.stack.length).toBeGreaterThan(0);
+      for (const tech of e.stack) {
+        expect(typeof tech).toBe("string");
+        expect(tech.trim()).not.toBe("");
+      }
+    }
+  });
+
+  it("details is an array of {label, text} objects", () => {
+    for (const e of infra) {
+      expect(Array.isArray(e.details), `details on "${e.slug}"`).toBe(true);
+      for (const d of e.details) {
+        expect(typeof d.label).toBe("string");
+        expect(typeof d.text).toBe("string");
+        expect(d.label.trim()).not.toBe("");
+        expect(d.text.trim()).not.toBe("");
+      }
+    }
+  });
+
+  it("links is an array of {label, url} objects with root-relative or https urls", () => {
+    for (const e of infra) {
+      expect(Array.isArray(e.links), `links on "${e.slug}"`).toBe(true);
+      for (const link of e.links) {
+        expect(typeof link.label).toBe("string");
+        expect(link.label.trim()).not.toBe("");
+        expect(typeof link.url).toBe("string");
+        expect(link.url).toMatch(/^(\/|https:\/\/)/);
+      }
+    }
+  });
+
+  it("featured is a boolean on every entry", () => {
+    for (const e of infra) {
+      expect(typeof e.featured, `featured on "${e.slug}"`).toBe("boolean");
+    }
+  });
+
+  it("no entry copy contains em dashes", () => {
+    const text = JSON.stringify(infra);
+    expect(text).not.toContain("—");
+  });
+});
+
+describe("source templates", () => {
+  const srcDir = resolve(dirname(fileURLToPath(import.meta.url)), "../src");
+
+  function findFiles(dir, ext) {
+    const results = [];
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = resolve(dir, entry.name);
+      if (entry.isDirectory()) {
+        results.push(...findFiles(full, ext));
+      } else if (entry.name.endsWith(ext)) {
+        results.push(full);
+      }
+    }
+    return results;
+  }
+
+  // Blog markdown is excluded: posts may quote real files verbatim inside
+  // code blocks, and quoted code is not site copy.
+  it("no .njk template contains em dashes", () => {
+    const offenders = [];
+    for (const file of findFiles(srcDir, ".njk")) {
+      const content = readFileSync(file, "utf8");
+      if (content.includes("—")) {
+        offenders.push(file.replace(srcDir, "src"));
+      }
+    }
+    expect(offenders, `Em dashes found in:\n${offenders.join("\n")}`).toHaveLength(0);
   });
 });
 

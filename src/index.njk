@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: AI Ops and IT Infrastructure
-description: AI ops and IT infrastructure portfolio for Levi Huff. University of Cincinnati IT, graduating May 2026. Co-op experience at Tire Discounters and Total Quality Logistics.
+title: IT Infrastructure
+description: Levi Huff, IT infrastructure. Endpoint management, Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization. University of Cincinnati IT, May 2026. CompTIA A+, CCNA in progress.
 ---
 
 <div class="bg-surface-1 text-fg-1">
@@ -10,109 +10,116 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
   <section id="hero" class="py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p data-motion="hero-item" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; AI OPS &middot; IT INFRASTRUCTURE</p>
+      <p data-motion="hero-item" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; IT INFRASTRUCTURE</p>
 
       <h1 data-motion="hero-item" class="font-syne text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">
         Levi Huff
       </h1>
 
       <p data-motion="hero-item" class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-        I deploy AI infrastructure, run enterprise IT, and ship the software that connects them.
+        I build and run IT infrastructure: Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization.
       </p>
 
       <p data-motion="hero-item" class="font-plex text-sm text-fg-3 mt-3 max-w-prose">
-        University of Cincinnati IT, graduating {{ site.graduationDate }}. CompTIA A+ and ITF+. Cisco CCNA in progress. Co-op experience at Tire Discounters and Total Quality Logistics.
+        B.S. Information Technology, University of Cincinnati, {{ site.graduationDate }}. CompTIA A+ and ITF+. Cisco CCNA in progress. Co-op experience at Tire Discounters and Total Quality Logistics.
       </p>
 
       <div data-motion="hero-item" class="mt-8 flex flex-wrap gap-3">
         <a
-          href="/files/Levi_Huff_Resume.pdf"
-          download="Levi_Huff_Resume.pdf"
+          href="/infrastructure/"
           class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-          View resume
+          See the infrastructure work
         </a>
         <a
-          href="/contact/"
+          href="/files/Levi_Huff_Resume.pdf"
+          download="Levi_Huff_Resume.pdf"
           class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-          Get in touch
+          View resume
         </a>
       </div>
 
     </div>
   </section>
 
-  {# ── 1. What I do ─────────────────────────────────────────────── #}
+  {# ── 1. Core domains ──────────────────────────────────────────── #}
   <section id="what" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
       <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / WHAT I DO</p>
       <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
-        Two tracks, one operator.
+        Infrastructure, end to end.
       </h2>
+      <p data-motion="section" class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
+        From bare metal to a domain-joined, policy-compliant endpoint, and the automation in between.
+      </p>
 
-      <div data-motion="stagger" class="mt-8 grid gap-4 md:grid-cols-2">
+      <div data-motion="stagger" class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
 
-        {# IT Infrastructure card #}
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">IT INFRASTRUCTURE</p>
-          <h3 class="font-plex text-2xl font-semibold text-fg-1 mt-2 leading-snug">
-            Operate the systems that keep an org running.
-          </h3>
-          <dl class="mt-6 space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Active Directory</dt>
-              <dd class="font-plex text-base text-fg-2">domain operations and Group Policy management</dd>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Windows Imaging</dt>
-              <dd class="font-plex text-base text-fg-2">MDT and PXE pipelines, Lenovo driver injection</dd>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Helpdesk Ops</dt>
-              <dd class="font-plex text-base text-fg-2">ticket triage, queue ownership, multi-site support</dd>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Networking</dt>
-              <dd class="font-plex text-base text-fg-2">Cisco CCNA in progress, Cisco Packet Tracer labs</dd>
-            </div>
-          </dl>
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">IMAGING AND DEPLOYMENT</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Zero-touch Windows deployment with WDS, MDT, SCCM, FOG Project, PXE, and DISM. Built in production at two employers.</p>
         </div>
 
-        {# AI Ops card #}
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">AI OPS</p>
-          <h3 class="font-plex text-2xl font-semibold text-fg-1 mt-2 leading-snug">
-            Stand up the AI services people actually use.
-          </h3>
-          <dl class="mt-6 space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Ollama</dt>
-              <dd class="font-plex text-base text-fg-2">local LLM inference, self-hosted model management</dd>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Containerization</dt>
-              <dd class="font-plex text-base text-fg-2">Docker and Proxmox VMs for isolated, reproducible deployments</dd>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Local LLM Inference</dt>
-              <dd class="font-plex text-base text-fg-2">self-hosted model management, API access for internal tooling</dd>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-              <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">Observability</dt>
-              <dd class="font-plex text-base text-fg-2">service health monitoring and runbook documentation</dd>
-            </div>
-          </dl>
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">AUTOMATION AND SCRIPTING</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">PowerShell, batch, and VBScript for provisioning, onboarding, and the repetitive work that should never be manual.</p>
+        </div>
+
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">ACTIVE DIRECTORY</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Account provisioning, Group Policy, and domain operations across a 1,200+ employee, 180+ location environment.</p>
+        </div>
+
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">VIRTUALIZATION</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Proxmox and VMware Workstation Pro, from a 24/7 homelab node to disposable lab VMs for imaging tests.</p>
+        </div>
+
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">LINUX AND SELF-HOSTING</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Linux administration and a self-hosted service stack: containerized, documented, and monitored.</p>
+        </div>
+
+        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">NETWORKING</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Networking fundamentals with Cisco CCNA in progress. DHCP, DNS, VLANs, and routing in daily homelab use.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  {# ── 2. Tools ─────────────────────────────────────────── #}
+  {# ── 2. Featured infrastructure work ──────────────────────────── #}
+  <section id="work" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / WORK</p>
+      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
+        Featured infrastructure work.
+      </h2>
+
+      <div data-motion="stagger" class="mt-8 grid gap-6 md:grid-cols-2">
+        {% for entry in infra %}
+          {% if entry.featured %}
+            {% include "components/infra-card.njk" %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <a
+        href="/infrastructure/"
+        class="inline-flex items-center gap-2 mt-8 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+        &rarr; All infrastructure and homelab
+      </a>
+
+    </div>
+  </section>
+
+  {# ── 3. Tools ─────────────────────────────────────────── #}
   <section id="tools" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / TOOLS</p>
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / TOOLS</p>
       <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
         Stack and tooling.
       </h2>
@@ -132,38 +139,28 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
     </div>
   </section>
 
-  {# ── 3. Selected work ─────────────────────────────────────────── #}
-  <section id="work" class="py-12 md:py-16">
+  {# ── 4. Staying current: AI ops, intentionally secondary ──────── #}
+  <section id="staying-current" class="py-10 md:py-12">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
-      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / WORK</p>
-      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
-        Selected work.
+      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3" aria-hidden="true">&#9658; 04 / STAYING CURRENT</p>
+      <h2 data-motion="section" class="font-syne text-2xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
+        AI ops on the side.
       </h2>
-
-      <div data-motion="stagger" class="mt-8 grid gap-6 md:grid-cols-3">
-        {% for project in projects %}
-          {% if project.featured %}
-            {% include "components/landing/project-card-mini.njk" %}
-          {% endif %}
-        {% endfor %}
-      </div>
-
-      <a
-        href="/projects/"
-        class="inline-flex items-center gap-2 mt-8 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-        &rarr; All projects
-      </a>
+      <p data-motion="section" class="font-plex text-base text-fg-3 leading-relaxed mt-3 max-w-prose">
+        The industry moves fast, so I run a local AI stack with the same discipline as the rest of the homelab: Ollama and Open WebUI in Docker, an OpenClaw deployment, and a multi-model dev workflow.
+        <a href="/infrastructure/#ai-ops" class="text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">See the AI ops layer &rarr;</a>
+      </p>
 
     </div>
   </section>
 
-  {# ── 4. Closing band ──────────────────────────────────────────── #}
+  {# ── 5. Closing band ──────────────────────────────────────────── #}
   <section id="contact" class="border-t border-hair-1 mt-4 py-10 md:py-12">
     <div class="max-w-site mx-auto px-4 md:px-6">
 
       <p class="font-plex text-lg text-fg-2 max-w-prose">
-        Want to talk infrastructure, AI ops, or a 2026 hire?
+        Want to talk infrastructure or a 2026 hire?
         <a
           href="mailto:{{ site.email }}"
           class="text-amber hover:text-amber-hi font-semibold transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
@@ -196,7 +193,18 @@ description: AI ops and IT infrastructure portfolio for Levi Huff. University of
   "@type": "Person",
   "name": "{{ site.name }}",
   "url": "{{ site.url }}",
-  "jobTitle": "IT Student & Developer",
+  "description": "IT infrastructure: endpoint management, Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization.",
+  "knowsAbout": [
+    "IT Infrastructure",
+    "Windows Imaging",
+    "Zero-Touch Deployment",
+    "Active Directory",
+    "PowerShell",
+    "Proxmox",
+    "Virtualization",
+    "Linux Administration",
+    "Networking"
+  ],
   "alumniOf": {
     "@type": "CollegeOrUniversity",
     "name": "University of Cincinnati"

@@ -1,0 +1,12 @@
+{# Reusable card for infra.js entries. Expects `entry` in scope. #}
+<article data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 hover:-translate-y-0.5 hover:shadow-d-md transition-[transform,border-color,box-shadow] duration-[180ms]">
+  <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">STACK &middot; {{ entry.stack | join(", ") }}</p>
+  <h3 class="font-plex text-xl font-semibold text-fg-1 mt-2 leading-snug">
+    <a href="/infrastructure/{{ entry.slug }}/" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ entry.name }}</a>
+  </h3>
+  <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mt-2">{{ entry.status }}</p>
+  <p class="font-plex text-base text-fg-2 mt-3 leading-relaxed">{{ entry.summary }}</p>
+  <p class="mt-5">
+    <a href="/infrastructure/{{ entry.slug }}/" class="font-jb text-sm text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Details &rarr;</a>
+  </p>
+</article>

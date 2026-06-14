@@ -1,0 +1,58 @@
+---
+layout: base.njk
+pagination:
+  data: infra
+  size: 1
+  alias: entry
+permalink: "/infrastructure/{{ entry.slug }}/"
+eleventyComputed:
+  title: "{{ entry.name }}"
+  description: "{{ entry.summary }}"
+---
+
+<div class="bg-surface-1 text-fg-1">
+  <section class="py-16 md:py-20">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+
+      <a href="/infrastructure/" class="font-jb text-sm text-fg-3 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">&larr; Infrastructure</a>
+
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mt-8" aria-hidden="true">&#9658; {% if entry.section == "ai-ops" %}STAYING CURRENT{% elif entry.section == "homelab" %}HOMELAB{% else %}INFRASTRUCTURE{% endif %}</p>
+      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">{{ entry.name }}</h1>
+
+      <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+        <p class="font-jb text-mono-sm text-fg-3"><span class="text-amber uppercase text-mono-xs tracking-[0.04em]">Role</span> {{ entry.role }}</p>
+        <p class="font-jb text-mono-sm text-fg-3"><span class="text-amber uppercase text-mono-xs tracking-[0.04em]">Status</span> {{ entry.status }}</p>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        {% for tech in entry.stack %}
+        <span class="font-jb text-mono-xs tracking-[0.04em] uppercase bg-surface-2 border border-hair-1 text-fg-2 px-3 py-1.5 rounded-d-sm">{{ tech }}</span>
+        {% endfor %}
+      </div>
+
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-8 max-w-prose">{{ entry.summary }}</p>
+
+      {% if entry.details.length %}
+      <div class="mt-8 bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 max-w-prose">
+        <dl class="space-y-5">
+          {% for item in entry.details %}
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+            <dt class="font-jb text-sm text-amber sm:w-44 shrink-0">{{ item.label }}</dt>
+            <dd class="font-plex text-base text-fg-2 leading-relaxed">{{ item.text }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+      </div>
+      {% endif %}
+
+      {% if entry.links.length %}
+      <div class="mt-8 flex flex-wrap gap-4">
+        {% for link in entry.links %}
+        <a href="{{ link.url }}" class="font-jb text-sm text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ link.label }} &rarr;</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+  </section>
+</div>
