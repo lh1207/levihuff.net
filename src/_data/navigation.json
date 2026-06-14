@@ -1,8 +1,9 @@
 [
-  { "label": "Home",     "url": "/" },
-  { "label": "About",   "url": "/about/" },
-  { "label": "Projects","url": "/projects/" },
-  { "label": "Resume",  "url": "/resume/" },
-  { "label": "Blog",    "url": "/blog/" },
-  { "label": "Contact", "url": "/contact/" }
+  { "label": "Home",           "url": "/" },
+  { "label": "Infrastructure", "url": "/infrastructure/" },
+  { "label": "About",          "url": "/about/" },
+  { "label": "Projects",       "url": "/projects/" },
+  { "label": "Resume",         "url": "/resume/" },
+  { "label": "Blog",           "url": "/blog/" },
+  { "label": "Contact",        "url": "/contact/" }
 ]

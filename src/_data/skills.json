@@ -3,21 +3,22 @@
     "heading": "Systems & Infrastructure",
     "items": [
       { "label": "Windows",        "text": "Windows Server, Active Directory, Group Policy, BitLocker" },
-      { "label": "Deployment",     "text": "MDT, FOG, PXE, SCCM, Intune, Autopilot" },
-      { "label": "Virtualization", "text": "Proxmox, Docker, VMware" }
+      { "label": "Deployment",     "text": "WDS, MDT, SCCM, FOG, PXE, DISM, Intune, Autopilot" },
+      { "label": "Virtualization", "text": "Proxmox, Docker, VMware Workstation Pro" }
     ]
   },
   {
     "heading": "Networking & Security",
     "items": [
       { "label": "Protocols", "text": "DHCP, DNS, VPN, VLAN, TCP/IP, SMTP" },
-      { "label": "Security",  "text": "Firewall, Zero Trust, SIEM, Endpoint Security, Pi-hole" }
+      { "label": "Security",  "text": "Firewall, Zero Trust, SIEM, Endpoint Security, Pi-hole" },
+      { "label": "Remote Access", "text": "Tailscale, WireGuard, RDP" }
     ]
   },
   {
     "heading": "Automation & Development",
     "items": [
-      { "label": "Scripting",  "text": "PowerShell, Bash, Python, Task Scheduler" },
+      { "label": "Scripting",  "text": "PowerShell, batch, VBScript, Bash, Python, Task Scheduler" },
       { "label": "Backend",    "text": "C#, ASP.NET, Java, Kotlin" },
       { "label": "Frontend",   "text": "HTML, CSS, JavaScript, React Native" },
       { "label": "Data",       "text": "SQL Server, Firebase, REST APIs, Git" }

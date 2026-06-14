@@ -9,9 +9,9 @@ description: Portfolio of software development projects including full-stack app
     <div class="max-w-site mx-auto px-4 md:px-6">
       <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; PROJECTS</p>
       <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">All projects.</h1>
-      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">Selected professional co-op work and personal software projects.</p>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">Selected professional co-op work and personal software projects. For infrastructure builds and the homelab, see the <a href="/infrastructure/" class="text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">infrastructure hub</a>.</p>
 
-      {# Static fallback — always visible; Vue removes it on mount #}
+      {# Static fallback: always visible; Vue removes it on mount #}
       <div id="projects-static" class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {% for project in projects %}
         {% set project = project %}
@@ -119,10 +119,10 @@ createApp({
       active: 'all',
       categories: [
         { value: 'all',            label: 'All' },
-        { value: 'software',       label: 'Software' },
         { value: 'infrastructure', label: 'Infrastructure' },
-        { value: 'ai',             label: 'AI' },
-        { value: 'work',           label: 'Work' }
+        { value: 'work',           label: 'Work' },
+        { value: 'software',       label: 'Software' },
+        { value: 'ai',             label: 'AI' }
       ]
     };
   },
