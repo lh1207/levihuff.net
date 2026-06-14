@@ -10,3 +10,11 @@ _site/
 
 # Claude Code — credentials, cache, and ephemeral agent state
 .claude/
+
+# Local agent / IDE / scratch artifacts
+.agents/
+.cursor/
+CLAUDE.original.md
+agents.local.bak.md
+cv.md
+skills-lock.json
