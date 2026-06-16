@@ -1,6 +1,23 @@
 const tagSlug = (tag) =>
   tag.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-+|-+$/g, "");
 
+const { existsSync, readFileSync } = require("fs");
+const { resolve } = require("path");
+const sizeOf = require("image-size").imageSize;
+
+function imageDimensions(src, inputDir = "src") {
+  if (!src || typeof src !== "string") return null;
+  const rel = src.replace(/^\//, "");
+  const full = resolve(inputDir, rel);
+  if (!existsSync(full)) return null;
+  try {
+    const { width, height } = sizeOf(readFileSync(full));
+    return { width, height };
+  } catch {
+    return null;
+  }
+}
+
 function dateReadable(date) {
   if (!date) return "";
   try {
@@ -47,4 +64,4 @@ function readingTime(content) {
   return minutes + " min read";
 }
 
-module.exports = { tagSlug, dateReadable, dateIso, dateYMD, safeCdata, readingTime };
+module.exports = { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime };
