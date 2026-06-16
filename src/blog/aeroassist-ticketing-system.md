@@ -12,7 +12,7 @@ AeroAssist is a full-stack ticketing system I built to streamline ticket creatio
 
 **Repository:** [AeroAssist on GitHub](https://github.com/lh1207/AeroAssist)
 
-![AeroAssist Application Screenshot](/images/aeroassist/app.jpg)
+![AeroAssist dashboard showing open support tickets and status filters](/images/aeroassist/app.jpg)
 
 ## Project Overview
 
@@ -49,7 +49,7 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 
 ## Key Features
 
-![AeroAssist Features](/images/aeroassist/features.jpg)
+![AeroAssist ticket detail view with assignment, priority, and status fields](/images/aeroassist/features.jpg)
 
 ### Ticket Creation and Management
 - **Intuitive Ticket Forms**: Streamlined interface for creating new tickets
@@ -119,7 +119,7 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 
 ## Getting Started
 
-![Getting Started with AeroAssist](/images/aeroassist/getting-started.jpg)
+![Terminal commands for cloning AeroAssist and applying database migrations](/images/aeroassist/getting-started.jpg)
 
 To set up AeroAssist locally:
 1. Clone the repository
@@ -133,7 +133,7 @@ To set up AeroAssist locally:
 
 ## API Documentation
 
-![Swagger API Documentation](/images/aeroassist/swagger.jpg)
+![Swagger UI listing AeroAssist REST endpoints with request and response schemas](/images/aeroassist/swagger.jpg)
 
 Swagger OpenAPI documentation is available at `/swagger` for exploring and testing API endpoints.
 
