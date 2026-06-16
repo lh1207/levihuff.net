@@ -68,7 +68,7 @@ description: Portfolio of software development projects including full-stack app
                   target="_blank"
                   rel="noopener noreferrer"
                   class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-                  {% raw %}{{ project.title }}{% endraw %}
+                  {% raw %}{{ project.title }}{% endraw %}<span class="sr-only"> (opens in new tab)</span>
                 </a>
                 <span v-else>{% raw %}{{ project.title }}{% endraw %}</span>
               </h2>
@@ -93,7 +93,7 @@ description: Portfolio of software development projects including full-stack app
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-1 mt-5 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-                {% raw %}{{ project.linkLabel || 'View' }}{% endraw %} &rarr;
+                {% raw %}{{ project.linkLabel || 'View' }}{% endraw %} &rarr;<span class="sr-only"> (opens in new tab)</span>
               </a>
             </div>
 
