@@ -23,7 +23,7 @@ isPost: true
 
       <div class="mt-6 flex flex-wrap items-center gap-3">
         <time datetime="{{ page.date | dateIso }}" class="font-jb text-mono-sm text-fg-3">{{ page.date | dateReadable }}</time>
-        <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+        <span class="font-jb text-mono-sm text-fg-4" aria-hidden="true">&middot;</span>
         <span class="font-jb text-mono-sm text-fg-3">{{ content | readingTime }}</span>
       </div>
 

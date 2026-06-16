@@ -43,7 +43,7 @@ description: Technical blog posts covering full-stack development, systems admin
             {% endif %}
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-jb text-mono-sm text-fg-3">{{ post.date | dateReadable }}</span>
-              <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+              <span class="font-jb text-mono-sm text-fg-4" aria-hidden="true">&middot;</span>
               <span class="font-jb text-mono-sm text-fg-3">{{ post.templateContent | readingTime }}</span>
             </div>
             <div class="mt-3 flex flex-wrap gap-2">
@@ -106,7 +106,7 @@ description: Technical blog posts covering full-stack development, systems admin
 
               <div class="mt-4 flex flex-wrap items-center gap-2">
                 <span class="font-jb text-mono-sm text-fg-3">{% raw %}{{ post.date }}{% endraw %}</span>
-                <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+                <span class="font-jb text-mono-sm text-fg-4" aria-hidden="true">&middot;</span>
                 <span class="font-jb text-mono-sm text-fg-3">{% raw %}{{ post.readingTime }}{% endraw %}</span>
               </div>
 
