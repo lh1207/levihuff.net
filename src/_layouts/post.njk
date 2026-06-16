@@ -23,7 +23,7 @@ isPost: true
 
       <div class="mt-6 flex flex-wrap items-center gap-3">
         <time datetime="{{ page.date | dateIso }}" class="font-jb text-mono-sm text-fg-3">{{ page.date | dateReadable }}</time>
-        <span class="font-jb text-mono-sm text-fg-4">&middot;</span>
+        <span class="font-jb text-mono-sm text-fg-4" aria-hidden="true">&middot;</span>
         <span class="font-jb text-mono-sm text-fg-3">{{ content | readingTime }}</span>
       </div>
 
@@ -61,6 +61,7 @@ isPost: true
           {% if previousPost %}
           <a
             href="{{ previousPost.url }}"
+            aria-label="Previous: {{ previousPost.data.title }}"
             class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-2 font-plex text-sm font-medium px-4 py-2 rounded-d-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
             &larr; Previous
           </a>
@@ -80,6 +81,7 @@ isPost: true
           {% if nextPost %}
           <a
             href="{{ nextPost.url }}"
+            aria-label="Next: {{ nextPost.data.title }}"
             class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-2 font-plex text-sm font-medium px-4 py-2 rounded-d-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
             Next &rarr;
           </a>

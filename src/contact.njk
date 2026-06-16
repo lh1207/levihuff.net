@@ -21,10 +21,10 @@ description: Get in touch with Levi Huff for IT infrastructure, systems administ
           <a href="mailto:{{ site.email }}" class="font-plex text-base text-amber hover:text-amber-hi transition-colors duration-[120ms] mt-3 block focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.email }}</a>
 
           <div class="mt-6 flex flex-col gap-3">
-            <a href="{{ site.social.github }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">GitHub &rarr;</a>
-            <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LinkedIn &rarr;</a>
+            <a href="{{ site.social.github }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">GitHub &rarr;<span class="sr-only"> (opens in new tab)</span></a>
+            <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LinkedIn &rarr;<span class="sr-only"> (opens in new tab)</span></a>
             {% if site.social.handshake %}
-            <a href="{{ site.social.handshake }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Handshake &rarr;</a>
+            <a href="{{ site.social.handshake }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Handshake &rarr;<span class="sr-only"> (opens in new tab)</span></a>
             {% endif %}
           </div>
         </div>

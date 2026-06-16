@@ -12,7 +12,7 @@
     <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">STACK · {{ project.stack }}</p>
     <h3 class="font-plex text-xl font-semibold text-fg-1 mt-2 leading-snug">
       {% if project.link %}
-        <a href="{{ project.link }}" target="_blank" rel="noopener" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ project.title }}</a>
+        <a href="{{ project.link }}" target="_blank" rel="noopener" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ project.title }}<span class="sr-only"> (opens in new tab)</span></a>
       {% else %}
         {{ project.title }}
       {% endif %}
@@ -20,7 +20,7 @@
     <p class="font-plex text-base text-fg-2 mt-3 leading-relaxed">{{ project.summary }}</p>
     {% if project.link %}
       <p class="mt-5">
-        <a href="{{ project.link }}" target="_blank" rel="noopener" class="font-jb text-sm text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">View &rarr;</a>
+        <a href="{{ project.link }}" target="_blank" rel="noopener" class="font-jb text-sm text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">View &rarr;<span class="sr-only"> (opens in new tab)</span></a>
       </p>
     {% endif %}
   </div>
