@@ -15,7 +15,10 @@ module.exports = function (eleventyConfig) {
     .use(markdownItAnchor, {
       permalink: markdownItAnchor.permalink.linkInsideHeader({
         symbol: '#',
-        placement: "after"
+        placement: "after",
+        renderAttrs: (slug) => ({
+          "aria-label": `Permalink to ${slug.replace(/-/g, " ")}`,
+        }),
       }),
       slugify: (s) => s.toLowerCase().trim()
         .replace(/[^\w\s-]/g, "")
