@@ -2,7 +2,8 @@ const pluginRss = require("@11ty/eleventy-plugin-rss").default;
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
-const { tagSlug, dateReadable, dateIso, dateYMD, safeCdata, readingTime } = require("./src/filters");
+const path = require("path");
+const { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime } = require("./src/filters");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
@@ -47,6 +48,7 @@ module.exports = function (eleventyConfig) {
 
   // Shared slug helper — same transform used by tag permalinks and tag links.
   eleventyConfig.addFilter("tagSlug", tagSlug);
+  eleventyConfig.addFilter("imageDimensions", imageDimensions);
 
   // Date filters
   eleventyConfig.addFilter("dateReadable", dateReadable);
@@ -58,6 +60,20 @@ module.exports = function (eleventyConfig) {
 
   // Reading time estimate
   eleventyConfig.addFilter("readingTime", readingTime);
+
+  // Add width/height to <img> tags that lack intrinsic dimensions
+  eleventyConfig.addTransform("img-dimensions", function (content, outputPath) {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    const inputDir = path.join(__dirname, "src");
+    return content.replace(/<img\b([^>]*)>/g, (match, attrs) => {
+      if (/\bwidth=/.test(attrs) && /\bheight=/.test(attrs)) return match;
+      const srcMatch = attrs.match(/\bsrc="([^"]+)"/);
+      if (!srcMatch || !srcMatch[1].startsWith("/")) return match;
+      const dims = imageDimensions(srcMatch[1], inputDir);
+      if (!dims) return match;
+      return `<img${attrs} width="${dims.width}" height="${dims.height}">`;
+    });
+  });
 
   // Add global currentYear for footer
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
