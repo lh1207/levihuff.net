@@ -202,4 +202,11 @@ createApp({
 .card-enter-from,
 .card-leave-to { opacity: 0; transform: translateY(8px); }
 .card-move { transition: transform 0.25s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .card-enter-active,
+  .card-leave-active,
+  .card-move { transition: none; }
+  .card-enter-from,
+  .card-leave-to { opacity: 1; transform: none; }
+}
 </style>
