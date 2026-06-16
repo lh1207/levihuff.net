@@ -75,6 +75,8 @@ description: Technical blog posts covering full-stack development, systems admin
           </button>
         </div>
 
+        <p class="sr-only" aria-live="polite" aria-atomic="true">{% raw %}{{ filterStatus }}{% endraw %}</p>
+
         {# Posts grid #}
         <transition-group
           tag="div"
@@ -174,6 +176,16 @@ createApp({
       return this.posts
         .map(p => ({ ...p, visibleTags: p.tags.filter(t => t !== 'posts') }))
         .filter(p => active === 'all' || p.tags.includes(active));
+    },
+    filterStatus() {
+      const count = this.filteredPosts.length;
+      if (this.activeTag === 'all') {
+        return `Showing all ${count} posts`;
+      }
+      if (count === 0) {
+        return `No posts for tag ${this.activeTag}`;
+      }
+      return `Showing ${count} post${count === 1 ? '' : 's'} tagged ${this.activeTag}`;
     }
   },
   mounted() {
