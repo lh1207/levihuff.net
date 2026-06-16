@@ -35,7 +35,7 @@ module.exports = {
         fg: {
           1: '#e8eaed',
           2: '#b4b8c0',
-          3: '#7c828d',
+          3: '#87909a',
           4: '#4f545d',
         },
         hair: {
