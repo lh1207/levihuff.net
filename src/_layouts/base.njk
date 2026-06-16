@@ -78,7 +78,7 @@
       if (hero) {
         const items = hero.querySelectorAll('[data-motion="hero-item"]');
         if (items.length) {
-          animate(items, { opacity: [0, 1], y: [20, 0] }, { delay: stagger(0.12), duration: 0.5, easing: [0.25, 0.1, 0.25, 1] });
+          animate(items, { y: [20, 0] }, { delay: stagger(0.12), duration: 0.5, easing: [0.25, 0.1, 0.25, 1] });
         }
       }
 
