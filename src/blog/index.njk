@@ -30,8 +30,9 @@ description: Technical blog posts covering full-stack development, systems admin
         {% for post in postslist %}
         <article class="bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden hover:border-hair-2 hover:-translate-y-0.5 hover:shadow-d-md transition-[transform,border-color,box-shadow] duration-[180ms]">
           {% if post.data.thumbnail %}
+          {% set thumbDims = post.data.thumbnail | imageDimensions %}
           <div class="h-44 bg-surface-inset overflow-hidden">
-            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full {% if post.data.thumbnailLogo %}object-contain p-6{% else %}object-cover{% endif %}">
+            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full {% if post.data.thumbnailLogo %}object-contain p-6{% else %}object-cover{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
           </div>
           {% endif %}
           <div class="p-6">
@@ -90,6 +91,8 @@ description: Technical blog posts covering full-stack development, systems admin
                 :src="post.thumbnail"
                 alt=""
                 loading="lazy"
+                :width="post.thumbnailWidth || undefined"
+                :height="post.thumbnailHeight || undefined"
                 :class="['w-full h-full object-cover', post.thumbnailLogo ? 'object-contain p-6' : '']">
             </div>
 
@@ -136,6 +139,7 @@ import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-
 const posts = [
   {% set postslist = collections.posts | reverse %}
   {% for post in postslist %}
+  {% set thumbDims = post.data.thumbnail | imageDimensions %}
   {
     url: {{ post.url | dump | safe }},
     title: {{ post.data.title | dump | safe }},
@@ -143,6 +147,8 @@ const posts = [
     date: {{ (post.date | dateReadable) | dump | safe }},
     readingTime: {{ (post.templateContent | readingTime) | dump | safe }},
     thumbnail: {{ (post.data.thumbnail or "") | dump | safe }},
+    thumbnailWidth: {{ thumbDims.width if thumbDims else null }},
+    thumbnailHeight: {{ thumbDims.height if thumbDims else null }},
     thumbnailLogo: {{ (post.data.thumbnailLogo or false) | dump | safe }},
     tags: {{ (post.data.tags or []) | dump | safe }}
   }{% if not loop.last %},{% endif %}

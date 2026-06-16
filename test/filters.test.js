@@ -1,12 +1,27 @@
 import { describe, it, expect } from "vitest";
 import {
   tagSlug,
+  imageDimensions,
   dateReadable,
   dateIso,
   dateYMD,
   safeCdata,
   readingTime,
 } from "../src/filters.js";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+describe("imageDimensions", () => {
+  it("returns width and height for a site image path", () => {
+    const dims = imageDimensions("/images/projects/proxmox-homelab.jpg", resolve(root, "src"));
+    expect(dims).toEqual({ width: 1200, height: 800 });
+  });
+  it("returns null for a missing image", () => {
+    expect(imageDimensions("/images/missing.jpg", resolve(root, "src"))).toBeNull();
+  });
+});
 
 describe("tagSlug", () => {
   it("lowercases and hyphenates spaces", () => {
