@@ -14,8 +14,6 @@ _site/
 # Local agent / IDE / scratch artifacts
 .agents/
 .cursor/
-!.cursor/agents/
-!.cursor/agents/**
 CLAUDE.original.md
 agents.local.bak.md
 cv.md
