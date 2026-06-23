@@ -21,11 +21,19 @@ function imageDimensions(src, inputDir = "src") {
 function dateReadable(date) {
   if (!date) return "";
   try {
-    return new Date(date).toLocaleDateString("en-US", {
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return "";
+    const opts = {
       year: "numeric",
       month: "long",
       day: "numeric",
-    });
+    };
+    // YYYY-MM-DD frontmatter parses as UTC midnight; format in UTC so the
+    // visible date matches the calendar day in datetime.
+    if (typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date.trim())) {
+      opts.timeZone = "UTC";
+    }
+    return d.toLocaleDateString("en-US", opts);
   } catch (error) {
     return "";
   }
