@@ -13,9 +13,11 @@ module.exports = function (eleventyConfig) {
   // highlight function into this instance via amendLibrary before each build.
   const mdLib = markdownIt({ html: true, linkify: true, typographer: true })
     .use(markdownItAnchor, {
-      permalink: markdownItAnchor.permalink.linkInsideHeader({
-        symbol: '#',
-        placement: "after"
+      permalink: markdownItAnchor.permalink.linkAfterHeader({
+        style: "aria-label",
+        assistiveText: (title) => `Permalink to ${title}`,
+        space: false,
+        wrapper: ['<div class="heading-with-anchor">', "</div>"],
       }),
       slugify: (s) => s.toLowerCase().trim()
         .replace(/[^\w\s-]/g, "")
