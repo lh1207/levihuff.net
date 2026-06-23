@@ -9,13 +9,21 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
 
+  // Serve images/fonts/files from source during `eleventy --serve` instead of
+  // re-copying on every incremental rebuild (avoids an Eleventy 3.1.6 benchmark
+  // race when multiple passthrough targets copy in parallel).
+  eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+
   // Markdown with heading anchors; syntax-highlight plugin patches the
   // highlight function into this instance via amendLibrary before each build.
   const mdLib = markdownIt({ html: true, linkify: true, typographer: true })
     .use(markdownItAnchor, {
       permalink: markdownItAnchor.permalink.linkInsideHeader({
         symbol: '#',
-        placement: "after"
+        placement: "after",
+        renderAttrs: (slug) => ({
+          "aria-label": `Permalink to ${slug.replace(/-/g, " ")}`,
+        }),
       }),
       slugify: (s) => s.toLowerCase().trim()
         .replace(/[^\w\s-]/g, "")

@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: Blog | Levi Huff
+title: Blog
 description: Technical blog posts covering full-stack development, systems administration, accessibility, and process improvement in IT.
 ---
 
@@ -59,14 +59,14 @@ description: Technical blog posts covering full-stack development, systems admin
 
       <div id="blog-app" v-cloak>
         {# Tag filter chips #}
-        <div class="flex flex-wrap gap-2 mb-8" v-if="allTags.length">
+        <div class="flex flex-wrap gap-2 mb-8" v-if="allTags.length" role="group" aria-label="Filter posts by tag">
           <button
             v-for="tag in ['all', ...allTags]"
             :key="tag"
             @click="activeTag = tag"
             :aria-pressed="activeTag === tag"
             :class="[
-              'font-jb text-mono-xs tracking-[0.04em] uppercase px-3 py-1.5 rounded-d-sm border transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2',
+              'font-jb text-mono-xs tracking-[0.04em] uppercase px-3 py-2 rounded-d-sm border transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2',
               activeTag === tag
                 ? 'bg-amber/[0.18] border-amber/[0.64] text-amber'
                 : 'bg-surface-2 border-hair-1 text-fg-3 hover:text-fg-1 hover:border-hair-2'
@@ -74,6 +74,8 @@ description: Technical blog posts covering full-stack development, systems admin
             {% raw %}{{ tag === 'all' ? 'All' : tag }}{% endraw %}
           </button>
         </div>
+
+        <p class="sr-only" aria-live="polite" aria-atomic="true">{% raw %}{{ filterStatus }}{% endraw %}</p>
 
         {# Posts grid #}
         <transition-group
@@ -118,7 +120,9 @@ description: Technical blog posts covering full-stack development, systems admin
                   v-for="tag in post.visibleTags"
                   :key="tag"
                   @click="activeTag = tag"
-                  class="font-jb text-mono-xs tracking-[0.04em] uppercase bg-amber/[0.10] border border-amber/[0.32] text-amber rounded-d-sm px-2 py-0.5 hover:bg-amber/[0.18] transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+                  :aria-label="`Filter by ${tag}`"
+                  :aria-pressed="activeTag === tag"
+                  class="font-jb text-mono-xs tracking-[0.04em] uppercase bg-amber/[0.10] border border-amber/[0.32] text-amber rounded-d-sm px-3 py-2 hover:bg-amber/[0.18] transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
                   {% raw %}{{ tag }}{% endraw %}
                 </button>
               </div>
@@ -174,6 +178,16 @@ createApp({
       return this.posts
         .map(p => ({ ...p, visibleTags: p.tags.filter(t => t !== 'posts') }))
         .filter(p => active === 'all' || p.tags.includes(active));
+    },
+    filterStatus() {
+      const count = this.filteredPosts.length;
+      if (this.activeTag === 'all') {
+        return `Showing all ${count} posts`;
+      }
+      if (count === 0) {
+        return `No posts for tag ${this.activeTag}`;
+      }
+      return `Showing ${count} post${count === 1 ? '' : 's'} tagged ${this.activeTag}`;
     }
   },
   mounted() {
@@ -188,4 +202,11 @@ createApp({
 .card-enter-from,
 .card-leave-to { opacity: 0; transform: translateY(8px); }
 .card-move { transition: transform 0.25s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .card-enter-active,
+  .card-leave-active,
+  .card-move { transition: none; }
+  .card-enter-from,
+  .card-leave-to { opacity: 1; transform: none; }
+}
 </style>
