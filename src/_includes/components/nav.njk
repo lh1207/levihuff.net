@@ -10,13 +10,12 @@
     <nav id="nav-menu" aria-label="Main navigation" class="hidden md:block">
       <ul class="flex items-center gap-1">
         {% for item in navigation %}
-        {% set navActive = page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}
         <li>
           <a
             href="{{ item.url }}"
-            {% if page.url == item.url %}aria-current="page"{% endif %}
+            {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}aria-current="page"{% endif %}
             class="relative font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2
-              {% if navActive %}text-fg-1 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:bg-amber after:rounded-full{% endif %}">
+              {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}text-fg-1 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:bg-amber after:rounded-full{% endif %}">
             {{ item.label }}
           </a>
         </li>
@@ -46,13 +45,12 @@
     <nav aria-label="Mobile navigation">
       <ul class="max-w-site mx-auto px-4 py-4 flex flex-col gap-1">
         {% for item in navigation %}
-        {% set navActive = page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}
         <li>
           <a
             href="{{ item.url }}"
-            {% if page.url == item.url %}aria-current="page"{% endif %}
+            {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}aria-current="page"{% endif %}
             class="block font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 hover:bg-surface-2 transition-colors duration-[120ms]
-              {% if navActive %}text-amber{% endif %}">
+              {% if page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}text-amber{% endif %}">
             {{ item.label }}
           </a>
         </li>

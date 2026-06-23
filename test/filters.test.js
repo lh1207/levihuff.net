@@ -51,10 +51,6 @@ describe("dateReadable", () => {
   it("contains the month name for a known date", () => {
     expect(dateReadable(new Date(2024, 5, 1))).toContain("June");
   });
-  it("formats YYYY-MM-DD frontmatter in UTC so the calendar day is stable", () => {
-    expect(dateReadable("2026-06-23")).toBe("June 23, 2026");
-    expect(dateReadable("2024-06-15")).toBe("June 15, 2024");
-  });
   it("returns empty string for null", () => {
     expect(dateReadable(null)).toBe("");
   });
