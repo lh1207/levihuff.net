@@ -176,6 +176,23 @@ describe("build smoke test", () => {
     expect(feed).toMatch(/<entry>/i);
   });
 
+  it("blog post eager-loads first image and lazy-loads below-fold images", () => {
+    const html = readFileSync(
+      resolve(siteDir, "blog/owning-my-ai-memory/index.html"),
+      "utf8"
+    );
+    const hero = html.match(/<img\b[^>]*owning-my-ai-memory\.jpg[^>]*>/i);
+    const graph = html.match(/<img\b[^>]*owning-my-ai-memory-vault-graph\.webp[^>]*>/i);
+    const graphIndex = html.match(/<img\b[^>]*owning-my-ai-memory-vault-graph-index\.webp[^>]*>/i);
+    expect(hero, "hero image not found").toBeTruthy();
+    expect(graph, "vault graph image not found").toBeTruthy();
+    expect(graphIndex, "vault graph index image not found").toBeTruthy();
+    expect(hero[0]).toMatch(/\bfetchpriority="high"/);
+    expect(hero[0]).not.toMatch(/\bloading="lazy"/);
+    expect(graph[0]).toMatch(/\bloading="lazy"/);
+    expect(graphIndex[0]).toMatch(/\bloading="lazy"/);
+  });
+
   // img alt text
   it("no <img> element in built HTML is missing an alt attribute", () => {
     const htmlFiles = findHtmlFiles(siteDir);
