@@ -78,6 +78,51 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // Lazy-load below-fold post images; prioritize the first hero image for LCP
+  eleventyConfig.addTransform("img-lazy-loading", function (content, outputPath) {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    const norm = outputPath.replace(/\\/g, "/");
+    if (!/\/blog\/[^/]+\/index\.html$/.test(norm)) return content;
+
+    const marker = 'class="post-content';
+    const markerIdx = content.indexOf(marker);
+    if (markerIdx === -1) return content;
+
+    const divStart = content.lastIndexOf("<div", markerIdx);
+    let pos = content.indexOf(">", divStart) + 1;
+    let depth = 1;
+    let i = pos;
+
+    while (i < content.length && depth > 0) {
+      const nextOpen = content.indexOf("<div", i);
+      const nextClose = content.indexOf("</div>", i);
+      if (nextClose === -1) break;
+      if (nextOpen !== -1 && nextOpen < nextClose) {
+        depth++;
+        i = nextOpen + 4;
+      } else {
+        depth--;
+        if (depth === 0) {
+          let imgIndex = 0;
+          const inner = content.slice(pos, nextClose);
+          const processed = inner.replace(/<img\b([^>]*)>/gi, (imgMatch, attrs) => {
+            imgIndex++;
+            if (/\bloading\s*=/.test(attrs)) return `<img${attrs}>`;
+            if (imgIndex === 1) {
+              if (/\bfetchpriority\s*=/.test(attrs)) return `<img${attrs}>`;
+              return `<img${attrs} fetchpriority="high">`;
+            }
+            return `<img${attrs} loading="lazy">`;
+          });
+          return content.slice(0, pos) + processed + content.slice(nextClose);
+        }
+        i = nextClose + 6;
+      }
+    }
+
+    return content;
+  });
+
   // Add global currentYear for footer
   eleventyConfig.addGlobalData("currentYear", new Date().getFullYear());
 

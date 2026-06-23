@@ -19,6 +19,11 @@
   <meta property="og:site_name" content="{{ site.name }}">
   {% if thumbnail %}
   <meta property="og:image" content="{{ site.url }}{{ thumbnail }}">
+  {% set thumbDims = thumbnail | imageDimensions %}
+  {% if thumbDims %}
+  <meta property="og:image:width" content="{{ thumbDims.width }}">
+  <meta property="og:image:height" content="{{ thumbDims.height }}">
+  {% endif %}
   {% else %}
   <meta property="og:image" content="{{ site.url }}/images/profile.jpg">
   <meta property="og:image:width" content="800">

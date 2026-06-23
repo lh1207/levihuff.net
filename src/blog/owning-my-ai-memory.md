@@ -91,7 +91,7 @@ An honest detail: for this site that directory exists but is currently empty. Th
 
 The third layer is the second brain: an Obsidian vault at `~/.claude/vault/wiki`, driven by the [claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) plugin, which is built on Andrej Karpathy's idea of an LLM-maintained wiki. I ran Claude inside the `.claude` folder and let its autoresearch loop crawl [levihuff.net](https://levihuff.net/) and file what it found into the vault as linked notes. Here is the actual graph it produced:
 
-![Obsidian graph view of the vault: dozens of linked note nodes including Career, Homelab and Self-Hosting, Multi-LLM Development Workflow, and levihuff.net Blog, connected in a web](/images/blog/owning-my-ai-memory-vault-graph.png)
+![Obsidian graph view of the vault: dozens of linked note nodes including Career, Homelab and Self-Hosting, Multi-LLM Development Workflow, and levihuff.net Blog, connected in a web](/images/blog/owning-my-ai-memory-vault-graph.webp)
 
 Every node is a markdown file the loop wrote or cross-linked — `areas/`, `goals/`, `learning/`, `resources/`, `people/`, plus a rolling `hot.md` cache, an `index.md` catalog, and an append-only `log.md`. The rules it files under are themselves a checked-in file, `meta/conventions.md`:
 
@@ -104,7 +104,7 @@ Every node is a markdown file the loop wrote or cross-linked — `areas/`, `goal
 
 Select the `index` note and the structure under the web becomes obvious — it is the hub every other note links back to, exactly as that convention demands:
 
-![The same Obsidian graph with the index note selected, highlighting in purple every note that links back to it as the master catalog](/images/blog/owning-my-ai-memory-vault-graph-index.png)
+![The same Obsidian graph with the index note selected, highlighting in purple every note that links back to it as the master catalog](/images/blog/owning-my-ai-memory-vault-graph-index.webp)
 
 The common thread across all three layers is that none of them is a feature I rent. They are directories I own, full of text any editor can read. If I switch agents tomorrow, the knowledge does not evaporate with the account — it is still sitting there as markdown, the same way my saved Reddit index stayed mine by living [in a local store instead of a closed API](/blog/indexing-my-reddit-saves-without-the-api/).
 
