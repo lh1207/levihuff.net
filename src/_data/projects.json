@@ -8,10 +8,10 @@
     "link": null,
     "linkLabel": null,
     "image": "/images/projects/multi-llm-workflow.jpg",
-    "imageAlt": "Developer working at desk with multiple computer monitors displaying code and digital interface",
+    "imageAlt": "Dual-monitor developer workstation with VS Code open showing code on both screens",
     "imageClass": null,
     "imageWidth": 1200,
-    "imageHeight": 800,
+    "imageHeight": 960,
     "imageLoading": "lazy",
     "description": "<strong>Architected a three-provider AI development workflow</strong> routing tasks by model strength and context window.",
     "paragraphs": [
