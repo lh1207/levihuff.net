@@ -9,14 +9,27 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
   {# Page intro #}
   <section class="py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; ABOUT</p>
-      <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Levi Huff.</h1>
-      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-        I'm an IT infrastructure professional based in Washington Court House, OH. My core work is endpoint management and Windows imaging, PowerShell automation, Active Directory administration, and virtualization, built through co-op roles at Tire Discounters and Total Quality Logistics and a homelab that runs every day.
-      </p>
-      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-        I hold a Bachelor of Science in Information Technology from the University of Cincinnati ({{ site.graduationDate }}, Software Application Development track), which adds a development background to the infrastructure work: when a problem needs a script, an API, or a full application, I can build it.
-      </p>
+      <div class="flex flex-col md:flex-row md:items-start md:gap-10 lg:gap-14">
+        <div class="flex-1 min-w-0">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; ABOUT</p>
+          <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Levi Huff.</h1>
+          <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
+            I'm an IT infrastructure professional based in Washington Court House, OH. My core work is endpoint management and Windows imaging, PowerShell automation, Active Directory administration, and virtualization, built through co-op roles at Tire Discounters and Total Quality Logistics and a homelab that runs every day.
+          </p>
+          <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
+            I hold a Bachelor of Science in Information Technology from the University of Cincinnati ({{ site.graduationDate }}, Software Application Development track), which adds a development background to the infrastructure work: when a problem needs a script, an API, or a full application, I can build it.
+          </p>
+        </div>
+        <div class="mt-8 md:mt-1 flex-shrink-0">
+          <img
+            src="/images/profile.jpg"
+            alt=""
+            class="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-2 border-hair-1"
+            width="800"
+            height="800"
+            loading="eager">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -43,11 +56,11 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
 
       <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
         <img
-          src="/images/about/workflow-documentation.jpg"
-          alt="Abstract workflow documentation illustration showing connected process nodes"
-          class="w-full h-64 object-cover"
+          src="/images/about/band-night.jpg"
+          alt="Levi Huff playing trombone with University of Cincinnati Bearcat Marching Band at a night game"
+          class="w-full h-64 object-cover object-center"
           width="1200"
-          height="801"
+          height="797"
           loading="lazy">
       </div>
 
@@ -103,7 +116,7 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
       <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / INTERESTS</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Hobbies and interests.</h2>
 
-      <div class="mt-8 grid gap-6 md:grid-cols-3">
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
         <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
           <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">ART</p>
           <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
@@ -117,12 +130,49 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
             I have a fascination with retro and niche technologies, exploring older computing systems, vintage hardware, and lesser-known platforms that shaped the technology landscape.
           </p>
         </div>
+      </div>
 
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">MUSIC / TROMBONE</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
-            I play trombone and was a member of the University of Cincinnati Bearcat Marching Band from 2020 to 2024. Performed at the Goodyear Cotton Bowl Classic (2021), DCI Celebration Tour (2021), and Big 12 Basketball Tournament (2024).
-          </p>
+      <div class="mt-6 bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden">
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-64 lg:w-72 flex-shrink-0">
+            <img
+              src="/images/about/band-action.jpg"
+              alt="Levi Huff playing trombone in University of Cincinnati Bearcat Marching Band uniform with sunglasses"
+              class="w-full h-56 md:h-full object-cover object-top"
+              width="960"
+              height="1200"
+              loading="lazy">
+          </div>
+          <div class="p-6 flex flex-col justify-center">
+            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">MUSIC / TROMBONE</p>
+            <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
+              I play trombone and was a member of the University of Cincinnati Bearcat Marching Band from 2020 to 2024. Performed at the Goodyear Cotton Bowl Classic (2021), DCI Celebration Tour (2021), and Big 12 Basketball Tournament (2024).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <div class="rounded-d-lg border border-hair-1 overflow-hidden">
+          <img
+            src="/images/about/band-marching.jpg"
+            alt="Levi Huff playing trombone with sunlight flare during a University of Cincinnati game performance"
+            class="w-full h-52 object-cover object-center"
+            width="1200"
+            height="1200"
+            loading="lazy">
+        </div>
+        <div class="rounded-d-lg border border-hair-1 overflow-hidden">
+          <figure>
+            <img
+              src="/images/about/band-cotton-bowl.jpg"
+              alt="University of Cincinnati Bearcat Marching Band performing in Cotton Bowl uniforms"
+              class="w-full h-52 object-cover object-center"
+              width="1200"
+              height="800"
+              loading="lazy">
+            <figcaption class="font-jb text-mono-xs text-fg-4 px-3 py-2 border-t border-hair-1">Photo: Chris Southard</figcaption>
+          </figure>
         </div>
       </div>
     </div>

@@ -181,7 +181,7 @@ describe("build smoke test", () => {
       resolve(siteDir, "blog/owning-my-ai-memory/index.html"),
       "utf8"
     );
-    const hero = html.match(/<img\b[^>]*owning-my-ai-memory\.jpg[^>]*>/i);
+    const hero = html.match(/<img\b[^>]*owning-my-ai-memory-circuit-brain\.jpg[^>]*>/i);
     const graph = html.match(/<img\b[^>]*owning-my-ai-memory-vault-graph\.webp[^>]*>/i);
     const graphIndex = html.match(/<img\b[^>]*owning-my-ai-memory-vault-graph-index\.webp[^>]*>/i);
     expect(hero, "hero image not found").toBeTruthy();
