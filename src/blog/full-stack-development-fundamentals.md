@@ -39,7 +39,7 @@ The database stores and manages application data:
 
 ## Practical Application
 
-![MacBook Pro open to a dark code editor showing HTML and JavaScript on an outdoor table](/images/blog/fullstack-workspace.jpg)
+![Laptop on a table with a dark code editor open](/images/blog/fullstack-workspace.jpg)
 
 In both academic coursework and personal projects, I've applied full stack concepts to build applications that reflect real operational needs:
 

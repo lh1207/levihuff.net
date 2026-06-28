@@ -4,10 +4,10 @@ description: "Why the context you build up with one AI assistant doesn't move cl
 date: 2026-06-23
 tags: [ai, claude-code, gemini, llm, workflow, obsidian]
 layout: post.njk
-thumbnail: /images/blog/owning-my-ai-memory.jpg
+thumbnail: /images/blog/owning-my-ai-memory-circuit-brain.jpg
 ---
 
-![Digital illustration of a human brain made from circuit board traces and connection nodes](/images/blog/owning-my-ai-memory.jpg)
+![Digital illustration of a human brain made from circuit board traces and connection nodes](/images/blog/owning-my-ai-memory-circuit-brain.jpg)
 
 Spend enough time with an AI assistant and you stop starting from zero. It learns that I work in Windows imaging and PowerShell, that my answers should lead with the answer, that I run a homelab on Proxmox and Docker, that I want code reviewed adversarially instead of praised. None of that was one prompt. It accumulated over months of corrections. It is real value, and it is the one asset I build inside these tools that I cannot `git clone` when I leave.
 
