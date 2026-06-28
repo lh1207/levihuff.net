@@ -13,9 +13,10 @@ _site/
 
 # Local agent / IDE / scratch artifacts
 .agents/
-.cursor/
+.cursor/*
 !.cursor/agents/
 !.cursor/agents/**
+# .cursor/review-state/ — ephemeral monitor state (findings, handoff, last-seen-sha); gitignored via .cursor/*
 CLAUDE.original.md
 agents.local.bak.md
 cv.md

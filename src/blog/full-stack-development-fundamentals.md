@@ -39,7 +39,7 @@ The database stores and manages application data:
 
 ## Practical Application
 
-![Developer workspace showing frontend and backend code side by side](/images/blog/fullstack-workspace.jpg)
+![Developer workspace with backend server code open in an IDE](/images/blog/fullstack-workspace.jpg)
 
 In both academic coursework and personal projects, I've applied full stack concepts to build applications that reflect real operational needs:
 
