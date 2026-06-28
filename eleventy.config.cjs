@@ -3,6 +3,7 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const path = require("path");
+const { execSync } = require("child_process");
 const { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime } = require("./src/filters");
 
 module.exports = function (eleventyConfig) {
@@ -133,6 +134,16 @@ module.exports = function (eleventyConfig) {
 
   // Add current date for sitemap
   eleventyConfig.addGlobalData("buildDate", new Date().toISOString().split('T')[0]);
+
+  // Cache-bust CSS by appending the git commit hash as a query string.
+  // The URL changes each deploy so browsers re-fetch instead of serving stale CSS.
+  eleventyConfig.addGlobalData("gitHash", () => {
+    try {
+      return execSync("git rev-parse --short HEAD").toString().trim();
+    } catch {
+      return "dev";
+    }
+  });
 
   // Set input and output directories
   return {
