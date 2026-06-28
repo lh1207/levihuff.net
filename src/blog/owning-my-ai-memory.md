@@ -7,7 +7,7 @@ layout: post.njk
 thumbnail: /images/blog/owning-my-ai-memory.jpg
 ---
 
-![An open laptop on a wooden desk, lit warm in an otherwise dark room](/images/blog/owning-my-ai-memory.jpg)
+![Digital illustration of a human brain made from circuit board traces and connection nodes](/images/blog/owning-my-ai-memory.jpg)
 
 Spend enough time with an AI assistant and you stop starting from zero. It learns that I work in Windows imaging and PowerShell, that my answers should lead with the answer, that I run a homelab on Proxmox and Docker, that I want code reviewed adversarially instead of praised. None of that was one prompt. It accumulated over months of corrections. It is real value, and it is the one asset I build inside these tools that I cannot `git clone` when I leave.
 
