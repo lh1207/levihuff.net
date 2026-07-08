@@ -1,6 +1,6 @@
 ---
 description: Run the full test suite and summarize any failures
-allowed-tools: Bash(npm test:*), Read, Grep
+allowed-tools: Bash(npm test), Bash(npm test:*), Read, Grep
 ---
 
 Run `npm test` (the full Vitest suite; `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes — do not interrupt it).
