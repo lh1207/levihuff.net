@@ -63,12 +63,15 @@ eleventyExcludeFromCollections: true
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
+  {# Single-post tag pages are noindex (thin content), so keep them out of the sitemap #}
   {% for tag in collections.tagList %}
+  {% if collections[tag].length > 1 %}
   <url>
     <loc>{{ site.url }}/tags/{{ tag | tagSlug }}/</loc>
     <lastmod>{{ today }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
+  {% endif %}
   {% endfor %}
 </urlset>

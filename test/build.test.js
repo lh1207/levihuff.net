@@ -223,4 +223,182 @@ describe("build smoke test", () => {
 
     expect(missing, `<img> tags missing alt:\n${missing.join("\n")}`).toHaveLength(0);
   });
+
+  // ── SEO regression guards ────────────────────────────────────────
+
+  function isNoindexed(html) {
+    return /<meta\s[^>]*name=["']robots["'][^>]*noindex/i.test(html);
+  }
+
+  function extractJsonLd(html) {
+    return [...html.matchAll(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g
+    )].map((m) => JSON.parse(m[1]));
+  }
+
+  it("every indexable page has title, description, canonical, and og tags", () => {
+    const problems = [];
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      if (isNoindexed(html)) continue;
+      const rel = file.replace(siteDir, "");
+
+      const title = html.match(/<title>([^<]*)<\/title>/i);
+      if (!title || !title[1].trim()) problems.push(`${rel}: missing <title>`);
+
+      const checks = {
+        "meta description": /<meta\s[^>]*name=["']description["'][^>]*content=["'][^"']+["']/i,
+        canonical: /<link\s[^>]*rel=["']canonical["'][^>]*href=["']https:\/\/[^"']+["']/i,
+        "og:title": /<meta\s[^>]*property=["']og:title["'][^>]*content=["'][^"']+["']/i,
+        "og:description": /<meta\s[^>]*property=["']og:description["'][^>]*content=["'][^"']+["']/i,
+        "og:url": /<meta\s[^>]*property=["']og:url["'][^>]*content=["']https:\/\/[^"']+["']/i,
+      };
+      for (const [name, re] of Object.entries(checks)) {
+        if (!re.test(html)) problems.push(`${rel}: missing ${name}`);
+      }
+    }
+    expect(problems, `SEO tag gaps:\n${problems.join("\n")}`).toHaveLength(0);
+  });
+
+  it("no page title duplicates the | Levi Huff suffix", () => {
+    const bad = [];
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      const title = html.match(/<title>([^<]*)<\/title>/i);
+      if (title && /\|\s*Levi Huff\s*\|\s*Levi Huff/.test(title[1])) {
+        bad.push(`${file.replace(siteDir, "")}: ${title[1]}`);
+      }
+    }
+    expect(bad, `Duplicated title suffix:\n${bad.join("\n")}`).toHaveLength(0);
+  });
+
+  it("404.html is noindexed", () => {
+    const html = readFileSync(resolve(siteDir, "404.html"), "utf8");
+    expect(isNoindexed(html)).toBe(true);
+  });
+
+  it("index.html declares og:locale", () => {
+    const html = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    expect(html).toMatch(/<meta\s[^>]*property=["']og:locale["'][^>]*content=["']en_US["']/i);
+  });
+
+  it("every JSON-LD block on every page parses as valid JSON", () => {
+    const bad = [];
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      try {
+        extractJsonLd(html);
+      } catch (e) {
+        bad.push(`${file.replace(siteDir, "")}: ${e.message}`);
+      }
+    }
+    expect(bad, `Invalid JSON-LD:\n${bad.join("\n")}`).toHaveLength(0);
+  });
+
+  it("index.html has Person JSON-LD with knowsAbout and full sameAs", () => {
+    const html = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    const person = extractJsonLd(html).find((b) => b["@type"] === "Person");
+    expect(person, "no Person JSON-LD on homepage").toBeTruthy();
+    expect(Array.isArray(person.knowsAbout)).toBe(true);
+    expect(person.knowsAbout.length).toBeGreaterThan(0);
+    expect(person.knowsAbout).toContain("Active Directory");
+    expect(person.sameAs.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("every page carries the sitewide WebSite JSON-LD", () => {
+    const missing = [];
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      // The resume redirect stub does not use base.njk
+      if (!/<script type="application\/ld\+json">/.test(html)) {
+        if (!isNoindexed(html)) missing.push(file.replace(siteDir, ""));
+        continue;
+      }
+      const site = extractJsonLd(html).find((b) => b["@type"] === "WebSite");
+      if (!site || !site.name || !site.url) missing.push(file.replace(siteDir, ""));
+    }
+    expect(missing, `Pages missing WebSite JSON-LD:\n${missing.join("\n")}`).toHaveLength(0);
+  });
+
+  it("a blog post has BlogPosting and BreadcrumbList JSON-LD", () => {
+    const html = readFileSync(
+      resolve(siteDir, "blog/tire-discounters-it-support/index.html"),
+      "utf8"
+    );
+    const blocks = extractJsonLd(html);
+    const post = blocks.find((b) => b["@type"] === "BlogPosting");
+    expect(post, "no BlogPosting JSON-LD").toBeTruthy();
+    expect(post.headline).toBeTruthy();
+    expect(post.datePublished).toBeTruthy();
+    const crumbs = blocks.find((b) => b["@type"] === "BreadcrumbList");
+    expect(crumbs, "no BreadcrumbList JSON-LD").toBeTruthy();
+    expect(crumbs.itemListElement.length).toBe(3);
+  });
+
+  it("a blog post emits article:tag OG meta from its tags", () => {
+    const html = readFileSync(
+      resolve(siteDir, "blog/tire-discounters-it-support/index.html"),
+      "utf8"
+    );
+    const tags = [...html.matchAll(/<meta\s[^>]*property=["']article:tag["'][^>]*content=["']([^"']+)["']/gi)];
+    expect(tags.length).toBeGreaterThan(0);
+    expect(tags.map((m) => m[1])).toContain("mdt");
+  });
+
+  it("every infrastructure entry page has WebPage JSON-LD with about and breadcrumb", () => {
+    const infraDir = resolve(siteDir, "infrastructure");
+    const entries = readdirSync(infraDir, { withFileTypes: true }).filter((e) =>
+      e.isDirectory()
+    );
+    expect(entries.length).toBeGreaterThan(0);
+    for (const entry of entries) {
+      const html = readFileSync(resolve(infraDir, entry.name, "index.html"), "utf8");
+      const page = extractJsonLd(html).find((b) => b["@type"] === "WebPage");
+      expect(page, `no WebPage JSON-LD in /infrastructure/${entry.name}/`).toBeTruthy();
+      expect(page.name).toBeTruthy();
+      expect(page.description).toBeTruthy();
+      expect(Array.isArray(page.about)).toBe(true);
+      expect(page.about.length).toBeGreaterThan(0);
+      expect(page.breadcrumb["@type"]).toBe("BreadcrumbList");
+    }
+  });
+
+  it("every sitemap URL resolves to a built, indexable page", () => {
+    const sitemap = readFileSync(resolve(siteDir, "sitemap.xml"), "utf8");
+    const urls = [...sitemap.matchAll(/<loc>https:\/\/levihuff\.net(\/[^<]*)<\/loc>/g)].map(
+      (m) => m[1]
+    );
+    expect(urls.length).toBeGreaterThan(0);
+    const problems = [];
+    for (const url of urls) {
+      const file = resolve(siteDir, url.replace(/^\//, ""), "index.html");
+      if (!existsSync(file)) {
+        problems.push(`${url}: no built page`);
+        continue;
+      }
+      if (isNoindexed(readFileSync(file, "utf8"))) {
+        problems.push(`${url}: noindexed page listed in sitemap`);
+      }
+    }
+    expect(problems, `Sitemap problems:\n${problems.join("\n")}`).toHaveLength(0);
+  });
+
+  it("single-post tag pages are noindexed, multi-post tag pages are not", () => {
+    // mdt appears on exactly one post; ai appears on several
+    const single = readFileSync(resolve(siteDir, "tags/mdt/index.html"), "utf8");
+    const multi = readFileSync(resolve(siteDir, "tags/ai/index.html"), "utf8");
+    expect(isNoindexed(single)).toBe(true);
+    expect(isNoindexed(multi)).toBe(false);
+  });
+
+  it("every indexable page has exactly one h1", () => {
+    const bad = [];
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      if (isNoindexed(html)) continue;
+      const count = (html.match(/<h1[\s>]/gi) || []).length;
+      if (count !== 1) bad.push(`${file.replace(siteDir, "")}: ${count} h1 elements`);
+    }
+    expect(bad, `h1 problems:\n${bad.join("\n")}`).toHaveLength(0);
+  });
 });

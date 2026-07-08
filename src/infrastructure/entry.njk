@@ -56,3 +56,35 @@ eleventyComputed:
     </div>
   </section>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": {{ entry.name | dump | safe }},
+  "description": {{ entry.summary | dump | safe }},
+  "url": "{{ site.url }}{{ page.url }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}/"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}/"
+  },
+  "about": [
+    {% for tech in entry.stack %}{ "@type": "Thing", "name": {{ tech | dump | safe }} }{% if not loop.last %},
+    {% endif %}{% endfor %}
+  ],
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" },
+      { "@type": "ListItem", "position": 2, "name": "Infrastructure", "item": "{{ site.url }}/infrastructure/" },
+      { "@type": "ListItem", "position": 3, "name": {{ entry.name | dump | safe }}, "item": "{{ site.url }}{{ page.url }}" }
+    ]
+  }
+}
+</script>

@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Blog
-description: Technical blog posts covering full-stack development, systems administration, accessibility, and process improvement in IT.
+description: Field notes by Levi Huff on IT infrastructure, systems administration, Windows imaging, homelab builds, and software development from real work.
 ---
 
 <div class="bg-surface-1 text-fg-1">
@@ -32,7 +32,7 @@ description: Technical blog posts covering full-stack development, systems admin
           {% if post.data.thumbnail %}
           {% set thumbDims = post.data.thumbnail | imageDimensions %}
           <div class="h-44 bg-surface-inset overflow-hidden">
-            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full {% if post.data.thumbnailLogo %}object-contain p-6{% else %}object-cover{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
+            <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" loading="lazy" class="w-full h-full {% if post.data.thumbnailLogo %}object-contain p-6{% else %}object-cover{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
           </div>
           {% endif %}
           <div class="p-6">
@@ -91,7 +91,7 @@ description: Technical blog posts covering full-stack development, systems admin
             <div v-if="post.thumbnail" class="h-44 bg-surface-inset overflow-hidden">
               <img
                 :src="post.thumbnail"
-                alt=""
+                :alt="post.title"
                 loading="lazy"
                 :width="post.thumbnailWidth || undefined"
                 :height="post.thumbnailHeight || undefined"
