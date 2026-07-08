@@ -1,0 +1,15 @@
+---
+description: levihuff.net project conventions for source, tests, and config
+globs: src/**,test/**,*.cjs
+alwaysApply: false
+---
+
+- Run `npm test` after any change to src/, test/, eleventy.config.cjs, tailwind.config.js, or package.json. The suite (four Vitest files) catches broken builds, schema regressions, bad frontmatter, and broken internal links. `test/build.test.js` runs a full build and can take up to 2 minutes.
+- The Eleventy config file is `eleventy.config.cjs`. There is no `.eleventy.js`; do not create one or reference one.
+- Content is data-driven: edit `src/_data/*.json` or `src/_data/infra.js`, never hardcode copy into `.njk` templates. Schemas are documented in CLAUDE.md and enforced by `test/data.test.js`.
+- Follow DESIGN.md voice and visuals: no emoji, no italics, no gradients, amber (`#f5a524`) is the only accent, sentence-case headings, focus rings always visible (never `outline-none`).
+- No em dashes in site copy: `test/data.test.js` fails on em dashes in `.njk` templates and `infra.js` entries.
+- Theme is dark-only at runtime (`data-theme="dark"` set in `base.njk`); do not add a theme toggle.
+- Blog posts require the exact frontmatter contract in CLAUDE.md ("Blog post conventions"), including a thumbnail file that exists on disk.
+- Do not remove the `concurrency` block in `.github/workflows/deploy.yml`; it prevents interleaved FTP uploads.
+- Before committing, read `.cursor/review-state/handoff.md` if it exists and address open items from the review monitor.
