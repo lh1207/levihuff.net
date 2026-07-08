@@ -207,7 +207,25 @@ description: Levi Huff, IT infrastructure. Endpoint management, Windows imaging 
   "@type": "Person",
   "name": "{{ site.name }}",
   "url": "{{ site.url }}",
+  "email": "mailto:{{ site.email }}",
+  "jobTitle": "IT Infrastructure Professional",
   "description": "IT infrastructure: endpoint management, Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Washington Court House",
+    "addressRegion": "OH",
+    "addressCountry": "US"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "CompTIA A+"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "CompTIA ITF+"
+    }
+  ],
   "knowsAbout": [
     "IT Infrastructure",
     "Windows Imaging",
@@ -225,7 +243,8 @@ description: Levi Huff, IT infrastructure. Endpoint management, Windows imaging 
   },
   "sameAs": [
     "{{ site.social.github }}",
-    "{{ site.social.linkedin }}"
+    "{{ site.social.linkedin }}",
+    "{{ site.social.handshake }}"
   ]
 }
 </script>

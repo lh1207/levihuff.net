@@ -6,6 +6,10 @@ pagination:
   alias: tag
 permalink: /tags/{{ tag | tagSlug }}/
 eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "Posts tagged {{ tag }}"
+  description: "Blog posts by Levi Huff tagged {{ tag }}. Field notes on IT infrastructure, systems administration, homelab builds, and software projects."
+  robots: "{% if collections[tag].length < 2 %}noindex, follow{% endif %}"
 ---
 
 <div class="bg-surface-1 text-fg-1">
@@ -30,7 +34,7 @@ eleventyExcludeFromCollections: true
           {% if post.data.thumbnail %}
           {% set thumbDims = post.data.thumbnail | imageDimensions %}
           <div class="h-44 bg-surface-inset overflow-hidden">
-            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full object-cover {% if post.data.thumbnailLogo %}object-contain p-6{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
+            <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" loading="lazy" class="w-full h-full object-cover {% if post.data.thumbnailLogo %}object-contain p-6{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
           </div>
           {% endif %}
 
