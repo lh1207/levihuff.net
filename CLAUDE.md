@@ -17,7 +17,7 @@ npm run test:watch # Vitest in watch mode
 
 ## Architecture
 
-This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`.github/workflows/deploy.yml`), which runs tests, builds, and FTP-deploys `_site/` to the hosting server. A separate CI workflow (`.github/workflows/ci.yml`) runs tests on all PRs and non-main pushes.
+This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`.github/workflows/deploy.yml`), which runs tests, builds, and FTP-deploys `_site/` to the hosting server. A separate CI workflow (`.github/workflows/ci.yml`) runs tests on all PRs and non-main pushes. A third workflow (`.github/workflows/security.yml`) runs gitleaks over the full history, blocks tracked `.env` files, and fails on high/critical `npm audit` advisories.
 
 ### CSS pipeline
 
@@ -41,7 +41,7 @@ To add a new utility class, use it directly in a template — Tailwind picks it 
 
 ### Data layer
 
-All structured content lives in `src/_data/` as JSON files, automatically available as template globals:
+All structured content lives in `src/_data/` as JSON files plus one CommonJS module (`infra.js`), automatically available as template globals:
 
 | File | Used by | Key schema |
 |---|---|---|
@@ -51,6 +51,7 @@ All structured content lives in `src/_data/` as JSON files, automatically availa
 | `experience.json` | About cards | `company`, `focusAreas`, `description` (required strings); optional `highlights` (array of non-empty strings) |
 | `skills.json` | Skill groups | Array of `{heading, items: [{label, text}]}` |
 | `tools.json` | Tools section | Array of `{name, category}` — uppercase category strings |
+| `infra.js` | Infrastructure hub, detail pages, homepage featured cards | See schema below |
 
 **`projects.json` schema** (all fields required unless noted):
 
@@ -68,6 +69,26 @@ All structured content lives in `src/_data/` as JSON files, automatically availa
 }
 ```
 
+**`src/_data/infra.js` schema** — single source of truth for infrastructure projects, homelab services, and the secondary AI ops layer (see `PLAN.md`). A CommonJS module exporting an array; every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`. Enforced by `test/data.test.js`:
+
+```js
+{
+  slug: "kebab-case",                    // unique, /^[a-z0-9-]+$/, becomes the URL segment
+  name: "string (non-empty)",
+  section: "infrastructure | homelab | ai-ops",
+  kind: "project | service",
+  role: "string (one-line ownership statement)",
+  stack: ["string", ...],                // non-empty array of non-empty strings
+  status: "string",
+  summary: "string (card copy)",
+  details: [{ label: "string", text: "string" }],
+  links: [{ label: "string", url: "/... or https://..." }],
+  featured: true                         // boolean; featured entries surface on the homepage
+}
+```
+
+Adding a new infra project or homelab service is one new object in `infra.js` — no template work. Entry copy must not contain em dashes; `test/data.test.js` fails the suite if any appear (the same test also bans em dashes in every `.njk` template).
+
 ### Eleventy configuration (`eleventy.config.cjs`)
 
 The config file is `eleventy.config.cjs` (not `.eleventy.js`). The `.cjs` extension keeps CommonJS semantics without adding `"type": "commonjs"` to `package.json`, which would break `vitest.config.js` (ESM). The RSS plugin v3 is ESM-first; load its default export via `require("@11ty/eleventy-plugin-rss").default`.
@@ -81,13 +102,15 @@ Key behaviors defined here:
   - `tagList` — deduplicated, sorted array of every tag used across posts.
 - **Filters** (implemented in `src/filters.js`):
   - `tagSlug` — URL-safe tag slug (lowercase, hyphens, no punctuation).
+  - `imageDimensions` — `{width, height}` for a root-relative image path, or `null` if missing.
   - `dateReadable` — human-readable date string (`June 1, 2024`).
   - `dateIso` — ISO 8601 datetime string; throws with `[dateIso]` prefix on invalid dates.
   - `dateYMD` — `YYYY-MM-DD` string (used in sitemap).
   - `safeCdata` — escapes `]]>` for valid CDATA in the Atom feed.
   - `readingTime` — estimated read time at 200 wpm (minimum `"1 min read"`).
-- **Global data:** `currentYear` (integer) and `buildDate` (`YYYY-MM-DD` string).
-- **Passthrough:** `src/images/`, `src/files/`, `src/humans.txt`, `robots.txt`, `_headers`. (`src/.htaccess` is intentionally NOT passthrough — Porkbun static hosting rejects it.)
+- **Transforms:** `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (uses `imageDimensions`); `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest.
+- **Global data:** `currentYear` (integer), `buildDate` (`YYYY-MM-DD` string), and `gitHash` (short commit hash, used to cache-bust the CSS URL; falls back to `"dev"` outside git).
+- **Passthrough:** `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, `_headers`. (`src/.htaccess` is intentionally NOT passthrough — Porkbun static hosting rejects it.)
 - **Directories:** input `src/`, output `_site/`, includes `_includes/`, layouts `_layouts/`.
 
 ### Theme
@@ -126,7 +149,7 @@ Tests use [Vitest](https://vitest.dev/) and cover four areas:
 | File | What it tests |
 |---|---|
 | `test/filters.test.js` | Unit tests for every function in `src/filters.js` |
-| `test/data.test.js` | Schema validation for all `src/_data/*.json` files |
+| `test/data.test.js` | Schema validation for all `src/_data/*.json` files and `src/_data/infra.js`; bans em dashes in `.njk` templates and infra copy |
 | `test/blog.test.js` | Frontmatter validation for every `src/blog/*.md` post |
 | `test/build.test.js` | Full build smoke test: output files exist, CSS is minified (≤5 non-empty lines), passthrough artifacts present (`robots.txt`, `_headers`, `humans.txt`), internal links resolve, `<img>` tags have `alt`, OG/meta tags present, feed XML is valid |
 
@@ -167,3 +190,21 @@ The site follows the design system defined in `DESIGN.md`. Key rules for AI assi
 - **Max widths:** `max-w-site` (1100px), `max-w-prose` (70ch).
 - **Focus rings:** always visible — `focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2`. Never `outline-none`.
 - **Images** must always have `alt` attributes — `test/build.test.js` enforces this.
+
+---
+
+## Agent harness
+
+Repo-level agent configuration is indexed in `AGENT_CONFIG.md` (what each file does, what is tracked vs gitignored). Slash commands live in `.claude/commands/`, project skills in `.claude/skills/`, hooks in `.claude/settings.json` + `.claude/hooks/`, and the Cursor rule in `.cursor/rules/levihuff.mdc`.
+
+Model routing for this repo follows the owner's ladder: Haiku for mechanical edits, Sonnet for scoped execution, Opus/Fable for planning and judgment, Codex (`!codex`) for adversarial review, Gemini (`!gemini`) for large-context/full-repo analysis, and Qwen (`!qwen-exec`) for approved, scoped auto-apply tasks. See the global `~/.claude/CLAUDE.md` for the full Plan → Execute → Review loop.
+
+## Parallel review monitor (Cursor)
+
+A Cursor-side monitor can run in parallel with Claude Code sessions, reviewing new commits with Codex and Gemini so Claude does not have to. Its pieces:
+
+- `.cursor/agents/review-monitor.md` — the monitor agent definition (tracked).
+- `.cursor/review-state/` — ephemeral state, gitignored: `handoff.md` (findings and open items for Claude), `last-seen-sha`, `session.json`, `findings/` (per-commit review output).
+- `scripts/review-monitor.sh` / `scripts/review-*.sh` — launcher scripts are planned but not yet in the repo; today the monitor is started manually from Cursor using the agent definition.
+
+**Before committing, read `.cursor/review-state/handoff.md` if it exists.** Apply or acknowledge open items listed there, and do not dispatch a duplicate Codex review for a commit the monitor has already reviewed (check `last-seen-sha` and `findings/`).

@@ -8,14 +8,26 @@ _site/
 *.env.local
 !*.env.example   # but DO track the documented template
 
-# Claude Code — credentials, cache, and ephemeral agent state
-.claude/
+# Claude Code — credentials, cache, and ephemeral agent state stay ignored,
+# but shared harness config is tracked. `.claude/*` (not `.claude/`) so the
+# negations below can re-include files; git cannot re-include anything under
+# a fully ignored directory. See AGENT_CONFIG.md.
+.claude/*
+!.claude/settings.json
+!.claude/commands/
+!.claude/commands/**
+!.claude/skills/
+!.claude/skills/**
+!.claude/hooks/
+!.claude/hooks/**
 
 # Local agent / IDE / scratch artifacts
 .agents/
 .cursor/*
 !.cursor/agents/
 !.cursor/agents/**
+!.cursor/rules/
+!.cursor/rules/**
 # .cursor/review-state/ — ephemeral monitor state (findings, handoff, last-seen-sha); gitignored via .cursor/*
 CLAUDE.original.md
 agents.local.bak.md
