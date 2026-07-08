@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: About | Levi Huff
-description: About Levi Huff, IT infrastructure. Endpoint management, Windows imaging, PowerShell automation, Active Directory, and virtualization, with co-op experience and a daily-driver homelab.
+description: About Levi Huff, IT infrastructure. Experience, skills, certifications, and resume. Endpoint management, Windows imaging, PowerShell automation, Active Directory, and virtualization.
 ---
 
 <div class="bg-surface-1 text-fg-1">
@@ -19,6 +19,19 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
           <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
             I hold a Bachelor of Science in Information Technology from the University of Cincinnati ({{ site.graduationDate }}, Software Application Development track), which adds a development background to the infrastructure work: when a problem needs a script, an API, or a full application, I can build it.
           </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="/files/Levi_Huff_Resume.pdf"
+              download="Levi_Huff_Resume.pdf"
+              class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+              Download resume
+            </a>
+            <a
+              href="/contact/"
+              class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+              Get in touch
+            </a>
+          </div>
         </div>
         <div class="mt-8 md:mt-1 flex-shrink-0">
           <img
@@ -33,10 +46,81 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
     </div>
   </section>
 
+  {# Experience #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / EXPERIENCE</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Professional experience.</h2>
+
+      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
+        <img
+          src="/images/about/tql-office.jpg"
+          alt="Levi Huff outside the Total Quality Logistics office building"
+          class="block w-full h-64 object-cover object-[28%_35%]"
+          width="1200"
+          height="870"
+          loading="lazy">
+      </div>
+
+      <div class="mt-8">
+        {% for entry in experience %}
+          {% include "components/experience-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# Skills #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / SKILLS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
+
+      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
+        <img
+          src="/images/about/developer-workspace.jpg"
+          alt="Developer workspace with keyboard and code on screen"
+          class="w-full h-64 object-cover"
+          width="1200"
+          height="799"
+          loading="lazy">
+      </div>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {% for group in skills %}
+          {% include "components/skill-group.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# Certifications #}
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / CERTIFICATIONS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Certifications.</h2>
+
+      <ul class="mt-8 space-y-3">
+        <li class="flex items-baseline gap-3">
+          <span class="font-plex font-semibold text-fg-1">CompTIA A+</span>
+          <span class="font-jb text-mono-sm text-fg-3">Dec 2025</span>
+        </li>
+        <li class="flex items-baseline gap-3">
+          <span class="font-plex font-semibold text-fg-1">CompTIA IT Fundamentals+</span>
+          <span class="font-jb text-mono-sm text-fg-3">Apr 2024</span>
+        </li>
+        <li class="flex items-baseline gap-3">
+          <span class="font-plex font-semibold text-fg-1">Cisco CCNA</span>
+          <span class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">In progress</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   {# Education #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / EDUCATION</p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 04 / EDUCATION</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Education.</h2>
 
       <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
@@ -72,58 +156,10 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
     </div>
   </section>
 
-  {# Experience #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / EXPERIENCE</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Professional experience.</h2>
-
-      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
-        <img
-          src="/images/about/tql-office.jpg"
-          alt="Levi Huff outside the Total Quality Logistics office building"
-          class="block w-full h-64 object-cover object-[28%_35%]"
-          width="1200"
-          height="870"
-          loading="lazy">
-      </div>
-
-      <div class="mt-8">
-        {% for entry in experience %}
-          {% include "components/experience-card.njk" %}
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  {# Skills #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / SKILLS</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
-
-      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
-        <img
-          src="/images/about/developer-workspace.jpg"
-          alt="Developer workspace with keyboard and code on screen"
-          class="w-full h-64 object-cover"
-          width="1200"
-          height="799"
-          loading="lazy">
-      </div>
-
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        {% for group in skills %}
-          {% include "components/skill-group.njk" %}
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
   {# Approach #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 04 / APPROACH</p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / APPROACH</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">How I work.</h2>
       <p class="font-plex text-base text-fg-1 leading-relaxed mt-4 max-w-prose">
         I focus on understanding how systems are used in practice before making changes, with attention to maintainability, clarity, and user impact. Hands-on work across provisioning, imaging, scripting, and support has shaped how I approach problems: starting with what's already there before proposing changes.
@@ -137,7 +173,7 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
   {# Hobbies #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / INTERESTS</p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 06 / INTERESTS</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Hobbies and interests.</h2>
 
       <div class="mt-8 grid gap-6 md:grid-cols-2">
@@ -205,15 +241,20 @@ description: About Levi Huff, IT infrastructure. Endpoint management, Windows im
   {# Looking Ahead / CTA #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 06 / LOOKING AHEAD</p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 07 / LOOKING AHEAD</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">What I am looking for.</h2>
       <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
         I'm looking for full-time infrastructure and systems administration roles based in or near Washington Court House, OH. I prioritize positions in Fayette County and the surrounding area, and I'm open to hybrid arrangements in Dayton or Columbus.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/projects/" class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">View projects</a>
-        <a href="/contact/" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Get in touch</a>
+        <a href="/contact/" class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Get in touch</a>
+        <a href="/files/Levi_Huff_Resume.pdf" download="Levi_Huff_Resume.pdf" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Download resume</a>
       </div>
+      <a
+        href="/projects/"
+        class="inline-flex items-center gap-2 mt-6 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
+        &rarr; View projects
+      </a>
     </div>
   </section>
 
