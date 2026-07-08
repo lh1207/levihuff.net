@@ -90,7 +90,7 @@ levihuff.net/
 │   ├── index.njk               # Homepage
 │   ├── about.njk
 │   ├── projects.njk
-│   ├── resume.njk
+│   ├── resume.njk              # Redirect stub: /resume/ → /about/
 │   ├── contact.njk
 │   ├── feed.njk                # Atom feed
 │   ├── sitemap.njk
@@ -254,14 +254,15 @@ Array of project objects for `projects.njk` and the homepage featured cards. All
 
 #### `experience.json`
 
-Array of work history entries for `resume.njk` and `about.njk`. All three fields are required and must be non-empty strings.
+Array of work history entries for `about.njk`. The three string fields are required and must be non-empty; `highlights` is an optional array of non-empty strings rendered as achievement bullets.
 
 ```json
 [
   {
     "company": "string",
     "focusAreas": "string (role and date range)",
-    "description": "string"
+    "description": "string",
+    "highlights": ["string (optional)"]
   }
 ]
 ```

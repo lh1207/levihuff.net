@@ -183,6 +183,18 @@ describe("experience.json", () => {
       expect(e.description.trim()).not.toBe("");
     }
   });
+
+  it("highlights, when present, is a non-empty array of non-empty strings", () => {
+    for (const e of experience) {
+      if (e.highlights === undefined) continue;
+      expect(Array.isArray(e.highlights), `highlights on "${e.company}" must be an array`).toBe(true);
+      expect(e.highlights.length, `highlights on "${e.company}" must not be empty`).toBeGreaterThan(0);
+      for (const h of e.highlights) {
+        expect(typeof h).toBe("string");
+        expect(h.trim()).not.toBe("");
+      }
+    }
+  });
 });
 
 describe("skills.json", () => {

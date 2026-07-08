@@ -89,6 +89,19 @@ describe("build smoke test", () => {
     expect(html).toContain("/projects/");
   });
 
+  // Resume page is merged into About; the old URL must redirect
+  it("resume/index.html is a redirect stub pointing at /about/", () => {
+    const html = readFileSync(resolve(siteDir, "resume/index.html"), "utf8");
+    expect(html).toMatch(/http-equiv=["']refresh["'][^>]*url=\/about\//i);
+    expect(html).toMatch(/name=["']robots["'][^>]*noindex/i);
+  });
+
+  it("about/index.html carries the merged resume content", () => {
+    const html = readFileSync(resolve(siteDir, "about/index.html"), "utf8");
+    expect(html).toContain("CompTIA A+");
+    expect(html).toContain("/files/Levi_Huff_Resume.pdf");
+  });
+
   // Passthrough artifact checks — if these fail, a passthroughCopy was removed
   it("_site/robots.txt is present (passthrough)", () => {
     expect(existsSync(resolve(siteDir, "robots.txt"))).toBe(true);

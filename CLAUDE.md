@@ -48,7 +48,7 @@ All structured content lives in `src/_data/` as JSON files, automatically availa
 | `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `social.{github,linkedin,handshake}` |
 | `navigation.json` | `nav.njk` | Array of `{label, url}` — `url` must be root-relative (start with `/`) |
 | `projects.json` | Projects page & cards | See schema below |
-| `experience.json` | Resume / about cards | `company`, `focusAreas`, `description` (all required strings) |
+| `experience.json` | About cards | `company`, `focusAreas`, `description` (required strings); optional `highlights` (array of non-empty strings) |
 | `skills.json` | Skill groups | Array of `{heading, items: [{label, text}]}` |
 | `tools.json` | Tools section | Array of `{name, category}` — uppercase category strings |
 
@@ -106,13 +106,12 @@ All animation code is guarded by `prefers-reduced-motion` — if the user prefer
 
 ### Vue islands
 
-Three pages use Vue 3 CDN islands for client-side interactivity:
+Two pages use Vue 3 CDN islands for client-side interactivity:
 
 - `src/projects.njk` — project category filter
 - `src/blog/index.njk` — blog tag filter
-- `src/resume.njk` — skills tab switcher
 
-Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.34` — do not change it to a floating `vue@3` range. SRI cannot be added to inline `import()` statements; the version pin is the supply-chain guard. When upgrading, bump all three files together and run `npm test`.
+Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.34` — do not change it to a floating `vue@3` range. SRI cannot be added to inline `import()` statements; the version pin is the supply-chain guard. When upgrading, bump both files together and run `npm test`.
 
 ### Deploy concurrency
 
