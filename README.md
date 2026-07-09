@@ -9,6 +9,9 @@ Personal portfolio website built with [Eleventy](https://www.11ty.dev/).
 ### Homepage
 ![Homepage](docs/screenshots/homepage.png)
 
+### Infrastructure
+![Infrastructure](docs/screenshots/infrastructure.png)
+
 ### Projects
 ![Projects](docs/screenshots/projects.png)
 
@@ -19,7 +22,7 @@ Personal portfolio website built with [Eleventy](https://www.11ty.dev/).
 
 ## Quick start
 
-**Requirements:** Node.js 20+
+**Requirements:** Node.js 20+ (CI runs on Node 22)
 
 ```bash
 git clone <repo>
@@ -36,12 +39,13 @@ No `.env` file or local secrets are needed for development.
 
 | Layer | Technology |
 |---|---|
-| Static site generator | Eleventy 2.x |
-| Templates | Nunjucks, Markdown (`markdown-it`) |
+| Static site generator | Eleventy 3.x (`eleventy.config.cjs`) |
+| Templates | Nunjucks, Markdown (`markdown-it` + `markdown-it-anchor`) |
 | CSS | Tailwind CSS 3.x (CLI), PostCSS, autoprefixer, cssnano |
+| Client-side interactivity | Vue 3 CDN islands (project filter, blog tag filter) |
+| Animations | Motion One 10.x (CDN, ESM import, gated on `prefers-reduced-motion`) |
 | Tests | Vitest 4.x |
-| Animations | Motion One 10.x (CDN, ESM import) |
-| CI | GitHub Actions |
+| CI | GitHub Actions (tests, security scanning, deploy) |
 | Deploy | FTP via `SamKirkland/FTP-Deploy-Action` |
 | Hosting | Porkbun shared hosting |
 
@@ -51,7 +55,7 @@ No `.env` file or local secrets are needed for development.
 
 ```
 levihuff.net/
-├── .eleventy.js          # Eleventy config: plugins, filters, collections, passthroughs
+├── eleventy.config.cjs   # Eleventy config: plugins, filters, collections, transforms, passthroughs
 ├── tailwind.config.js    # Tailwind theme tokens, content globs, breakpoints
 ├── postcss.config.js     # autoprefixer + conditional cssnano (production only)
 ├── vitest.config.js      # Vitest config
@@ -68,28 +72,33 @@ levihuff.net/
 │   │   │   ├── footer.njk
 │   │   │   ├── project-card.njk
 │   │   │   ├── experience-card.njk
+│   │   │   ├── infra-card.njk
 │   │   │   ├── skill-group.njk
 │   │   │   └── landing/project-card-mini.njk
 │   │   └── css/
 │   │       └── tailwind.css    # CSS entry point; custom rules in @layer blocks
 │   │
-│   ├── _data/                  # JSON files auto-exposed as Eleventy globals
+│   ├── _data/                  # Auto-exposed as Eleventy template globals
 │   │   ├── site.json
 │   │   ├── navigation.json
 │   │   ├── projects.json
 │   │   ├── experience.json
 │   │   ├── skills.json
-│   │   └── tools.json
+│   │   ├── tools.json
+│   │   └── infra.js            # Infrastructure projects, homelab services, AI ops layer
 │   │
-│   ├── blog/                   # Markdown posts + index.njk listing
+│   ├── blog/                   # Markdown posts + index.njk listing (Vue tag filter)
+│   ├── infrastructure/         # index.njk (hub) + entry.njk (paginated detail pages)
 │   ├── tags/                   # index.njk (all tags) + tag.njk (per-tag pagination)
 │   ├── images/                 # Passthrough: copied as-is to _site/images/
+│   ├── fonts/                  # Passthrough: self-hosted woff2 fonts
 │   ├── files/                  # Passthrough: resume PDF
-│   ├── filters.js              # Six Eleventy filter functions
+│   ├── humans.txt              # Passthrough
+│   ├── filters.js              # Seven Eleventy filter functions
 │   │
 │   ├── index.njk               # Homepage
-│   ├── about.njk
-│   ├── projects.njk
+│   ├── about.njk               # About page (includes the merged resume content)
+│   ├── projects.njk            # Projects page (Vue category filter)
 │   ├── resume.njk              # Redirect stub: /resume/ → /about/
 │   ├── contact.njk
 │   ├── feed.njk                # Atom feed
@@ -99,15 +108,19 @@ levihuff.net/
 │
 ├── test/
 │   ├── filters.test.js         # Unit tests for src/filters.js
-│   ├── data.test.js            # Schema validation for src/_data/*.json
+│   ├── data.test.js            # Schema validation for src/_data/* (JSON + infra.js)
 │   ├── blog.test.js            # Frontmatter validation for src/blog/*.md
 │   └── build.test.js           # Full build smoke test (runs npm run build)
 │
-├── _site/                      # Build output — gitignored, FTP-deployed
+├── _site/                      # Build output: gitignored, FTP-deployed
 ├── docs/screenshots/           # README screenshots
+│
+├── .claude/                    # Agent harness: slash commands, skills, hooks (see AGENT_CONFIG.md)
+├── .cursor/                    # Cursor rule + parallel review monitor agent
 │
 └── .github/workflows/
     ├── ci.yml                  # Run tests on PRs and non-main pushes
+    ├── security.yml            # gitleaks, tracked-.env guard, npm audit (high+)
     └── deploy.yml              # Test + build + FTP deploy on push to main
 ```
 
@@ -123,11 +136,13 @@ Two parallel build paths:
 
 ```
 src/**/*.{njk,md}
-  └─ Eleventy (.eleventy.js)
+  └─ Eleventy (eleventy.config.cjs)
        ├─ Nunjucks renderer (layouts, components, pages)
        ├─ markdown-it (blog posts, with anchor links)
+       ├─ Plugins: @11ty/eleventy-plugin-rss (Atom feed), @11ty/eleventy-plugin-syntaxhighlight (Prism)
        ├─ Filters (src/filters.js)
-       └─ Global data (src/_data/*.json, currentYear, buildDate)
+       ├─ Transforms (img width/height injection, lazy loading + fetchpriority)
+       └─ Global data (src/_data/*, currentYear, buildDate, gitHash)
             └─> _site/**/*.html
 ```
 
@@ -140,22 +155,21 @@ src/_includes/css/tailwind.css
             └─> _site/css/styles.css
 ```
 
-`npm start` runs a full build first (so `_site/css/styles.css` exists before the 11ty dev server starts), then watches both pipelines in parallel.
+`npm start` runs a full build first (so `_site/css/styles.css` exists before the 11ty dev server starts), then watches both pipelines in parallel. The `gitHash` global (short commit hash) cache-busts the CSS URL on every deploy.
 
-**Client-side JavaScript** is limited to inline scripts in `src/_layouts/base.njk`:
-- Dark theme bootstrap (sets `data-theme="dark"` on `<html>` before first paint)
-- Motion One animations — hero stagger, section reveal, grid stagger — all gated on `prefers-reduced-motion`
-- Mobile hamburger nav toggle
-- "Back to top" button visibility
+**Client-side JavaScript:**
 
-The only external network dependency at runtime is the Motion One CDN (`cdn.jsdelivr.net/npm/motion@10.18.0/+esm`). There are no XHR calls, no service workers, and no backend.
+- Inline scripts in `src/_layouts/base.njk`: dark theme bootstrap (sets `data-theme="dark"` on `<html>` before first paint), Motion One animations (hero stagger, section reveal, grid stagger; all skipped when `prefers-reduced-motion` is set), mobile hamburger nav toggle, and "back to top" button visibility.
+- Two Vue 3 islands: the project category filter on `/projects/` and the blog tag filter on `/blog/`. Vue is loaded as an inline ES module import pinned to `vue@3.5.34`. The version pin is the supply-chain guard (SRI cannot be added to inline `import()` statements), so do not change it to a floating range.
+
+The only external network dependencies at runtime are the two jsDelivr CDN loads: Motion One (`motion@10.18.0/+esm`) and Vue (`vue@3.5.34`). There are no XHR calls, no service workers, and no backend.
 
 ---
 
 ## Data flow between major components
 
 ```
-src/_data/*.json   ←──── edit here to update content
+src/_data/*.json + infra.js   ←──── edit here to update content
        │
        │  Eleventy exposes every _data file as a template global
        ▼
@@ -167,37 +181,42 @@ src/**/*.njk / src/blog/*.md
 _site/**/*.html    ←──── static output, FTP-uploaded
 ```
 
-**Concrete example — projects page:**
+**Concrete example, the infrastructure section:**
 
-1. `src/_data/projects.json` is available as `{{ projects }}` in any template.
-2. `src/projects.njk` iterates `{% for project in projects %}`.
-3. Each iteration includes `{% include "components/project-card.njk" %}`, which renders a `<article>` with the project's image, title, description, and optional link.
-4. The built output is `_site/projects/index.html`.
+1. `src/_data/infra.js` exports an array available as `{{ infra }}` in any template.
+2. `src/infrastructure/index.njk` groups entries by `section` and renders each via `{% include "components/infra-card.njk" %}`.
+3. `src/infrastructure/entry.njk` paginates over the same array, generating one detail page per entry at `/infrastructure/<slug>/`.
+4. Entries with `featured: true` also surface on the homepage.
 
-**Collections** are defined in `.eleventy.js`:
-- `posts` — every `src/blog/**/*.md` file, used by `src/blog/index.njk` and `src/tags/tag.njk`
-- `tagList` — deduplicated, sorted array of all tags across posts, used by `src/tags/index.njk`
+**Collections** are defined in `eleventy.config.cjs`:
+- `posts`: every `src/blog/**/*.md` file, used by `src/blog/index.njk` and `src/tags/tag.njk`
+- `tagList`: deduplicated, sorted array of all tags across posts, used by `src/tags/index.njk`
 
-**Filters** (defined in `src/filters.js`, registered in `.eleventy.js`):
+**Filters** (defined in `src/filters.js`, registered in `eleventy.config.cjs`):
 
 | Filter | Input → Output |
 |---|---|
 | `tagSlug` | Tag string → URL-safe slug |
+| `imageDimensions` | Root-relative image path → `{width, height}` or `null` if missing |
 | `dateReadable` | Date → `"June 1, 2024"` |
 | `dateIso` | Date → ISO 8601 string; throws on invalid dates |
 | `dateYMD` | Date → `"YYYY-MM-DD"` (sitemap) |
 | `safeCdata` | String → escaped for CDATA in Atom feed |
 | `readingTime` | Post content → `"N min read"` at 200 wpm |
 
+**Transforms** (also in `eleventy.config.cjs`):
+- `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (via `imageDimensions`).
+- `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest.
+
 ---
 
 ## API endpoints and data layer
 
-**There are no HTTP/REST API endpoints.** This is a fully static site. The only outbound network call at runtime is loading Motion One from jsDelivr.
+**There are no HTTP/REST API endpoints.** This is a fully static site. The only outbound network calls at runtime are the Motion One and Vue CDN loads from jsDelivr.
 
 ### Data layer (build-time data API)
 
-All structured content is stored as JSON files in `src/_data/`. Eleventy exposes them as template globals automatically — the filename (without extension) becomes the variable name. `test/data.test.js` enforces the schemas below; breaking them will fail CI.
+All structured content lives in `src/_data/` as JSON files plus one CommonJS module (`infra.js`). Eleventy exposes each as a template global automatically; the filename (without extension) becomes the variable name. `test/data.test.js` enforces the schemas below; breaking them will fail CI.
 
 #### `site.json`
 
@@ -234,6 +253,10 @@ Array of project objects for `projects.njk` and the homepage featured cards. All
 ```json
 {
   "title": "string",
+  "featured": true,
+  "category": "string",
+  "stack": "string",
+  "summary": "string",
   "description": "string (may contain HTML)",
   "image": "string (URL or root-relative path)",
   "imageAlt": "string",
@@ -241,16 +264,34 @@ Array of project objects for `projects.njk` and the homepage featured cards. All
   "imageHeight": 800,
   "imageLoading": "lazy | eager",
   "imageClass": "string | null",
-  "featured": true,
-  "category": "string",
-  "stack": "string",
-  "summary": "string",
   "paragraphs": [{ "label": "string", "text": "string" }],
   "link": "https://... | null",
   "linkLabel": "string (required when link is non-null)",
   "meta": "string | null"
 }
 ```
+
+#### `infra.js`
+
+CommonJS module exporting an array: the single source of truth for infrastructure projects, homelab services, and the AI ops layer. Every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`.
+
+```js
+{
+  slug: "kebab-case",                    // unique, /^[a-z0-9-]+$/, becomes the URL segment
+  name: "string (non-empty)",
+  section: "infrastructure | homelab | ai-ops",
+  kind: "project | service",
+  role: "string (one-line ownership statement)",
+  stack: ["string", ...],                // non-empty array of non-empty strings
+  status: "string",
+  summary: "string (card copy)",
+  details: [{ label: "string", text: "string" }],
+  links: [{ label: "string", url: "/... or https://..." }],
+  featured: true                         // featured entries surface on the homepage
+}
+```
+
+Entry copy must not contain em dashes; `test/data.test.js` fails the suite if any appear (the same test also bans em dashes in every `.njk` template).
 
 #### `experience.json`
 
@@ -304,7 +345,7 @@ Array of tool badges with uppercase category labels.
 | `FTP_PASSWORD` | `deploy.yml` | CI deploy only | GitHub repository secret. Not needed locally. |
 | `FTP_SERVER_DIR` | `deploy.yml` | CI deploy only | GitHub repository secret. Not needed locally. |
 
-No `.env` file is used. The local dev server requires no environment configuration.
+No `.env` file is used. The local dev server requires no environment configuration. `security.yml` fails the build if a real `.env` file is ever tracked.
 
 ---
 
@@ -335,10 +376,10 @@ Four test files under `test/`:
 
 | File | Covers |
 |---|---|
-| `test/filters.test.js` | Unit tests for all six functions in `src/filters.js` |
-| `test/data.test.js` | Schema validation for all `src/_data/*.json` files |
+| `test/filters.test.js` | Unit tests for all seven functions in `src/filters.js` |
+| `test/data.test.js` | Schema validation for all `src/_data/*.json` files and `src/_data/infra.js`; bans em dashes in infra copy and `.njk` templates |
 | `test/blog.test.js` | Frontmatter validation for every `src/blog/*.md` (title, date, description, layout, tags, thumbnail existence) |
-| `test/build.test.js` | Full build smoke test — verifies generated HTML/feed/sitemap, internal links, `<img alt>`, OG meta tags, non-empty CSS |
+| `test/build.test.js` | Full build smoke test: verifies generated HTML/feed/sitemap, internal links, `<img alt>`, OG meta tags, minified CSS, passthrough artifacts |
 
 **`test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.** Run it before merging if you've changed templates, data files, or the CSS pipeline.
 
@@ -354,10 +395,18 @@ Always run `npm test` after any change. CI runs the full suite on every push and
 2. Run tests and build (`npm run test && npm run build`)
 3. FTP-upload `_site/` to the configured server directory
 
+A `concurrency` block queues concurrent `main` pushes rather than running them in parallel, preventing interleaved FTP uploads from corrupting the live host. Do not remove it.
+
 **Push to any other branch / open a PR** triggers `.github/workflows/ci.yml`:
 
 1. Install dependencies (`npm ci`)
 2. Run tests (`npm test`)
+
+**Every push and PR** also triggers `.github/workflows/security.yml`:
+
+1. gitleaks secret scan over the full git history (config: `.gitleaks.toml`)
+2. Guard against any real `.env` file being tracked
+3. `npm audit --audit-level=high` (fails on high/critical advisories)
 
 No manual deployment steps are required. Configure the four FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FTP_SERVER_DIR`) in the GitHub repository settings under **Settings → Secrets and variables → Actions**.
 
@@ -384,6 +433,10 @@ Post body in Markdown.
 
 All six fields are required. `test/blog.test.js` verifies them and checks that the thumbnail file exists on disk.
 
+### Add an infrastructure or homelab entry
+
+Append one object to `src/_data/infra.js` matching the schema in the [Data layer](#data-layer-build-time-data-api) section. That's it: the hub card, detail page, and (if `featured: true`) homepage card are all generated from the data. No template work needed. Run `npm test` to confirm schema validation passes.
+
 ### Add a project
 
 1. Append an object to `src/_data/projects.json` matching the schema in the [Data layer](#data-layer-build-time-data-api) section.
@@ -407,7 +460,7 @@ All six fields are required. `test/blog.test.js` verifies them and checks that t
 
 ### Add or change a data file schema
 
-If you add a new field to any `src/_data/*.json` file, update the corresponding `describe` block in `test/data.test.js` to assert the new field. CI enforces the tests — unvalidated schema changes will silently go untested.
+If you add a new field to any `src/_data/` file, update the corresponding `describe` block in `test/data.test.js` to assert the new field. CI enforces the tests; unvalidated schema changes will silently go untested.
 
 ---
 
@@ -415,4 +468,6 @@ If you add a new field to any `src/_data/*.json` file, update the corresponding 
 
 - [`CLAUDE.md`](CLAUDE.md) — Deeper architecture notes, filter documentation, template conventions, and AI assistant guidance.
 - [`DESIGN.md`](DESIGN.md) — Design system: color tokens, typography scale, spacing, motion rules, and accessibility constraints. Read this before touching CSS or adding components.
-- [`AGENTS.md`](AGENTS.md) — Codex-oriented contributor notes. **Note:** contains stale claims about the absence of a test step; the Vitest suite does exist and runs in CI.
+- [`AGENT_CONFIG.md`](AGENT_CONFIG.md) — Index of the repo-level agent harness: slash commands, skills, hooks, and the Cursor review monitor.
+- [`AGENTS.md`](AGENTS.md) — Codex-oriented contributor notes; a condensed companion to `CLAUDE.md`.
+- [`PLAN.md`](PLAN.md) — Planning notes for the infrastructure hub and AI ops layer.
