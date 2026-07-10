@@ -3,6 +3,11 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule: { interval: weekly }
+    ignore:
+      # Tailwind v4 removed the CLI binary the build scripts use; staying on v3
+      # until the CSS pipeline migration is scheduled. Remove this to resume 4.x PRs.
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule: { interval: weekly }
