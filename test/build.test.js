@@ -391,6 +391,32 @@ describe("build smoke test", () => {
     expect(isNoindexed(multi)).toBe(false);
   });
 
+  it("projects page inline data is jsonScript-escaped (no raw < in the serialized JSON)", () => {
+    const html = readFileSync(resolve(siteDir, "projects/index.html"), "utf8");
+    const match = html.match(/const projects = (.*);/);
+    expect(match, "no `const projects = ...;` line found").toBeTruthy();
+    const json = match[1];
+    expect(json.length, "serialized projects data is empty").toBeGreaterThan(0);
+    // jsonScript escapes every "<" to the \\u003c sequence, so a raw "<" is always a regression
+    expect(json).not.toContain("<");
+    // projects.json descriptions contain <strong>, so the escaped marker must
+    // be present — this fails if the jsonScript filter is ever reverted to dump
+    expect(json).toContain("\\u003c");
+  });
+
+  it("blog index inline posts data is jsonScript-escaped (no raw < in the array literal)", () => {
+    const html = readFileSync(resolve(siteDir, "blog/index.html"), "utf8");
+    const start = html.indexOf("const posts = [");
+    expect(start, "no `const posts = [` found").toBeGreaterThan(-1);
+    const end = html.indexOf("];", start);
+    expect(end, "no closing `];` found after `const posts = [`").toBeGreaterThan(start);
+    const region = html.slice(start + "const posts = [".length, end);
+    expect(region.trim().length, "posts array literal is empty").toBeGreaterThan(0);
+    // Any legitimate "<" in post data is escaped to the \\u003c sequence by
+    // jsonScript, so a raw "<" inside the array literal is always a bug
+    expect(region).not.toContain("<");
+  });
+
   it("every indexable page has exactly one h1", () => {
     const bad = [];
     for (const file of findHtmlFiles(siteDir)) {

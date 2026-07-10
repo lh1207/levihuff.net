@@ -34,7 +34,7 @@ eleventyComputed:
           {% if post.data.thumbnail %}
           {% set thumbDims = post.data.thumbnail | imageDimensions %}
           <div class="h-44 bg-surface-inset overflow-hidden">
-            <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" loading="lazy" class="w-full h-full object-cover {% if post.data.thumbnailLogo %}object-contain p-6{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
+            <img src="{{ post.data.thumbnail }}" alt="" loading="lazy" class="w-full h-full object-cover {% if post.data.thumbnailLogo %}object-contain p-6{% endif %}"{% if thumbDims %} width="{{ thumbDims.width }}" height="{{ thumbDims.height }}"{% endif %}>
           </div>
           {% endif %}
 
