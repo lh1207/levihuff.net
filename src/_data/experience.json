@@ -1,15 +1,5 @@
 [
   {
-    "company": "Kroger",
-    "focusAreas": "E-commerce fulfillment, inventory management, Jan 2025 – Present",
-    "description": "Maintain 98%+ pick-rate and 51%+ perfect-order accuracy on 100+ daily orders using inventory management and POS systems in a high-throughput, time-sensitive environment."
-  },
-  {
-    "company": "UC Conference & Event Services",
-    "focusAreas": "AV/IT setup, event support, Aug 2023 – Dec 2024",
-    "description": "Configured AV and IT systems for 100+ campus events annually. Troubleshot connectivity issues in real-time, maintaining 99% uptime for 46,000+ students and university guests."
-  },
-  {
     "company": "Tire Discounters",
     "focusAreas": "Infrastructure & Cybersecurity Co-op, Aug 2022 – Dec 2022",
     "description": "Provided IT support across the Cincinnati and Sharonville offices, with remote phone support for other Midwest locations. Worked through a backlogged ticket queue and handled a range of on-site and remote support tasks. Documented and improved the employee onboarding workflow, clarifying system handoffs and reducing manual steps for new hires. Built a new MDT image that automated Lenovo driver installation, domain controller enrollment, and Windows 11 upgrades, reducing the manual work required per deployment.",
@@ -27,6 +17,16 @@
       "Achieved same-day turnaround on 90% of hardware repair tickets.",
       "Documented 200+ technical support cases in Jira, building out the team knowledge base."
     ]
+  },
+  {
+    "company": "Kroger",
+    "focusAreas": "E-commerce fulfillment, inventory management, Jan 2025 – Present",
+    "description": "Maintain 98%+ pick-rate and 51%+ perfect-order accuracy on 100+ daily orders using inventory management and POS systems in a high-throughput, time-sensitive environment."
+  },
+  {
+    "company": "UC Conference & Event Services",
+    "focusAreas": "AV/IT setup, event support, Aug 2023 – Dec 2024",
+    "description": "Configured AV and IT systems for 100+ campus events annually. Troubleshot connectivity issues in real-time, maintaining 99% uptime for 46,000+ students and university guests."
   },
   {
     "company": "UC RED Housing",
