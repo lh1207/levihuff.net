@@ -273,7 +273,7 @@ Honors `prefers-reduced-motion: reduce` (collapses to ~0ms).
 | Primary button | Amber fill, dark text (`#0a0b0d`), weight 600, 6px radius, no scale on hover. |
 | Secondary button | `--bg-2` fill, `--border-1` stroke, `--fg-1` text. Hover: `--bg-3` + `--border-2`. |
 | Inline code | `--bg-inset` fill, `--border-1` 1px stroke, JetBrains Mono 0.92em, 4px radius. |
-| Section eyebrow | Uppercase mono label (`01 / IMPACT`), 11px, +0.04em tracking, often preceded by a `▸` glyph in `--accent`. |
+| Section eyebrow | Uppercase mono label (`01 / IMPACT`), 11px, +0.04em tracking, often preceded by a `&#9658;` glyph in `--accent`. |
 | Status dot | 8px filled circle in `--ok` / `--accent` / `--err`, beside a mono label. Optional 4px tinted halo. |
 | Terminal block | `--bg-inset` background, 1px border, mono content, prompt char (`$`) in `--accent`, comments in `#6a8b6e`, strings in `#b4d28a`. Optional 1-row chrome bar at top with status dot + path. |
 

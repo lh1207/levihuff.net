@@ -72,4 +72,10 @@ function readingTime(content) {
   return minutes + " min read";
 }
 
-module.exports = { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime };
+// JSON-encode a value for embedding inside an inline <script> tag, escaping
+// "<" so a "</script>" substring in the data can never close the tag early.
+function jsonScript(value) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+module.exports = { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime, jsonScript };

@@ -1,10 +1,8 @@
 [
   {
     "title": "Multi-LLM Dev Workflow",
-    "featured": true,
     "category": "ai",
     "stack": "Claude Code, Codex, Gemini, Ollama",
-    "summary": "Three-provider AI workflow routing tasks by model strength: Claude Code as orchestrator, Codex as async adversarial reviewer, Gemini for large-context analysis.",
     "link": null,
     "linkLabel": null,
     "image": "/images/projects/multi-llm-workflow.jpg",
@@ -23,10 +21,8 @@
   },
   {
     "title": "Proxmox Homelab & Docker Stack",
-    "featured": true,
     "category": "infrastructure",
     "stack": "Proxmox, Docker, Pi-hole",
-    "summary": "Migrated self-hosted services from individual LXCs to a unified Docker stack; configured subnet static routing to isolate household services from upstream failures.",
     "link": null,
     "linkLabel": null,
     "image": "/images/projects/proxmox-homelab.jpg",
@@ -44,10 +40,8 @@
   },
   {
     "title": "Windows Imaging and PXE Automation",
-    "featured": true,
     "category": "infrastructure",
     "stack": "FOG, MDT, WDS, UEFI",
-    "summary": "Built a PXE boot and automated imaging pipeline at two co-op employers. Cut Windows 11 deployment from two hours to under 20 minutes per machine.",
     "link": null,
     "linkLabel": null,
     "image": "/images/projects/windows-pxe-imaging.jpg",
@@ -66,10 +60,8 @@
   },
   {
     "title": "AeroAssist",
-    "featured": true,
     "category": "software",
     "stack": "C#, ASP.NET, MSSQL",
-    "summary": "Full-stack ticketing system for ticket creation, tracking, and workflow handoffs. Built and deployed end to end.",
     "link": "https://lh1207.github.io/AeroAssist/",
     "linkLabel": "View Site",
     "image": "/images/aeroassist/cloud-logo.png",
@@ -105,10 +97,8 @@
   },
   {
     "title": "Culinary Mastery",
-    "featured": true,
     "category": "software",
     "stack": "React Native, Node.js, Azure AI",
-    "summary": "Cooking-education platform with Azure-backed auth and AI-driven explanations. UC Senior Design Group 7, IT Expo 2025.",
     "link": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery",
     "linkLabel": "View on GitHub",
     "image": "/images/culinary-mastery/hero-kitchen.jpg",

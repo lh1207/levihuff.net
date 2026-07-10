@@ -4,7 +4,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const path = require("path");
 const { execSync } = require("child_process");
-const { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime } = require("./src/filters");
+const { tagSlug, imageDimensions, dateReadable, dateIso, dateYMD, safeCdata, readingTime, jsonScript } = require("./src/filters");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
@@ -69,6 +69,9 @@ module.exports = function (eleventyConfig) {
 
   // Reading time estimate
   eleventyConfig.addFilter("readingTime", readingTime);
+
+  // JSON-encode data for inline <script> tags without risking a </script> break-out
+  eleventyConfig.addFilter("jsonScript", jsonScript);
 
   // Add width/height to <img> tags that lack intrinsic dimensions
   eleventyConfig.addTransform("img-dimensions", function (content, outputPath) {
