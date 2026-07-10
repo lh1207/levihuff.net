@@ -7,6 +7,7 @@ import {
   dateYMD,
   safeCdata,
   readingTime,
+  jsonScript,
 } from "../src/filters.js";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -155,5 +156,25 @@ describe("readingTime", () => {
   });
   it("output always ends with 'min read'", () => {
     expect(readingTime(Array(600).fill("word").join(" "))).toMatch(/\d+ min read/);
+  });
+});
+
+describe("jsonScript", () => {
+  it("round-trips plain data through JSON.parse", () => {
+    const input = { title: "Hello", tags: ["a", "b"], count: 3 };
+    expect(JSON.parse(jsonScript(input))).toEqual(input);
+  });
+  it("round-trips an array of objects", () => {
+    const input = [{ url: "/blog/foo/" }, { url: "/blog/bar/" }];
+    expect(JSON.parse(jsonScript(input))).toEqual(input);
+  });
+  it("escapes < so the output contains no literal < character", () => {
+    const output = jsonScript({ description: "a </script> tag" });
+    expect(output).not.toContain("<");
+  });
+  it("serializes a string containing </script> without a literal </script>", () => {
+    const output = jsonScript("close it: </script>");
+    expect(output).not.toContain("</script>");
+    expect(JSON.parse(output)).toBe("close it: </script>");
   });
 });

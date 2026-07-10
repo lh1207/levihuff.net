@@ -55,6 +55,47 @@ describe("projects.json", () => {
       }
     }
   });
+
+  it("category is one of the allowed filter values", () => {
+    const CATEGORIES = ["infrastructure", "work", "software", "ai"];
+    for (const p of projects) {
+      expect(typeof p.category, `category on "${p.title}"`).toBe("string");
+      expect(CATEGORIES, `category on "${p.title}"`).toContain(p.category);
+    }
+  });
+
+  it("does not carry the removed summary or featured fields", () => {
+    for (const p of projects) {
+      expect(p, `summary on "${p.title}" should have been removed`).not.toHaveProperty("summary");
+      expect(p, `featured on "${p.title}" should have been removed`).not.toHaveProperty("featured");
+    }
+  });
+
+  it("stack and meta, when present, are non-empty strings", () => {
+    for (const field of ["stack", "meta"]) {
+      for (const p of projects) {
+        if (p[field] === undefined || p[field] === null) continue;
+        expect(typeof p[field], `${field} on "${p.title}"`).toBe("string");
+        expect(p[field].trim(), `${field} on "${p.title}"`).not.toBe("");
+      }
+    }
+  });
+
+  it("imageClass, when present, is one of the allowed values", () => {
+    const IMAGE_CLASSES = ["logo"];
+    for (const p of projects) {
+      if (p.imageClass === undefined || p.imageClass === null) continue;
+      expect(IMAGE_CLASSES, `imageClass on "${p.title}"`).toContain(p.imageClass);
+    }
+  });
+
+  it("imageLoading, when present, is one of the allowed values", () => {
+    const IMAGE_LOADING = ["eager", "lazy"];
+    for (const p of projects) {
+      if (p.imageLoading === undefined || p.imageLoading === null) continue;
+      expect(IMAGE_LOADING, `imageLoading on "${p.title}"`).toContain(p.imageLoading);
+    }
+  });
 });
 
 describe("infra.js", () => {

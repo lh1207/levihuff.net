@@ -22,14 +22,14 @@ description: Software projects by Levi Huff. Full-stack web applications, mobile
       <div id="projects-app" class="mt-12" v-cloak>
 
         {# Category filter chips #}
-        <div class="flex flex-wrap gap-2 mb-8">
+        <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter projects by category">
           <button
             v-for="cat in categories"
             :key="cat.value"
             @click="active = cat.value"
             :aria-pressed="active === cat.value"
             :class="[
-              'font-jb text-mono-xs tracking-[0.04em] uppercase px-3 py-1.5 rounded-d-sm border transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2',
+              'font-jb text-mono-xs tracking-[0.04em] uppercase px-3 py-2 rounded-d-sm border transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2',
               active === cat.value
                 ? 'bg-amber/[0.18] border-amber/[0.64] text-amber'
                 : 'bg-surface-2 border-hair-1 text-fg-3 hover:text-fg-1 hover:border-hair-2'
@@ -37,6 +37,8 @@ description: Software projects by Levi Huff. Full-stack web applications, mobile
             {% raw %}{{ cat.label }}{% endraw %}
           </button>
         </div>
+
+        <p class="sr-only" aria-live="polite" aria-atomic="true">{% raw %}{{ filterStatus }}{% endraw %}</p>
 
         {# Projects grid #}
         <transition-group
@@ -110,7 +112,7 @@ description: Software projects by Levi Huff. Full-stack web applications, mobile
 <script type="module">
 import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js';
 
-const projects = {{ projects | dump | safe }};
+const projects = {{ projects | jsonScript | safe }};
 
 createApp({
   data() {
@@ -130,6 +132,18 @@ createApp({
     filteredProjects() {
       if (this.active === 'all') return this.projects;
       return this.projects.filter(p => p.category === this.active);
+    },
+    filterStatus() {
+      const count = this.filteredProjects.length;
+      if (this.active === 'all') {
+        return `Showing all ${count} projects`;
+      }
+      const cat = this.categories.find(c => c.value === this.active);
+      const label = cat ? cat.label.toLowerCase() : this.active;
+      if (count === 0) {
+        return `No projects in the ${label} category`;
+      }
+      return `Showing ${count} ${label} project${count === 1 ? '' : 's'}`;
     }
   },
   mounted() {
@@ -144,4 +158,11 @@ createApp({
 .card-enter-from,
 .card-leave-to { opacity: 0; transform: translateY(8px); }
 .card-move { transition: transform 0.25s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .card-enter-active,
+  .card-leave-active,
+  .card-move { transition: none; }
+  .card-enter-from,
+  .card-leave-to { opacity: 1; transform: none; }
+}
 </style>

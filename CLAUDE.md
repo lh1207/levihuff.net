@@ -64,8 +64,13 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
   "imageWidth": 800,
   "imageHeight": 600,
   "paragraphs": [{ "label": "string", "text": "string" }],
+  "category": "infrastructure | work | software | ai",   // drives the Vue filter chips on /projects/
   "link": "https://..." ,   // optional — null if no link
-  "linkLabel": "string"     // required when link is non-null
+  "linkLabel": "string",    // required when link is non-null
+  "stack": "string",        // optional — non-empty string, e.g. "Proxmox, Docker, Pi-hole"
+  "meta": "string",         // optional — non-empty string, e.g. "Personal project, 2025–2026."
+  "imageClass": "logo",     // optional — non-empty string
+  "imageLoading": "eager | lazy"   // optional
 }
 ```
 
