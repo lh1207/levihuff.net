@@ -33,3 +33,10 @@ CLAUDE.original.md
 agents.local.bak.md
 cv.md
 skills-lock.json
+
+# Obsidian vault (vault/) — noisy local app state, not repo content
+vault/.obsidian/workspace.json
+vault/.obsidian/workspace-mobile.json
+vault/.smart-connections/
+vault/.obsidian-git-data
+vault/.trash/

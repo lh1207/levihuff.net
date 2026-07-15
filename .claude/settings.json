@@ -8,6 +8,11 @@
             "type": "command",
             "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-tests-on-edit.sh",
             "timeout": 300
+          },
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/vault-auto-commit.sh",
+            "timeout": 30
           }
         ]
       }
@@ -18,6 +23,20 @@
           {
             "type": "command",
             "command": "echo 'levihuff.net: run npm test before claiming any change done. Build-critical edits (src/, test/, eleventy.config.cjs, tailwind.config.js, package.json) trigger the test hook automatically. See CLAUDE.md and AGENT_CONFIG.md.'"
+          },
+          {
+            "type": "command",
+            "command": "[ -f \"$CLAUDE_PROJECT_DIR\"/vault/wiki/hot.md ] && cat \"$CLAUDE_PROJECT_DIR\"/vault/wiki/hot.md || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null && [ -d vault/wiki ] && [ -d .git ] && git diff --name-only HEAD 2>/dev/null | grep -q '^vault/wiki/' && echo 'VAULT_CHANGED: vault/wiki/ was modified this session. Update vault/wiki/hot.md (under 500 words: Last Updated, Key Recent Facts, Recent Changes, Active Threads) and vault/wiki/index.md if new pages were added. Overwrite hot.md completely, it is a cache, not a journal.' || true"
           }
         ]
       }
