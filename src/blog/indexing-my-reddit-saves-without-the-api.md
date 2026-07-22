@@ -1,5 +1,5 @@
 ---
-title: Indexing My Reddit Saves Without the API
+title: Indexing my Reddit saves without the API
 description: "A build log of reddit-kb, the MCP server that turns my saved Reddit posts into a local searchable index. The official API was a dead end, so it runs on a session cookie, nomic-embed-text through Ollama, and ChromaDB. Two Docker failures included."
 date: 2026-06-16
 tags: [ai, mcp, reddit, chromadb, ollama, embeddings, rag, docker]

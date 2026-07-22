@@ -1,5 +1,5 @@
 ---
-title: Incorporating Accessibility into Web Projects
+title: Incorporating accessibility into web projects
 description: Practical approaches to making web applications accessible and maintainable for long-term use
 date: 2025-01-05
 tags: [accessibility, web-development, best-practices]
@@ -9,7 +9,7 @@ thumbnail: /images/blog/accessibility-keyboard.jpg
 
 Accessibility isn't just about compliance. It's about building apps that work for everyone. Thinking about accessibility from the start makes apps more usable and easier to maintain.
 
-## Why Accessibility Matters
+## Why accessibility matters
 
 ![Keyboard for accessible web navigation](/images/blog/accessibility-keyboard.jpg)
 
@@ -19,7 +19,7 @@ Accessible web applications:
 - Are easier to maintain and update
 - Align with professional best practices
 
-## Practical Implementation
+## Practical implementation
 
 ### Semantic HTML
 
@@ -36,7 +36,7 @@ Using semantic HTML elements provides meaning and structure that assistive techn
 
 Semantic elements like `<nav>`, `<main>`, `<article>`, and `<section>` communicate page structure to screen readers and other assistive technologies.
 
-### Keyboard Navigation
+### Keyboard navigation
 
 ![Person using keyboard for navigation](/images/blog/focus-typing.jpg)
 
@@ -45,7 +45,7 @@ Ensuring all interactive elements are keyboard accessible is essential. Users sh
 - Activate elements using Enter or Space
 - See clear focus indicators
 
-### ARIA Attributes
+### ARIA attributes
 
 When semantic HTML isn't sufficient, ARIA attributes provide additional context:
 
@@ -55,13 +55,13 @@ When semantic HTML isn't sufficient, ARIA attributes provide additional context:
 </button>
 ```
 
-### Color Contrast
+### Color contrast
 
 ![Color swatches demonstrating contrast options](/images/blog/color-swatches.jpg)
 
 Text must have sufficient contrast against background colors. The Web Content Accessibility Guidelines (WCAG) specify minimum contrast ratios for different text sizes.
 
-### Alternative Text
+### Alternative text
 
 Images should include descriptive alternative text:
 
@@ -69,14 +69,14 @@ Images should include descriptive alternative text:
 <img src="/images/diagram.png" alt="System architecture diagram showing three-tier structure">
 ```
 
-## Documentation for Maintainability
+## Documentation for maintainability
 
 Clear documentation supports accessibility by:
 - Explaining accessibility decisions and implementations
 - Providing guidance for future updates
 - Ensuring accessibility considerations aren't lost over time
 
-## Testing for Accessibility
+## Testing for accessibility
 
 ![Dashboard showing testing metrics and analysis](/images/blog/accessibility-testing.jpg)
 
@@ -86,7 +86,7 @@ Accessibility testing should be part of the development process:
 - Automated accessibility testing tools
 - User testing with people who have disabilities
 
-## Long-Term Benefits
+## Long-term benefits
 
 Projects that incorporate accessibility from the start are:
 - Easier to maintain and update

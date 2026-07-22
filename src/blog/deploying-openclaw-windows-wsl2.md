@@ -13,7 +13,7 @@ thumbnail: /images/blog/openclaw-hero.jpg
 
 I deployed it on my main workstation. My utility server is a repurposed Optiplex and wouldn't keep up. Getting OpenClaw running on Windows with WSL2 was more involved than the documentation suggests, and I learned more from where it broke than from where it worked.
 
-## Windows and WSL2 Are Intertwined
+## Windows and WSL2 are intertwined
 
 The install guides assume you're on macOS or a clean Linux system. WSL2 is technically supported, but the documentation doesn't cover the Windows-specific surface area in much depth. This sets a misleading expectation: the onboarding wizard looks simple, and the step count shown in current guides doesn't match how many steps actually appear when you run it.
 
@@ -25,7 +25,7 @@ TypeError: Cannot read properties of undefined (reading 'trim')
 
 There's no way around it. The "skip for now" option at that step isn't functional. You have to pick a channel to proceed, even if you have no intention of using it.
 
-## The Config Is What You're Really Doing
+## The config is what you're really doing
 
 The wizard doesn't produce a working config. It scaffolds a `openclaw.json` that's missing `gateway.mode`, which means the gateway won't start. Running `openclaw doctor --fix` rewrites the config but still doesn't add that field. You're left with a file that looks complete but fails silently.
 
@@ -35,7 +35,7 @@ Another source of confusion: the model entry created through the UI sets `"api":
 
 The provider key name the UI generates is something like `"qwen3:8b - ollama"`, specific to the model and adapter combo, not portable or clean. Renaming it to just `"ollama"` directly in the config file makes things considerably easier to reason about.
 
-### What the Working Config Actually Requires
+### What the working config actually requires
 
 - `gateway.mode: local`: set manually; the wizard and doctor both skip it
 - Provider-level `api` set to `openai-completions`, not overridden at the model level
@@ -44,13 +44,13 @@ The provider key name the UI generates is something like `"qwen3:8b - ollama"`, 
 
 Bypassing the wizard entirely and writing `openclaw.json` by hand turned out to be the faster path once I understood the schema.
 
-## The UI Has Broken Pieces
+## The UI has broken pieces
 
 The Model Provider API Adapter dropdown deselects itself when you interact with it and won't save your selection. The Save button doesn't appear while a dropdown is actively open. The end result is that configuring providers through the UI reliably doesn't work, which pushes you back to JSON regardless.
 
 This isn't a complaint about the project. It's open source and early. But it does mean the UI should be treated as a reference, not the primary configuration surface.
 
-## The Hardware Reality of Running LLMs on a Display GPU
+## The hardware reality of running LLMs on a display GPU
 
 My main workstation has an 8GB VRAM GPU. That sounds like enough for a local model until you account for what Windows is already using.
 
@@ -62,7 +62,7 @@ This is something worth understanding before you set expectations. Mac Mini user
 
 The right fix on Windows is either a dedicated inference GPU with the display on a separate card or a smaller model. Qwen3 4B or 1.7B would fit in the remaining VRAM and run at full GPU speed. The 16k minimum context window that OpenClaw enforces also costs VRAM, so that factors into the calculation too.
 
-## What the WSL2 Setup Needs to Look Like
+## What the WSL2 setup needs to look like
 
 The environment that actually works:
 
@@ -74,7 +74,7 @@ The environment that actually works:
 
 Once those pieces are in place and the config is written correctly, the gateway starts reliably as a user-level systemd service.
 
-## Key Takeaways
+## Key takeaways
 
 1. **Read the error output as documentation**: The schema I needed was reverse-engineered from what OpenClaw rejected, not from what the docs described
 2. **Wizards that crash on optional steps are a workflow hazard**: Designing a required action as "skippable" and then crashing when skipped is a real usability problem worth watching for in any tool
