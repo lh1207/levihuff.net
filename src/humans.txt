@@ -8,8 +8,8 @@ Doctype: HTML5
 Standards: WCAG 2.1 AA, RFC 9116
 
 /* TECHNOLOGY */
-Static Site Generator: Eleventy (11ty) 2.0
+Static Site Generator: Eleventy (11ty) 3.x
 Template Engine: Nunjucks
-CSS: Vanilla CSS with custom properties
+CSS: Tailwind CSS
 Deployment: GitHub Actions + FTP
 Hosting: Porkbun
