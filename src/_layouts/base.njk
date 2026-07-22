@@ -64,7 +64,6 @@
   <link rel="me" href="{{ site.social.github }}">
   <link rel="preload" href="/fonts/syne-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="/css/styles.css?v={{ gitHash }}">
   <style>[v-cloak]{display:none;}</style>
@@ -73,6 +72,7 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "{{ site.url }}/#website",
     "name": "{{ site.name }}",
     "url": "{{ site.url }}/"
   }
