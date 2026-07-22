@@ -1,8 +1,8 @@
 ---
-title: AeroAssist - Adding Docker Support for Home Lab Deployment
-description: Containerizing the AeroAssist ticketing system with Docker and Docker Compose for simplified deployment in home labs and production environments
+title: AeroAssist - Adding Docker support for homelab deployment
+description: Containerizing the AeroAssist ticketing system with Docker and Docker Compose for simplified deployment in homelabs and production environments
 date: 2026-01-26
-tags: [docker, containerization, devops, csharp, asp.net, home-lab]
+tags: [docker, containerization, devops, csharp, asp.net, homelab]
 layout: post.njk
 thumbnail: /images/aeroassist/cloud-logo-docker.png
 thumbnailLogo: true
