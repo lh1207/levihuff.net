@@ -71,7 +71,7 @@ description: Levi Huff, IT infrastructure. Windows imaging and zero-touch deploy
         {% for entry in infra %}
           {% if entry.section == "ai-ops" %}
           <article data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-md p-5 hover:border-hair-2 transition-colors duration-[180ms]">
-            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-4">{{ entry.stack | join(", ") }}</p>
+            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3">{{ entry.stack | join(", ") }}</p>
             <h3 class="font-plex text-base font-semibold text-fg-1 mt-2 leading-snug">
               <a href="/infrastructure/{{ entry.slug }}/" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ entry.name }}</a>
             </h3>
