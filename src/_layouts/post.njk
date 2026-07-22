@@ -102,7 +102,7 @@ isPost: true
   "headline": {{ title | dump | safe }},
   "description": {{ description | dump | safe }},
   "datePublished": "{{ page.date | dateIso }}",
-  "dateModified": "{{ page.date | dateIso }}",
+  "dateModified": "{{ (updated or page.date) | dateIso }}",
   "author": {
     "@type": "Person",
     "name": "{{ site.name }}",

@@ -1,5 +1,5 @@
 ---
-title: "Owning My AI Memory"
+title: "Owning my AI memory"
 description: "Why the context you build up with one AI assistant doesn't move cleanly to the next, and how a local, version-controlled markdown profile keeps you out of any single platform's proprietary memory feature."
 date: 2026-06-23
 tags: [ai, claude-code, gemini, llm, workflow, obsidian]

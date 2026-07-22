@@ -21,6 +21,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "autoprefixer": "^10.5.4",
     "cssnano": "^8.0.1",
+    "gray-matter": "^4.0.3",
     "image-size": "^2.0.2",
     "markdown-it": "^14.1.1",
     "markdown-it-anchor": "^9.2.0",

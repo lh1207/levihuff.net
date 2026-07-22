@@ -1,5 +1,5 @@
 ---
-title: AeroAssist - Full-Stack Ticketing System Development
+title: AeroAssist - Full-stack ticketing system development
 description: Building a comprehensive ticketing system using C#, ASP.NET, and MSSQL to streamline ticket creation, tracking, and management workflows
 date: 2025-01-18
 tags: [full-stack, csharp, asp.net, mssql, web-development, ticketing-system]
@@ -14,11 +14,11 @@ AeroAssist is a full-stack ticketing system I built to streamline ticket creatio
 
 ![AeroAssist dashboard showing open support tickets and status filters](/images/aeroassist/app.jpg)
 
-## Project Overview
+## Project overview
 
 Ticketing systems are essential tools for organizations to manage support requests, track issues, and maintain service quality. AeroAssist was developed to provide a comprehensive solution for ticket management, incorporating user management, workflow automation, and efficient data handling.
 
-## The Problem
+## The problem
 
 Organizations often struggle with:
 - Inefficient ticket creation and submission processes
@@ -29,7 +29,7 @@ Organizations often struggle with:
 
 AeroAssist solves these problems with a centralized, web-based platform for ticket management.
 
-## Technical Architecture
+## Technical architecture
 
 ### Frontend
 - **ASP.NET MVC**: Server-side rendering with Razor views
@@ -41,74 +41,74 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 - **ASP.NET Framework**: Web application framework
 - **MSSQL**: Relational database for data storage and management
 
-### Key Components
+### Key components
 - **User Authentication**: Secure user login and session management
 - **Ticket Management**: Create, view, update, and track tickets
 - **User Management**: Role-based access control and user administration
 - **Workflow Automation**: Automated ticket routing and status updates
 
-## Key Features
+## Key features
 
 ![AeroAssist ticket detail view with assignment, priority, and status fields](/images/aeroassist/features.jpg)
 
-### Ticket Creation and Management
+### Ticket creation and management
 - **Intuitive Ticket Forms**: Streamlined interface for creating new tickets
 - **Ticket Categorization**: Organize tickets by type, priority, and department
 - **Status Tracking**: Real-time visibility into ticket status and progress
 - **History Logging**: Complete audit trail of ticket changes and updates
 
-### User Management
+### User management
 - **Role-Based Access Control**: Different permission levels for users, agents, and administrators
 - **User Profiles**: Manage user information and preferences
 - **Team Assignment**: Assign tickets to specific users or teams
 
-### Workflow Automation
+### Workflow automation
 - **Automated Routing**: Route tickets to appropriate departments based on category
 - **Status Transitions**: Automated status updates based on workflow rules
 - **Notification System**: Alert users of ticket updates and assignments
 
-### Reporting and Analytics
+### Reporting and analytics
 - **Ticket Metrics**: Track ticket volume, resolution times, and performance
 - **Dashboard Views**: Visual representation of ticket statistics
 - **Export Capabilities**: Generate reports for analysis
 
-## My Contributions
+## My contributions
 
-### Development Work
+### Development work
 - **Full-Stack Implementation**: Developed both frontend and backend components
 - **Database Design**: Designed MSSQL database schema for tickets, users, and related entities
 - **API Development**: Created controllers and services for ticket operations
 - **User Interface**: Built responsive UI components using Bootstrap
 
-### Technical Implementation
+### Technical implementation
 - **Authentication System**: Implemented secure user authentication and authorization
 - **Business Logic**: Developed ticket management workflows and business rules
 - **Data Access Layer**: Created repository pattern for database operations
 - **Error Handling**: Implemented comprehensive error handling and logging
 
-### Code Quality
+### Code quality
 - **Code Organization**: Structured codebase following best practices
 - **Documentation**: Documented key components and functionality
 - **Testing**: Implemented unit tests for critical functionality
 
-## Technical Challenges
+## Technical challenges
 
-### Database Design
+### Database design
 **Challenge**: Designing a flexible database schema that supports various ticket types and workflows.
 
 **Solution**: Created normalized database structure with proper relationships, indexes, and constraints to support efficient queries and data integrity.
 
-### User Interface Responsiveness
+### User interface responsiveness
 **Challenge**: Ensuring the application works well across different devices and screen sizes.
 
 **Solution**: Leveraged Bootstrap's responsive grid system and components to create a mobile-friendly interface.
 
-### Workflow Automation
+### Workflow automation
 **Challenge**: Implementing flexible workflow rules that can adapt to different organizational needs.
 
 **Solution**: Designed a configurable workflow system that allows administrators to define routing rules and status transitions.
 
-## Technologies Used
+## Technologies used
 
 - **C#**: Object-oriented programming language for backend development
 - **ASP.NET**: Web application framework for building web applications
@@ -117,7 +117,7 @@ AeroAssist solves these problems with a centralized, web-based platform for tick
 - **Entity Framework**: ORM for database operations
 - **Git**: Version control for code management
 
-## Getting Started
+## Getting started
 
 ![Terminal commands for cloning AeroAssist and applying database migrations](/images/aeroassist/getting-started.jpg)
 
@@ -131,13 +131,13 @@ To set up AeroAssist locally:
 7. Configure connection strings in `appsettings.json`
 8. Run the application
 
-## API Documentation
+## API documentation
 
 ![Swagger UI listing AeroAssist REST endpoints with request and response schemas](/images/aeroassist/swagger.jpg)
 
 Swagger OpenAPI documentation is available at `/swagger` for exploring and testing API endpoints.
 
-## Project Structure
+## Project structure
 
 The application follows a standard ASP.NET MVC structure:
 - **Models**: Data models and business entities
@@ -146,7 +146,7 @@ The application follows a standard ASP.NET MVC structure:
 - **Services**: Business logic and data access
 - **Data Access**: Database operations and repositories
 
-## Learning Outcomes
+## Learning outcomes
 
 This project provided valuable experience in:
 - Full-stack web development with Microsoft technologies
@@ -156,7 +156,7 @@ This project provided valuable experience in:
 - Responsive web design with Bootstrap
 - Software architecture and code organization
 
-## Real-World Application
+## Real-world application
 
 Ticketing systems like AeroAssist are used in various contexts:
 - IT support departments
@@ -167,7 +167,7 @@ Ticketing systems like AeroAssist are used in various contexts:
 
 The skills developed in this project translate directly to professional software development roles that require full-stack capabilities and understanding of business process automation.
 
-## Future Enhancements
+## Future enhancements
 
 Potential improvements include:
 - Real-time notifications using SignalR

@@ -1,5 +1,5 @@
 ---
-title: Culinary Mastery - Building an Educational Cooking Platform
+title: Culinary Mastery - Building an educational cooking platform
 description: A senior design project creating an accessible educational app for teaching foundational cooking skills through video tutorials and interactive learning
 date: 2025-01-20
 tags: [full-stack, education, web-development, senior-design, react-native, azure]
@@ -11,14 +11,14 @@ Culinary Mastery is a web-based educational app that teaches foundational cookin
 
 ![Tablet displaying cooking tutorial video on kitchen counter with fresh ingredients](/images/culinary-mastery/hero-kitchen.jpg)
 
-## Project Overview
+## Project overview
 
 I worked on this with Senior Design Group 7 at the University of Cincinnati during Fall 2024 and Spring 2025. The project creates a learning platform that goes beyond recipes, teaching fundamental techniques, safety practices, and cooking vocabulary.
 
 **Repository:** [Culinary Mastery on GitHub](https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery)  
 **IT Expo 2025:** [Featured Project - Team 7](https://itexpo.live/2025/seniors/280)
 
-## IT Expo 2025 Recognition
+## IT Expo 2025 recognition
 
 Culinary Mastery was featured at the University of Cincinnati IT Expo 2025, where it was presented as Team 7's senior design project in the "Everyday Living Innovations" category. The IT Expo showcases innovative technology projects developed by students, providing an opportunity to present work to industry professionals, faculty, and peers.
 
@@ -26,7 +26,7 @@ At IT Expo, we presented how the app tackles real problems people face when lear
 
 At IT Expo, we showed the technical work, user experience design, and how it could help people feel more confident cooking and eat better. Being featured there shows the project successfully combined solid technical work with solving real problems.
 
-## The Problem
+## The problem
 
 ![Fresh cooking ingredients](/images/culinary-mastery/ingredients.jpg)
 
@@ -45,7 +45,7 @@ Culinary Mastery helps by providing:
 - Comprehensive accessibility features
 - Interactive learning experiences with quizzes and progress tracking
 
-## Technical Architecture
+## Technical architecture
 
 ### Frontend
 - **React Native**: Cross-platform mobile and web application development
@@ -58,28 +58,28 @@ Culinary Mastery helps by providing:
 - **Azure Blob Storage**: Secure storage for video files and media assets
 - **Firebase & Azure Authentication**: Secure user authentication with two-factor authentication (2FA) support
 
-### API Integration
+### API integration
 - **YouTube API**: Video hosting and streaming for tutorial content - videos are selected for quality and accuracy
 - **AI/LLM Integration**: Backend integration with AI services for generating written explanations and translations. This was included to learn how AI is being integrated into modern workflows, understand practical use cases, and explore how Azure handles AI services. The AI functionality is completely backend; users don't interact with it directly, and it's not marketed as an "AI feature."
 
-## Key Features
+## Key features
 
 ![Video-based learning interface](/images/culinary-mastery/video-learning.jpg)
 
-### Video-Based Learning
+### Video-based learning
 The app uses the YouTube API to deliver video tutorials. Each course includes:
 - Step-by-step instructional videos
 - Closed captions and subtitles for accessibility
 - Vocabulary and technique explanations
 - Safety information and best practices
 
-### Interactive Learning Components
+### Interactive learning components
 - **Quizzes**: Assessment tools to reinforce learning
 - **Progress Tracking**: User progress monitoring across courses
 - **Personalized Feedback**: Adaptive learning paths based on user performance
 - **Community Features**: Forums for user interaction and knowledge sharing
 
-### Security and Accessibility
+### Security and accessibility
 The project implements comprehensive security measures:
 - Encryption for user data protection
 - Compliance with GDPR and CCPA regulations
@@ -93,30 +93,30 @@ Accessibility features include:
 - Alternative text for images
 - Keyboard navigation support
 
-## My Contributions
+## My contributions
 
 As a member of the software application development team (alongside Guy-Leroc Ossebi and Jackson Pinchot), my contributions included:
 
-### Development Responsibilities
+### Development responsibilities
 - **Frontend Development**: Building user interface components for video playback, course navigation, and interactive elements
 - **Backend Integration**: Configuring Node.js services and integrating with Azure cloud services
 - **API Integration**: Implementing YouTube API integration for video content delivery
 - **Database Design**: Contributing to data modeling and Azure Cosmos DB schema design
 
-### Collaboration and Planning
+### Collaboration and planning
 - Participating in Agile/Scrum development methodology with two-week sprints
 - Contributing to UI/UX design decisions and wireframing
 - Collaborating on content creation and course structure
 - Participating in code reviews and quality assurance
 
-### Technical Implementation
+### Technical implementation
 - Implementing responsive design patterns for cross-device compatibility
 - Ensuring accessibility standards are met throughout the application
 - Contributing to authentication and security implementation
 - Optimizing video streaming and content delivery
 - Integrating AI/LLM services in the backend to learn current technology trends and understand how AI fits into real-world applications
 
-## Development Timeline
+## Development timeline
 
 The project followed an Agile development methodology with structured sprints:
 
@@ -132,11 +132,11 @@ The project followed an Agile development methodology with structured sprints:
 - Final development sprints
 - Project completion and documentation
 
-## AI Integration and Learning Objectives
+## AI integration and learning objectives
 
 We decided to include AI/LLM integration in the backend for several reasons:
 
-### Why Include AI?
+### Why include AI?
 
 AI is becoming part of daily workflows across many industries. Rather than treating it as a marketing buzzword, we wanted to learn how to actually integrate AI into real projects. The decision was based on:
 
@@ -148,24 +148,24 @@ AI is becoming part of daily workflows across many industries. Rather than treat
 
 The AI integration handles tasks like generating written explanations and translations behind the scenes. This approach let us learn about AI integration, explore practical use cases, and understand how cloud platforms like Azure support AI services, all while keeping the user experience focused on learning to cook, not on AI features.
 
-## Challenges and Solutions
+## Challenges and solutions
 
-### Video Content Delivery
+### Video content delivery
 **Challenge**: Ensuring reliable video streaming with good performance across different network conditions.
 
 **Solution**: Using the YouTube API for content delivery, which handles streaming and CDN capabilities for us.
 
-### Scalable Data Storage
+### Scalable data storage
 **Challenge**: Designing a database schema that can scale with growing user base and content library.
 
 **Solution**: Using Azure Cosmos DB, which can scale horizontally and distribute data globally.
 
-### Security and Compliance
+### Security and compliance
 **Challenge**: Implementing comprehensive security measures while maintaining user experience.
 
 **Solution**: Following best practices from OWASP, NIST, and CISA, including encryption, secure authentication, and compliance with data protection regulations.
 
-## Technologies and Tools
+## Technologies and tools
 
 - **Languages**: JavaScript, HTML, CSS
 - **Frameworks**: React Native, Node.js
@@ -174,7 +174,7 @@ The AI integration handles tasks like generating written explanations and transl
 - **Authentication**: Firebase, Azure Authentication
 - **Development Tools**: Git, GitHub, ESLint
 
-## Project Impact
+## Project impact
 
 Culinary Mastery aims to:
 - Increase cooking confidence among users
@@ -182,7 +182,7 @@ Culinary Mastery aims to:
 - Provide accessible learning resources for diverse audiences
 - Support continuous learning and skill development
 
-## Lessons Learned
+## Lessons learned
 
 This project provided valuable experience in:
 - Full-stack development across frontend and backend
@@ -194,7 +194,7 @@ This project provided valuable experience in:
 - Agile development methodology and team collaboration
 - Security best practices in application development
 
-## Future Enhancements
+## Future enhancements
 
 Potential future improvements include:
 - Expanded course content and tutorial library

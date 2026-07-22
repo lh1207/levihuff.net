@@ -1,5 +1,5 @@
 ---
-title: Systems Administration Learning Path for IT Students
+title: Systems administration learning path for IT students
 description: Practical exposure to Linux, Windows, and macOS system administration through troubleshooting, configuration, and reliability work
 date: 2024-12-20
 tags: [systems-administration, linux, windows, education]
@@ -11,11 +11,11 @@ thumbnail: /images/blog/sysadmin-server-room.jpg
 
 Systems administration requires understanding how different operating systems work, how to troubleshoot issues, and how to configure systems for reliability. As an IT student, gaining practical exposure to Linux, Windows, and macOS systems provides a foundation for professional work.
 
-## Multi-Platform Experience
+## Multi-platform experience
 
 Working with multiple operating systems develops flexibility and a deeper understanding of system concepts:
 
-### Linux Systems
+### Linux systems
 
 Linux administration involves:
 - Command-line interface usage
@@ -24,7 +24,7 @@ Linux administration involves:
 - File system permissions
 - Network configuration
 
-### Windows Systems
+### Windows systems
 
 Windows administration includes:
 - Active Directory concepts
@@ -33,7 +33,7 @@ Windows administration includes:
 - Registry configuration
 - Group policy management
 
-### macOS Systems
+### macOS systems
 
 macOS administration covers:
 - System preferences and configuration
@@ -42,7 +42,7 @@ macOS administration covers:
 - Network configuration
 - Security settings
 
-## Practical Skills Development
+## Practical skills development
 
 ### Troubleshooting
 
@@ -53,7 +53,7 @@ Troubleshooting skills develop through:
 - Understanding error messages
 - Applying systematic problem-solving approaches
 
-### Configuration Management
+### Configuration management
 
 Configuration work involves:
 - Understanding system settings
@@ -62,7 +62,7 @@ Configuration work involves:
 - Testing configuration modifications
 - Maintaining configuration consistency
 
-### Reliability Considerations
+### Reliability considerations
 
 Reliability work includes:
 - Understanding system dependencies
@@ -71,11 +71,11 @@ Reliability work includes:
 - Monitoring system health
 - Planning maintenance windows
 
-## Academic and Personal Context
+## Academic and personal context
 
 Academic coursework provides structured learning opportunities, while personal projects allow for experimentation and deeper exploration of specific topics. Both contexts contribute to developing practical systems administration skills.
 
-## Professional Application
+## Professional application
 
 The skills developed through academic and personal work translate to professional contexts:
 - Supporting production systems
@@ -84,7 +84,7 @@ The skills developed through academic and personal work translate to professiona
 - Maintaining system documentation
 - Contributing to infrastructure decisions
 
-## Key Takeaways
+## Key takeaways
 
 1. **Multi-platform experience is valuable**: Understanding different operating systems provides flexibility
 2. **Troubleshooting is a core skill**: Systematic problem-solving approaches are essential

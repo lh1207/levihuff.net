@@ -1,5 +1,5 @@
 ---
-title: LocoQuest - Android Geolocation Scavenger Hunt Application
+title: LocoQuest - Android geolocation scavenger hunt application
 description: Building a mobile application using Kotlin and Android SDK that uses geolocation to guide users to real-world benchmarks in an interactive scavenger hunt
 date: 2025-01-17
 tags: [mobile-development, android, kotlin, geolocation, app-development]
@@ -13,11 +13,11 @@ LocoQuest is an Android app I built that uses geolocation to create an interacti
 
 ![Smartphone displaying map with location markers in outdoor exploration setting](/images/locoquest/hero-outdoor-map.jpg)
 
-## Project Overview
+## Project overview
 
 LocoQuest turns traditional scavenger hunts into a digital, location-based experience. Users get quests that guide them to specific locations where they can find benchmarks, landmarks, or points of interest. The app uses GPS to track location and provide navigation.
 
-## The Problem
+## The problem
 
 Traditional scavenger hunts and location-based activities face several limitations:
 - Lack of real-time location tracking
@@ -28,97 +28,97 @@ Traditional scavenger hunts and location-based activities face several limitatio
 
 LocoQuest solves these problems with a digital platform that combines GPS navigation, location verification, and game-like elements.
 
-## Technical Architecture
+## Technical architecture
 
 ![LocoQuest UML class diagram showing app architecture](/images/locoquest/uml-class-diagram.png)
 
-### Mobile Platform
+### Mobile platform
 - **Kotlin**: Modern programming language for Android development
 - **Android SDK**: Native Android application development
 - **Android Studio**: Integrated development environment
 
-### Core Technologies
+### Core technologies
 - **Geolocation APIs**: GPS and location services for position tracking
 - **Google Maps Integration**: Mapping and navigation capabilities
 - **Location Services**: Background location tracking and geofencing
 - **Local Storage**: SQLite database for quest data and user progress
 
-### Key Components
+### Key components
 - **Location Manager**: Handles GPS and network-based location services
 - **Quest System**: Manages quest creation, tracking, and completion
 - **Navigation Module**: Provides directions and route guidance
 - **User Interface**: Native Android UI components and Material Design
 
-## Key Features
+## Key features
 
-![LocoQuest app storyboard showing user interface flow](/images/locoquest/storyboard.png)
+![LocoQuest app storyboard showing user interface flow](/images/locoquest/storyboard.webp)
 
-### Geolocation and Navigation
+### Geolocation and navigation
 - **GPS Tracking**: Real-time location tracking using device GPS
 - **Route Guidance**: Turn-by-turn directions to quest locations
 - **Distance Calculation**: Real-time distance to target locations
 - **Location Verification**: Confirms user arrival at quest destinations
 
-### Quest System
+### Quest system
 - **Quest Discovery**: Browse available quests in the area
 - **Quest Details**: View information about benchmarks and landmarks
 - **Progress Tracking**: Monitor completion status of active quests
 - **Quest History**: Record of completed quests and achievements
 
-### User Experience
+### User experience
 - **Interactive Maps**: Visual representation of quest locations
 - **Notifications**: Alerts when approaching quest locations
 - **Offline Capability**: Basic functionality without constant internet connection
 - **User Profiles**: Track statistics and achievements
 
-### Benchmark Database
+### Benchmark database
 - **Real-World Benchmarks**: Database of survey markers and landmarks
 - **Location Information**: Details about each benchmark
 - **Categorization**: Organize benchmarks by type or region
 
-## My Contributions
+## My contributions
 
-### Development Work
+### Development work
 - **Android Application Development**: Built native Android app using Kotlin
 - **Geolocation Implementation**: Integrated GPS and location services
 - **UI/UX Design**: Created intuitive user interface for quest navigation
 - **Database Design**: Implemented local storage for quest data
 
-### Technical Implementation
+### Technical implementation
 - **Location Services**: Configured and managed GPS location tracking
 - **Permission Handling**: Implemented runtime permissions for location access
 - **Background Services**: Created services for location tracking
 - **Map Integration**: Integrated mapping functionality for navigation
 
-### Code Quality
+### Code quality
 - **Kotlin Best Practices**: Utilized modern Kotlin features and idioms
 - **Android Architecture**: Followed Android development best practices
 - **Error Handling**: Implemented robust error handling for location services
 - **Performance Optimization**: Optimized battery usage and location accuracy
 
-## Technical Challenges
+## Technical challenges
 
-### Location Accuracy
+### Location accuracy
 **Challenge**: Ensuring accurate location detection, especially in areas with poor GPS signal.
 
 **Solution**: Implemented hybrid location services using both GPS and network-based location, with accuracy thresholds and fallback mechanisms.
 
-### Battery Optimization
+### Battery optimization
 **Challenge**: Location tracking can significantly drain device battery.
 
 **Solution**: Implemented efficient location update strategies, using appropriate update intervals and location request priorities based on app state.
 
-### Permission Management
+### Permission management
 **Challenge**: Handling Android runtime permissions for location access, which requires user approval.
 
 **Solution**: Created a comprehensive permission request flow that explains the need for location access and handles permission denial gracefully.
 
-### Offline Functionality
+### Offline functionality
 **Challenge**: Providing core functionality when internet connectivity is limited.
 
 **Solution**: Implemented local database storage for quest data and cached location information, allowing basic functionality without constant connectivity.
 
-## Technologies Used
+## Technologies used
 
 - **Kotlin**: Modern programming language for Android development
 - **Android SDK**: Native Android development framework
@@ -128,7 +128,7 @@ LocoQuest solves these problems with a digital platform that combines GPS naviga
 - **Material Design**: Android UI design guidelines
 - **Git**: Version control for code management
 
-## Android Development Concepts
+## Android development concepts
 
 This project demonstrated proficiency in:
 - **Activity Lifecycle**: Managing Android activity states
@@ -139,7 +139,7 @@ This project demonstrated proficiency in:
 - **UI Components**: Android views and layouts
 - **Intents**: Navigation between activities
 
-## Real-World Applications
+## Real-world applications
 
 Location-based applications like LocoQuest have various use cases:
 - Educational field trips and location-based learning
@@ -148,7 +148,7 @@ Location-based applications like LocoQuest have various use cases:
 - Fitness and outdoor activity tracking
 - Location-based marketing and engagement
 
-## Learning Outcomes
+## Learning outcomes
 
 This project provided valuable experience in:
 - Native Android application development
@@ -159,7 +159,7 @@ This project provided valuable experience in:
 - Battery optimization for mobile applications
 - Handling device permissions and user privacy
 
-## Future Enhancements
+## Future enhancements
 
 Potential improvements include:
 - Social features for sharing quests and achievements
@@ -171,7 +171,7 @@ Potential improvements include:
 - Custom quest creation by users
 - Integration with fitness tracking apps
 
-## Mobile Development Best Practices
+## Mobile development best practices
 
 Key practices implemented in this project:
 - **Battery Efficiency**: Optimized location updates to minimize battery drain

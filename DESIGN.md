@@ -2,7 +2,7 @@
 
 A consolidated, single-file export of the Levi Huff design system. Drop this in a repo and a developer can rebuild the look without external context.
 
-**Owner:** Levi Huff · Cincinnati, OH · [levihuff.net](https://levihuff.net) · [github.com/lh1207](https://github.com/lh1207)
+**Owner:** Levi Huff · Washington Court House, OH · [levihuff.net](https://levihuff.net) · [github.com/lh1207](https://github.com/lh1207)
 **Source:** [`lh1207/levihuff.net`](https://github.com/lh1207/levihuff.net) (Eleventy + Tailwind)
 **Posture:** dark-first, industrial-technical. One warm-amber accent. Monospace for technical callouts. No emoji, no gradients, no italics.
 
@@ -10,7 +10,7 @@ A consolidated, single-file export of the Levi Huff design system. Drop this in 
 
 ## 1. Brand snapshot
 
-Personal portfolio for an early-career IT and software development professional, graduating May 2026 from the University of Cincinnati (BS Information Technology). Targets AI ops and infrastructure support roles — bridging traditional IT (helpdesk, Active Directory, Windows imaging, networking) with modern AI deployments (Ollama, Docker, Proxmox, local LLM inference).
+Personal portfolio for an early-career IT and software development professional, graduated May 2026 from the University of Cincinnati (BS Information Technology). Targets AI ops and infrastructure support roles — bridging traditional IT (helpdesk, Active Directory, Windows imaging, networking) with modern AI deployments (Ollama, Docker, Proxmox, local LLM inference).
 
 > Reads like field notes from someone who actually maintains the systems they describe.
 
@@ -71,16 +71,16 @@ Dark is the default. Light is opt-in via `[data-theme="light"]`.
 |---|---|---|
 | `--fg-1` | `#e8eaed` | primary text |
 | `--fg-2` | `#b4b8c0` | secondary text |
-| `--fg-3` | `#7c828d` | tertiary / metadata |
+| `--fg-3` | `#87909a` | tertiary / metadata |
 | `--fg-4` | `#4f545d` | disabled, dividers-on-text |
 
-### Borders
+### Borders (hair tokens)
 
 | Token | Hex | Use |
 |---|---|---|
-| `--border-1` | `#25292f` | default hairline |
-| `--border-2` | `#2f343c` | hover hairline |
-| `--border-3` | `#3a4049` | strong / focus |
+| `--border-1` | `#62676c` | default hairline |
+| `--border-2` | `#6e7378` | hover hairline |
+| `--border-3` | `#7c828d` | strong / focus |
 
 ### Accent — single warm amber
 
@@ -299,8 +299,8 @@ Theme toggle persists to `localStorage` (`theme` key) and respects `prefers-colo
 
 :root {
   --bg-0:#0a0b0d; --bg-1:#111317; --bg-2:#181b21; --bg-3:#20242c; --bg-inset:#07080a;
-  --fg-1:#e8eaed; --fg-2:#b4b8c0; --fg-3:#7c828d; --fg-4:#4f545d;
-  --border-1:#25292f; --border-2:#2f343c; --border-3:#3a4049;
+  --fg-1:#e8eaed; --fg-2:#b4b8c0; --fg-3:#87909a; --fg-4:#4f545d;
+  --border-1:#62676c; --border-2:#6e7378; --border-3:#7c828d;
   --accent:#f5a524; --accent-hi:#ffba3d; --accent-lo:#b87a14;
   --accent-tint:rgba(245,165,36,0.10); --accent-edge:rgba(245,165,36,0.32);
   --ok:#4ade80; --warn:#f5a524; --err:#ef4444; --info:#60a5fa;

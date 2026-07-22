@@ -24,8 +24,10 @@ This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. `npm run build`
 CSS is **not** a simple passthrough copy. The build chain is:
 
 ```
-src/_includes/css/tailwind.css  →  PostCSS (autoprefixer + cssnano in prod)  →  _site/css/styles.css
+src/_includes/css/tailwind.css  →  PostCSS (autoprefixer)  →  tailwindcss --minify  →  _site/css/styles.css
 ```
+
+PostCSS applies `autoprefixer` on every build. `postcss.config.js` also has a `cssnano` branch gated on `process.env.NODE_ENV === 'production'`, but no npm script sets `NODE_ENV`, so that branch never runs in practice — minification actually comes from the `tailwindcss --minify` flag in the `build` script (`package.json`). Treat the cssnano branch as dead code unless a script starts setting `NODE_ENV=production`.
 
 Tailwind scans `src/**/*.njk`, `src/**/*.md`, and `src/**/*.html` for class names. The `safelist` in `tailwind.config.js` keeps `header-anchor` (injected by the Markdown anchor plugin at build time, not present in source files).
 
@@ -45,12 +47,12 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
 
 | File | Used by | Key schema |
 |---|---|---|
-| `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `social.{github,linkedin,handshake}` |
+| `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `graduationDate` (string, e.g. `"May 2026"`; consumed by `index.njk`/`about.njk`/`contact.njk`/infrastructure pages), `social.{github,linkedin,handshake}` |
 | `navigation.json` | `nav.njk` | Array of `{label, url}` — `url` must be root-relative (start with `/`) |
 | `projects.json` | Projects page & cards | See schema below |
 | `experience.json` | About cards | `company`, `focusAreas`, `description` (required strings); optional `highlights` (array of non-empty strings) |
 | `skills.json` | Skill groups | Array of `{heading, items: [{label, text}]}` |
-| `tools.json` | Tools section | Array of `{name, category}` — uppercase category strings |
+| `tools.json` | Tools section | Array of `{name, category}` — uppercase category strings. Not yet schema-validated: `test/data.test.js` has no `tools.json` block, unlike the other data files. |
 | `infra.js` | Infrastructure hub, detail pages, homepage featured cards | See schema below |
 
 **`projects.json` schema** (all fields required unless noted):
@@ -113,6 +115,7 @@ Key behaviors defined here:
   - `dateYMD` — `YYYY-MM-DD` string (used in sitemap).
   - `safeCdata` — escapes `]]>` for valid CDATA in the Atom feed.
   - `readingTime` — estimated read time at 200 wpm (minimum `"1 min read"`).
+  - `jsonScript` — JSON-encodes a value for embedding inside an inline `<script>` tag, escaping `<` so a `</script>` substring in the data can never break out; used to pass data into the Vue islands.
 - **Transforms:** `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (uses `imageDimensions`); `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest.
 - **Global data:** `currentYear` (integer), `buildDate` (`YYYY-MM-DD` string), and `gitHash` (short commit hash, used to cache-bust the CSS URL; falls back to `"dev"` outside git).
 - **Passthrough:** `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, `_headers`. (`src/.htaccess` is intentionally NOT passthrough — Porkbun static hosting rejects it.)

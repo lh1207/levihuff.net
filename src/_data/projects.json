@@ -128,9 +128,9 @@
     "imageLoading": "lazy",
     "description": "<strong>Concept design project</strong> showcasing app design skills without code. UCRelief assists University of Cincinnati students with current challenges by providing up-to-date information.",
     "paragraphs": [
-      { "label": "Context",  "text": "College advice rapidly becomes outdated. In 2000, student loans averaged $26,160, now it's $36,900. UCRelief addresses this gap for UC students." },
+      { "label": "Context",  "text": "College advice rapidly becomes outdated. In 2000, student loans averaged $26,160; today the figure is about $36,900. UCRelief addresses this gap for UC students." },
       { "label": "Role",     "text": "Designer (Concept Pitch)" },
-      { "label": "Timeline", "text": "January 2021 - April 2021" }
+      { "label": "Timeline", "text": "January 2021 – April 2021" }
     ],
     "meta": null
   },

@@ -1,8 +1,8 @@
 ---
-title: AeroAssist - Adding Docker Support for Home Lab Deployment
-description: Containerizing the AeroAssist ticketing system with Docker and Docker Compose for simplified deployment in home labs and production environments
+title: AeroAssist - Adding Docker support for homelab deployment
+description: Containerizing the AeroAssist ticketing system with Docker and Docker Compose for simplified deployment in homelabs and production environments
 date: 2026-01-26
-tags: [docker, containerization, devops, csharp, asp.net, home-lab]
+tags: [docker, containerization, devops, csharp, asp.net, homelab]
 layout: post.njk
 thumbnail: /images/aeroassist/cloud-logo-docker.png
 thumbnailLogo: true
@@ -26,9 +26,9 @@ Benefits of containerizing AeroAssist:
 - **Easy updates**: Pull new images and restart
 - **Home lab friendly**: Perfect for self-hosted environments
 
-## What Changed
+## What changed
 
-### Configuration Enhancements
+### Configuration enhancements
 
 The application needed several changes to work properly in containerized environments:
 
@@ -108,7 +108,7 @@ This configuration provides:
 - **Bridge networking**: Containers communicate on an isolated network
 - **Environment variables**: Sensitive values loaded from `.env` file
 
-### Supporting Files
+### Supporting files
 
 Additional files included in this update:
 
@@ -116,13 +116,13 @@ Additional files included in this update:
 - **`appsettings.Docker.json`**: Reference configuration for containerized deployments
 - **`.env.example`**: Template for environment variables
 
-## Quick Start
+## Quick start
 
 ![Server infrastructure for containerized deployment](/images/aeroassist/server-deployment.jpg)
 
 Getting AeroAssist running with Docker is now straightforward:
 
-### Using Docker Compose (Recommended)
+### Using Docker Compose (recommended)
 
 ```bash
 # Clone the repository
@@ -139,7 +139,7 @@ docker compose up -d
 
 The application will be available at `http://localhost:8080` once both containers are healthy.
 
-### Using Standalone Docker
+### Using standalone Docker
 
 For environments with an existing database:
 
@@ -155,11 +155,11 @@ docker run -d \
   aeroassist
 ```
 
-## Auto-Migration
+## Auto-migration
 
 The containerized deployment includes automatic database migration. When the application starts, it checks for pending migrations and applies them. This eliminates the need for manual migration steps during deployment or updates.
 
-## Configuration Reference
+## Configuration reference
 
 Key environment variables for Docker deployments:
 
@@ -172,9 +172,9 @@ Key environment variables for Docker deployments:
 | `Swagger__Enabled` | Enable Swagger in production |
 | `HttpsRedirect__Enabled` | Enable/disable HTTPS redirect |
 
-## Technical Considerations
+## Technical considerations
 
-### Running Behind a Reverse Proxy
+### Running behind a reverse proxy
 
 When running AeroAssist behind a reverse proxy like Nginx or Traefik:
 
@@ -182,7 +182,7 @@ When running AeroAssist behind a reverse proxy like Nginx or Traefik:
 2. Configure CORS origins to match your domain
 3. Set up proper forwarded headers if needed
 
-### Database Persistence
+### Database persistence
 
 The Docker Compose configuration uses a named volume (`sqldata`) for database persistence. This ensures data survives container restarts and updates. For production, consider:
 
@@ -190,7 +190,7 @@ The Docker Compose configuration uses a named volume (`sqldata`) for database pe
 - Volume backup strategies
 - External SQL Server for critical deployments
 
-## Learning Outcomes
+## Learning outcomes
 
 Adding Docker support to AeroAssist provided experience with:
 
