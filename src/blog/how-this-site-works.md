@@ -1,5 +1,5 @@
 ---
-title: How This Site Works - Building with Eleventy and Node.js
+title: How this site works - Building with Eleventy and Node.js
 description: A technical overview of how levihuff.net is built using Eleventy (11ty) static site generator, Node.js, and automated deployment via GitHub Actions
 date: 2025-01-19
 tags: [eleventy, nodejs, static-site, web-development, github-actions]
@@ -9,7 +9,7 @@ thumbnail: /images/blog/site-build-terminal.jpg
 
 This site is built with Eleventy (11ty), a simple and flexible static site generator that runs on Node.js. I chose this approach for its speed, simplicity, and the ability to write content in Markdown while maintaining full control over the HTML output.
 
-## Why a Static Site?
+## Why a static site?
 
 ![Terminal showing Eleventy build process output](/images/blog/site-build-terminal.jpg)
 
@@ -21,7 +21,7 @@ Static sites offer several advantages for a portfolio:
 - **Version control**: The entire site lives in a Git repository
 - **Low cost**: No need for expensive hosting with server-side capabilities
 
-## The Technology Stack
+## The technology stack
 
 ### Node.js
 
@@ -84,7 +84,7 @@ eleventyConfig.addPassthroughCopy("src/images");
 eleventyConfig.addPassthroughCopy("src/css");
 ```
 
-## Project Structure
+## Project structure
 
 ```
 levihuff.net/
@@ -106,13 +106,13 @@ levihuff.net/
 
 The `src/` directory contains all source files. Eleventy processes these and outputs the final site to `_site/`.
 
-## How Pages Are Built
+## How pages are built
 
 ### Layouts
 
 Every page uses a layout defined in frontmatter. The base layout (`base.njk`) provides the HTML structure, head tags, navigation, and footer. Blog posts use `post.njk`, which extends the base layout and adds post-specific elements like the title, date, tags, and author attribution.
 
-### Blog Posts
+### Blog posts
 
 Blog posts are Markdown files with YAML frontmatter:
 
@@ -145,7 +145,7 @@ The site uses a single CSS file with CSS custom properties (variables) for consi
 
 This approach keeps styling maintainable without requiring a CSS preprocessor or build step for styles.
 
-## Automated Deployment
+## Automated deployment
 
 The site deploys automatically when changes are pushed to the `main` branch. A GitHub Actions workflow handles the process:
 
@@ -170,7 +170,7 @@ The workflow uses repository secrets for FTP credentials, keeping them secure wh
     local-dir: ./_site/
 ```
 
-## Development Workflow
+## Development workflow
 
 My typical workflow:
 

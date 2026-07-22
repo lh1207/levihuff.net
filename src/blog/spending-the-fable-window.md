@@ -1,5 +1,5 @@
 ---
-title: Spending the Fable Window
+title: Spending the Fable window
 description: "A retrospective on using Claude Fable 5 only for first-pass work during its short free window: the tier ladder it sat on, what I built with it, real ccusage numbers against an Opus baseline, and what instrumentation caught that memory would have gotten wrong."
 date: 2026-06-13
 tags: [ai, claude-code, fable, opus, sonnet, mcp, ccusage, eleventy]

@@ -1,5 +1,5 @@
 ---
-title: Rebuilding My Dev Setup With Three LLMs
+title: Rebuilding my dev setup with three LLMs
 description: "A build log of moving to a Mac, rebuilding the terminal stack, and putting Claude Code, Codex, and Gemini to work on the same codebase. Two real failures included."
 date: 2026-04-29
 tags: [ai, claude-code, codex, gemini, macos, terminal, devops, eleventy]
@@ -79,7 +79,7 @@ The reason is not provider loyalty. A single model is a poor critic of its own o
 The role split is documented in `~/.claude/CLAUDE.md`, which Claude Code loads at the start of every session:
 
 ```markdown
-## Model Roles
+## Model roles
 
 | Model         | Role |
 |---------------|------|
@@ -160,7 +160,7 @@ Why? Because the file is not being served by Apache. The earlier lesson means no
 
 This is exactly what the multi-LLM workflow is supposed to catch. It would have, if I had bothered to ask the right question. Claude reviewed the change and approved it. Codex would have approved it on syntactic and Apache-doctrine grounds. Neither was prompted to ask: "is this file actually being served?" because I did not include that in the prompt. Cross-provider review catches reasoning errors a single model would gloss over. It does not compensate for a wrong premise. That responsibility stays with me.
 
-## Key Takeaways
+## Key takeaways
 
 1. **Three models, three jobs**: orchestrator (Claude), reviewer (Codex), large-context reader (Gemini). Use the right one for the task. Do not run all three on every change.
 2. **Cross-provider review is structural, not ornamental**: the value is that the second model did not write the first answer. A single model will rarely robustly critique its own output.

@@ -1,5 +1,5 @@
 ---
-title: Full Stack Development Fundamentals for IT Students
+title: Full-stack development fundamentals for IT students
 description: Practical insights on applying full stack concepts across frontend, backend, and database layers in academic and professional contexts
 date: 2025-01-10
 tags: [full-stack, development, education]
@@ -9,11 +9,11 @@ thumbnail: /images/blog/fullstack-workspace.jpg
 
 Full stack development means understanding how frontend, backend, and database layers work together to build working applications. As an IT student, I've learned a lot by applying these concepts in academic and personal projects.
 
-## Understanding the Layers
+## Understanding the layers
 
 Full stack development involves three primary layers:
 
-### Frontend Layer
+### Frontend layer
 
 The frontend handles user interaction and presentation. This includes:
 - User interface components
@@ -21,7 +21,7 @@ The frontend handles user interaction and presentation. This includes:
 - User experience considerations
 - Accessibility requirements
 
-### Backend Layer
+### Backend layer
 
 The backend manages business logic and server-side operations:
 - API endpoints and routing
@@ -29,7 +29,7 @@ The backend manages business logic and server-side operations:
 - Data processing and transformation
 - Integration with external services
 
-### Database Layer
+### Database layer
 
 The database stores and manages application data:
 - Data modeling and schema design
@@ -37,25 +37,25 @@ The database stores and manages application data:
 - Data integrity and relationships
 - Backup and recovery considerations
 
-## Practical Application
+## Practical application
 
 ![Laptop on a table with a dark code editor open](/images/blog/fullstack-workspace.jpg)
 
 In both academic coursework and personal projects, I've applied full stack concepts to build applications that reflect real operational needs:
 
-### Ticketing Systems
+### Ticketing systems
 
 Building ticketing systems requires understanding how users submit requests (frontend), how those requests are processed and routed (backend), and how ticket data is stored and retrieved (database).
 
-### Data Handling Applications
+### Data handling applications
 
 Applications that handle data entry, processing, and reporting show how all three layers work together. The frontend has input forms, the backend validates and processes data, and the database stores the results.
 
-### Workflow Tracking Tools
+### Workflow tracking tools
 
 Workflow tracking applications illustrate how state management flows through all layers. User actions update the frontend, business logic in the backend determines state transitions, and the database maintains the current state of each workflow.
 
-## Key Considerations
+## Key considerations
 
 When building full stack applications, several factors are important:
 
@@ -65,7 +65,7 @@ When building full stack applications, several factors are important:
 4. **Performance**: Considering performance implications at each layer
 5. **Maintainability**: Writing code that is clear and maintainable across all layers
 
-## Academic vs. Professional Context
+## Academic vs. professional context
 
 Academic projects provide opportunities to experiment and learn, while professional work requires balancing functionality with maintainability and reliability. Both contexts contribute to understanding how full stack concepts apply in practice.
 
