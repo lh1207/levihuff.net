@@ -41,7 +41,7 @@ No `.env` file or local secrets are needed for development.
 |---|---|
 | Static site generator | Eleventy 3.x (`eleventy.config.cjs`) |
 | Templates | Nunjucks, Markdown (`markdown-it` + `markdown-it-anchor`) |
-| CSS | Tailwind CSS 3.x (CLI), PostCSS, autoprefixer, cssnano |
+| CSS | Tailwind CSS 4.x (`@tailwindcss/cli`) |
 | Client-side interactivity | Vue 3 CDN islands (project filter, blog tag filter) |
 | Animations | Motion One 10.x (CDN, ESM import, gated on `prefers-reduced-motion`) |
 | Tests | Vitest 4.x |
@@ -57,7 +57,6 @@ No `.env` file or local secrets are needed for development.
 levihuff.net/
 ├── eleventy.config.cjs   # Eleventy config: plugins, filters, collections, transforms, passthroughs
 ├── tailwind.config.js    # Tailwind theme tokens, content globs, breakpoints
-├── postcss.config.js     # autoprefixer + conditional cssnano (production only)
 ├── vitest.config.js      # Vitest config
 ├── package.json
 │
@@ -94,7 +93,7 @@ levihuff.net/
 │   ├── fonts/                  # Passthrough: self-hosted woff2 fonts
 │   ├── files/                  # Passthrough: resume PDF
 │   ├── humans.txt              # Passthrough
-│   ├── filters.js              # Seven Eleventy filter functions
+│   ├── filters.js              # Eight Eleventy filter functions
 │   │
 │   ├── index.njk               # Homepage
 │   ├── about.njk               # About page (includes the merged resume content)
@@ -150,9 +149,10 @@ src/**/*.{njk,md}
 
 ```
 src/_includes/css/tailwind.css
-  └─ Tailwind CLI (scans src/**/*.{njk,md,html} for class names)
-       └─ PostCSS (tailwindcss, autoprefixer, cssnano[prod])
-            └─> _site/css/styles.css
+  └─ Tailwind CSS 4 CLI (scans src/**/*.{njk,md,html} for class names)
+       ├─ Loads theme tokens from tailwind.config.js via @config
+       ├─ Handles imports and vendor prefixing
+       └─> _site/css/styles.css (minified in production builds)
 ```
 
 `npm start` runs a full build first (so `_site/css/styles.css` exists before the 11ty dev server starts), then watches both pipelines in parallel. The `gitHash` global (short commit hash) cache-busts the CSS URL on every deploy.
@@ -203,6 +203,7 @@ _site/**/*.html    ←──── static output, FTP-uploaded
 | `dateYMD` | Date → `"YYYY-MM-DD"` (sitemap) |
 | `safeCdata` | String → escaped for CDATA in Atom feed |
 | `readingTime` | Post content → `"N min read"` at 200 wpm |
+| `jsonScript` | Value → JSON safe for embedding in an inline script |
 
 **Transforms** (also in `eleventy.config.cjs`):
 - `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (via `imageDimensions`).
@@ -339,7 +340,6 @@ Array of tool badges with uppercase category labels.
 
 | Variable | Used by | When | Notes |
 |---|---|---|---|
-| `NODE_ENV=production` | `postcss.config.js` | `npm run build` | Enables cssnano minification. Set automatically by the deploy workflow. |
 | `FTP_SERVER` | `deploy.yml` | CI deploy only | GitHub repository secret. Not needed locally. |
 | `FTP_USERNAME` | `deploy.yml` | CI deploy only | GitHub repository secret. Not needed locally. |
 | `FTP_PASSWORD` | `deploy.yml` | CI deploy only | GitHub repository secret. Not needed locally. |
