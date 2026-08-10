@@ -24,12 +24,12 @@ This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. `npm run build`
 CSS is **not** a simple passthrough copy. The build chain is:
 
 ```
-src/_includes/css/tailwind.css  →  PostCSS (autoprefixer)  →  tailwindcss --minify  →  _site/css/styles.css
+src/_includes/css/tailwind.css  →  @tailwindcss/cli --minify  →  _site/css/styles.css
 ```
 
-PostCSS applies `autoprefixer` on every build. `postcss.config.js` also has a `cssnano` branch gated on `process.env.NODE_ENV === 'production'`, but no npm script sets `NODE_ENV`, so that branch never runs in practice — minification actually comes from the `tailwindcss --minify` flag in the `build` script (`package.json`). Treat the cssnano branch as dead code unless a script starts setting `NODE_ENV=production`.
+Tailwind CSS 4 handles imports and vendor prefixing internally. Minification comes from the `tailwindcss --minify` flag in the `build` script (`package.json`); the repo has no separate PostCSS configuration.
 
-Tailwind scans `src/**/*.njk`, `src/**/*.md`, and `src/**/*.html` for class names. The `safelist` in `tailwind.config.js` keeps `header-anchor` (injected by the Markdown anchor plugin at build time, not present in source files).
+Tailwind scans `src/**/*.njk`, `src/**/*.md`, and `src/**/*.html` for class names. `src/_includes/css/tailwind.css` loads the legacy JavaScript theme with `@config` and uses `@source inline()` to keep `header-anchor` (injected by the Markdown anchor plugin at build time, not present in source files).
 
 To add a new utility class, use it directly in a template — Tailwind picks it up automatically. To add a custom CSS rule, add it to `src/_includes/css/tailwind.css` inside the appropriate `@layer`.
 

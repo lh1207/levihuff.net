@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   tagSlug,
   imageDimensions,
+  imageBufferDimensions,
   dateReadable,
   dateIso,
   dateYMD,
@@ -21,6 +22,59 @@ describe("imageDimensions", () => {
   });
   it("returns null for a missing image", () => {
     expect(imageDimensions("/images/missing.jpg", resolve(root, "src"))).toBeNull();
+  });
+
+  it("reads PNG dimensions", () => {
+    const image = Buffer.alloc(24);
+    Buffer.from("89504e470d0a1a0a", "hex").copy(image);
+    image.writeUInt32BE(640, 16);
+    image.writeUInt32BE(480, 20);
+    expect(imageBufferDimensions(image)).toEqual({ width: 640, height: 480 });
+  });
+
+  it("reads GIF dimensions", () => {
+    const image = Buffer.alloc(10);
+    image.write("GIF89a", 0, "ascii");
+    image.writeUInt16LE(320, 6);
+    image.writeUInt16LE(240, 8);
+    expect(imageBufferDimensions(image)).toEqual({ width: 320, height: 240 });
+  });
+
+  it("reads JPEG dimensions through marker fill bytes", () => {
+    const image = Buffer.alloc(22);
+    Buffer.from([0xff, 0xd8, 0xff, 0xff, 0xc0]).copy(image);
+    image.writeUInt16BE(17, 5);
+    image[7] = 8;
+    image.writeUInt16BE(800, 8);
+    image.writeUInt16BE(1200, 10);
+    expect(imageBufferDimensions(image)).toEqual({ width: 1200, height: 800 });
+  });
+
+  it("reads extended WebP dimensions", () => {
+    const image = Buffer.alloc(30);
+    image.write("RIFF", 0, "ascii");
+    image.write("WEBP", 8, "ascii");
+    image.write("VP8X", 12, "ascii");
+    image.writeUIntLE(1919, 24, 3);
+    image.writeUIntLE(1079, 27, 3);
+    expect(imageBufferDimensions(image)).toEqual({ width: 1920, height: 1080 });
+  });
+
+  it("reads SVG viewBox dimensions", () => {
+    const image = Buffer.from('<svg viewBox="0 0 640 480"></svg>');
+    expect(imageBufferDimensions(image)).toEqual({ width: 640, height: 480 });
+  });
+
+  it("reads ICO directory dimensions", () => {
+    const image = Buffer.alloc(8);
+    image.writeUInt32LE(0x00010000, 0);
+    image[6] = 32;
+    image[7] = 32;
+    expect(imageBufferDimensions(image)).toEqual({ width: 32, height: 32 });
+  });
+
+  it("returns null for an unsupported buffer", () => {
+    expect(imageBufferDimensions(Buffer.from("not an image"))).toBeNull();
   });
 });
 

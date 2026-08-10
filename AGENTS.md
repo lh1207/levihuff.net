@@ -51,7 +51,7 @@ All structured content lives in `src/_data/`, automatically available as templat
 
 ### CSS
 
-CSS is not passthrough-copied. Tailwind builds `src/_includes/css/tailwind.css` through PostCSS into `_site/css/styles.css`. Passthrough covers `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, and `_headers` only.
+CSS is not passthrough-copied. Tailwind CSS 4 builds `src/_includes/css/tailwind.css` with `@tailwindcss/cli` into `_site/css/styles.css`. Tailwind handles imports, vendor prefixing, and minification; there is no separate PostCSS configuration. Passthrough covers `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, and `_headers` only.
 
 ### Theme
 
