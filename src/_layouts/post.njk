@@ -22,6 +22,8 @@ isPost: true
       {% endif %}
 
       <div class="mt-6 flex flex-wrap items-center gap-3">
+        <span class="font-jb text-mono-sm text-fg-3">By <a href="/about/" rel="author" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.name }}</a></span>
+        <span class="font-jb text-mono-sm text-fg-4" aria-hidden="true">&middot;</span>
         <time datetime="{{ page.date | dateIso }}" class="font-jb text-mono-sm text-fg-3">{{ page.date | dateReadable }}</time>
         <span class="font-jb text-mono-sm text-fg-4" aria-hidden="true">&middot;</span>
         <span class="font-jb text-mono-sm text-fg-3">{{ content | readingTime }}</span>
@@ -105,14 +107,19 @@ isPost: true
   "dateModified": "{{ (updated or page.date) | dateIso }}",
   "author": {
     "@type": "Person",
+    "@id": "{{ site.url }}/about/#person",
     "name": "{{ site.name }}",
-    "url": "{{ site.url }}"
+    "url": "{{ site.url }}/about/"
   },
   "publisher": {
     "@type": "Person",
+    "@id": "{{ site.url }}/about/#person",
     "name": "{{ site.name }}",
-    "url": "{{ site.url }}"
+    "url": "{{ site.url }}/about/"
   },
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "inLanguage": "en-US",
+  "keywords": {{ tags | dump | safe }},
   "image": "{% if thumbnail %}{{ site.url }}{{ thumbnail }}{% else %}{{ site.url }}/images/profile.jpg{% endif %}",
   "url": "{{ site.url }}{{ page.url }}",
   "mainEntityOfPage": {

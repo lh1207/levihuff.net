@@ -7,6 +7,7 @@
   {% if description %}
   <meta name="description" content="{{ description }}">
   {% endif %}
+  <meta name="author" content="{{ site.name }}">
   {% if robots %}
   <meta name="robots" content="{{ robots }}">
   {% endif %}
@@ -60,6 +61,7 @@
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link rel="apple-touch-icon" href="/images/profile.jpg">
   <link rel="alternate" type="application/atom+xml" title="{{ site.name }}: Blog" href="/feed.xml">
+  <link rel="alternate" type="text/plain" title="{{ site.name }}: AI-readable site guide" href="/llms.txt">
   <link rel="author" href="/humans.txt">
   <link rel="me" href="{{ site.social.github }}">
   <link rel="preload" href="/fonts/syne-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -71,10 +73,47 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "{{ site.url }}/#website",
-    "name": "{{ site.name }}",
-    "url": "{{ site.url }}/"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "{{ site.url }}/#website",
+        "name": "{{ site.name }}",
+        "url": "{{ site.url }}/",
+        "description": {{ site.description | dump | safe }},
+        "inLanguage": "en-US",
+        "publisher": { "@id": "{{ site.url }}/about/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "{{ site.url }}/about/#person",
+        "name": "{{ site.name }}",
+        "url": "{{ site.url }}/about/",
+        "image": "{{ site.url }}{{ site.image }}",
+        "email": "mailto:{{ site.email }}",
+        "jobTitle": {{ site.jobTitle | dump | safe }},
+        "description": {{ site.description | dump | safe }},
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": {{ site.location.city | dump | safe }},
+          "addressRegion": {{ site.location.region | dump | safe }},
+          "addressCountry": {{ site.location.country | dump | safe }}
+        },
+        "hasCredential": [
+          {% for credential in site.credentials %}{ "@type": "EducationalOccupationalCredential", "name": {{ credential | dump | safe }} }{% if not loop.last %},
+          {% endif %}{% endfor %}
+        ],
+        "knowsAbout": {{ site.knowsAbout | dump | safe }},
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Cincinnati"
+        },
+        "sameAs": [
+          "{{ site.social.github }}",
+          "{{ site.social.linkedin }}",
+          "{{ site.social.handshake }}"
+        ]
+      }
+    ]
   }
   </script>
 </head>

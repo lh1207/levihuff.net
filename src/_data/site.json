@@ -2,6 +2,31 @@
   "name": "Levi Huff",
   "url": "https://levihuff.net",
   "email": "contact@levihuff.net",
+  "description": "Levi Huff is an IT infrastructure professional focused on endpoint management, Windows deployment, PowerShell automation, Active Directory, virtualization, and systems administration.",
+  "jobTitle": "IT Infrastructure Professional",
+  "image": "/images/profile.jpg",
+  "location": {
+    "city": "Washington Court House",
+    "region": "OH",
+    "country": "US"
+  },
+  "knowsAbout": [
+    "IT Infrastructure",
+    "Systems Administration",
+    "Endpoint Management",
+    "Windows Imaging",
+    "Zero-Touch Deployment",
+    "Active Directory",
+    "PowerShell",
+    "Proxmox",
+    "Virtualization",
+    "Linux Administration",
+    "Networking"
+  ],
+  "credentials": [
+    "CompTIA A+",
+    "CompTIA ITF+"
+  ],
   "graduationDate": "May 2026",
   "social": {
     "github": "https://github.com/lh1207",

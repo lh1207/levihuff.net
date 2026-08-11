@@ -38,6 +38,17 @@ describe("build smoke test", () => {
     expect(existsSync(resolve(root, "_site/sitemap.xml"))).toBe(true);
   });
 
+  it("produces an AI-readable llms.txt guide", () => {
+    const path = resolve(root, "_site/llms.txt");
+    expect(existsSync(path)).toBe(true);
+    const guide = readFileSync(path, "utf8");
+    expect(guide).toContain("# Levi Huff");
+    expect(guide).toContain("https://levihuff.net/about/");
+    expect(guide).toContain("https://levihuff.net/infrastructure/");
+    expect(guide).toContain("https://levihuff.net/blog/");
+    expect(guide).not.toMatch(/&#(?:\d+|x[\da-f]+);/i);
+  });
+
   it("produces _site/404.html", () => {
     expect(existsSync(resolve(root, "_site/404.html"))).toBe(true);
   });
@@ -231,9 +242,12 @@ describe("build smoke test", () => {
   }
 
   function extractJsonLd(html) {
-    return [...html.matchAll(
+    const blocks = [...html.matchAll(
       /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g
     )].map((m) => JSON.parse(m[1]));
+    return blocks.flatMap((block) =>
+      Array.isArray(block["@graph"]) ? [block, ...block["@graph"]] : [block]
+    );
   }
 
   it("every indexable page has title, description, canonical, and og tags", () => {
@@ -303,6 +317,44 @@ describe("build smoke test", () => {
     expect(person.knowsAbout.length).toBeGreaterThan(0);
     expect(person.knowsAbout).toContain("Active Directory");
     expect(person.sameAs.length).toBeGreaterThanOrEqual(3);
+    expect(person["@id"]).toBe("https://levihuff.net/about/#person");
+    expect(person.url).toBe("https://levihuff.net/about/");
+  });
+
+  it("about page has visible direct answers and ProfilePage JSON-LD", () => {
+    const html = readFileSync(resolve(siteDir, "about/index.html"), "utf8");
+    expect(html).toContain('id="quick-answers"');
+    expect(html).toContain("Who is Levi Huff?");
+    expect(html).toContain("What infrastructure work does Levi Huff specialize in?");
+    const profile = extractJsonLd(html).find((b) => b["@type"] === "ProfilePage");
+    expect(profile, "no ProfilePage JSON-LD on about page").toBeTruthy();
+    expect(profile.mainEntity["@id"]).toBe("https://levihuff.net/about/#person");
+  });
+
+  it("sitewide entity graph and authored work use one canonical Person id", () => {
+    const expected = "https://levihuff.net/about/#person";
+    const postHtml = readFileSync(
+      resolve(siteDir, "blog/tire-discounters-it-support/index.html"),
+      "utf8"
+    );
+    const post = extractJsonLd(postHtml).find((b) => b["@type"] === "BlogPosting");
+    expect(post.author["@id"]).toBe(expected);
+    expect(post.publisher["@id"]).toBe(expected);
+    expect(post.isPartOf["@id"]).toBe("https://levihuff.net/#website");
+    expect(postHtml).toContain('rel="author"');
+
+    const infraHtml = readFileSync(
+      resolve(siteDir, "infrastructure/proxmox-node/index.html"),
+      "utf8"
+    );
+    const page = extractJsonLd(infraHtml).find((b) => b["@type"] === "WebPage");
+    expect(page.author["@id"]).toBe(expected);
+    expect(page.isPartOf["@id"]).toBe("https://levihuff.net/#website");
+  });
+
+  it("pages advertise the AI-readable guide", () => {
+    const html = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    expect(html).toMatch(/<link\s[^>]*rel=["']alternate["'][^>]*href=["']\/llms\.txt["']/i);
   });
 
   it("every page carries the sitewide WebSite JSON-LD", () => {

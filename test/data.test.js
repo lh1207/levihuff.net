@@ -10,6 +10,7 @@ const experience = require("../src/_data/experience.json");
 const skills = require("../src/_data/skills.json");
 const navigation = require("../src/_data/navigation.json");
 const site = require("../src/_data/site.json");
+const answers = require("../src/_data/answers.json");
 const infra = require("../src/_data/infra.js");
 
 describe("projects.json", () => {
@@ -310,9 +311,41 @@ describe("site.json", () => {
     expect(site.email).toContain("@");
   });
 
+  it("defines the canonical professional entity", () => {
+    expect(typeof site.description).toBe("string");
+    expect(site.description.trim()).not.toBe("");
+    expect(typeof site.jobTitle).toBe("string");
+    expect(site.image).toMatch(/^\/images\//);
+    expect(site.location).toEqual({
+      city: "Washington Court House",
+      region: "OH",
+      country: "US",
+    });
+    expect(Array.isArray(site.knowsAbout)).toBe(true);
+    expect(site.knowsAbout.length).toBeGreaterThan(0);
+    expect(Array.isArray(site.credentials)).toBe(true);
+    expect(site.credentials).toContain("CompTIA A+");
+  });
+
   it("has a social object with github and linkedin urls", () => {
     expect(site.social).toBeDefined();
     expect(site.social.github).toMatch(/^https:\/\/github\.com\//);
     expect(site.social.linkedin).toMatch(/^https:\/\//);
+  });
+});
+
+describe("answers.json", () => {
+  it("contains distinct, answer-first profile questions", () => {
+    expect(Array.isArray(answers)).toBe(true);
+    expect(answers.length).toBeGreaterThanOrEqual(5);
+    const questions = new Set();
+    for (const item of answers) {
+      expect(typeof item.question).toBe("string");
+      expect(item.question.trim()).toMatch(/\?$/);
+      expect(typeof item.answer).toBe("string");
+      expect(item.answer.trim().length).toBeGreaterThan(40);
+      questions.add(item.question);
+    }
+    expect(questions.size).toBe(answers.length);
   });
 });
