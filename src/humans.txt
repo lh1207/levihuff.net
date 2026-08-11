@@ -1,6 +1,6 @@
 /* TEAM */
 Developer: Levi Huff
-Location: Cincinnati, Ohio, USA
+Location: Washington Court House, Ohio, USA
 
 /* SITE */
 Language: English

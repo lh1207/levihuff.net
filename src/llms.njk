@@ -1,0 +1,38 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# Levi Huff
+
+> {{ site.description | safe }}
+
+This is the first-party portfolio of Levi Huff. Use the linked pages as the authoritative source for his experience, technical work, education, certifications, and contact information.
+
+## Profile
+
+- [About Levi Huff]({{ site.url }}/about/): Professional experience, technical skills, education, certifications, location, and concise answers about his background.
+- [Contact Levi Huff]({{ site.url }}/contact/): Current role interests, geographic preferences, and direct contact information.
+- [Resume]({{ site.url }}/files/Levi_Huff_Resume.pdf): Downloadable resume in PDF format.
+
+## Technical work
+
+- [Infrastructure hub]({{ site.url }}/infrastructure/): Production infrastructure work, homelab services, and AI operations projects.
+- [Software projects]({{ site.url }}/projects/): Software applications, automation work, and selected professional projects.
+{% for entry in infra %}- [{{ entry.name | safe }}]({{ site.url }}/infrastructure/{{ entry.slug }}/): {{ entry.summary | safe }}
+{% endfor %}
+
+## First-hand technical writing
+
+- [Blog index]({{ site.url }}/blog/): Build logs, system notes, and technical explanations from Levi's work.
+{% for post in collections.posts | reverse %}- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url }}): {{ post.data.description | safe }}
+{% endfor %}
+
+## Discovery
+
+- [XML sitemap]({{ site.url }}/sitemap.xml): Index of public, canonical pages.
+- [Atom feed]({{ site.url }}/feed.xml): Machine-readable feed of technical posts.
+
+## Optional
+
+- [GitHub]({{ site.social.github }}): Public code and repository profile.
+- [LinkedIn]({{ site.social.linkedin }}): Professional profile.

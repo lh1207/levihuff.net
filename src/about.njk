@@ -170,10 +170,28 @@ description: About Levi Huff, IT infrastructure. Experience, skills, certificati
     </div>
   </section>
 
+  {# Direct answers for people and answer engines #}
+  <section id="quick-answers" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 06 / QUICK ANSWERS</p>
+      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Frequently asked questions.</h2>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">Concise answers about my background, technical focus, and current search.</p>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {% for item in answers %}
+        <article class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <h3 class="font-syne text-lg font-semibold text-fg-1 leading-snug">{{ item.question }}</h3>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">{{ item.answer }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   {# Looking Ahead / CTA #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 06 / LOOKING AHEAD</p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 07 / LOOKING AHEAD</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">What I am looking for.</h2>
       <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
         I'm looking for full-time infrastructure and systems administration roles based in or near Washington Court House, OH. I prioritize positions in Fayette County and the surrounding area, and I'm open to hybrid arrangements in Dayton or Columbus.
@@ -193,7 +211,7 @@ description: About Levi Huff, IT infrastructure. Experience, skills, certificati
   {# Hobbies #}
   <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 07 / INTERESTS</p>
+      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 08 / INTERESTS</p>
       <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Hobbies and interests.</h2>
 
       <div class="mt-8 grid gap-6 md:grid-cols-2">
@@ -259,3 +277,17 @@ description: About Levi Huff, IT infrastructure. Experience, skills, certificati
   </section>
 
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "{{ site.url }}/about/#profilepage",
+  "url": "{{ site.url }}/about/",
+  "name": "About Levi Huff",
+  "description": {{ description | dump | safe }},
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "mainEntity": { "@id": "{{ site.url }}/about/#person" },
+  "inLanguage": "en-US"
+}
+</script>

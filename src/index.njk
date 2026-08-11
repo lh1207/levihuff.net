@@ -209,47 +209,14 @@ description: Levi Huff, IT infrastructure. Endpoint management, Windows imaging 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "{{ site.name }}",
+  "@type": "WebPage",
+  "@id": "{{ site.url }}/#webpage",
   "url": "{{ site.url }}/",
-  "email": "mailto:{{ site.email }}",
-  "jobTitle": "IT Infrastructure Professional",
-  "description": "IT infrastructure: endpoint management, Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Washington Court House",
-    "addressRegion": "OH",
-    "addressCountry": "US"
-  },
-  "hasCredential": [
-    {
-      "@type": "EducationalOccupationalCredential",
-      "name": "CompTIA A+"
-    },
-    {
-      "@type": "EducationalOccupationalCredential",
-      "name": "CompTIA ITF+"
-    }
-  ],
-  "knowsAbout": [
-    "IT Infrastructure",
-    "Windows Imaging",
-    "Zero-Touch Deployment",
-    "Active Directory",
-    "PowerShell",
-    "Proxmox",
-    "Virtualization",
-    "Linux Administration",
-    "Networking"
-  ],
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "University of Cincinnati"
-  },
-  "sameAs": [
-    "{{ site.social.github }}",
-    "{{ site.social.linkedin }}",
-    "{{ site.social.handshake }}"
-  ]
+  "name": "Levi Huff | IT Infrastructure",
+  "description": {{ description | dump | safe }},
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "about": { "@id": "{{ site.url }}/about/#person" },
+  "mainEntity": { "@id": "{{ site.url }}/about/#person" },
+  "inLanguage": "en-US"
 }
 </script>
