@@ -7,13 +7,15 @@ layout: post.njk
 thumbnail: /images/blog/community-tech-support-android.webp
 ---
 
-![Levi with a family friend after working through security and spam settings on her Android phone](/images/blog/community-tech-support-android.webp)
+![Hands using an Android smartphone](/images/blog/community-tech-support-android.webp)
+
+*Illustrative photo by [Paul Hanaoka](https://unsplash.com/@plhnk) on [Unsplash](https://unsplash.com/photos/wa7_-jf11Vs), used under the [Unsplash License](https://unsplash.com/license).*
 
 My family is close with an older friend in our community who maintains an online presence and handles everyday tasks from her Android phone. Like a lot of people, she had accumulated more digital noise than any one setting could explain: cloud-storage warnings, messages claiming her Social Security number might be exposed, browser pop-ups, promotional email, and a long list of spam texts.
 
 She asked me to help sort it out. What started as a phone cleanup became a small piece of community outreach: make the device calmer today, explain what changed, and use the protections already in Android so the same clutter is less likely to take over again.
 
-She gave me permission to share our photo. I left her name, phone number, verification codes, and message history out of this post.
+I left her name, phone number, verification codes, and message history out of this post.
 
 ## The problem was a pattern, not one bad message
 
@@ -35,6 +37,10 @@ This was the main lesson I wanted to leave behind: urgency is a reason to slow d
 
 The phone's built-in filters had already caught many unwanted messages, but a filter improves when the person using it finishes the feedback loop. We reviewed the inbox, reported clear spam, and left legitimate conversations alone. In Google Messages, reporting a conversation as spam also blocks the sender and moves the conversation into the spam folder. Google documents what is shared when a report is submitted in its [Google Messages spam-reporting guide](https://support.google.com/messages/answer/9061432).
 
+![Official Google Messages Help page showing how to block and report a conversation as spam on Android](/images/blog/google-messages-report-spam-android.png)
+
+*Official Google Messages Help instructions for Android, captured from [Google's spam-reporting guide](https://support.google.com/messages/answer/9061432?co=GENIE.Platform%3DAndroid&hl=en).*
+
 I also turned off automatic MMS downloads. That does not make a phone scam-proof, but it gives her another moment to decide whether media from an unknown sender should be downloaded. The goal was not to disable normal communication. It was to make unexpected content require a deliberate action.
 
 Finally, I disabled the AI features she did not use. That was a usability and privacy choice, not a claim that AI features caused the spam. Removing unfamiliar prompts and buttons made the messaging experience simpler and made the controls she does use easier to recognize.
@@ -43,9 +49,17 @@ Finally, I disabled the AI features she did not use. That was a usability and pr
 
 In Chrome, I blocked pop-ups and redirects and reviewed which sites were allowed to send notifications. Google notes that continued interruptions can come from website notification permissions even when pop-ups are blocked, which is why both settings matter. The current controls are documented in [Chrome Help](https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DAndroid&hl=en).
 
+![Official Google Chrome Help page showing the Android steps for turning off pop-ups and reviewing site notifications](/images/blog/google-chrome-popups-android.png)
+
+*Official Chrome Help instructions for Android, captured from [Google's pop-up and notification guide](https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DAndroid&hl=en).*
+
 ## I cleaned up Gmail without teaching the wrong habit
 
 For legitimate stores and newsletters she recognized, I used Gmail's built-in unsubscribe controls. For suspicious messages, I reported spam or phishing instead of following a sender-provided link. Gmail says that reporting spam helps it identify similar email more effectively, while recognized promotional mail should be handled with its unsubscribe control. Those are different actions for different kinds of mail, and [Gmail Help explains the distinction](https://support.google.com/mail/answer/1366858?co=GENIE.Platform%3DAndroid&hl=en).
+
+![Official Google screenshot showing the unsubscribe confirmation in Gmail for Android](/images/blog/google-gmail-unsubscribe-android.webp)
+
+*Official Gmail Help screenshot for Android from [Google's unsubscribe guide](https://support.google.com/mail/answer/15433283?co=GENIE.Platform%3DAndroid&hl=en).*
 
 This reduced the current inbox and trained the filter for what comes next. Deleting everything would have made the screen look clean for a day. Reporting and unsubscribing gave the system information it can reuse.
 
