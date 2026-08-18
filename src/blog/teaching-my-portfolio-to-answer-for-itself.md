@@ -7,7 +7,9 @@ layout: post.njk
 thumbnail: /images/blog/teaching-my-portfolio-to-answer-for-itself.webp
 ---
 
-![A central identity node connecting portfolio pages, structured documents, and an AI retrieval interface](/images/blog/teaching-my-portfolio-to-answer-for-itself.webp)
+![Code displayed on a monitor in a dark room with warm yellow light](/images/blog/teaching-my-portfolio-to-answer-for-itself.webp)
+
+Photo by [Harshit Katiyar](https://unsplash.com/@harshitkatiyar?utm_source=levihuff.net&utm_medium=referral) on [Unsplash](https://unsplash.com/photos/computer-screen-displaying-lines-of-code-5sLNGV2EFRM?utm_source=levihuff.net&utm_medium=referral).
 
 My portfolio already contained the facts I wanted people to find. My infrastructure work was on the infrastructure pages. My experience was on the About page. Projects had their own cards, blog posts had metadata, and the resume filled in the rest.
 
