@@ -16,6 +16,14 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-08-18 - PR #99 merged and deployed
+
+PR #99 merged into `main` as squash commit `65986e5` after conflict resolution retained current site behavior and removed automatic vault commits. Local verification passed all 137 tests; the wiki metadata and all real wikilinks validated successfully.
+
+GitHub CI, security checks, both CodeQL analyses, the production build, and FTP deployment all completed successfully. The repository-local vault is now the primary store for codebase-specific durable context, with the global personal vault available for cross-reference.
+
+---
+
 ## 2026-08-18 - Rebased scaffold onto current main
 
 Resolved PR #99 against current `main` without carrying stale site or workflow changes. Refreshed the vault for Tailwind CSS 4, current dependency versions, the `jsonScript` filter, structured profile data, `/llms.txt`, and the 137-test suite.

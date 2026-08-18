@@ -12,7 +12,7 @@ status: active
 
 ## Last Updated
 
-2026-08-18. Repo-local codebase documentation is being integrated from PR #99 after rebasing it onto current `main`. The vault records why the site architecture looks the way it does and is committed alongside the source.
+2026-08-18. PR #99 merged the repo-local documentation vault into `main` as squash commit `65986e5`. The vault records why the site architecture looks the way it does and is committed alongside the source.
 
 ## Key Recent Facts
 
@@ -25,6 +25,7 @@ status: active
 
 - Refreshed the scaffold against current `main`, including the Tailwind 4 pipeline, dependency versions, structured profile data, `/llms.txt`, `jsonScript`, and expanded image-dimension support.
 - Removed the proposed PostToolUse auto-commit hook; retained context-loading and refresh-reminder hooks.
+- PR checks and post-merge CI, security, CodeQL, build, and FTP deployment completed successfully.
 
 ## Active Threads
 
