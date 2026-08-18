@@ -7,9 +7,9 @@ layout: post.njk
 thumbnail: /images/blog/teaching-my-portfolio-to-answer-for-itself.webp
 ---
 
-![Code displayed on a monitor in a dark room with warm yellow light](/images/blog/teaching-my-portfolio-to-answer-for-itself.webp)
+![Blue network cables connected to switches in a dark server rack](/images/blog/teaching-my-portfolio-to-answer-for-itself.webp)
 
-Photo by [Harshit Katiyar](https://unsplash.com/@harshitkatiyar?utm_source=levihuff.net&utm_medium=referral) on [Unsplash](https://unsplash.com/photos/computer-screen-displaying-lines-of-code-5sLNGV2EFRM?utm_source=levihuff.net&utm_medium=referral).
+Photo by [Scott Rodgerson](https://unsplash.com/@scottrodgerson?utm_source=levihuff.net&utm_medium=referral) on [Unsplash](https://unsplash.com/photos/PSpf_XgOM5w?utm_source=levihuff.net&utm_medium=referral).
 
 My portfolio already contained the facts I wanted people to find. My infrastructure work was on the infrastructure pages. My experience was on the About page. Projects had their own cards, blog posts had metadata, and the resume filled in the rest.
 
