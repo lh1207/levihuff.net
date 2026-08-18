@@ -142,7 +142,7 @@ Two pages use Vue 3 CDN islands for client-side interactivity:
 - `src/projects.njk` — project category filter
 - `src/blog/index.njk` — blog tag filter
 
-Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.34` — do not change it to a floating `vue@3` range. SRI cannot be added to inline `import()` statements; the version pin is the supply-chain guard. When upgrading, bump both files together and run `npm test`.
+Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.34` — do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. When upgrading, bump both files together and run `npm test`.
 
 ### Deploy concurrency
 
@@ -206,6 +206,16 @@ The site follows the design system defined in `DESIGN.md`. Key rules for AI assi
 Repo-level agent configuration is indexed in `AGENT_CONFIG.md` (what each file does, what is tracked vs gitignored). Slash commands live in `.claude/commands/`, project skills in `.claude/skills/`, hooks in `.claude/settings.json` + `.claude/hooks/`, and the Cursor rule in `.cursor/rules/levihuff.mdc`.
 
 Model routing for this repo follows the owner's ladder: Haiku for mechanical edits, Sonnet for scoped execution, Opus/Fable for planning and judgment, Codex (`!codex`) for adversarial review, Gemini (`!gemini`) for large-context/full-repo analysis, and Qwen (`!qwen-exec`) for approved, scoped auto-apply tasks. See the global `~/.claude/CLAUDE.md` for the full Plan → Execute → Review loop.
+
+## Documentation vault (`vault/`)
+
+The project-local Obsidian wiki at `vault/` is the primary store for durable codebase context: architectural rationale, module notes, dependency risk, and build/deploy flows. It is tracked with the site source. Cross-reference the global personal vault when useful, but keep repository-specific facts here.
+
+- Read `vault/wiki/hot.md` first, then `vault/wiki/index.md`, then the relevant note.
+- Update the corresponding vault note when architecture, dependencies, or non-obvious tradeoffs change.
+- Keep `vault/wiki/log.md` append-only and `vault/wiki/hot.md` under 500 words.
+- Vault changes are never committed automatically; review and commit them intentionally.
+- `.claude/settings.json` loads the hot cache at session start and reminds maintainers about uncommitted vault changes at session stop.
 
 ## Parallel review monitor (Cursor)
 
