@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-08-21
 tags:
   - meta
 status: developing
@@ -50,6 +50,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Meta
 
+- [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
 - [[Wiki Index]] (this page)
 - `wiki/log.md` - chronological operation log
 - `wiki/hot.md` - hot cache, read first each session

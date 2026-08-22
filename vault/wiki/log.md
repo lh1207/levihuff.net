@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Log"
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-08-21
 tags:
   - meta
 status: evergreen
@@ -13,6 +13,16 @@ sources: []
 # Wiki Log
 
 Append-only. New entries go at the TOP. Never edit past entries.
+
+---
+
+## 2026-08-21 - AD PXE Phase 4 blog PR #123 opened
+
+Added a 1,271-word, source-grounded post on the supported Windows 11 PXE path in the Active Directory lab. Verified that ad-pxe-lab PR #5 is merged, not draft, and used its merged runbook, final acceptance transcript, and three authentic screenshots as sources.
+
+Published from `codex/ad-pxe-lab-phase-04-post` at commit `de3c7ac` in levihuff.net PR #123. All 137 tests, rendered desktop QA, GitHub CI, and the security workflow passed. Phase 4 is complete; Phase 5 Group Policy and later golden-image and Configuration Manager work remain pending.
+
+See [[AD PXE Phase 4 Blog PR 123]].
 
 ---
 
