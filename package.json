@@ -22,7 +22,7 @@
     "@tailwindcss/cli": "^4.3.3",
     "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.0",
-    "markdown-it-anchor": "^9.2.1",
+    "markdown-it-anchor": "^10.0.0",
     "npm-run-all2": "^9.0.3",
     "tailwindcss": "^4.3.3",
     "vitest": "^4.1.10"
