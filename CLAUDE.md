@@ -11,6 +11,7 @@ npm run build      # Production build → _site/
 npm run watch      # Watch mode without serving
 npm test           # Run the Vitest test suite (one-shot)
 npm run test:watch # Vitest in watch mode
+npm run audit:ci   # High/critical audit gate with the documented advisory exception
 ```
 
 **Always run `npm test` after making changes** — the test suite catches broken builds, bad frontmatter, broken internal links, and data schema regressions.
@@ -152,10 +153,11 @@ Vue is loaded as an inline ES module import: `import { createApp } from 'https:/
 
 ## Test suite (`test/`)
 
-Tests use [Vitest](https://vitest.dev/) and cover four areas:
+Tests use [Vitest](https://vitest.dev/) and cover five areas:
 
 | File | What it tests |
 |---|---|
+| `test/audit.test.js` | Exact advisory exception, dependency provenance, other vulnerability blocking, and audit error handling |
 | `test/filters.test.js` | Unit tests for every function in `src/filters.js` |
 | `test/data.test.js` | Schema validation for all `src/_data/*.json` files and `src/_data/infra.js`; bans em dashes in `.njk` templates and infra copy |
 | `test/blog.test.js` | Frontmatter validation for every `src/blog/*.md` post |
@@ -164,6 +166,12 @@ Tests use [Vitest](https://vitest.dev/) and cover four areas:
 **`test/build.test.js` runs `npm run build` in `beforeAll`.** It takes up to 2 minutes. If you add a new page or internal link, make sure the linked path exists in `_site/` after building.
 
 ---
+
+## Dependency audit policy
+
+`security.yml` runs `npm run audit:ci`, which invokes `npm audit --audit-level=high --json`. The wrapper in `scripts/audit-dependencies.cjs` accepts only the owner-approved `braces` advisory `GHSA-vfj7-8cjw-p6xm`, matching its URL, package, high severity, and `<=3.0.3` range. This exception is approved on 2026-10-05 because no patched release exists; it accepts the risk rather than fixing the dependency.
+
+High-severity parent entries are exempt only when every underlying advisory is that exact accepted finding. Other high findings, all critical findings, malformed responses, unresolved dependency references, and audit execution errors fail the check. Logs show the accepted advisory and affected packages. Remove the exception when upstream dependencies can be patched. Do not use `continue-on-error` or a blanket package exclusion.
 
 ## Blog post conventions
 

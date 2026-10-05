@@ -10,6 +10,7 @@
     "watch": "run-p watch:11ty watch:css",
     "watch:11ty": "eleventy --watch",
     "watch:css": "tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --watch",
+    "audit:ci": "node scripts/audit-dependencies.cjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -21,10 +22,10 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@tailwindcss/cli": "^4.3.3",
     "gray-matter": "^4.0.3",
-    "markdown-it": "^15.0.0",
-    "markdown-it-anchor": "^9.2.1",
+    "markdown-it": "^15.0.1",
+    "markdown-it-anchor": "^10.0.0",
     "npm-run-all2": "^9.0.3",
     "tailwindcss": "^4.3.3",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.0"
   }
 }
