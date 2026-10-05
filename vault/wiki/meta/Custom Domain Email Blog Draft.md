@@ -14,7 +14,7 @@ related: ["Build Pipeline"]
 
 ## Publication boundary
 
-The article is deliberately excluded through `.eleventyignore`. Remove that entry only when publication is authorized. Its October 5 date is the draft date, not an inferred email timestamp. Sending and delivery are complete according to the user's latest supplied session record; older unsent-draft notes do not supersede that record. No email, account settings, or DNS changes are part of this drafting task.
+PR #131 is merged. The corrective branch removes the mistaken `.eleventyignore` exclusion so normal builds include the article, blog listing, tags, and feeds. A draft PR should have provided the review boundary without suppressing the content in the eventual build. Its October 5 date is the article date, not an inferred email timestamp. Sending and delivery are complete according to the user's latest supplied session record; older unsent-draft notes do not supersede that record. No email, account settings, or DNS changes are part of this task.
 
 ## Evidence and imagery
 
@@ -27,7 +27,8 @@ The article is deliberately excluded through `.eleventyignore`. Remove that entr
 ## Validation
 
 - `npm test`: 137 of 137 pass on the PR branch, including the production build.
-- Production output excludes the draft page. A separate local preview includes it for review.
+- Initial validation used a separate preview because of the mistaken exclusion. The correction validates the normal production output and blog listing directly.
+- Correction validation: all 159 tests pass. Explicit build-output checks confirm the article, blog listing, email tag page, feed, and sitemap. The local server returns HTTP 200; the browser connection to localhost times out, so no new visual-check claim is made.
 - Desktop 1440 x 1000 and mobile 390 x 844 previews load all five images with no page overflow. Screenshot figures pair on desktop and stack on mobile; full-size links retain the redactions.
 - Final redacted repository assets match the verified PNG exports byte for byte. The draft preserves both literal SMTP errors and renders October 5, 2026.
 
