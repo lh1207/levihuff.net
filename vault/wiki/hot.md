@@ -3,33 +3,28 @@ type: meta
 title: "Hot Cache"
 created: 2026-07-14
 updated: 2026-10-05
-tags:
-  - meta
+tags: [meta]
 status: active
+related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 ---
 
-# Recent Context
+# Recent context
 
-## Last Updated
+## Current blog draft
 
-2026-10-05. The custom-domain email article is prepared on `blog/replying-from-my-own-domain`, based on current main at `406daf7`. PR #123 is merged in that main revision.
+- PR #131, `blog/replying-from-my-own-domain`, contains the unpublished custom-domain email article, an attributed Unsplash cover, and four supplied screenshots. Private regions use solid black replacement pixels in flattened PNGs; original sensitive screenshots are not repository assets.
+- `.eleventyignore` excludes the article from production until publication is authorized. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
+- The branch incorporates main at `eec01f7`. Its vault conflicts preserve both the article evidence and dependency context. See [[Custom Domain Email Blog Draft]] for validation.
 
-## Key Recent Facts
+## Current dependency context
 
-- `vault/` is this repository's primary codebase vault. It is not a nested Git repository; cross-references to the global personal vault remain possible.
-- Session start prints `vault/wiki/hot.md`. Session stop reminds maintainers about uncommitted vault changes.
-- Vault edits are never auto-committed. Review and commit them intentionally with the related work.
-- Current `main` uses Eleventy 3.1.6, Tailwind CSS 4.3.3 via `@tailwindcss/cli`, Vue 3.5.34 islands, Motion 10.18.0, and 137 Vitest regressions.
-- ad-pxe-lab PR #5 is merged. Phase 4 is complete with a supported custom-WinPE PXE path, Windows 11 CL02 deployment, domain and OU placement, secure channel, domain-user sign-in, and `pre-phase-05` checkpoints.
+- PR #130 is merged as `eec01f7`; Dependabot PRs #125 through #129 are closed as superseded.
+- Main uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
+- The suite has 159 tests, including 22 audit-policy regressions. Vitest 5 requires Node 22.12+, 24, or 26+; CI and deployment use Node 22.
+- The owner-approved exception for GHSA-vfj7-8cjw-p6xm remains narrow: `npm run audit:ci` matches only that braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed or failed audits still block. Remove the exception when upstream dependencies can be patched.
 
-## Recent Changes
+## Stable context
 
-- Added the unpublished `src/blog/replying-from-my-own-domain.md`, an attributed Unsplash cover, and four supplied screenshots.
-- Private account addresses, a confirmation link, and an avatar are replaced by solid black pixels in lossless PNGs. Pixels outside the masks are preserved; originals are not repository assets.
-- Verified 137 tests and desktop/mobile rendering on current main. See [[Custom Domain Email Blog Draft]] for source boundaries and validation.
-
-## Active Threads
-
-- Review the custom-domain email draft. `.eleventyignore` excludes the article from production until publication is authorized.
-- The mail setup and delivery are complete according to the supplied session record. No further mail action is needed for this article.
-- `wiki/components/` remains a seed. Add individual pages when a component accumulates non-obvious behavior worth preserving.
+- `vault/` is the primary repository knowledge store. Never edit `.raw/`; log entries are append-only; vault changes are reviewed and committed intentionally.
+- Main includes the Phase 4 AD/PXE post from merged PR #123. Phase 4 is complete; Phase 5 and later deployment phases remain outside that post's completion boundary.
+- The site remains Eleventy 3.1.6, Tailwind CSS 4.3.3 via `@tailwindcss/cli`, Vue 3.5.34 islands, and Motion 10.18.0.

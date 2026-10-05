@@ -13,7 +13,7 @@ npm test           # Run the Vitest test suite (one-shot)
 npm run test:watch # Vitest in watch mode
 ```
 
-**There is a test suite.** Four Vitest files under `test/` cover filters, data schemas, blog frontmatter, and a full build smoke test. CI runs `npm test` on every PR and non-main push; the deploy workflow runs it before building. Always run `npm test` after making changes. `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.
+**There is a test suite.** Five Vitest files under `test/` cover filters, data schemas, blog frontmatter, the audit exception policy, and a full build smoke test. CI runs `npm test` on every PR and non-main push; the deploy workflow runs it before building. Always run `npm test` after making changes. `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.
 
 ## Architecture
 

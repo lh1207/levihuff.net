@@ -16,7 +16,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Overview
 
-- [[Architecture Overview]]
+- [[Architecture Overview]] - five test suites include audit-policy regressions
 
 ## Modules
 
@@ -40,17 +40,17 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]]
+  - [[Tech Stack]] - PR #130 dependency consolidation, Vitest 5 requirements, and the owner-approved exact braces advisory exception
 
 ## Flows
 
 - [[Flows Index]]
   - [[Build Pipeline]]
-  - [[Deploy Pipeline]]
+  - [[Deploy Pipeline]] - CI audit policy retains other high/critical checks
 
 ## Meta
 
-- [[Custom Domain Email Blog Draft]] - unpublished article, source boundaries, solid image redactions, and validation
+- [[Custom Domain Email Blog Draft]] - unpublished PR #131, source boundaries, solid image redactions, and 159-test validation after merging main
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
 - [[Wiki Index]] (this page)
 - `wiki/log.md` - chronological operation log

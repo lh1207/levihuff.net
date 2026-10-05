@@ -16,11 +16,33 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-05 - PR #131 reconciled with merged dependency updates
+
+Merged main at `eec01f7` into the draft branch. Resolved shared hot-cache and log conflicts by preserving both branches' evidence and historical entries. Article text, images, and publication exclusion are unchanged. Clean installation and all 159 tests pass. See [[Custom Domain Email Blog Draft]].
+
+---
+
 ## 2026-10-05 - Custom domain email draft prepared for review
 
 Prepared the unpublished article on `blog/replying-from-my-own-domain` from current main. Added an attributed Unsplash cover and four supplied screenshots, with private regions replaced by solid black pixels in flattened PNG exports. Verified 137 tests and desktop/mobile rendering. `.eleventyignore` keeps the article out of production output. Final mail delivery is attributed to the supplied completed session record.
 
 See [[Custom Domain Email Blog Draft]].
+
+---
+
+## 2026-10-05 - Owner approves a narrow braces advisory exception
+
+The owner explicitly accepts GHSA-vfj7-8cjw-p6xm so dependency updates can proceed without a compatible upstream patch. CI now uses `npm run audit:ci` to exempt only that exact advisory and parent entries whose causes are exclusively that finding. Other high findings, all critical findings, and audit execution/report errors remain blocking. Fresh live audit validation passes with all eight accepted package entries visible in logs. The dependency vulnerability remains present; remove the exception when upstream dependencies can be patched.
+
+Updated [[Tech Stack]], [[Deploy Pipeline]], the index, and hot cache. All 159 tests pass, including 22 regressions for the policy and its failure modes. Independent review finds no unintended audit bypass. The exception is part of existing PR #130.
+
+---
+
+## 2026-10-05 - Dependabot updates consolidated in PR #130
+
+Updated [[Tech Stack]] for the combined dependency tree in [PR #130](https://github.com/lh1207/levihuff.net/pull/130). Dependabot PRs #125, #126, #127, #128, and #129 are closed as superseded. The replacement remains open and unmerged.
+
+Clean installation and all 137 tests, including the production build, pass. The Vitest 5 mocker includes the security fix requested by the overlapping 4.1.11 PR. Compatible transitive patches resolve the additional brace-expansion and markdown-it advisories. Eight high audit entries remain from the unpatched braces advisory; the PR documents the blocker and preserves the security gate. Refreshed the index and hot cache for continuation.
 
 ---
 

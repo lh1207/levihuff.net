@@ -32,3 +32,7 @@ The article is deliberately excluded through `.eleventyignore`. Remove that entr
 - Final redacted repository assets match the verified PNG exports byte for byte. The draft preserves both literal SMTP errors and renders October 5, 2026.
 
 Publication, merging, and any additional mail changes require separate authorization.
+
+## PR #131 conflict resolution
+
+PR #131 incorporates main at `eec01f7` after dependency PR #130 merged. The only conflicts are the shared hot cache and append-only log. Both branches' historical log entries are preserved, while the hot cache combines the unpublished article context with the current dependency and narrow audit-exception policy. Article text, assets, and `.eleventyignore` are unchanged. A clean dependency install and all 159 tests pass on the merged tree.
