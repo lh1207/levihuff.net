@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-07-14
-updated: 2026-08-21
+updated: 2026-10-05
 tags:
   - meta
 status: developing
@@ -50,6 +50,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Meta
 
+- [[Custom Domain Email Blog Draft]] - unpublished article, source boundaries, solid image redactions, and validation
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
 - [[Wiki Index]] (this page)
 - `wiki/log.md` - chronological operation log

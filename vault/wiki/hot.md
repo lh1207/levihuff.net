@@ -2,7 +2,7 @@
 type: meta
 title: "Hot Cache"
 created: 2026-07-14
-updated: 2026-08-21T22:15:00-04:00
+updated: 2026-10-05
 tags:
   - meta
 status: active
@@ -12,7 +12,7 @@ status: active
 
 ## Last Updated
 
-2026-08-21. The AD/PXE lab Phase 4 post is open in levihuff.net PR #123 from `codex/ad-pxe-lab-phase-04-post` at `de3c7ac`. GitHub CI and security checks pass.
+2026-10-05. The custom-domain email article is prepared on `blog/replying-from-my-own-domain`, based on current main at `406daf7`. PR #123 is merged in that main revision.
 
 ## Key Recent Facts
 
@@ -24,12 +24,12 @@ status: active
 
 ## Recent Changes
 
-- Added `src/blog/building-a-supported-windows-11-pxe-path.md`, a 1,271-word source-grounded Phase 4 post.
-- Added three authentic lab evidence images under `src/images/blog/`; no generated or stock imagery is used.
-- Verified 137 of 137 tests, desktop rendering, image loading, overflow, console output, GitHub CI, and security.
+- Added the unpublished `src/blog/replying-from-my-own-domain.md`, an attributed Unsplash cover, and four supplied screenshots.
+- Private account addresses, a confirmation link, and an avatar are replaced by solid black pixels in lossless PNGs. Pixels outside the masks are preserved; originals are not repository assets.
+- Verified 137 tests and desktop/mobile rendering on current main. See [[Custom Domain Email Blog Draft]] for source boundaries and validation.
 
 ## Active Threads
 
-- Review and merge PR #123 when ready.
-- Keep the post's status boundary accurate: Phase 4 is complete; Phase 5 and later phases remain pending.
+- Review the custom-domain email draft. `.eleventyignore` excludes the article from production until publication is authorized.
+- The mail setup and delivery are complete according to the supplied session record. No further mail action is needed for this article.
 - `wiki/components/` remains a seed. Add individual pages when a component accumulates non-obvious behavior worth preserving.

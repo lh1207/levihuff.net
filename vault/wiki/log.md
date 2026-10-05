@@ -16,6 +16,14 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-05 - Custom domain email draft prepared for review
+
+Prepared the unpublished article on `blog/replying-from-my-own-domain` from current main. Added an attributed Unsplash cover and four supplied screenshots, with private regions replaced by solid black pixels in flattened PNG exports. Verified 137 tests and desktop/mobile rendering. `.eleventyignore` keeps the article out of production output. Final mail delivery is attributed to the supplied completed session record.
+
+See [[Custom Domain Email Blog Draft]].
+
+---
+
 ## 2026-08-21 - AD PXE Phase 4 blog PR #123 opened
 
 Added a 1,271-word, source-grounded post on the supported Windows 11 PXE path in the Active Directory lab. Verified that ad-pxe-lab PR #5 is merged, not draft, and used its merged runbook, final acceptance transcript, and three authentic screenshots as sources.
