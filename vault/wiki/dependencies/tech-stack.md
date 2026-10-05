@@ -8,19 +8,21 @@ risk: low
 tags:
   - dependency
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-10-05
 related:
   - "[[Eleventy Config]]"
   - "[[CSS Pipeline]]"
   - "[[Vue Version Pin]]"
-sources: []
+sources:
+  - "https://github.com/lh1207/levihuff.net/pull/130"
+  - "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
 ---
 
 # Tech Stack
 
 ## What it's used for
 
-Full runtime and dev dependency list from `package.json`, as of last review.
+Runtime and dev dependencies on the consolidation branch in [PR #130](https://github.com/lh1207/levihuff.net/pull/130). These changes remain unmerged as of 2026-10-05.
 
 **Runtime**
 - `@11ty/eleventy` `^3.1.6` - static site generator, the core of the build
@@ -30,9 +32,9 @@ Full runtime and dev dependency list from `package.json`, as of last review.
 - `@11ty/eleventy-plugin-syntaxhighlight` `^5.0.2` - Prism-based code block highlighting
 - `tailwindcss` and `@tailwindcss/cli` `^4.3.3` - utility CSS generation, vendor prefixing, and minification
 - `gray-matter` `^4.0.3` - frontmatter parsing in tests
-- `markdown-it` `^15.0.0`, `markdown-it-anchor` `^9.2.1` - markdown rendering and heading anchors
+- `markdown-it` `^15.0.1` (locked to 15.0.2), `markdown-it-anchor` `^10.0.0` - markdown rendering and heading anchors
 - `npm-run-all2` `^9.0.3` - runs `dev:11ty` + `dev:css` and `watch:11ty` + `watch:css` in parallel
-- `vitest` `^4.1.10` - test runner for the four suites in `test/`
+- `vitest` `^5.0.0` - test runner for the four suites in `test/`; requires Node `^22.12.0 || ^24.0.0 || >=26.0.0`
 
 Image dimensions are parsed by the repository's own buffer helpers in `src/filters.js`; there is no image-dimension package dependency.
 
@@ -48,10 +50,19 @@ Image dimensions are parsed by the repository's own buffer helpers in `src/filte
 
 ## Upgrade risk
 
-Low overall - this is a small, deliberately minimal stack. The main coordinated upgrade risks are:
+This is a small, deliberately minimal stack. The main coordinated upgrade risks are:
 1. Vue: bump both CDN URLs together, then `npm test` (see [[Vue Version Pin]]).
 2. Eleventy major version bumps: re-check the RSS plugin's ESM default-export `require()` workaround in [[Eleventy Config]] still applies.
 3. Tailwind upgrades: keep `tailwindcss` and `@tailwindcss/cli` aligned and verify the legacy `@config` bridge still works.
+4. Vitest 5: local Node must meet its supported range. CI and deployment use floating Node 22, which resolves a supported patch release.
+
+## October 2026 consolidation
+
+PR #130 replaces Dependabot PRs #125 through #129, which are closed with links to the replacement. Vitest and `@vitest/mocker` 5.0.0 include the mock redirect file-serving allowlist guard from the separate 4.1.11 update. Both transitive `js-yaml` lines are patched to 3.15.2 and 4.3.2. Compatible audit updates also resolve `brace-expansion` to 1.1.21 and Eleventy's nested `markdown-it` to 14.3.2.
+
+Clean `npm ci`, all 137 tests (including the production build), `npm ls --all`, and `git diff --check` pass. Independent review finds no blocking dependency compatibility regression. GitHub's Node 22 CI test job also passes for the dependency commit.
+
+`npm audit --audit-level=high` still fails with eight high-severity package entries, all originating from `braces` through Eleventy's chokidar and Tailwind's watcher/micromatch chains. [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) lists no patched release as of 2026-10-05. Forced Eleventy/Tailwind downgrades are not a compatible remediation. The audit gate remains enabled, and the PR records this upstream blocker.
 
 ## Notes
 

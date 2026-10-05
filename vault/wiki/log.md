@@ -16,6 +16,14 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-05 - Dependabot updates consolidated in PR #130
+
+Updated [[Tech Stack]] for the combined dependency tree in [PR #130](https://github.com/lh1207/levihuff.net/pull/130). Dependabot PRs #125, #126, #127, #128, and #129 are closed as superseded. The replacement remains open and unmerged.
+
+Clean installation and all 137 tests, including the production build, pass. The Vitest 5 mocker includes the security fix requested by the overlapping 4.1.11 PR. Compatible transitive patches resolve the additional brace-expansion and markdown-it advisories. Eight high audit entries remain from the unpatched braces advisory; the PR documents the blocker and preserves the security gate. Refreshed the index and hot cache for continuation.
+
+---
+
 ## 2026-08-21 - AD PXE Phase 4 blog PR #123 opened
 
 Added a 1,271-word, source-grounded post on the supported Windows 11 PXE path in the Active Directory lab. Verified that ad-pxe-lab PR #5 is merged, not draft, and used its merged runbook, final acceptance transcript, and three authentic screenshots as sources.

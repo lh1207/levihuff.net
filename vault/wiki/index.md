@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-07-14
-updated: 2026-08-21
+updated: 2026-10-05
 tags:
   - meta
 status: developing
@@ -40,7 +40,7 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]]
+  - [[Tech Stack]] - PR #130 dependency consolidation, Vitest 5 requirements, and the remaining upstream braces audit blocker
 
 ## Flows
 
