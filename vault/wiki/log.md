@@ -16,6 +16,20 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-05 - PR #131 reconciled with merged dependency updates
+
+Merged main at `eec01f7` into the draft branch. Resolved shared hot-cache and log conflicts by preserving both branches' evidence and historical entries. Article text, images, and publication exclusion are unchanged. Clean installation and all 159 tests pass. See [[Custom Domain Email Blog Draft]].
+
+---
+
+## 2026-10-05 - Custom domain email draft prepared for review
+
+Prepared the unpublished article on `blog/replying-from-my-own-domain` from current main. Added an attributed Unsplash cover and four supplied screenshots, with private regions replaced by solid black pixels in flattened PNG exports. Verified 137 tests and desktop/mobile rendering. `.eleventyignore` keeps the article out of production output. Final mail delivery is attributed to the supplied completed session record.
+
+See [[Custom Domain Email Blog Draft]].
+
+---
+
 ## 2026-10-05 - Owner approves a narrow braces advisory exception
 
 The owner explicitly accepts GHSA-vfj7-8cjw-p6xm so dependency updates can proceed without a compatible upstream patch. CI now uses `npm run audit:ci` to exempt only that exact advisory and parent entries whose causes are exclusively that finding. Other high findings, all critical findings, and audit execution/report errors remain blocking. Fresh live audit validation passes with all eight accepted package entries visible in logs. The dependency vulnerability remains present; remove the exception when upstream dependencies can be patched.

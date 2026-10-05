@@ -50,6 +50,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Meta
 
+- [[Custom Domain Email Blog Draft]] - unpublished PR #131, source boundaries, solid image redactions, and 159-test validation after merging main
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
 - [[Wiki Index]] (this page)
 - `wiki/log.md` - chronological operation log

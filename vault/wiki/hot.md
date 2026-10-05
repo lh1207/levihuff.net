@@ -3,26 +3,28 @@ type: meta
 title: "Hot Cache"
 created: 2026-07-14
 updated: 2026-10-05
-tags:
-  - meta
+tags: [meta]
 status: active
-related:
-  - "[[Tech Stack]]"
+related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 ---
 
-# Recent Context
+# Recent context
 
-## Current dependency work
+## Current blog draft
 
-- [PR #130](https://github.com/lh1207/levihuff.net/pull/130), `chore/consolidate-dependabot-2026-10-05`, combines all five Dependabot updates. PRs #125 through #129 are closed as superseded; #130 remains open and unmerged.
-- The branch uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches also update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
-- Clean installation, all 159 tests including 22 audit-policy regressions and the production build, the full dependency tree, and independent compatibility/policy reviews pass. GitHub's Node 22 CI passes for the original dependency commit; verify the exception commit's checks live.
-- The owner explicitly approves exempting GHSA-vfj7-8cjw-p6xm on 2026-10-05. `npm run audit:ci` matches only this exact braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed/failed audits still block. A fresh registry audit passes under this policy; remove the exception when upstream dependencies can be patched.
-- Vitest 5 requires Node 22.12+, 24, or 26+. CI and deployment already use floating Node 22. Verify current PR state and checks before further action.
+- PR #131, `blog/replying-from-my-own-domain`, contains the unpublished custom-domain email article, an attributed Unsplash cover, and four supplied screenshots. Private regions use solid black replacement pixels in flattened PNGs; original sensitive screenshots are not repository assets.
+- `.eleventyignore` excludes the article from production until publication is authorized. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
+- The branch incorporates main at `eec01f7`. Its vault conflicts preserve both the article evidence and dependency context. See [[Custom Domain Email Blog Draft]] for validation.
+
+## Current dependency context
+
+- PR #130 is merged as `eec01f7`; Dependabot PRs #125 through #129 are closed as superseded.
+- Main uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
+- The suite has 159 tests, including 22 audit-policy regressions. Vitest 5 requires Node 22.12+, 24, or 26+; CI and deployment use Node 22.
+- The owner-approved exception for GHSA-vfj7-8cjw-p6xm remains narrow: `npm run audit:ci` matches only that braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed or failed audits still block. Remove the exception when upstream dependencies can be patched.
 
 ## Stable context
 
 - `vault/` is the primary repository knowledge store. Never edit `.raw/`; log entries are append-only; vault changes are reviewed and committed intentionally.
-- Main includes the Phase 4 AD/PXE post from merged PR #123 at `406daf7`. Earlier hot-cache references to that PR being open are stale.
+- Main includes the Phase 4 AD/PXE post from merged PR #123. Phase 4 is complete; Phase 5 and later deployment phases remain outside that post's completion boundary.
 - The site remains Eleventy 3.1.6, Tailwind CSS 4.3.3 via `@tailwindcss/cli`, Vue 3.5.34 islands, and Motion 10.18.0.
-- AD/PXE Phase 4 is complete. Phase 5 and later deployment phases remain outside the published post's completion boundary.
