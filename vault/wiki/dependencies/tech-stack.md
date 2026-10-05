@@ -34,7 +34,7 @@ Runtime and dev dependencies on the consolidation branch in [PR #130](https://gi
 - `gray-matter` `^4.0.3` - frontmatter parsing in tests
 - `markdown-it` `^15.0.1` (locked to 15.0.2), `markdown-it-anchor` `^10.0.0` - markdown rendering and heading anchors
 - `npm-run-all2` `^9.0.3` - runs `dev:11ty` + `dev:css` and `watch:11ty` + `watch:css` in parallel
-- `vitest` `^5.0.0` - test runner for the four suites in `test/`; requires Node `^22.12.0 || ^24.0.0 || >=26.0.0`
+- `vitest` `^5.0.0` - test runner for the five suites in `test/`; requires Node `^22.12.0 || ^24.0.0 || >=26.0.0`
 
 Image dimensions are parsed by the repository's own buffer helpers in `src/filters.js`; there is no image-dimension package dependency.
 
@@ -60,9 +60,11 @@ This is a small, deliberately minimal stack. The main coordinated upgrade risks 
 
 PR #130 replaces Dependabot PRs #125 through #129, which are closed with links to the replacement. Vitest and `@vitest/mocker` 5.0.0 include the mock redirect file-serving allowlist guard from the separate 4.1.11 update. Both transitive `js-yaml` lines are patched to 3.15.2 and 4.3.2. Compatible audit updates also resolve `brace-expansion` to 1.1.21 and Eleventy's nested `markdown-it` to 14.3.2.
 
-Clean `npm ci`, all 137 tests (including the production build), `npm ls --all`, and `git diff --check` pass. Independent review finds no blocking dependency compatibility regression. GitHub's Node 22 CI test job also passes for the dependency commit.
+The dependency consolidation passes clean `npm ci`, all 159 tests (including 22 audit-policy regressions and the production build), `npm ls --all`, and `git diff --check`. Independent reviews find no blocking dependency compatibility regression or unintended audit bypass. GitHub's Node 22 CI test job also passes for the original dependency commit; verify the exception commit's checks live.
 
-`npm audit --audit-level=high` still fails with eight high-severity package entries, all originating from `braces` through Eleventy's chokidar and Tailwind's watcher/micromatch chains. [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) lists no patched release as of 2026-10-05. Forced Eleventy/Tailwind downgrades are not a compatible remediation. The audit gate remains enabled, and the PR records this upstream blocker.
+Raw `npm audit --audit-level=high` reports eight high-severity package entries, all originating from `braces` through Eleventy's chokidar and Tailwind's watcher/micromatch chains. [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) lists no patched release as of 2026-10-05. Forced Eleventy/Tailwind downgrades are not a compatible remediation.
+
+The owner explicitly approves exempting this one advisory on 2026-10-05. CI uses `npm run audit:ci`; the dependency vulnerability remains present and is accepted, not fixed. The wrapper matches the exact advisory URL, package, high severity, and affected range, resolving all parent findings to their underlying causes. Any additional advisory in that chain still blocks. All critical findings and audit execution/report errors also block. Fresh registry validation passes under this policy and logs all eight accepted package entries. Remove the exception when upstream dependencies can be patched.
 
 ## Notes
 

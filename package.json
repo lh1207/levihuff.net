@@ -10,6 +10,7 @@
     "watch": "run-p watch:11ty watch:css",
     "watch:11ty": "eleventy --watch",
     "watch:css": "tailwindcss -i ./src/_includes/css/tailwind.css -o ./_site/css/styles.css --watch",
+    "audit:ci": "node scripts/audit-dependencies.cjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

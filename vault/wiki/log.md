@@ -16,6 +16,14 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-05 - Owner approves a narrow braces advisory exception
+
+The owner explicitly accepts GHSA-vfj7-8cjw-p6xm so dependency updates can proceed without a compatible upstream patch. CI now uses `npm run audit:ci` to exempt only that exact advisory and parent entries whose causes are exclusively that finding. Other high findings, all critical findings, and audit execution/report errors remain blocking. Fresh live audit validation passes with all eight accepted package entries visible in logs. The dependency vulnerability remains present; remove the exception when upstream dependencies can be patched.
+
+Updated [[Tech Stack]], [[Deploy Pipeline]], the index, and hot cache. All 159 tests pass, including 22 regressions for the policy and its failure modes. Independent review finds no unintended audit bypass. The exception is part of existing PR #130.
+
+---
+
 ## 2026-10-05 - Dependabot updates consolidated in PR #130
 
 Updated [[Tech Stack]] for the combined dependency tree in [PR #130](https://github.com/lh1207/levihuff.net/pull/130). Dependabot PRs #125, #126, #127, #128, and #129 are closed as superseded. The replacement remains open and unmerged.

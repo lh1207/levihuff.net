@@ -16,8 +16,8 @@ related:
 
 - [PR #130](https://github.com/lh1207/levihuff.net/pull/130), `chore/consolidate-dependabot-2026-10-05`, combines all five Dependabot updates. PRs #125 through #129 are closed as superseded; #130 remains open and unmerged.
 - The branch uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches also update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
-- Clean installation, all 137 tests including the production build, the full dependency tree, and an independent compatibility review pass. GitHub's Node 22 CI passes for the dependency commit.
-- The audit gate still fails: eight high package entries stem from the unpatched braces advisory GHSA-vfj7-8cjw-p6xm through Eleventy and Tailwind watcher dependencies. No forced downgrade or security-check bypass is applied.
+- Clean installation, all 159 tests including 22 audit-policy regressions and the production build, the full dependency tree, and independent compatibility/policy reviews pass. GitHub's Node 22 CI passes for the original dependency commit; verify the exception commit's checks live.
+- The owner explicitly approves exempting GHSA-vfj7-8cjw-p6xm on 2026-10-05. `npm run audit:ci` matches only this exact braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed/failed audits still block. A fresh registry audit passes under this policy; remove the exception when upstream dependencies can be patched.
 - Vitest 5 requires Node 22.12+, 24, or 26+. CI and deployment already use floating Node 22. Verify current PR state and checks before further action.
 
 ## Stable context
