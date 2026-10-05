@@ -13,7 +13,7 @@ related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 ## Current blog draft
 
 - PR #131, `blog/replying-from-my-own-domain`, contains the unpublished custom-domain email article, an attributed Unsplash cover, and four supplied screenshots. Private regions use solid black replacement pixels in flattened PNGs; original sensitive screenshots are not repository assets.
-- `.eleventyignore` excludes the article from production until publication is authorized. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
+- PR #131 is merged. A corrective branch removes the mistaken `.eleventyignore` exclusion so the post appears in normal builds and the blog listing. Draft PR status should provide the review boundary without hiding merged content. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
 - The branch incorporates main at `eec01f7`. Its vault conflicts preserve both the article evidence and dependency context. See [[Custom Domain Email Blog Draft]] for validation.
 
 ## Current dependency context
