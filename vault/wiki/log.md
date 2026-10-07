@@ -24,6 +24,12 @@ Updated [[Template System]], [[CSS Pipeline]], [[Eleventy Config]], the index, a
 
 ---
 
+## 2026-10-05 - Corrected the merged article's build exclusion
+
+PR #131 was merged while `.eleventyignore` still suppressed the article. Removed the exclusion to include the post in the normal blog collection and production output. Draft PR status should have provided the review boundary. Updated [[Custom Domain Email Blog Draft]], the index, and hot cache to record this correction.
+
+---
+
 ## 2026-10-05 - PR #131 reconciled with merged dependency updates
 
 Merged main at `eec01f7` into the draft branch. Resolved shared hot-cache and log conflicts by preserving both branches' evidence and historical entries. Article text, images, and publication exclusion are unchanged. Clean installation and all 159 tests pass. See [[Custom Domain Email Blog Draft]].

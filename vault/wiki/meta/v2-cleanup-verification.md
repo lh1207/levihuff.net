@@ -12,6 +12,8 @@ related: ["[[Template System]]", "[[CSS Pipeline]]", "[[Eleventy Config]]", "[[C
 
 ## Scope and structure
 
+PR preparation follow-up: the user authorizes committing, pushing a feature branch, opening a PR, and monitoring checks/reviews. The branch is `codex/v2-cleanup-polish`. Main advances to `977828d` through PR #132, which publishes the custom-domain-email article; the cleanup incorporates this existing upstream change rather than restoring the stale exclusion. The exclusion regression accepts an absent `.eleventyignore`. The audit measurements below describe the original pre-integration build; the full suite is rerun after integration. Merging and deployment remain outside authorization.
+
 The V2 cleanup preserves the dark charcoal and amber identity, typography, photography, biography, data, and static deployment. Eleventy generates 121 HTML pages plus discovery/feed files. Shared base/post layouts and component partials render pages from structured data. Tailwind 4 builds the stylesheet. Projects and Blog retain pinned Vue 3.5.34 filters with static fallbacks. Motion 10.18.0 remains a small hero enhancement. No dependencies, build tools, workflows, drafts, or deployment settings change. No commit, push, or deployment is part of this pass.
 
 The initial audit precedes implementation. Baseline build and 159 tests pass, but browser checks reproduce 320px overflow in the Infrastructure heading and a long inline code path. Opening the mobile drawer and resizing to desktop leaves main/footer inert. Mobile navigation is unavailable without JavaScript. Blog filter selection hides the focused control. Markdown tables lack horizontal containment. The favicon.ico file contains JPEG data identical to profile.jpg.
@@ -75,7 +77,7 @@ The pre-existing untracked `.codex/` directory is not task output and remains un
 - Eight apparently unreferenced images remain because their purpose is uncertain: `about/band-night.jpg`, `about/workflow-documentation.jpg`, `aeroassist/docker-logo.png`, `projects/computer-hardware.jpg`, `projects/it-equipment.jpg`, `projects/it-provisioning.jpg`, `projects/student-app.jpg`, and `projects/workflow-docs.jpg`. All are under `src/images/`.
 - Legacy section/stagger data-motion attributes are inert. They do not hide content or trigger downloads. Removing them across otherwise unchanged templates is unnecessary for this focused pass.
 - No WebFinger exists, and none is created. `/.well-known/security.txt` uses `contact@levihuff.net`, its correct HTTPS canonical, and expiry `2027-04-29T00:00:00.000Z`. Renew before that date; the test intentionally fails when it expires.
-- The excluded custom-domain-email article stays excluded. Its existing assets remain passthrough files as before; the article is absent from routes, feed, sitemap, tags, and guide.
+- The original audit preserves the then-excluded custom-domain-email article. During PR preparation, current main is found to have published it in PR #132. The integrated branch preserves main's publication state; it does not introduce another publication change.
 - Existing JetBrains Mono face is declared at weight 400. No font replacement, asset pruning, biography correction, dependency upgrade, or optional feature is introduced.
 - No physical phone, Safari/Firefox, screen reader, exhaustive computed contrast scan, PDF content audit, production response headers, host 404 routing, or FTP upload is tested. External links can change after this check. Local `/404.html` rendering is verified; unknown-route hosting behavior is separate.
 

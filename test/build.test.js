@@ -271,14 +271,14 @@ describe("build smoke test", () => {
     expect(expiryMs).toBeLessThanOrEqual(Date.now() + 366 * 24 * 60 * 60 * 1000);
   });
 
-  it("does not deploy .htaccess or the unpublished draft", () => {
+  it("does not deploy .htaccess or explicitly excluded Markdown sources", () => {
     expect(existsSync(resolve(siteDir, ".htaccess"))).toBe(false);
 
-    const ignoredSources = readFileSync(resolve(root, ".eleventyignore"), "utf8")
+    const ignorePath = resolve(root, ".eleventyignore");
+    const ignoredSources = (existsSync(ignorePath) ? readFileSync(ignorePath, "utf8") : "")
       .split(/\r?\n/)
       .map((line) => line.trim())
       .filter((line) => line && !line.startsWith("#") && line.endsWith(".md"));
-    expect(ignoredSources.length).toBeGreaterThan(0);
     const ignoredSlugs = ignoredSources.map((source) => basename(source, ".md"));
 
     for (const file of findHtmlFiles(siteDir)) {
