@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 tags:
   - meta
 status: developing
@@ -40,13 +40,13 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]] - PR #130 dependency consolidation, Vitest 5 requirements, and the owner-approved exact braces advisory exception
+  - [[Tech Stack]] - zero-vulnerability candidate in PRs #137/#135/#136; Eleventy 4 alpha adoption awaits an owner decision
 
 ## Flows
 
 - [[Flows Index]]
   - [[Build Pipeline]]
-  - [[Deploy Pipeline]] - CI audit policy retains other high/critical checks
+  - [[Deploy Pipeline]] - candidate CI rejects every vulnerability; the main ruleset requires the legacy audit status name
 
 ## Meta
 

@@ -2,7 +2,7 @@
 type: overview
 title: "Architecture Overview"
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 tags:
   - overview
 status: developing
@@ -25,7 +25,7 @@ levihuff.net is a static site built with [Eleventy (11ty)](https://www.11ty.dev/
 - **Styling**: Tailwind CSS 4, compiled directly with `@tailwindcss/cli` rather than copied through Eleventy - see [[CSS Pipeline]]. Design rules live in `DESIGN.md`: no emoji, no italics, single amber accent, dark-first with no runtime toggle ([[Dark First Theme]]).
 - **Interactivity**: two Vue 3 CDN islands (project filter, blog tag filter) and Motion-driven scroll animations, both minimal by design - see [[Template System]].
 - **Discovery**: shared profile data feeds metadata and structured data, while Eleventy generates `/llms.txt` for answer engines.
-- **Testing**: five Vitest suites (`filters`, `data`, `blog`, `build`, `audit`) provide 159 regression tests, including the exact advisory exception policy, and gate every deployment - see [[Deploy Pipeline]].
+- **Testing**: five Vitest suites (`filters`, `data`, `blog`, `build`, `audit`) provide 171 regression tests on the security candidate, including every-severity audit blocking, CDN coverage, and the Vue attribute regression. They gate every deployment; see [[Deploy Pipeline]].
 
 ## Why it looks this way
 

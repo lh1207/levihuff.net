@@ -16,6 +16,30 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - Restored the required audit status
+
+The active main ruleset requires `npm audit (high+)`; changing the job display name left this status waiting even though the new audit job passed. Restored the exact legacy label without weakening the every-severity audit or signature verification, and propagated the repair to #137, #135, and #136. Local suites pass 171, 171, and 175 tests respectively. Corrected [[Deploy Pipeline]] to document that required security checks block merges and that rulesets must be inspected separately from classic branch protection. Updated the index and hot cache.
+
+---
+
+## 2026-10-07 - Zero-vulnerability dependency candidate prepared
+
+The owner's zero-vulnerability requirement replaces the earlier exception-policy discussion. Removed the vulnerable braces and sprintf-js chains through official Eleventy 4 alpha, the maintained frontmatter fork, and Parcel watcher 2.6.0. Updated both Vue CDN imports to patched 3.5.43 and included exact browser package pins in audit coverage. The candidate gate rejects every severity, with no exceptions, and verifies registry signatures.
+
+Security commit 700ce46 is pushed in #137, b5211dc in #135, and 5a77f5e in #136. Local audits report zero; 171/171/175 tests pass respectively. The previous 170-test candidate also passes on Node 22.15.0 and 24.0.0. Ten watch/reload controls and browser filters pass; all 206 generated files match the baseline before the intentional Vue URL change. Main adoption awaits an explicit decision on Eleventy's prerelease status.
+
+Updated [[Tech Stack]], [[Vue Version Pin]], [[Deploy Pipeline]], [[Architecture Overview]], the index, and hot cache.
+
+---
+
+## 2026-10-07 - Dependency refresh and open PR synchronization
+
+Prepared PR #137 with RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2. Clean installation and 159 tests pass; direct dependencies are current. Merged and pushed the dependency commit into #135 (159 tests) and #136 (163 tests). Independent review finds no compatibility regression.
+
+Updated [[Tech Stack]], the index, and hot cache. The existing audit policy remains unchanged and blocks Eleventy's mixed accepted-braces/moderate-sprintf-js advisory chain. Main integration awaits an owner decision; no compatible upstream patch exists for the remaining chain.
+
+---
+
 ## 2026-10-05 - Corrected the merged article's build exclusion
 
 PR #131 was merged while `.eleventyignore` still suppressed the article. Removed the exclusion to include the post in the normal blog collection and production output. Draft PR status should have provided the review boundary. Updated [[Custom Domain Email Blog Draft]], the index, and hot cache to record this correction.

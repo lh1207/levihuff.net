@@ -6,7 +6,7 @@ date: 2026-07-14
 tags:
   - decision
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-10-07
 related:
   - "[[Template System]]"
   - "[[Tech Stack]]"
@@ -17,11 +17,11 @@ sources: []
 
 ## Context
 
-`src/projects.njk` and `src/blog/index.njk` load Vue 3 as an inline ES module: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`.
+`src/projects.njk` and `src/blog/index.njk` load Vue 3 as an inline ES module: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.43/dist/vue.esm-browser.prod.js'`.
 
 ## Decision
 
-The version is pinned to the exact `3.5.34`, never a floating range like `vue@3` or `vue@^3.5`.
+The version is pinned to the exact `3.5.43`, never a floating range like `vue@3` or `vue@^3.5`. Exact Vue and Motion pins also appear in devDependencies so npm audit covers their package trees. Tests enforce matching CDN URLs and lockfile resolutions.
 
 ## Why (the tradeoff)
 
@@ -34,5 +34,5 @@ Subresource Integrity (SRI) hashes cannot be attached to the static imports insi
 
 ## Consequences
 
-- When upgrading Vue, bump the version string in **both** files together and run `npm test`.
+- When upgrading Vue, bump both URLs and the manifest pin together, refresh the lockfile, and run `npm test` and `npm run audit:ci`.
 - Don't let this pin drift out of sync between the two files - a mismatch would load two different Vue builds on different pages.
