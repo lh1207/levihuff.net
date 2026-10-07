@@ -18,7 +18,7 @@
     "@11ty/eleventy": "^3.1.6"
   },
   "devDependencies": {
-    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^3.1.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@tailwindcss/cli": "^4.3.3",
     "gray-matter": "^4.0.3",
