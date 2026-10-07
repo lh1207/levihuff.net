@@ -16,6 +16,12 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - AeroAssist website PR opened with monitoring
+
+Opened PR #135 on `codex/aeroassist-portfolio-case-study` at the owner's request. Rebased onto current main at `977828d`, resolving shared vault conflicts while preserving both histories. All 159 tests pass. Initial GitHub checks are running; a ten-minute heartbeat monitors CI, reviews, conflicts, and closure without merge authorization. See [[AeroAssist Website Case Study]].
+
+---
+
 ## 2026-10-07 - AeroAssist website presentation grounded in source
 
 Reworked the existing AeroAssist case study, Docker notes, and project card using GitHub history and source at `dff52cb`. Removed unsupported feature claims, linked contribution commits, retained authentic screenshots, and documented runtime limitations. The owner restricts changes to the website; project repositories remain unchanged. All 159 tests pass, with desktop/mobile browser checks and independent attribution review. Website changes remain local and unpublished. See [[AeroAssist Website Case Study]].

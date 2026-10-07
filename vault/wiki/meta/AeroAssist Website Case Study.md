@@ -12,7 +12,9 @@ related: ["[[Data Layer]]", "[[Template System]]"]
 
 ## Scope and decision
 
-The owner limits this task to levihuff.net. GitHub project repositories are evidence sources and remain unchanged. No project README, application code, remote branch, or PR is modified. Website changes remain local and unpublished.
+The owner limits this task to levihuff.net. AeroAssist and the other project repositories are evidence sources and remain unchanged. No source-project README or application code is modified. Website changes are proposed in [PR #135](https://github.com/lh1207/levihuff.net/pull/135), on `codex/aeroassist-portfolio-case-study`; they are not merged or deployed.
+
+The owner requests a PR and monitoring. The branch is rebased onto main at `977828d`, preserving the email article publication correction and both vault histories. All 159 tests pass after rebase. The active heartbeat `monitor-aeroassist-website-pr` checks CI, reviews, conflicts, and terminal status every ten minutes. It stays quiet for unchanged/non-actionable states, reports actionable changes or all-checks-passing, and pauses after reporting merge/closure. It has no merge authorization.
 
 AeroAssist is selected after comparing its README and contributors with LocoQuest and the Culinary Mastery team repository. AeroAssist has usable repository screenshots and a straightforward UI/API/database story; the website previously overclaimed automation, role administration, notifications, audit history, and tests. Correcting these claims gives this website entry a clear benefit.
 

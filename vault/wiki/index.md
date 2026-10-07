@@ -50,7 +50,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Meta
 
-- [[AeroAssist Website Case Study]] - website-only recruiter cleanup, verified authorship, historical images, and runtime limitations
+- [[AeroAssist Website Case Study]] - PR #135 and ten-minute monitoring; website-only cleanup, verified authorship, historical images, and runtime limitations
 - [[Custom Domain Email Blog Draft]] - merged PR #131, correction of the mistaken blog exclusion, source boundaries, and solid image redactions
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
 - [[Wiki Index]] (this page)

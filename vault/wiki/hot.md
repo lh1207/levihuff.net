@@ -12,7 +12,8 @@ related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 
 ## AeroAssist website cleanup
 
-- The owner limits this work to the website. AeroAssist and other GitHub project repositories remain unchanged; local website changes are unpublished.
+- Website-only changes are open in PR #135 on `codex/aeroassist-portfolio-case-study`, rebased onto main at `977828d`. AeroAssist and other project repositories remain unchanged. Nothing is merged or deployed.
+- Heartbeat `monitor-aeroassist-website-pr` checks every ten minutes for CI/reviews/conflicts and reports meaningful changes. It pauses after merge/closure and does not merge the PR.
 - The AeroAssist card links to the revised existing case study. Verified commits support the UI, persistence, charts, and Docker work; unsupported automation, authorization, and testing claims are removed. Historical screenshots match repository assets.
 - Static and Vue project cards support uncropped `screenshot` images and same-tab internal links. All 159 tests pass; desktop/mobile browser checks pass. Application execution remains unverified because the .NET SDK and running Docker daemon are unavailable. See [[AeroAssist Website Case Study]].
 
