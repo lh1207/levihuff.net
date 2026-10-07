@@ -5,7 +5,7 @@ path: "eleventy.config.cjs"
 language: javascript
 purpose: "Central Eleventy build configuration: plugins, markdown, collections, filters, transforms, passthrough, global data."
 maintainer: "Levi Huff"
-last_updated: 2026-08-18
+last_updated: 2026-10-07
 depends_on:
   - "[[Tech Stack]]"
 used_by:
@@ -13,7 +13,7 @@ used_by:
 tags:
   - module
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-10-07
 status: active
 related:
   - "[[CSS Pipeline]]"
@@ -39,7 +39,11 @@ sources: []
 - **Passthrough**: `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, `_headers`. `src/.htaccess` is deliberately **not** passthrough - Porkbun's static hosting rejects it.
 - **Directories**: input `src/`, output `_site/`, includes `_includes/`, layouts `_layouts/`.
 
-## Depends on
+## V2 scroll accessibility
+
+Markdown table renderer rules wrap each table in a named, focusable `.table-scroll` region without changing table semantics. The `code-scroll-access` HTML transform adds keyboard access and a region name to code blocks without an existing tabindex. These enhancements do not depend on browser JavaScript. See [[V2 Cleanup and Verification]].
+
+## Dependencies
 
 - [[Tech Stack]] (Eleventy 3.x, markdown-it, RSS/syntaxhighlight plugins)
 

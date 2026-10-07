@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 tags:
   - meta
 status: developing
@@ -21,10 +21,10 @@ Master catalog of every page in this vault. Update this on every change.
 ## Modules
 
 - [[Modules Index]]
-  - [[Eleventy Config]]
-  - [[CSS Pipeline]]
+  - [[Eleventy Config]] - semantic table wrappers and keyboard code scrolling
+  - [[CSS Pipeline]] - shared narrow-screen wrapping and heading scale
   - [[Data Layer]]
-  - [[Template System]]
+  - [[Template System]] - accessible navigation, static fallbacks, and hero-only Motion
 
 ## Components
 
@@ -49,6 +49,8 @@ Master catalog of every page in this vault. Update this on every change.
   - [[Deploy Pipeline]] - CI audit policy retains other high/critical checks
 
 ## Meta
+
+- [[V2 Cleanup and Verification]] - focused polish, file inventory, 109 responsive cases, 163 tests, hosting limits, and review handoff
 
 - [[Custom Domain Email Blog Draft]] - unpublished PR #131, source boundaries, solid image redactions, and 159-test validation after merging main
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status

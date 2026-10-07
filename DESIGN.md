@@ -45,7 +45,7 @@ Each sentence has a verb, names a real system, and quantifies or qualifies the o
 
 **Emoji.** None — body, headings, CTAs, anywhere.
 
-**Punctuation.** Em-dash (—) for asides, en-dash (–) for ranges (`Aug 2022 – Dec 2022`), Oxford comma always, ≤1 exclamation point per page (ideally zero).
+**Punctuation.** Use commas or parentheses for asides; avoid em dashes in site copy (tests enforce this in templates and infrastructure data). Use en dashes for ranges (`Aug 2022 – Dec 2022`), the Oxford comma, and at most one exclamation point per page.
 
 **CTA copy.** Direct verb. `View projects`, `Read blog`, `Get in touch`, `Download PDF`.
 
@@ -53,7 +53,7 @@ Each sentence has a verb, names a real system, and quantifies or qualifies the o
 
 ## 3. Color tokens
 
-Dark is the default. Light is opt-in via `[data-theme="light"]`.
+The deployed site is dark-only. Light tokens below are a future reference, not an implemented runtime theme.
 
 ### Surfaces (dark)
 
@@ -117,9 +117,9 @@ Three families, three jobs. **No italics anywhere** — italic font files are in
 |---|---|---|
 | **Syne** | display headings (h1, h2, large numerals, hero) | 600–800 |
 | **IBM Plex Sans** | body, h3, h4, leads, secondary text | 400–700 |
-| **JetBrains Mono** | code, inline `code`, technical metadata, uppercase section labels (`STACK`, `IMPACT`, `STATUS`), terminal output | 400–600 |
+| **JetBrains Mono** | code, inline `code`, technical metadata, uppercase section labels (`STACK`, `IMPACT`, `STATUS`), terminal output | 400 |
 
-All three are available on Google Fonts and are shipped as variable TTFs.
+All three ship locally as Latin WOFF2 fonts under `src/fonts/`. The deployed face declarations are authoritative for available weights.
 
 ### Scale (modular ~1.2)
 
@@ -134,7 +134,7 @@ All three are available on Google Fonts and are shipped as variable TTFs.
 | `--fs-xl` | 20 | h4 |
 | `--fs-2xl` | 24 | h3 |
 | `--fs-3xl` | 32 | h2 |
-| `--fs-4xl` | 44 | h1 |
+| `--fs-4xl` | 32–44 | h1, fluid on narrow screens |
 | `--fs-5xl` | 64 | display, error code, hero numerals |
 
 **Line heights:** `1.1` tight (display) · `1.25` snug (h2/h3) · `1.5` normal · `1.7` relaxed (body).
@@ -265,7 +265,7 @@ Honors `prefers-reduced-motion: reduce` (collapses to ~0ms).
 
 | Component | Pattern |
 |---|---|
-| Sticky header | 72px tall, `backdrop-filter: blur(8px)` on `rgba(17,19,23,0.72)`, brand left + nav right + theme toggle. Active nav link gets a 2px amber under-bar. |
+| Sticky header | 72px tall, `backdrop-filter: blur(8px)` on `rgba(17,19,23,0.72)`, brand left + nav right. Mobile navigation uses a disclosure button. Active nav link gets a 2px amber under-bar. |
 | Project card | Image-on-top, mono `STACK` label, h3 title, body, mono `View →` link. Hover lifts 2px. |
 | Experience card | UPPERCASE mono eyebrow (`CO-OP` / `INTERN`), h3 company, mono date range, body. **No left-border accent** (the original site's trope; explicitly removed). |
 | Skill group | h3 group heading, definition-list pairs (`<strong>label</strong>: text`). |
@@ -281,16 +281,13 @@ Honors `prefers-reduced-motion: reduce` (collapses to ~0ms).
 
 ## 12. Themes
 
-Two themes, dark-first.
-
-- **Dark (default):** all tokens defined on `:root`. This is the brand presentation.
-- **Light:** opt-in via `<html data-theme="light">`. Same tokens, retuned for white surfaces. Accent darkens to `#b87a14` for AA contrast.
-
-Theme toggle persists to `localStorage` (`theme` key) and respects `prefers-color-scheme` on first visit.
+Dark is the only runtime theme. Tokens are defined on `:root`, and the base layout renders `<html data-theme="dark">`. There is no theme toggle or localStorage persistence. The light palette and skeleton below are reference material for a possible future opt-in theme.
 
 ---
 
-## 13. CSS skeleton (drop-in)
+## 13. CSS skeleton (reference only)
+
+Use `src/_includes/css/tailwind.css` and `tailwind.config.js` for the production implementation, including local WOFF2 font paths and dark-only behavior.
 
 ```css
 @font-face { font-family:"Syne"; src:url("fonts/Syne-VariableFont_wght.ttf") format("truetype-variations"); font-weight:400 800; font-style:normal; font-display:swap; }

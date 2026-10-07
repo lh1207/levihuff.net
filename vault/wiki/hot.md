@@ -2,29 +2,28 @@
 type: meta
 title: "Hot Cache"
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 tags: [meta]
 status: active
-related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
+related: ["[[V2 Cleanup and Verification]]", "[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 ---
 
 # Recent context
 
-## Current blog draft
+## V2 cleanup
 
-- PR #131, `blog/replying-from-my-own-domain`, contains the unpublished custom-domain email article, an attributed Unsplash cover, and four supplied screenshots. Private regions use solid black replacement pixels in flattened PNGs; original sensitive screenshots are not repository assets.
-- `.eleventyignore` excludes the article from production until publication is authorized. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
-- The branch incorporates main at `eec01f7`. Its vault conflicts preserve both the article evidence and dependency context. See [[Custom Domain Email Blog Draft]] for validation.
+- The local V2 polish retains Eleventy, Tailwind, pinned Vue islands, the site's content/identity, and static FTP deployment. No commit, push, or deployment is part of this task.
+- Shared fixes cover narrow-screen wrapping/headings, keyboard-scrollable tables/code, menu breakpoint/inert recovery, no-JavaScript navigation, skip/filter/back-to-top focus, footer targets, and descriptive infrastructure links. Motion is hero-only; scroll-triggered reveals are disabled. Dark theme is emitted directly in HTML.
+- The existing favicon.ico is actually JPEG data; markup now uses profile.jpg with the correct type and retains the SVG. Uncertain assets are preserved. Documentation is reconciled with dark-only WOFF2 implementation.
+- Validation: 163 tests, 109 Chrome responsive cases across requested widths with no page-wide overflow, successful keyboard/failure-mode checks, 4,635 exact-case local references resolved, metadata/discovery checks passed. Of 40 external links, 38 return 2xx; LinkedIn 999 and Handshake 403 remain unverified. See [[V2 Cleanup and Verification]] for full file inventory and limits.
+- Security contact expires April 29, 2027. `.htaccess` remains undeployed; `_headers` remains inactive on Porkbun. Host-side HTTP behavior is not verified by the static build.
 
-## Current dependency context
+## Draft and dependencies
 
-- PR #130 is merged as `eec01f7`; Dependabot PRs #125 through #129 are closed as superseded.
-- Main uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
-- The suite has 159 tests, including 22 audit-policy regressions. Vitest 5 requires Node 22.12+, 24, or 26+; CI and deployment use Node 22.
-- The owner-approved exception for GHSA-vfj7-8cjw-p6xm remains narrow: `npm run audit:ci` matches only that braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed or failed audits still block. Remove the exception when upstream dependencies can be patched.
+- PR #131 contains the unpublished custom-domain-email article. `.eleventyignore` keeps it out of production pages, feed, sitemap, and tags. Keep exclusion until publication is authorized. See [[Custom Domain Email Blog Draft]].
+- PR #130 merged dependency consolidation at `eec01f7`. Vitest 5 requires Node 22.12+, 24, or 26+; CI/deploy use Node 22. The narrow owner-approved braces advisory exception remains a risk acceptance, not a fix. Other high/critical findings still block. See [[Tech Stack]].
 
 ## Stable context
 
-- `vault/` is the primary repository knowledge store. Never edit `.raw/`; log entries are append-only; vault changes are reviewed and committed intentionally.
-- Main includes the Phase 4 AD/PXE post from merged PR #123. Phase 4 is complete; Phase 5 and later deployment phases remain outside that post's completion boundary.
-- The site remains Eleventy 3.1.6, Tailwind CSS 4.3.3 via `@tailwindcss/cli`, Vue 3.5.34 islands, and Motion 10.18.0.
+- `vault/` is the primary repository store. Never edit `.raw/`; preserve historical log entries; review vault changes before committing.
+- Phase 4 AD/PXE post from PR #123 is published. Later deployment phases remain outside its completion boundary.

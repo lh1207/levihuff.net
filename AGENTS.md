@@ -43,7 +43,7 @@ All structured content lives in `src/_data/`, automatically available as templat
 | `tools.json` | Tools section badges |
 | `infra.js` | Infrastructure hub, detail pages, homepage featured cards (CommonJS module; schema in CLAUDE.md) |
 
-`test/data.test.js` validates every one of these; it also bans em dashes in `.njk` templates and infra copy.
+`test/data.test.js` validates the core data schemas; `tools.json` does not yet have a dedicated schema check. It also bans em dashes in `.njk` templates and infra copy.
 
 ### Custom filters (`src/filters.js`, registered in `eleventy.config.cjs`)
 
@@ -55,7 +55,7 @@ CSS is not passthrough-copied. Tailwind CSS 4 builds `src/_includes/css/tailwind
 
 ### Theme
 
-Dark-first and dark-only at runtime. `base.njk` sets `data-theme="dark"` on `<html>` before first paint. There is no runtime theme toggle and no `localStorage` theme persistence; the `[data-theme="light"]` CSS rules exist only for future opt-in support.
+Dark-first and dark-only at runtime. `base.njk` renders `data-theme="dark"` directly on `<html>`. There is no runtime theme toggle, light-theme CSS, or `localStorage` theme persistence. Light tokens in DESIGN.md are a future reference only.
 
 ## Design rules
 

@@ -2,7 +2,12 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { execSync } from "child_process";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
+import { basename, dirname, resolve } from "path";
+import { imageDimensions } from "../src/filters.js";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const site = require("../src/_data/site.json");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
@@ -163,6 +168,135 @@ describe("build smoke test", () => {
     }
 
     expect(broken, `Broken links:\n${broken.join("\n")}`).toHaveLength(0);
+  });
+
+  it("local href fragments resolve to an id on their target page", () => {
+    const problems = [];
+    const origin = "https://levihuff.net";
+
+    function pageForUrl(pathname) {
+      const clean = decodeURIComponent(pathname || "/").replace(/^\/+/, "");
+      const direct = resolve(siteDir, clean);
+      if (clean.endsWith(".html")) return direct;
+      return resolve(siteDir, clean, "index.html");
+    }
+
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      for (const match of html.matchAll(/\bhref="([^"]*#[^"]+)"/g)) {
+        const href = match[1];
+        let url;
+        try {
+          url = new URL(href, `${origin}${file.replace(siteDir, "")}`);
+        } catch {
+          problems.push(`${href} in ${file.replace(siteDir, "")}: invalid URL`);
+          continue;
+        }
+        if (url.origin !== origin || !url.hash) continue;
+        const target = pageForUrl(url.pathname);
+        if (!existsSync(target)) {
+          problems.push(`${href} in ${file.replace(siteDir, "")}: target missing`);
+          continue;
+        }
+        const targetHtml = readFileSync(target, "utf8");
+        const id = decodeURIComponent(url.hash.slice(1));
+        const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        if (!new RegExp(`\\bid=["']${escapedId}["']`).test(targetHtml)) {
+          problems.push(`${href} in ${file.replace(siteDir, "")}: fragment missing`);
+        }
+      }
+    }
+
+    expect(problems, `Broken local fragments:\n${problems.join("\n")}`).toHaveLength(0);
+  });
+
+  it("CSS asset URLs and metadata images resolve to built assets", () => {
+    const css = readFileSync(resolve(siteDir, "css/styles.css"), "utf8");
+    const cssProblems = [];
+    for (const match of css.matchAll(/url\((?:"|')?(\/[^)"']+)(?:"|')?\)/g)) {
+      const asset = resolve(siteDir, match[1].split(/[?#]/)[0].replace(/^\//, ""));
+      if (!existsSync(asset)) cssProblems.push(`CSS: ${match[1]}`);
+    }
+
+    const metadataProblems = [];
+    for (const file of findHtmlFiles(siteDir)) {
+      const html = readFileSync(file, "utf8");
+      const metas = [...html.matchAll(/<meta\s+([^>]+)>/gi)].map((match) => {
+        const attrs = Object.fromEntries(
+          [...match[1].matchAll(/([\w:-]+)=["']([^"']*)["']/g)].map((attr) => [attr[1].toLowerCase(), attr[2]])
+        );
+        return attrs;
+      });
+      for (const meta of metas.filter((entry) =>
+        entry.property === "og:image" || entry.name === "twitter:image"
+      )) {
+        let url;
+        try {
+          url = new URL(meta.content, "https://levihuff.net/");
+        } catch {
+          metadataProblems.push(`${file.replace(siteDir, "")}: invalid image URL ${meta.content}`);
+          continue;
+        }
+        if (url.origin !== "https://levihuff.net") continue;
+        const asset = resolve(siteDir, decodeURIComponent(url.pathname).replace(/^\//, ""));
+        if (!existsSync(asset)) metadataProblems.push(`${file.replace(siteDir, "")}: missing ${url.pathname}`);
+      }
+
+      for (const image of metas.filter((entry) => entry.property === "og:image")) {
+        const imageUrl = new URL(image.content, "https://levihuff.net/");
+        const actual = imageUrl.origin === "https://levihuff.net"
+          ? imageDimensions(imageUrl.pathname, resolve(root, "src"))
+          : null;
+        const width = Number(metas.find((entry) => entry.property === "og:image:width")?.content);
+        const height = Number(metas.find((entry) => entry.property === "og:image:height")?.content);
+        if (!actual || width !== actual.width || height !== actual.height) {
+          metadataProblems.push(`${file.replace(siteDir, "")}: OG image dimensions missing`);
+        }
+      }
+    }
+
+    expect(cssProblems, `Missing CSS assets:\n${cssProblems.join("\n")}`).toHaveLength(0);
+    expect(metadataProblems, `Invalid metadata images:\n${metadataProblems.join("\n")}`).toHaveLength(0);
+  });
+
+  it("security.txt has a current contact, canonical URL, and near-term expiry", () => {
+    const security = readFileSync(resolve(siteDir, ".well-known/security.txt"), "utf8");
+    expect(security).toContain(`Contact: mailto:${site.email}`);
+    expect(security).toContain("Canonical: https://levihuff.net/.well-known/security.txt");
+    const expires = security.match(/^Expires:\s*(\S+)/m);
+    expect(expires).toBeTruthy();
+    const expiryMs = Date.parse(expires[1]);
+    expect(Number.isNaN(expiryMs)).toBe(false);
+    expect(expiryMs).toBeGreaterThan(Date.now());
+    expect(expiryMs).toBeLessThanOrEqual(Date.now() + 366 * 24 * 60 * 60 * 1000);
+  });
+
+  it("does not deploy .htaccess or the unpublished draft", () => {
+    expect(existsSync(resolve(siteDir, ".htaccess"))).toBe(false);
+
+    const ignoredSources = readFileSync(resolve(root, ".eleventyignore"), "utf8")
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter((line) => line && !line.startsWith("#") && line.endsWith(".md"));
+    expect(ignoredSources.length).toBeGreaterThan(0);
+    const ignoredSlugs = ignoredSources.map((source) => basename(source, ".md"));
+
+    for (const file of findHtmlFiles(siteDir)) {
+      const contents = readFileSync(file, "utf8");
+      for (const slug of ignoredSlugs) {
+        expect(contents, `${file.replace(siteDir, "")} includes excluded source ${slug}`).not.toContain(slug);
+      }
+    }
+
+    for (const output of ["feed.xml", "sitemap.xml", "llms.txt"]) {
+      const contents = readFileSync(resolve(siteDir, output), "utf8");
+      for (const slug of ignoredSlugs) {
+        expect(contents, `${output} includes excluded source ${slug}`).not.toContain(slug);
+      }
+    }
+    for (const slug of ignoredSlugs) {
+      expect(existsSync(resolve(siteDir, "blog", slug, "index.html"))).toBe(false);
+    }
   });
 
   // Meta / OG tags

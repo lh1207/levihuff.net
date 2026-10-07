@@ -117,24 +117,20 @@ Key behaviors defined here:
   - `safeCdata` — escapes `]]>` for valid CDATA in the Atom feed.
   - `readingTime` — estimated read time at 200 wpm (minimum `"1 min read"`).
   - `jsonScript` — JSON-encodes a value for embedding inside an inline `<script>` tag, escaping `<` so a `</script>` substring in the data can never break out; used to pass data into the Vue islands.
-- **Transforms:** `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (uses `imageDimensions`); `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest.
+- **Transforms:** `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (uses `imageDimensions`); `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest. `code-scroll-access` makes code blocks keyboard-scrollable. Markdown tables retain table semantics inside a focusable `.table-scroll` region.
 - **Global data:** `currentYear` (integer), `buildDate` (`YYYY-MM-DD` string), and `gitHash` (short commit hash, used to cache-bust the CSS URL; falls back to `"dev"` outside git).
 - **Passthrough:** `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, `_headers`. (`src/.htaccess` is intentionally NOT passthrough — Porkbun static hosting rejects it.)
 - **Directories:** input `src/`, output `_site/`, includes `_includes/`, layouts `_layouts/`.
 
 ### Theme
 
-Dark-first. `base.njk` sets `data-theme="dark"` on `<html>` via an inline `<script>` tag that runs before first paint. There is no runtime toggle — dark is always the active theme. The `[data-theme="light"]` CSS rules in `tailwind.css` and `tailwind.config.js` exist for future opt-in support.
+Dark-only at runtime. `base.njk` renders `data-theme="dark"` directly on `<html>`, including without JavaScript. There is no runtime toggle or light-theme CSS. DESIGN.md retains light tokens as a future reference only.
 
 ### Animations
 
-Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm`) drives three animation patterns in `base.njk`:
+Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm`) provides a small vertical entrance for `data-motion="hero-item"` elements in `#hero`. Content remains visible throughout. Scroll-triggered section/grid reveals are disabled to follow DESIGN.md. Legacy section/stagger attributes are inert.
 
-- **Hero stagger:** `data-motion="hero-item"` elements on `#hero` animate in with opacity + y-slide.
-- **Section reveal:** `data-motion="section"` triggers on scroll into view.
-- **Grid stagger:** `data-motion="stagger"` parent + `data-motion="stagger-item"` children.
-
-All animation code is guarded by `prefers-reduced-motion` — if the user prefers reduced motion, no animations run.
+The import handles CDN failure and checks `prefers-reduced-motion` before and after loading. Vue filter transitions also honor reduced motion. Static cards remain available when Vue cannot load. Mobile navigation has a no-JavaScript fallback and resets its focus/inert state at the 801px desktop breakpoint.
 
 ### Vue islands
 

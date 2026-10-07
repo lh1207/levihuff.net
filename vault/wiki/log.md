@@ -16,6 +16,14 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - V2 cleanup prepared for review
+
+The focused V2 pass improves responsive wrapping, mobile navigation and keyboard focus, static fallbacks, Markdown scroll access, footer targets, and metadata while retaining the site's identity and static workflow. Documentation follows the actual dark-only WOFF2 implementation. All 163 tests pass, 109 local Chrome responsive cases have no page-wide overflow, and generated references resolve with exact case. External checks reach 38 of 40 destinations; LinkedIn and Handshake block automated checks. No deployment or push occurs.
+
+Updated [[Template System]], [[CSS Pipeline]], [[Eleventy Config]], the index, and hot cache. [[V2 Cleanup and Verification]] holds the file inventory, validation limits, preserved assets/drafts, and deployment handoff.
+
+---
+
 ## 2026-10-05 - PR #131 reconciled with merged dependency updates
 
 Merged main at `eec01f7` into the draft branch. Resolved shared hot-cache and log conflicts by preserving both branches' evidence and historical entries. Article text, images, and publication exclusion are unchanged. Clean installation and all 159 tests pass. See [[Custom Domain Email Blog Draft]].

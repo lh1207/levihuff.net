@@ -32,8 +32,8 @@
     {% if project.paragraphs %}
     <dl class="mt-4 space-y-2">
       {% for para in project.paragraphs %}
-      <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-        <dt class="font-jb text-sm text-amber sm:w-36 shrink-0">{{ para.label }}</dt>
+      <div class="flex flex-col gap-1">
+        <dt class="font-jb text-sm text-amber">{{ para.label }}</dt>
         <dd class="font-plex text-sm text-fg-2">{{ para.text }}</dd>
       </div>
       {% endfor %}
