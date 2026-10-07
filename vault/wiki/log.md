@@ -16,6 +16,12 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - Cleanup PR opened and monitored
+
+Opened [PR #136](https://github.com/lh1207/levihuff.net/pull/136) on `codex/v2-cleanup-polish` after incorporating main's existing PR #132 publication change. The optional exclusion test handles the absent `.eleventyignore`; all 163 tests pass. At initial head db4ab30, GitHub CI, CodeQL, secrets, and env checks pass, while unchanged dependencies fail npm audit on critical shell-quote and high source-map-js/Eleventy entries. No reviews are present. A 15-minute heartbeat reports meaningful check/review/state changes without merging, deploying, or posting comments. Updated [[V2 Cleanup and Verification]], the index, and hot cache.
+
+---
+
 ## 2026-10-07 - V2 cleanup prepared for review
 
 The focused V2 pass improves responsive wrapping, mobile navigation and keyboard focus, static fallbacks, Markdown scroll access, footer targets, and metadata while retaining the site's identity and static workflow. Documentation follows the actual dark-only WOFF2 implementation. All 163 tests pass, 109 local Chrome responsive cases have no page-wide overflow, and generated references resolve with exact case. External checks reach 38 of 40 destinations; LinkedIn and Handshake block automated checks. No deployment or push occurs.

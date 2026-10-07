@@ -50,7 +50,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Meta
 
-- [[V2 Cleanup and Verification]] - focused polish, file inventory, 109 responsive cases, 163 tests, hosting limits, and review handoff
+- [[V2 Cleanup and Verification]] - PR #136, active monitor, dependency-audit blocker, 109 responsive cases, 163 tests, and hosting limits
 
 - [[Custom Domain Email Blog Draft]] - merged PR #131, correction of the mistaken blog exclusion, source boundaries, and solid image redactions
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
