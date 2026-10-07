@@ -13,11 +13,11 @@ npm test           # Run the Vitest test suite (one-shot)
 npm run test:watch # Vitest in watch mode
 ```
 
-**There is a test suite.** Five Vitest files under `test/` cover filters, data schemas, blog frontmatter, the audit exception policy, and a full build smoke test. CI runs `npm test` on every PR and non-main push; the deploy workflow runs it before building. Always run `npm test` after making changes. `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.
+**There is a test suite.** Five Vitest files under `test/` cover filters, data schemas, blog frontmatter, the zero-vulnerability audit policy and CDN version coverage, and a full build smoke test. CI runs `npm test` on every PR and non-main push; the deploy workflow runs it before building. Always run `npm test` after making changes. `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.
 
 ## Architecture
 
-This is an [Eleventy (11ty)](https://www.11ty.dev/) static site (Eleventy 3.x). `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`deploy.yml`: test, build, FTP-deploy). `ci.yml` runs tests on PRs and non-main pushes; `security.yml` runs gitleaks, an `.env` guard, and `npm audit`.
+This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. The security candidate pins the official Eleventy 4.0.0-alpha.10 prerelease; Node must satisfy package.json's supported range (22.15+, 24, or 26+). `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`deploy.yml`: test, build, FTP-deploy). `ci.yml` runs tests on PRs and non-main pushes; `security.yml` runs gitleaks, an `.env` guard, a zero-vulnerability audit with no exceptions, and registry signature verification.
 
 The Eleventy config file is `eleventy.config.cjs` — there is no `.eleventy.js`.
 
