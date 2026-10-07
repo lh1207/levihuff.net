@@ -22,7 +22,7 @@ Personal portfolio website built with [Eleventy](https://www.11ty.dev/).
 
 ## Quick start
 
-**Requirements:** Node.js 20+ (CI runs on Node 22)
+**Requirements:** Node.js 22.15+ on the Node 22 line, Node 24, or Node 26+ (CI runs on Node 22).
 
 ```bash
 git clone <repo>
@@ -39,12 +39,12 @@ No `.env` file or local secrets are needed for development.
 
 | Layer | Technology |
 |---|---|
-| Static site generator | Eleventy 3.x (`eleventy.config.cjs`) |
+| Static site generator | Eleventy 4.0.0-alpha.10 security candidate (`eleventy.config.cjs`; official prerelease) |
 | Templates | Nunjucks, Markdown (`markdown-it` + `markdown-it-anchor`) |
 | CSS | Tailwind CSS 4.x (`@tailwindcss/cli`) |
 | Client-side interactivity | Vue 3 CDN islands (project filter, blog tag filter) |
 | Animations | Motion One 10.x (CDN, ESM import, gated on `prefers-reduced-motion`) |
-| Tests | Vitest 4.x |
+| Tests | Vitest 5.0.3 |
 | CI | GitHub Actions (tests, security scanning, deploy) |
 | Deploy | FTP via `SamKirkland/FTP-Deploy-Action` |
 | Hosting | Porkbun shared hosting |
@@ -119,7 +119,7 @@ levihuff.net/
 │
 └── .github/workflows/
     ├── ci.yml                  # Run tests on PRs and non-main pushes
-    ├── security.yml            # gitleaks, tracked-.env guard, npm audit (high+)
+    ├── security.yml            # gitleaks, tracked-.env guard, all-severity audit, signatures
     └── deploy.yml              # Test + build + FTP deploy on push to main
 ```
 
@@ -160,9 +160,9 @@ src/_includes/css/tailwind.css
 **Client-side JavaScript:**
 
 - Inline scripts in `src/_layouts/base.njk`: dark theme bootstrap (sets `data-theme="dark"` on `<html>` before first paint), Motion One animations (hero stagger, section reveal, grid stagger; all skipped when `prefers-reduced-motion` is set), mobile hamburger nav toggle, and "back to top" button visibility.
-- Two Vue 3 islands: the project category filter on `/projects/` and the blog tag filter on `/blog/`. Vue is loaded as an inline ES module import pinned to `vue@3.5.34`. The version pin is the supply-chain guard (SRI cannot be added to inline `import()` statements), so do not change it to a floating range.
+- Two Vue 3 islands: the project category filter on `/projects/` and the blog tag filter on `/blog/`. Vue is loaded as an inline ES module import pinned to `vue@3.5.43`. The version pin is the supply-chain guard (SRI cannot be added to inline `import()` statements), so do not change it to a floating range.
 
-The only external network dependencies at runtime are the two jsDelivr CDN loads: Motion One (`motion@10.18.0/+esm`) and Vue (`vue@3.5.34`). There are no XHR calls, no service workers, and no backend.
+The only external network dependencies at runtime are the two jsDelivr CDN loads: Motion One (`motion@10.18.0/+esm`) and Vue (`vue@3.5.43`). There are no XHR calls, no service workers, and no backend.
 
 ---
 
@@ -406,7 +406,8 @@ A `concurrency` block queues concurrent `main` pushes rather than running them i
 
 1. gitleaks secret scan over the full git history (config: `.gitleaks.toml`)
 2. Guard against any real `.env` file being tracked
-3. `npm audit --audit-level=high` (fails on high/critical advisories)
+3. `npm run audit:ci` (fails on every known vulnerability, including development packages; no exceptions)
+4. `npm audit signatures` (verifies registry signatures and available provenance)
 
 No manual deployment steps are required. Configure the four FTP secrets (`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FTP_SERVER_DIR`) in the GitHub repository settings under **Settings → Secrets and variables → Actions**.
 

@@ -11,14 +11,14 @@ npm run build      # Production build → _site/
 npm run watch      # Watch mode without serving
 npm test           # Run the Vitest test suite (one-shot)
 npm run test:watch # Vitest in watch mode
-npm run audit:ci   # High/critical audit gate with the documented advisory exception
+npm run audit:ci   # Zero known vulnerabilities at every severity; no exceptions
 ```
 
 **Always run `npm test` after making changes** — the test suite catches broken builds, bad frontmatter, broken internal links, and data schema regressions.
 
 ## Architecture
 
-This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`.github/workflows/deploy.yml`), which runs tests, builds, and FTP-deploys `_site/` to the hosting server. A separate CI workflow (`.github/workflows/ci.yml`) runs tests on all PRs and non-main pushes. A third workflow (`.github/workflows/security.yml`) runs gitleaks over the full history, blocks tracked `.env` files, and fails on high/critical `npm audit` advisories.
+This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. The security candidate pins Eleventy 4.0.0-alpha.10; this is an official prerelease, requiring Node 22.15 or newer on supported Node 22, 24, or 26+ lines. `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`.github/workflows/deploy.yml`), which runs tests, builds, and FTP-deploys `_site/` to the hosting server. A separate CI workflow (`.github/workflows/ci.yml`) runs tests on all PRs and non-main pushes. A third workflow (`.github/workflows/security.yml`) runs gitleaks over the full history, blocks tracked `.env` files, rejects every known npm vulnerability, and verifies registry signatures and available provenance.
 
 ### CSS pipeline
 
@@ -139,7 +139,7 @@ Two pages use Vue 3 CDN islands for client-side interactivity:
 - `src/projects.njk` — project category filter
 - `src/blog/index.njk` — blog tag filter
 
-Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.34` — do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. When upgrading, bump both files together and run `npm test`.
+Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.43/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.43`; do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. The exact Vue and Motion versions also appear in devDependencies so their complete package trees are audited. Tests enforce that CDN URLs match those audited versions. When upgrading, bump both Vue files and the manifest pin together, refresh the lockfile, and run `npm test`.
 
 ### Deploy concurrency
 
@@ -153,7 +153,7 @@ Tests use [Vitest](https://vitest.dev/) and cover five areas:
 
 | File | What it tests |
 |---|---|
-| `test/audit.test.js` | Exact advisory exception, dependency provenance, other vulnerability blocking, and audit error handling |
+| `test/audit.test.js` | Every-severity vulnerability blocking, audit error handling, vulnerable-package removal, and CDN version coverage |
 | `test/filters.test.js` | Unit tests for every function in `src/filters.js` |
 | `test/data.test.js` | Schema validation for all `src/_data/*.json` files and `src/_data/infra.js`; bans em dashes in `.njk` templates and infra copy |
 | `test/blog.test.js` | Frontmatter validation for every `src/blog/*.md` post |
@@ -165,9 +165,11 @@ Tests use [Vitest](https://vitest.dev/) and cover five areas:
 
 ## Dependency audit policy
 
-`security.yml` runs `npm run audit:ci`, which invokes `npm audit --audit-level=high --json`. The wrapper in `scripts/audit-dependencies.cjs` accepts only the owner-approved `braces` advisory `GHSA-vfj7-8cjw-p6xm`, matching its URL, package, high severity, and `<=3.0.3` range. This exception is approved on 2026-10-05 because no patched release exists; it accepts the risk rather than fixing the dependency.
+`security.yml` runs `npm run audit:ci`, which invokes unqualified `npm audit --json` over the complete dependency tree. The wrapper in `scripts/audit-dependencies.cjs` blocks every known vulnerability at every severity, including development dependencies. The former braces advisory exception is removed under the owner's zero-vulnerability requirement on 2026-10-07.
 
-High-severity parent entries are exempt only when every underlying advisory is that exact accepted finding. Other high findings, all critical findings, malformed responses, unresolved dependency references, and audit execution errors fail the check. Logs show the accepted advisory and affected packages. Remove the exception when upstream dependencies can be patched. Do not use `continue-on-error` or a blanket package exclusion.
+Malformed responses, unresolved dependency references, inconsistent unsuccessful exits, and audit execution errors fail closed. There are no advisory exceptions, blanket exclusions, or `continue-on-error` steps. Registry signatures and available provenance are verified with `npm audit signatures`.
+
+Eleventy 4 replaces the vulnerable Chokidar 3 and gray-matter chains with its maintained packages. The direct `gray-matter` dependency aliases `@11ty/gray-matter@2.1.0` to preserve existing imports while using js-yaml 4. Tailwind CLI pins an older Parcel watcher, so `overrides` selects official `@parcel/watcher@2.6.0`, which uses picomatch instead of micromatch/braces. Remove that override once Tailwind updates its own pin. Eleventy's prerelease status is a compatibility tradeoff and must remain visible in dependency review.
 
 ## Blog post conventions
 
