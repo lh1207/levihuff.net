@@ -169,6 +169,8 @@ Tests use [Vitest](https://vitest.dev/) and cover five areas:
 
 Malformed responses, unresolved dependency references, inconsistent unsuccessful exits, and audit execution errors fail closed. There are no advisory exceptions, blanket exclusions, or `continue-on-error` steps. Registry signatures and available provenance are verified with `npm audit signatures`.
 
+The audit job retains the exact `npm audit (high+)` display name because the active main ruleset requires that status. The legacy label does not limit the audit: every severity still blocks. Check repository rulesets as well as classic branch protection before renaming required jobs.
+
 Eleventy 4 replaces the vulnerable Chokidar 3 and gray-matter chains with its maintained packages. The direct `gray-matter` dependency aliases `@11ty/gray-matter@2.1.0` to preserve existing imports while using js-yaml 4. Tailwind CLI pins an older Parcel watcher, so `overrides` selects official `@parcel/watcher@2.6.0`, which uses picomatch instead of micromatch/braces. Remove that override once Tailwind updates its own pin. Eleventy's prerelease status is a compatibility tradeoff and must remain visible in dependency review.
 
 ## Blog post conventions
