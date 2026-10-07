@@ -18,7 +18,7 @@
     "@11ty/eleventy": "^3.1.6"
   },
   "devDependencies": {
-    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^3.1.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
     "@tailwindcss/cli": "^4.3.3",
     "gray-matter": "^4.0.3",
@@ -26,6 +26,6 @@
     "markdown-it-anchor": "^10.0.0",
     "npm-run-all2": "^9.0.3",
     "tailwindcss": "^4.3.3",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.3"
   }
 }
