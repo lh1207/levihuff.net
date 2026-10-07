@@ -16,6 +16,12 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - Restored the required audit status
+
+The active main ruleset requires `npm audit (high+)`; changing the job display name left this status waiting even though the new audit job passed. Restored the exact legacy label without weakening the every-severity audit or signature verification, and propagated the repair to #137, #135, and #136. Local suites pass 171, 171, and 175 tests respectively. Corrected [[Deploy Pipeline]] to document that required security checks block merges and that rulesets must be inspected separately from classic branch protection. Updated the index and hot cache.
+
+---
+
 ## 2026-10-07 - Zero-vulnerability dependency candidate prepared
 
 The owner's zero-vulnerability requirement replaces the earlier exception-policy discussion. Removed the vulnerable braces and sprintf-js chains through official Eleventy 4 alpha, the maintained frontmatter fork, and Parcel watcher 2.6.0. Updated both Vue CDN imports to patched 3.5.43 and included exact browser package pins in audit coverage. The candidate gate rejects every severity, with no exceptions, and verifies registry signatures.

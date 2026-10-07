@@ -16,6 +16,7 @@ related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 
 ## Current dependency context
 
+- The active main ruleset requires the exact `npm audit (high+)` status. The workflow retains this legacy name while blocking every severity and verifying signatures. Inspect rulesets separately from classic branch protection before renaming required jobs. See [[Deploy Pipeline]].
 - The owner requires zero known vulnerabilities. Draft PR #137 contains the verified candidate; the same security code is pushed to #135 and #136. Their suites pass 171, 171, and 175 tests respectively, with zero audit findings. GitHub CI/security/CodeQL pass on all three. Dependabot #133/#134 are closed as superseded. See [[Tech Stack]].
 - The candidate pins official Eleventy 4.0.0-alpha.10, aliases gray-matter to the maintained 11ty fork, and overrides Parcel watcher to official 2.6.0. These remove braces and sprintf-js completely. RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2 are retained.
 - Both Vue imports use patched 3.5.43; exact Vue and Motion 10.18.0 pins are included in npm audit and tests enforce CDN/manifest/lock agreement. Every advisory severity now blocks; the old braces exception and proposed relaxation are removed. All 194 installed packages have verified registry signatures, with 67 available attestations.

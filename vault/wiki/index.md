@@ -46,7 +46,7 @@ Master catalog of every page in this vault. Update this on every change.
 
 - [[Flows Index]]
   - [[Build Pipeline]]
-  - [[Deploy Pipeline]] - candidate CI rejects every vulnerability and verifies registry signatures
+  - [[Deploy Pipeline]] - candidate CI rejects every vulnerability; the main ruleset requires the legacy audit status name
 
 ## Meta
 
