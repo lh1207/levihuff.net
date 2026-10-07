@@ -2,7 +2,7 @@
 type: meta
 title: "Hot Cache"
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 tags: [meta]
 status: active
 related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
@@ -18,6 +18,8 @@ related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 
 ## Current dependency context
 
+- PR #137 contains RSS 3.1.0, Vitest 5.0.3, and compatible shell-quote 1.12.0/source-map-js 1.2.2 security patches. Clean installation and 159 tests pass; no outdated direct dependencies remain. PR #135 has the same dependency commit and passes 159 tests; #136 passes 163. All three branches are pushed.
+- Main remains unchanged pending an audit-policy decision. The gate blocks Eleventy's mixed accepted-braces and new moderate sprintf-js advisory chain. No compatible patch exists for either remaining advisory. Requested decision: allow low/moderate causes alongside the exact braces exception while continuing to block all other high/critical findings. See [[Tech Stack]].
 - PR #130 is merged as `eec01f7`; Dependabot PRs #125 through #129 are closed as superseded.
 - Main uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
 - The suite has 159 tests, including 22 audit-policy regressions. Vitest 5 requires Node 22.12+, 24, or 26+; CI and deployment use Node 22.

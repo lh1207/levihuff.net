@@ -16,6 +16,14 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - Dependency refresh and open PR synchronization
+
+Prepared PR #137 with RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2. Clean installation and 159 tests pass; direct dependencies are current. Merged and pushed the dependency commit into #135 (159 tests) and #136 (163 tests). Independent review finds no compatibility regression.
+
+Updated [[Tech Stack]], the index, and hot cache. The existing audit policy remains unchanged and blocks Eleventy's mixed accepted-braces/moderate-sprintf-js advisory chain. Main integration awaits an owner decision; no compatible upstream patch exists for the remaining chain.
+
+---
+
 ## 2026-10-05 - Corrected the merged article's build exclusion
 
 PR #131 was merged while `.eleventyignore` still suppressed the article. Removed the exclusion to include the post in the normal blog collection and production output. Draft PR status should have provided the review boundary. Updated [[Custom Domain Email Blog Draft]], the index, and hot cache to record this correction.
