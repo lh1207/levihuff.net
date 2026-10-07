@@ -83,7 +83,7 @@ describe("projects.json", () => {
   });
 
   it("imageClass, when present, is one of the allowed values", () => {
-    const IMAGE_CLASSES = ["logo"];
+    const IMAGE_CLASSES = ["logo", "screenshot"];
     for (const p of projects) {
       if (p.imageClass === undefined || p.imageClass === null) continue;
       expect(IMAGE_CLASSES, `imageClass on "${p.title}"`).toContain(p.imageClass);

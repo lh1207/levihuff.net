@@ -8,7 +8,7 @@
       width="{{ project.imageWidth }}"
       height="{{ project.imageHeight }}"
       loading="{{ project.imageLoading | default('lazy') }}"
-      class="w-full h-full {% if 'logo' in (project.imageClass or '') %}object-contain p-6 bg-surface-1{% else %}object-cover{% endif %}">
+      class="w-full h-full {% if project.imageClass == 'logo' %}object-contain p-6 bg-surface-1{% elif project.imageClass == 'screenshot' %}object-contain{% else %}object-cover{% endif %}">
   </div>
   {% endif %}
 
@@ -19,7 +19,7 @@
 
     <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2 leading-snug">
       {% if project.link %}
-        <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ project.title }}<span class="sr-only"> (opens in new tab)</span></a>
+        <a href="{{ project.link }}" {% if not project.link.startsWith('/') %}target="_blank" rel="noopener noreferrer"{% endif %} class="hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ project.title }}{% if not project.link.startsWith('/') %}<span class="sr-only"> (opens in new tab)</span>{% endif %}</a>
       {% else %}
         {{ project.title }}
       {% endif %}
@@ -47,10 +47,9 @@
     {% if project.link %}
     <a
       href="{{ project.link }}"
-      target="_blank"
-      rel="noopener noreferrer"
+      {% if not project.link.startsWith('/') %}target="_blank" rel="noopener noreferrer"{% endif %}
       class="inline-flex items-center gap-1 mt-5 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-      {{ project.linkLabel | default("View") }} &rarr;<span class="sr-only"> (opens in new tab)</span>
+      {{ project.linkLabel | default("View") }} &rarr;{% if not project.link.startsWith('/') %}<span class="sr-only"> (opens in new tab)</span>{% endif %}
     </a>
     {% endif %}
   </div>

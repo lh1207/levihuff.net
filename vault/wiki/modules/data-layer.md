@@ -5,14 +5,14 @@ path: "src/_data/"
 language: json + javascript
 purpose: "Single source of truth for structured content (site meta, nav, projects, experience, skills, tools, infrastructure) consumed as Eleventy global data."
 maintainer: "Levi Huff"
-last_updated: 2026-08-18
+last_updated: 2026-10-07
 depends_on: []
 used_by:
   - "[[Template System]]"
 tags:
   - module
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-10-07
 status: active
 related:
   - "[[Eleventy Config]]"
@@ -43,6 +43,8 @@ All structured content lives in `src/_data/` - JSON files plus one CommonJS modu
 Infrastructure copy and every `.njk` template must not contain em dashes. `test/data.test.js` enforces both rules and validates the main structured-data schemas; `tools.json` is rendered but does not yet have its own schema block.
 
 ## Depends on
+
+Project cards accept `imageClass: screenshot` to contain the full image without cropping in both Nunjucks and Vue. `logo` retains its padded treatment; ordinary photography remains cropped to fill. Root-relative project links open in the current tab, while external links retain a new-tab label. See [[AeroAssist Website Case Study]].
 
 - None - this is the leaf/source layer.
 

@@ -61,21 +61,21 @@
   {
     "title": "AeroAssist",
     "category": "software",
-    "stack": "C#, ASP.NET, MSSQL",
-    "link": "https://lh1207.github.io/AeroAssist/",
-    "linkLabel": "View Site",
-    "image": "/images/aeroassist/cloud-logo.png",
-    "imageAlt": "AeroAssist cloud logo",
-    "imageClass": "logo",
-    "imageWidth": 736,
-    "imageHeight": 489,
-    "imageLoading": null,
-    "description": "<strong>Full-stack ticketing system</strong> designed to streamline ticket creation, tracking, and management workflows.",
+    "stack": "C#, ASP.NET Core 8, SQL Server",
+    "link": "/blog/aeroassist-ticketing-system/",
+    "linkLabel": "Read case study",
+    "image": "/images/aeroassist/app.jpg",
+    "imageAlt": "AeroAssist ticket queue showing title, status, priority, type, and due date",
+    "imageClass": "screenshot",
+    "imageWidth": 1012,
+    "imageHeight": 374,
+    "imageLoading": "lazy",
+    "description": "<strong>A shared support-ticket queue</strong> with create, edit, and delete workflows, SQL persistence, and ticket-distribution charts.",
     "paragraphs": [
-      { "label": "Technologies", "text": "C#, ASP.NET, Bootstrap, MSSQL" },
-      { "label": "Key Features", "text": "Ticket creation and tracking, user management, workflow automation" }
+      { "label": "My work", "text": "Razor interface, API and data access, Chart.js visualizations, and Docker configuration. Linked commits in the case study." },
+      { "label": "Skills", "text": "Full-stack C#, HTTP APIs, EF Core, relational data, and containers." }
     ],
-    "meta": null
+    "meta": "Source-reviewed portfolio project; live demo unverified."
   },
   {
     "title": "LocoQuest",

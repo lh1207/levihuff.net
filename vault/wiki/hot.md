@@ -2,13 +2,19 @@
 type: meta
 title: "Hot Cache"
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 tags: [meta]
 status: active
 related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 ---
 
 # Recent context
+
+## AeroAssist website cleanup
+
+- The owner limits this work to the website. AeroAssist and other GitHub project repositories remain unchanged; local website changes are unpublished.
+- The AeroAssist card links to the revised existing case study. Verified commits support the UI, persistence, charts, and Docker work; unsupported automation, authorization, and testing claims are removed. Historical screenshots match repository assets.
+- Static and Vue project cards support uncropped `screenshot` images and same-tab internal links. All 159 tests pass; desktop/mobile browser checks pass. Application execution remains unverified because the .NET SDK and running Docker daemon are unavailable. See [[AeroAssist Website Case Study]].
 
 ## Current blog draft
 

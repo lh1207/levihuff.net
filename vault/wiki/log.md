@@ -16,6 +16,12 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - AeroAssist website presentation grounded in source
+
+Reworked the existing AeroAssist case study, Docker notes, and project card using GitHub history and source at `dff52cb`. Removed unsupported feature claims, linked contribution commits, retained authentic screenshots, and documented runtime limitations. The owner restricts changes to the website; project repositories remain unchanged. All 159 tests pass, with desktop/mobile browser checks and independent attribution review. Website changes remain local and unpublished. See [[AeroAssist Website Case Study]].
+
+---
+
 ## 2026-10-05 - Corrected the merged article's build exclusion
 
 PR #131 was merged while `.eleventyignore` still suppressed the article. Removed the exclusion to include the post in the normal blog collection and production output. Draft PR status should have provided the review boundary. Updated [[Custom Domain Email Blog Draft]], the index, and hot cache to record this correction.

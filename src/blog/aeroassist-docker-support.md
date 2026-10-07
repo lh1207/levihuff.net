@@ -1,207 +1,70 @@
 ---
-title: AeroAssist - Adding Docker support for homelab deployment
-description: Containerizing the AeroAssist ticketing system with Docker and Docker Compose for simplified deployment in homelabs and production environments
+title: AeroAssist - Docker and SQL Server deployment
+description: How AeroAssist packages its ASP.NET Core application and SQL Server dependency, with configuration details and current validation limits.
 date: 2026-01-26
-tags: [docker, containerization, devops, csharp, asp.net, homelab]
+updated: 2026-10-07
+tags: [docker, containerization, devops, csharp, asp.net]
 layout: post.njk
 thumbnail: /images/aeroassist/cloud-logo-docker.png
 thumbnailLogo: true
 ---
 
-I recently added Docker support to AeroAssist, making it much easier to deploy the ticketing system in home labs and containerized environments. This update includes a multi-stage Dockerfile, Docker Compose configuration, and several configuration enhancements to support containerized deployments.
+I added Docker configuration to AeroAssist in [PR #37](https://github.com/lh1207/AeroAssist/pull/37) to package the application and SQL Server together. For screenshots and my implementation work, see the [AeroAssist case study](/blog/aeroassist-ticketing-system/).
 
-**Pull Request:** [Add Docker Support - PR #37](https://github.com/lh1207/AeroAssist/pull/37)
+These notes describe files at [dff52cb](https://github.com/lh1207/AeroAssist/commit/dff52cbc726f252fc47e9de10b5586982a7c66e7). They are a source review, not a verified deployment walkthrough.
 
-![Docker containers and server deployment](/images/aeroassist/containers.jpg)
+## What the configuration provides
 
-## Why Docker?
+- The [Dockerfile](https://github.com/lh1207/AeroAssist/blob/dff52cbc726f252fc47e9de10b5586982a7c66e7/Dockerfile) restores and publishes with the .NET 8 SDK, copies output into the ASP.NET 8 runtime image, and runs as `appuser`.
+- [Compose](https://github.com/lh1207/AeroAssist/blob/dff52cbc726f252fc47e9de10b5586982a7c66e7/docker-compose.yml) defines `aeroassist` and `sqlserver` services, a shared network, and the `sqlserver-data` volume.
+- SQL Server uses the 2022 image with the Express edition setting. The app waits for the database health check and applies migrations when configured.
+- The app listens on port 8080. Compose also publishes SQL Server on port 1433.
 
-Running AeroAssist previously required manual setup of .NET, SQL Server, and configuration of connection strings and environment variables. Docker solves these problems by packaging everything into containers that work consistently across different environments.
+## Start and stop
 
-Benefits of containerizing AeroAssist:
-
-- **Simplified deployment**: One command to start the entire stack
-- **Consistent environments**: Same setup works on any Docker host
-- **Isolation**: Application and database run in separate containers
-- **Easy updates**: Pull new images and restart
-- **Home lab friendly**: Perfect for self-hosted environments
-
-## What changed
-
-### Configuration enhancements
-
-The application needed several changes to work properly in containerized environments:
-
-- **Configurable HTTP client base URL**: No longer hard-coded to localhost
-- **Certificate validation bypass**: Configurable for development and internal networks
-- **CORS origins**: Configurable via appsettings for different deployment scenarios
-- **Microsoft Account authentication**: Can be enabled/disabled through configuration
-- **Swagger**: Configurable for production environments
-- **HTTPS redirect**: Can be disabled when running behind a reverse proxy
-
-These changes make AeroAssist flexible enough to run in various deployment configurations without code changes.
-
-### Dockerfile
-
-The Dockerfile uses a multi-stage build for optimal image size and security:
-
-```dockerfile
-# Build stage - uses .NET 8.0 SDK
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
-COPY . .
-RUN dotnet publish -c Release -o /app
-
-# Runtime stage - uses ASP.NET runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app
-COPY --from=build /app .
-
-# Run as non-root user
-USER app
-EXPOSE 8080
-HEALTHCHECK CMD curl --fail http://localhost:8080/health || exit 1
-ENTRYPOINT ["dotnet", "AeroAssist.dll"]
-```
-
-Key features:
-- **Multi-stage build**: Keeps the final image small by excluding build tools
-- **Non-root user**: Follows security best practices
-- **Health check**: Enables container orchestrators to monitor application health
-- **Port 8080**: Standard HTTP port for containerized ASP.NET apps
-
-### Docker Compose
-
-The `docker-compose.yml` orchestrates the full application stack:
-
-```yaml
-services:
-  aeroassist:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
-      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING}
-    depends_on:
-      db:
-        condition: service_healthy
-
-  db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=${SA_PASSWORD}
-    volumes:
-      - sqldata:/var/opt/mssql
-    healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${SA_PASSWORD} -Q "SELECT 1"
-
-volumes:
-  sqldata:
-```
-
-This configuration provides:
-- **SQL Server 2022**: Relational database
-- **Health checks**: Application waits for database to be ready
-- **Persistent volumes**: Database data survives container restarts
-- **Bridge networking**: Containers communicate on an isolated network
-- **Environment variables**: Sensitive values loaded from `.env` file
-
-### Supporting files
-
-Additional files included in this update:
-
-- **`.dockerignore`**: Excludes unnecessary files from the build context
-- **`appsettings.Docker.json`**: Reference configuration for containerized deployments
-- **`.env.example`**: Template for environment variables
-
-## Quick start
-
-![Server infrastructure for containerized deployment](/images/aeroassist/server-deployment.jpg)
-
-Getting AeroAssist running with Docker is now straightforward:
-
-### Using Docker Compose (recommended)
+Use a Docker host compatible with the SQL Server image. The Compose file accepts SQL Server license terms and publishes both ports.
 
 ```bash
-# Clone the repository
 git clone https://github.com/lh1207/AeroAssist.git
 cd AeroAssist
-
-# Copy environment template and configure
 cp .env.example .env
-# Edit .env with your settings
-
-# Start the stack
-docker compose up -d
+# Replace SA_PASSWORD in .env with your own strong password.
+docker compose up --build -d
+docker compose logs
 ```
 
-The application will be available at `http://localhost:8080` once both containers are healthy.
+The configured addresses are `http://localhost:8080` and `http://localhost:8080/swagger`. Use `docker compose down` to stop services while retaining the database volume.
 
-### Using standalone Docker
+## Configuration the code reads
 
-For environments with an existing database:
+These keys come from [Program.cs](https://github.com/lh1207/AeroAssist/blob/dff52cbc726f252fc47e9de10b5586982a7c66e7/Program.cs) and the page models:
+
+- `ConnectionStrings__DefaultConnection`: SQL Server connection string.
+- `Database__AutoMigrate`: apply EF migrations at startup.
+- `HttpClient__BaseAddress`: API address used by server-side page models. Compose sets `http://aeroassist:8080/`.
+- `Swagger__Enabled`: expose Swagger outside Development.
+- `ReverseProxy__Enabled`: skip the production HSTS/HTTPS redirect branch. This alone does not configure forwarded headers.
+- `Authentication__Microsoft__ClientId` and `Authentication__Microsoft__ClientSecret`: optional Microsoft sign-in, registered when both are present.
+
+Compose runs in the `Production` environment and supplies settings through environment variables. `appsettings.Docker.json` is a reference file, not the active environment configuration for this Compose setup.
+
+## Manual .NET setup
+
+Use a .NET 8 SDK and an accessible SQL Server instance. Configure `ConnectionStrings:DefaultConnection` with local user secrets or environment variables before applying migrations. Restore packages, install a .NET 8-compatible `dotnet-ef` tool, and run `dotnet ef database update`.
+
+The repository defines `https-website` (ports 5000/5001) and `https-api` (7222/7223) launch profiles. The default page-model client and chart scripts expect the API on `https://localhost:7223`; starting only the website profile is insufficient. For these defaults, start both profiles in separate terminals:
 
 ```bash
-# Build the image
-docker build -t aeroassist .
-
-# Run the container
-docker run -d \
-  -p 8080:8080 \
-  -e ConnectionStrings__DefaultConnection="your-connection-string" \
-  -e ASPNETCORE_ENVIRONMENT=Docker \
-  aeroassist
+dotnet run --launch-profile https-api
+# In a second terminal:
+dotnet run --launch-profile https-website
 ```
 
-## Auto-migration
+Local HTTPS requires a trusted development certificate. This sequence is derived from the checked-in configuration and was not executed during this review.
 
-The containerized deployment includes automatic database migration. When the application starts, it checks for pending migrations and applies them. This eliminates the need for manual migration steps during deployment or updates.
+## Remaining demonstration issues
 
-## Configuration reference
-
-Key environment variables for Docker deployments:
-
-| Variable | Description |
-|----------|-------------|
-| `ConnectionStrings__DefaultConnection` | SQL Server connection string |
-| `ASPNETCORE_ENVIRONMENT` | Set to `Docker` for containerized config |
-| `Auth__MicrosoftAccount__Enabled` | Enable/disable Microsoft auth |
-| `Cors__Origins` | Allowed CORS origins |
-| `Swagger__Enabled` | Enable Swagger in production |
-| `HttpsRedirect__Enabled` | Enable/disable HTTPS redirect |
-
-## Technical considerations
-
-### Running behind a reverse proxy
-
-When running AeroAssist behind a reverse proxy like Nginx or Traefik:
-
-1. Disable HTTPS redirect in the application (the proxy handles TLS)
-2. Configure CORS origins to match your domain
-3. Set up proper forwarded headers if needed
-
-### Database persistence
-
-The Docker Compose configuration uses a named volume (`sqldata`) for database persistence. This ensures data survives container restarts and updates. For production, consider:
-
-- Regular database backups
-- Volume backup strategies
-- External SQL Server for critical deployments
-
-## Learning outcomes
-
-Adding Docker support to AeroAssist provided experience with:
-
-- Multi-stage Docker builds for .NET applications
-- Docker Compose for multi-container applications
-- Configuration management for containerized environments
-- Container security best practices
-- Health checks and container orchestration
-
-## Conclusion
-
-Docker support makes AeroAssist much more accessible for home lab users and simplifies deployment in any containerized environment. The combination of Docker Compose, configurable settings, and auto-migration means you can have a full ticketing system running in minutes rather than hours.
-
-For more details, check out the [pull request](https://github.com/lh1207/AeroAssist/pull/37) or the [AeroAssist repository](https://github.com/lh1207/AeroAssist).
+- Chart scripts hardcode `https://localhost:7223/api/Ticket/Ticket`, bypassing the configurable server-side API address.
+- The application health check requires `curl`, but the Dockerfile does not install it.
+- Compose has a default database password fallback and enables the page-model certificate-validation bypass. Replace demo defaults and review authorization before public deployment.
+- The .NET SDK was unavailable and Docker was not running during this website update, so a successful build and end-to-end run remain unverified.
