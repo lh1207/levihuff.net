@@ -16,6 +16,16 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-07 - Zero-vulnerability dependency candidate prepared
+
+The owner's zero-vulnerability requirement replaces the earlier exception-policy discussion. Removed the vulnerable braces and sprintf-js chains through official Eleventy 4 alpha, the maintained frontmatter fork, and Parcel watcher 2.6.0. Updated both Vue CDN imports to patched 3.5.43 and included exact browser package pins in audit coverage. The candidate gate rejects every severity, with no exceptions, and verifies registry signatures.
+
+Security commit 700ce46 is pushed in #137, b5211dc in #135, and 5a77f5e in #136. Local audits report zero; 171/171/175 tests pass respectively. The previous 170-test candidate also passes on Node 22.15.0 and 24.0.0. Ten watch/reload controls and browser filters pass; all 206 generated files match the baseline before the intentional Vue URL change. Main adoption awaits an explicit decision on Eleventy's prerelease status.
+
+Updated [[Tech Stack]], [[Vue Version Pin]], [[Deploy Pipeline]], [[Architecture Overview]], the index, and hot cache.
+
+---
+
 ## 2026-10-07 - Dependency refresh and open PR synchronization
 
 Prepared PR #137 with RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2. Clean installation and 159 tests pass; direct dependencies are current. Merged and pushed the dependency commit into #135 (159 tests) and #136 (163 tests). Independent review finds no compatibility regression.

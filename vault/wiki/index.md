@@ -40,13 +40,13 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]] - PR #137 refresh, PR #135/#136 dependency synchronization, and the mixed-advisory audit blocker awaiting an owner decision
+  - [[Tech Stack]] - zero-vulnerability candidate in PRs #137/#135/#136; Eleventy 4 alpha adoption awaits an owner decision
 
 ## Flows
 
 - [[Flows Index]]
   - [[Build Pipeline]]
-  - [[Deploy Pipeline]] - CI audit policy retains other high/critical checks
+  - [[Deploy Pipeline]] - candidate CI rejects every vulnerability and verifies registry signatures
 
 ## Meta
 

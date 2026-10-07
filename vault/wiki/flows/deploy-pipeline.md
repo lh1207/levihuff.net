@@ -5,7 +5,7 @@ status: active
 tags:
   - flow
 created: 2026-07-14
-updated: 2026-10-05
+updated: 2026-10-07
 related:
   - "[[Build Pipeline]]"
   - "[[Deploy Concurrency Queue]]"
@@ -25,7 +25,7 @@ Push to `main`. Handled by `.github/workflows/deploy.yml`.
 3. Run `npm run build` - see [[Build Pipeline]].
 4. FTP-deploy `_site/` to the Porkbun-hosted live server.
 
-A separate `ci.yml` workflow runs the test suite on all PRs and non-`main` pushes, so failures surface before merge, not just before deploy. A third workflow, `security.yml`, runs gitleaks over full history, blocks tracked `.env` files, and runs `npm run audit:ci` independently of the deploy trigger. The audit gate blocks high/critical findings except the exact owner-approved `braces` advisory described in [[Tech Stack]]. Audit execution and report errors fail closed.
+A separate `ci.yml` workflow runs the test suite on all PRs and non-`main` pushes, so failures surface before merge, not just before deploy. The security candidate's `security.yml` runs gitleaks over full history, blocks tracked `.env` files, rejects every known npm vulnerability at every severity, and verifies registry signatures and available provenance. No advisory is exempt. Audit execution and report errors fail closed. See [[Tech Stack]] for the candidate's Eleventy prerelease decision; main remains unchanged until adoption.
 
 ## Failure modes
 

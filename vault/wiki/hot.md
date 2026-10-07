@@ -12,21 +12,18 @@ related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
 
 ## Current blog draft
 
-- PR #131, `blog/replying-from-my-own-domain`, contains the unpublished custom-domain email article, an attributed Unsplash cover, and four supplied screenshots. Private regions use solid black replacement pixels in flattened PNGs; original sensitive screenshots are not repository assets.
-- PR #131 is merged. A corrective branch removes the mistaken `.eleventyignore` exclusion so the post appears in normal builds and the blog listing. Draft PR status should provide the review boundary without hiding merged content. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
-- The branch incorporates main at `eec01f7`. Its vault conflicts preserve both the article evidence and dependency context. See [[Custom Domain Email Blog Draft]] for validation.
+- PRs #131 and #132 are merged. The custom-domain email article appears in normal builds after correction of its mistaken exclusion. Four supplied screenshots use flattened solid redactions; original sensitive images are not repository assets. Delivery evidence comes from the supplied session record. See [[Custom Domain Email Blog Draft]].
 
 ## Current dependency context
 
-- PR #137 contains RSS 3.1.0, Vitest 5.0.3, and compatible shell-quote 1.12.0/source-map-js 1.2.2 security patches. Clean installation and 159 tests pass; no outdated direct dependencies remain. PR #135 has the same dependency commit and passes 159 tests; #136 passes 163. All three branches are pushed.
-- Main remains unchanged pending an audit-policy decision. The gate blocks Eleventy's mixed accepted-braces and new moderate sprintf-js advisory chain. No compatible patch exists for either remaining advisory. Requested decision: allow low/moderate causes alongside the exact braces exception while continuing to block all other high/critical findings. See [[Tech Stack]].
-- PR #130 is merged as `eec01f7`; Dependabot PRs #125 through #129 are closed as superseded.
-- Main uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
-- The suite has 159 tests, including 22 audit-policy regressions. Vitest 5 requires Node 22.12+, 24, or 26+; CI and deployment use Node 22.
-- The owner-approved exception for GHSA-vfj7-8cjw-p6xm remains narrow: `npm run audit:ci` matches only that braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed or failed audits still block. Remove the exception when upstream dependencies can be patched.
+- The owner requires zero known vulnerabilities. Draft PR #137 contains the verified candidate; the same security code is pushed to #135 and #136. Their suites pass 171, 171, and 175 tests respectively, with zero audit findings. GitHub CI/security/CodeQL pass on all three. Dependabot #133/#134 are closed as superseded. See [[Tech Stack]].
+- The candidate pins official Eleventy 4.0.0-alpha.10, aliases gray-matter to the maintained 11ty fork, and overrides Parcel watcher to official 2.6.0. These remove braces and sprintf-js completely. RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2 are retained.
+- Both Vue imports use patched 3.5.43; exact Vue and Motion 10.18.0 pins are included in npm audit and tests enforce CDN/manifest/lock agreement. Every advisory severity now blocks; the old braces exception and proposed relaxation are removed. All 194 installed packages have verified registry signatures, with 67 available attestations.
+- Node must satisfy `^22.15.0 || ^24.0.0 || >=26.0.0`. The preceding 170-test suite passes on minimum Node 22.15 and 24.0 plus Node 26. Ten live-reload checks and real-browser filters pass. All 206 generated files match the old framework output before the intentional Vue URL update.
+- Main remains unchanged. Adopting Eleventy and its dev-server/Nunjucks prereleases requires an explicit owner decision. Stable Eleventy 3 cannot remove the affected watcher without breaking glob compatibility. Zero known findings does not guarantee no undiscovered vulnerability or attest to CDN bytes.
 
 ## Stable context
 
 - `vault/` is the primary repository knowledge store. Never edit `.raw/`; log entries are append-only; vault changes are reviewed and committed intentionally.
 - Main includes the Phase 4 AD/PXE post from merged PR #123. Phase 4 is complete; Phase 5 and later deployment phases remain outside that post's completion boundary.
-- The site remains Eleventy 3.1.6, Tailwind CSS 4.3.3 via `@tailwindcss/cli`, Vue 3.5.34 islands, and Motion 10.18.0.
+- Until candidate adoption, main remains Eleventy 3.1.6 and Vue 3.5.34. Tailwind 4.3.3 and Motion 10.18.0 are shared by both baselines.
