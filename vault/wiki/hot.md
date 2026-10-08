@@ -5,29 +5,30 @@ created: 2026-07-14
 updated: 2026-10-08
 tags: [meta]
 status: active
-related: ["[[V2 Cleanup and Verification]]", "[[Tech Stack]]", "[[Deploy Pipeline]]"]
+related: ["[[AeroAssist Website Case Study]]", "[[V2 Cleanup and Verification]]", "[[Tech Stack]]"]
 ---
 
 # Recent context
 
-## V2 cleanup and reconciliation
+## AeroAssist PR #135
 
-- PR #136 remains the V2 cleanup on `codex/v2-cleanup-polish`. Its latest remote head before reconciliation is `7204c58`. The user authorizes resolving conflicts and updating this branch, not merging the PR into main or deploying.
-- Main merges the security work through PR #137 at `c4f4d34`. The cleanup branch already carries the same security/runtime changes. Merging main produces conflicts only in this hot note and the append-only log; preserve both histories and the existing V2 polish.
-- Reconciliation validation: clean installation, all 175 tests including production build, and zero known vulnerabilities in the audit. Runtime/security code remains unchanged by the merge.
-- Shared V2 fixes include narrow-screen headings/wrapping, keyboard-scrollable tables/code, mobile menu breakpoint recovery and no-JavaScript fallback, skip/filter/back-to-top focus, footer targets, and descriptive infrastructure links. Dark theme is rendered directly; Motion is hero-only.
-- Original cleanup evidence: 109 Chrome responsive cases without page-wide overflow and 4,635 exact-case local references resolved. Of 40 external URLs, 38 respond successfully; LinkedIn/Handshake block automation. See [[V2 Cleanup and Verification]] for scope and limits.
-- The 15-minute PR monitor reports meaningful changes to checks, reviews, conflicts, or state. It does not merge, deploy, or post comments.
+- Website-only changes remain open on `codex/aeroassist-portfolio-case-study`. The owner authorizes resolving its conflict with main and pushing the branch, not merging the PR or deploying. AeroAssist and other source-project repositories remain unchanged.
+- Main at `49df940` is merged into the PR branch for reconciliation. Only hot context, index, and log conflicted; both histories, the AeroAssist case study, and main's V2 fixes are preserved. Clean install, 175 tests, zero-vulnerability audit, and 194 registry signatures pass.
+- The card links to the existing revised article. Source-verified commits support UI, persistence, charts, and Docker work; unsupported feature claims are removed. Historical screenshots match repository assets. Static and Vue cards contain screenshots and open internal links in the same tab.
+- Application execution remains unverified: no .NET SDK or running Docker daemon was available. See [[AeroAssist Website Case Study]].
+- The ten-minute heartbeat reports meaningful CI/review/conflict/state changes and pauses after merge/closure. It has no merge authorization.
 
-## Current dependency and hosting policy
+## V2 cleanup and dependencies
 
-- Main now uses Eleventy 4.0.0-alpha.10, the maintained 11ty gray-matter alias, Parcel watcher 2.6.0, RSS 3.1.0, Vitest 5.0.3, and Vue 3.5.43. Node must satisfy `^22.15.0 || ^24.0.0 || >=26.0.0`. See [[Tech Stack]].
-- Every advisory severity blocks; the old braces exception is removed. Browser Vue/Motion pins participate in package audit and CDN/manifest/lock agreement tests. Registry signatures are verified.
-- The main ruleset still requires the exact `npm audit (high+)` job name despite its stricter all-severity behavior. Retain that label. See [[Deploy Pipeline]].
-- Security contact expires April 29, 2027. `.htaccess` stays undeployed and `_headers` inactive on Porkbun; static files cannot enforce those HTTP directives.
+- Main includes V2 cleanup via PR #136 and security work via PR #137. Shared fixes cover narrow-screen wrapping, keyboard-scrollable tables/code, mobile navigation recovery and static fallback, focus handling, footer targets, and descriptive infrastructure links. Dark theme is rendered directly; Motion is hero-only.
+- Original V2 evidence: 175 passing tests, 109 responsive cases without page overflow, and 4,635 exact-case local references resolved. Of 40 external URLs, 38 respond successfully; LinkedIn/Handshake block automation. See [[V2 Cleanup and Verification]].
+- Current dependencies: Eleventy 4.0.0-alpha.10, maintained 11ty gray-matter alias, Parcel watcher 2.6.0, RSS 3.1.0, Vitest 5.0.3, and Vue 3.5.43. Node satisfies `^22.15.0 || ^24.0.0 || >=26.0.0`.
+- Every advisory severity blocks; the braces exception is removed. Browser Vue/Motion pins participate in audit and CDN/manifest/lock agreement tests. Registry signatures are verified.
+- Keep the exact required `npm audit (high+)` job name despite its stricter behavior. See [[Tech Stack]] and [[Deploy Pipeline]].
 
 ## Stable context
 
-- PRs #131/#132 publish the custom-domain-email article; no exclusion remains. Its supplied screenshots use flattened solid redactions, and original sensitive images are not repository assets. See [[Custom Domain Email Blog Draft]].
-- `vault/` owns repository knowledge. Never edit `.raw/`; preserve historical log entries. Personal/cross-project knowledge belongs in the separate global vault.
+- PRs #131/#132 publish the custom-domain-email article; no exclusion remains. Screenshots use flattened solid redactions.
+- Security contact expires April 29, 2027. `.htaccess` stays undeployed and `_headers` inactive on Porkbun.
+- This vault owns repository knowledge; personal/cross-project knowledge belongs in the global vault. Never edit `.raw/`; preserve old log entries.
 - Phase 4 AD/PXE from PR #123 is published; later deployment phases remain outside its completion boundary.

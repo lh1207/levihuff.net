@@ -72,7 +72,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
   "linkLabel": "string",    // required when link is non-null
   "stack": "string",        // optional — non-empty string, e.g. "Proxmox, Docker, Pi-hole"
   "meta": "string",         // optional — non-empty string, e.g. "Personal project, 2025–2026."
-  "imageClass": "logo",     // optional — non-empty string
+  "imageClass": "logo",     // optional — "logo" or "screenshot"; both preserve the full image
   "imageLoading": "eager | lazy"   // optional
 }
 ```

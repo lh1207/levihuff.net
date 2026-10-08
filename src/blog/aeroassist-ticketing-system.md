@@ -1,187 +1,94 @@
 ---
-title: AeroAssist - Full-stack ticketing system development
-description: Building a comprehensive ticketing system using C#, ASP.NET, and MSSQL to streamline ticket creation, tracking, and management workflows
+title: AeroAssist - Support ticket management
+description: A C# ticketing application connecting Razor Pages, a REST API, and SQL Server, with source-linked examples of my work.
 date: 2025-01-18
+updated: 2026-10-07
 tags: [full-stack, csharp, asp.net, mssql, web-development, ticketing-system]
 layout: post.njk
-thumbnail: /images/aeroassist/cloud-logo.png
-thumbnailLogo: true
+thumbnail: /images/aeroassist/app.jpg
 ---
 
-AeroAssist is a full-stack ticketing system I built to streamline ticket creation, tracking, and management. I used C#, ASP.NET, Bootstrap, and MSSQL to create a practical solution for managing support tickets.
+AeroAssist brings support requests into a shared ticket queue: create a ticket, record its priority and status, then open it to edit or delete it. I built the web interface, API, and persistence layer, and later added Docker deployment configuration.
 
-**Repository:** [AeroAssist on GitHub](https://github.com/lh1207/AeroAssist)
+- **Skills demonstrated:** C# web development, HTTP APIs, relational persistence, data visualization, and container configuration.
+- **Stack:** ASP.NET Core 8, Razor Pages, Entity Framework Core 8, SQL Server, Bootstrap 5, and Chart.js.
+- **My role:** The repository's recorded authors all resolve to my GitHub identity, `lh1207`. My contribution examples below link to commits.
+- **Status:** Portfolio project with existing application screenshots; the current container setup needs validation before a live demo.
 
-![AeroAssist dashboard showing open support tickets and status filters](/images/aeroassist/app.jpg)
+[Explore the source on GitHub](https://github.com/lh1207/AeroAssist) · [My contributions](#my-contributions) · [Run locally](#run-locally)
 
-## Project overview
+![AeroAssist ticket queue listing ticket titles, status, priority, type, and due dates](/images/aeroassist/app.jpg)
 
-Ticketing systems are essential tools for organizations to manage support requests, track issues, and maintain service quality. AeroAssist was developed to provide a comprehensive solution for ticket management, incorporating user management, workflow automation, and efficient data handling.
+The repository screenshot shows the queue with sample requests. Images on this page are existing project assets, not a newly captured demo.
 
-## The problem
+## What the application does
 
-Organizations often struggle with:
-- Inefficient ticket creation and submission processes
-- Lack of visibility into ticket status and progress
-- Difficulty tracking ticket history and resolution
-- Manual workflow management
-- Inconsistent user experience across different departments
+The queue makes each request's status, priority, type, and due date visible in one place. Ticket forms capture descriptions, assignment details, departments, and resolution information. A REST API exposes create, read, update, and delete operations. Chart.js groups tickets by status, priority, and department.
 
-AeroAssist solves these problems with a centralized, web-based platform for ticket management.
-
-## Technical architecture
-
-### Frontend
-- **ASP.NET MVC**: Server-side rendering with Razor views
-- **Bootstrap**: Responsive UI framework for consistent design
-- **HTML/CSS/JavaScript**: Client-side interactivity and styling
-
-### Backend
-- **C#**: Primary programming language for business logic
-- **ASP.NET Framework**: Web application framework
-- **MSSQL**: Relational database for data storage and management
-
-### Key components
-- **User Authentication**: Secure user login and session management
-- **Ticket Management**: Create, view, update, and track tickets
-- **User Management**: Role-based access control and user administration
-- **Workflow Automation**: Automated ticket routing and status updates
-
-## Key features
-
-![AeroAssist ticket detail view with assignment, priority, and status fields](/images/aeroassist/features.jpg)
-
-### Ticket creation and management
-- **Intuitive Ticket Forms**: Streamlined interface for creating new tickets
-- **Ticket Categorization**: Organize tickets by type, priority, and department
-- **Status Tracking**: Real-time visibility into ticket status and progress
-- **History Logging**: Complete audit trail of ticket changes and updates
-
-### User management
-- **Role-Based Access Control**: Different permission levels for users, agents, and administrators
-- **User Profiles**: Manage user information and preferences
-- **Team Assignment**: Assign tickets to specific users or teams
-
-### Workflow automation
-- **Automated Routing**: Route tickets to appropriate departments based on category
-- **Status Transitions**: Automated status updates based on workflow rules
-- **Notification System**: Alert users of ticket updates and assignments
-
-### Reporting and analytics
-- **Ticket Metrics**: Track ticket volume, resolution times, and performance
-- **Dashboard Views**: Visual representation of ticket statistics
-- **Export Capabilities**: Generate reports for analysis
+ASP.NET Identity is integrated for accounts, with optional Microsoft sign-in configuration. This does not establish complete role-based access control or production readiness.
 
 ## My contributions
 
-### Development work
-- **Full-Stack Implementation**: Developed both frontend and backend components
-- **Database Design**: Designed MSSQL database schema for tickets, users, and related entities
-- **API Development**: Created controllers and services for ticket operations
-- **User Interface**: Built responsive UI components using Bootstrap
+The [commit history](https://github.com/lh1207/AeroAssist/commits/master/) records my work across the application:
 
-### Technical implementation
-- **Authentication System**: Implemented secure user authentication and authorization
-- **Business Logic**: Developed ticket management workflows and business rules
-- **Data Access Layer**: Created repository pattern for database operations
-- **Error Handling**: Implemented comprehensive error handling and logging
+- **Ticket workflow:** I connected Razor forms and JavaScript to create, update, and delete operations. [CRUD interface commit](https://github.com/lh1207/AeroAssist/commit/b75a613).
+- **Data access:** I added EF migrations and database-backed service operations. The early implementation used SQLite; the current application uses SQL Server. [Persistence commit](https://github.com/lh1207/AeroAssist/commit/c9f7822).
+- **Visualization and forms:** I implemented charts and organized shared ticket-form JavaScript. [Charts and forms commit](https://github.com/lh1207/AeroAssist/commit/d79bbda).
+- **Deployment:** I added a multi-stage Docker build, a SQL Server Compose service, and environment-driven configuration. [Docker support PR](https://github.com/lh1207/AeroAssist/pull/37).
 
-### Code quality
-- **Code Organization**: Structured codebase following best practices
-- **Documentation**: Documented key components and functionality
-- **Testing**: Implemented unit tests for critical functionality
+## How the pieces connect
 
-## Technical challenges
+The UI and API live in one ASP.NET Core application. Razor page models call the ticket API over HTTP; the controller delegates database operations to `TicketService`.
 
-### Database design
-**Challenge**: Designing a flexible database schema that supports various ticket types and workflows.
+```text
+Browser
+  |
+Razor Pages + Bootstrap
+  | HTTP
+TicketController REST API
+  |
+TicketService
+  |
+AeroAssistContext (EF Core)
+  |
+SQL Server
+```
 
-**Solution**: Created normalized database structure with proper relationships, indexes, and constraints to support efficient queries and data integrity.
+Chart.js also fetches ticket data from the API in the browser. Identity uses the same EF context for account data. See [Program.cs](https://github.com/lh1207/AeroAssist/blob/dff52cbc726f252fc47e9de10b5586982a7c66e7/Program.cs), [page models](https://github.com/lh1207/AeroAssist/tree/dff52cbc726f252fc47e9de10b5586982a7c66e7/Data/Models), and [TicketService](https://github.com/lh1207/AeroAssist/blob/dff52cbc726f252fc47e9de10b5586982a7c66e7/Services/TicketService.cs).
 
-### User interface responsiveness
-**Challenge**: Ensuring the application works well across different devices and screen sizes.
+## Technical decisions and tradeoffs
 
-**Solution**: Leveraged Bootstrap's responsive grid system and components to create a mobile-friendly interface.
+**Connecting UI and API.** The HTTP boundary gives the Razor interface and Swagger a common API. It also means the UI needs a reachable API base address. Docker configuration sets the server-side client address to the app's service name.
 
-### Workflow automation
-**Challenge**: Implementing flexible workflow rules that can adapt to different organizational needs.
+**Moving beyond a ticket list.** The overview summarizes tickets by priority, status, and department. Its browser scripts still hardcode a localhost API address, so charts need follow-up work for container or remote use.
 
-**Solution**: Designed a configurable workflow system that allows administrators to define routing rules and status transitions.
+![AeroAssist overview with priority and status doughnut charts and a department bar chart](/images/aeroassist/features.jpg)
 
-## Technologies used
+**Packaging dependencies.** Compose defines the app and SQL Server, database health checks, a persistent volume, and optional startup migrations. This captures deployment requirements, but does not prove the stack runs on every host.
 
-- **C#**: Object-oriented programming language for backend development
-- **ASP.NET**: Web application framework for building web applications
-- **MSSQL**: Microsoft SQL Server for relational database management
-- **Bootstrap**: Frontend framework for responsive UI design
-- **Entity Framework**: ORM for database operations
-- **Git**: Version control for code management
+## Run locally
 
-## Getting started
+The repository supplies Docker and manual .NET setup paths. For the container path, use a Docker host compatible with the SQL Server image:
 
-![Terminal commands for cloning AeroAssist and applying database migrations](/images/aeroassist/getting-started.jpg)
+```bash
+git clone https://github.com/lh1207/AeroAssist.git
+cd AeroAssist
+cp .env.example .env
+# Set your own strong SA_PASSWORD in .env before starting.
+docker compose up --build -d
+docker compose logs
+```
 
-To set up AeroAssist locally:
-1. Clone the repository
-2. Open in Visual Studio or Rider
-3. Restore NuGet packages
-4. Create an SQL Server database named "AeroAssist"
-5. Install Entity Framework Core tools
-6. Apply migrations
-7. Configure connection strings in `appsettings.json`
-8. Run the application
+The configured app address is `http://localhost:8080`, with API documentation at `/swagger`. Stop with `docker compose down`; the database volume remains.
 
-## API documentation
+**Validation boundary:** This website review checked source and configuration at [dff52cb](https://github.com/lh1207/AeroAssist/commit/dff52cbc726f252fc47e9de10b5586982a7c66e7), not a successful fresh run. The Docker daemon and .NET SDK were unavailable. The app health check invokes `curl`, which the Dockerfile does not install; verify its availability before relying on container health. A build/test workflow exists, but no test project is committed.
 
-![Swagger UI listing AeroAssist REST endpoints with request and response schemas](/images/aeroassist/swagger.jpg)
+For configuration details and manual setup, see the [deployment notes](/blog/aeroassist-docker-support/).
 
-Swagger OpenAPI documentation is available at `/swagger` for exploring and testing API endpoints.
+## Next improvements
 
-## Project structure
+1. Make chart API URLs deployment-independent and validate a fresh container startup.
+2. Add automated coverage for ticket CRUD and persistence.
+3. Review endpoint authorization and deployment defaults before public hosting.
 
-The application follows a standard ASP.NET MVC structure:
-- **Models**: Data models and business entities
-- **Views**: Razor views for UI presentation
-- **Controllers**: Request handling and business logic
-- **Services**: Business logic and data access
-- **Data Access**: Database operations and repositories
-
-## Learning outcomes
-
-This project provided valuable experience in:
-- Full-stack web development with Microsoft technologies
-- Database design and management with MSSQL
-- User authentication and authorization implementation
-- Workflow automation and business logic development
-- Responsive web design with Bootstrap
-- Software architecture and code organization
-
-## Real-world application
-
-Ticketing systems like AeroAssist are used in various contexts:
-- IT support departments
-- Customer service centers
-- Help desk operations
-- Project management
-- Issue tracking and resolution
-
-The skills developed in this project translate directly to professional software development roles that require full-stack capabilities and understanding of business process automation.
-
-## Future enhancements
-
-Potential improvements include:
-- Real-time notifications using SignalR
-- Advanced reporting and analytics dashboard
-- Integration with email systems for ticket creation
-- Mobile application for ticket management
-- API development for third-party integrations
-- Advanced search and filtering capabilities
-- SLA tracking and management
-
-## Conclusion
-
-AeroAssist shows how I applied full-stack development skills to build a practical ticketing system. The project uses C#, ASP.NET, and MSSQL to solve real operational problems.
-
-Building this app gave me experience with enterprise web development tools and showed me how important user experience, data integrity, and workflow efficiency are in software design.
-
-For more information about the project, visit the [AeroAssist repository on GitHub](https://github.com/lh1207/AeroAssist).
+[Back to projects](/projects/)

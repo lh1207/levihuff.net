@@ -50,7 +50,9 @@ Master catalog of every page in this vault. Update this on every change.
 
 ## Meta
 
+- [[AeroAssist Website Case Study]] - PR #135 reconciled with main at 49df940; 175 tests, zero vulnerabilities, and signature verification pass; ten-minute monitoring remains active
 - [[V2 Cleanup and Verification]] - PR #136 conflict resolution against c4f4d34, 175 passing tests, zero audit findings, and original responsive evidence
+
 
 - [[Custom Domain Email Blog Draft]] - merged PR #131, correction of the mistaken blog exclusion, source boundaries, and solid image redactions
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
