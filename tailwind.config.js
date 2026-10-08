@@ -67,7 +67,7 @@ module.exports = {
         'mono-xs': ['11px', { lineHeight: '1.5', letterSpacing: '0.04em' }],
         'mono-sm': ['12px', { lineHeight: '1.5' }],
         '3xl':     ['32px', { lineHeight: '1.25' }],
-        '4xl':     ['44px', { lineHeight: '1.1',  letterSpacing: '-0.02em' }],
+        '4xl':     ['clamp(2rem, 8vw, 2.75rem)', { lineHeight: '1.1',  letterSpacing: '-0.02em' }],
         '5xl':     ['64px', { lineHeight: '1.1',  letterSpacing: '-0.02em' }],
       },
       // Named spacing tokens map 1-to-1 to the --space-* custom properties.

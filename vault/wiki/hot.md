@@ -2,36 +2,33 @@
 type: meta
 title: "Hot Cache"
 created: 2026-07-14
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [meta]
 status: active
-related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
+related: ["[[AeroAssist Website Case Study]]", "[[V2 Cleanup and Verification]]", "[[Tech Stack]]"]
 ---
 
 # Recent context
 
-## AeroAssist website cleanup
+## AeroAssist PR #135
 
-- Website-only changes are open in PR #135 on `codex/aeroassist-portfolio-case-study`, rebased onto main at `977828d`. AeroAssist and other project repositories remain unchanged. Nothing is merged or deployed.
-- Heartbeat `monitor-aeroassist-website-pr` checks every ten minutes for CI/reviews/conflicts and reports meaningful changes. It pauses after merge/closure and does not merge the PR.
-- The AeroAssist card links to the revised existing case study. Verified commits support the UI, persistence, charts, and Docker work; unsupported automation, authorization, and testing claims are removed. Historical screenshots match repository assets.
-- Static and Vue project cards support uncropped `screenshot` images and same-tab internal links. All 159 tests pass; desktop/mobile browser checks pass. Application execution remains unverified because the .NET SDK and running Docker daemon are unavailable. See [[AeroAssist Website Case Study]].
+- Website-only changes remain open on `codex/aeroassist-portfolio-case-study`. The owner authorizes resolving its conflict with main and pushing the branch, not merging the PR or deploying. AeroAssist and other source-project repositories remain unchanged.
+- Main at `49df940` is merged into the PR branch for reconciliation. Only hot context, index, and log conflicted; both histories, the AeroAssist case study, and main's V2 fixes are preserved. Clean install, 175 tests, zero-vulnerability audit, and 194 registry signatures pass.
+- The card links to the existing revised article. Source-verified commits support UI, persistence, charts, and Docker work; unsupported feature claims are removed. Historical screenshots match repository assets. Static and Vue cards contain screenshots and open internal links in the same tab.
+- Application execution remains unverified: no .NET SDK or running Docker daemon was available. See [[AeroAssist Website Case Study]].
+- The ten-minute heartbeat reports meaningful CI/review/conflict/state changes and pauses after merge/closure. It has no merge authorization.
 
-## Current blog draft
+## V2 cleanup and dependencies
 
-- PR #131, `blog/replying-from-my-own-domain`, contains the unpublished custom-domain email article, an attributed Unsplash cover, and four supplied screenshots. Private regions use solid black replacement pixels in flattened PNGs; original sensitive screenshots are not repository assets.
-- PR #131 is merged. A corrective branch removes the mistaken `.eleventyignore` exclusion so the post appears in normal builds and the blog listing. Draft PR status should provide the review boundary without hiding merged content. The completed mail setup and delivery come from the supplied session record; no further mail action is needed.
-- The branch incorporates main at `eec01f7`. Its vault conflicts preserve both the article evidence and dependency context. See [[Custom Domain Email Blog Draft]] for validation.
-
-## Current dependency context
-
-- PR #130 is merged as `eec01f7`; Dependabot PRs #125 through #129 are closed as superseded.
-- Main uses Vitest and `@vitest/mocker` 5.0.0, markdown-it 15.0.2, markdown-it-anchor 10.0.0, and js-yaml 3.15.2/4.3.2. Compatible transitive patches update brace-expansion to 1.1.21 and Eleventy's markdown-it to 14.3.2. See [[Tech Stack]].
-- The suite has 159 tests, including 22 audit-policy regressions. Vitest 5 requires Node 22.12+, 24, or 26+; CI and deployment use Node 22.
-- The owner-approved exception for GHSA-vfj7-8cjw-p6xm remains narrow: `npm run audit:ci` matches only that braces advisory and its dependent findings. The vulnerability remains present. Other high findings, all critical findings, and malformed or failed audits still block. Remove the exception when upstream dependencies can be patched.
+- Main includes V2 cleanup via PR #136 and security work via PR #137. Shared fixes cover narrow-screen wrapping, keyboard-scrollable tables/code, mobile navigation recovery and static fallback, focus handling, footer targets, and descriptive infrastructure links. Dark theme is rendered directly; Motion is hero-only.
+- Original V2 evidence: 175 passing tests, 109 responsive cases without page overflow, and 4,635 exact-case local references resolved. Of 40 external URLs, 38 respond successfully; LinkedIn/Handshake block automation. See [[V2 Cleanup and Verification]].
+- Current dependencies: Eleventy 4.0.0-alpha.10, maintained 11ty gray-matter alias, Parcel watcher 2.6.0, RSS 3.1.0, Vitest 5.0.3, and Vue 3.5.43. Node satisfies `^22.15.0 || ^24.0.0 || >=26.0.0`.
+- Every advisory severity blocks; the braces exception is removed. Browser Vue/Motion pins participate in audit and CDN/manifest/lock agreement tests. Registry signatures are verified.
+- Keep the exact required `npm audit (high+)` job name despite its stricter behavior. See [[Tech Stack]] and [[Deploy Pipeline]].
 
 ## Stable context
 
-- `vault/` is the primary repository knowledge store. Never edit `.raw/`; log entries are append-only; vault changes are reviewed and committed intentionally.
-- Main includes the Phase 4 AD/PXE post from merged PR #123. Phase 4 is complete; Phase 5 and later deployment phases remain outside that post's completion boundary.
-- The site remains Eleventy 3.1.6, Tailwind CSS 4.3.3 via `@tailwindcss/cli`, Vue 3.5.34 islands, and Motion 10.18.0.
+- PRs #131/#132 publish the custom-domain-email article; no exclusion remains. Screenshots use flattened solid redactions.
+- Security contact expires April 29, 2027. `.htaccess` stays undeployed and `_headers` inactive on Porkbun.
+- This vault owns repository knowledge; personal/cross-project knowledge belongs in the global vault. Never edit `.raw/`; preserve old log entries.
+- Phase 4 AD/PXE from PR #123 is published; later deployment phases remain outside its completion boundary.

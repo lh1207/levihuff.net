@@ -56,7 +56,7 @@ isPost: true
   {# Post footer nav #}
   <nav class="border-t border-hair-1 py-10" aria-label="Post navigation">
     <div class="max-w-prose mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-3 gap-4 items-center">
+      <div class="flex flex-wrap justify-between gap-4 items-center">
 
         <div class="text-left">
           {% set previousPost = collections.posts | getPreviousCollectionItem %}
