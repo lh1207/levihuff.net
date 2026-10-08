@@ -5,7 +5,7 @@ path: "src/_includes/css/tailwind.css"
 language: css
 purpose: "Compiles Tailwind utility classes scanned from templates into a single minified stylesheet."
 maintainer: "Levi Huff"
-last_updated: 2026-08-18
+last_updated: 2026-10-07
 depends_on:
   - "[[Tech Stack]]"
 used_by:
@@ -13,7 +13,7 @@ used_by:
 tags:
   - module
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-10-07
 status: active
 related:
   - "[[Eleventy Config]]"
@@ -38,7 +38,11 @@ Tailwind CSS 4 handles imports and vendor prefixing internally. `src/_includes/c
 - To add a custom rule: add it to `src/_includes/css/tailwind.css` inside the appropriate `@layer`.
 - Production builds minify with the Tailwind CLI's `--minify` flag; `test/build.test.js` asserts the output is at most five non-empty lines as a smoke check.
 
-## Depends on
+## V2 responsive rules
+
+The h1 utility scales from 32px to 44px on narrow viewports. Main content wraps long paths and words; preformatted code scrolls without wrapping. Markdown tables retain native semantics inside `.table-scroll`. Header scroll padding keeps fragment targets clear of the sticky navigation. Body flex layout keeps the footer at the viewport bottom on short pages. See [[V2 Cleanup and Verification]] for the measured viewport matrix.
+
+## Dependencies
 
 - [[Tech Stack]] (Tailwind CSS 4 and `@tailwindcss/cli`)
 

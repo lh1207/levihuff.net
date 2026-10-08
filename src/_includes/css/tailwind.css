@@ -98,6 +98,29 @@
     font-family: "IBM Plex Sans", system-ui, sans-serif;
   }
 
+  html {
+    scroll-padding-top: 88px;
+    color-scheme: dark;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  :is(a, button, [tabindex]) {
+    scroll-margin-block: 88px 24px;
+  }
+
+  em { font-style: normal; font-weight: 600; }
+
   ::selection {
     background: var(--accent);
     color: #0a0b0d;
@@ -118,7 +141,7 @@
 
 @layer components {
   .skip-link {
-    position: absolute;
+    position: fixed;
     left: -9999px;
     top: 1rem;
     z-index: 999;
@@ -220,6 +243,7 @@
     padding: 0;
     font-size: inherit;
     color: var(--fg-1);
+    overflow-wrap: normal;
   }
   .post-content blockquote {
     border-left: 3px solid var(--accent);
@@ -240,10 +264,15 @@
     border-radius: 6px;
     border: 1px solid var(--border-1);
   }
+  .table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
   .post-content table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     font-size: 0.9rem;
   }
   .post-content th,
@@ -301,6 +330,7 @@
     gap: 0.5rem;
   }
   .heading-with-anchor > :is(h2, h3, h4) {
+    min-width: 0;
     margin-bottom: 0;
   }
   .heading-with-anchor + * {
@@ -313,6 +343,8 @@
     text-decoration: none;
     opacity: 0;
     flex-shrink: 0;
+    min-width: 24px;
+    text-align: center;
     color: var(--fg-3);
     transition: opacity 120ms;
   }

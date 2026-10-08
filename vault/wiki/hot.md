@@ -2,29 +2,32 @@
 type: meta
 title: "Hot Cache"
 created: 2026-07-14
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [meta]
 status: active
-related: ["[[Tech Stack]]", "[[Custom Domain Email Blog Draft]]"]
+related: ["[[V2 Cleanup and Verification]]", "[[Tech Stack]]", "[[Deploy Pipeline]]"]
 ---
 
 # Recent context
 
-## Current blog draft
+## V2 cleanup and reconciliation
 
-- PRs #131 and #132 are merged. The custom-domain email article appears in normal builds after correction of its mistaken exclusion. Four supplied screenshots use flattened solid redactions; original sensitive images are not repository assets. Delivery evidence comes from the supplied session record. See [[Custom Domain Email Blog Draft]].
+- PR #136 remains the V2 cleanup on `codex/v2-cleanup-polish`. Its latest remote head before reconciliation is `7204c58`. The user authorizes resolving conflicts and updating this branch, not merging the PR into main or deploying.
+- Main merges the security work through PR #137 at `c4f4d34`. The cleanup branch already carries the same security/runtime changes. Merging main produces conflicts only in this hot note and the append-only log; preserve both histories and the existing V2 polish.
+- Reconciliation validation: clean installation, all 175 tests including production build, and zero known vulnerabilities in the audit. Runtime/security code remains unchanged by the merge.
+- Shared V2 fixes include narrow-screen headings/wrapping, keyboard-scrollable tables/code, mobile menu breakpoint recovery and no-JavaScript fallback, skip/filter/back-to-top focus, footer targets, and descriptive infrastructure links. Dark theme is rendered directly; Motion is hero-only.
+- Original cleanup evidence: 109 Chrome responsive cases without page-wide overflow and 4,635 exact-case local references resolved. Of 40 external URLs, 38 respond successfully; LinkedIn/Handshake block automation. See [[V2 Cleanup and Verification]] for scope and limits.
+- The 15-minute PR monitor reports meaningful changes to checks, reviews, conflicts, or state. It does not merge, deploy, or post comments.
 
-## Current dependency context
+## Current dependency and hosting policy
 
-- The active main ruleset requires the exact `npm audit (high+)` status. The workflow retains this legacy name while blocking every severity and verifying signatures. Inspect rulesets separately from classic branch protection before renaming required jobs. See [[Deploy Pipeline]].
-- The owner requires zero known vulnerabilities. Draft PR #137 contains the verified candidate; the same security code is pushed to #135 and #136. Their suites pass 171, 171, and 175 tests respectively, with zero audit findings. GitHub CI/security/CodeQL pass on all three. Dependabot #133/#134 are closed as superseded. See [[Tech Stack]].
-- The candidate pins official Eleventy 4.0.0-alpha.10, aliases gray-matter to the maintained 11ty fork, and overrides Parcel watcher to official 2.6.0. These remove braces and sprintf-js completely. RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2 are retained.
-- Both Vue imports use patched 3.5.43; exact Vue and Motion 10.18.0 pins are included in npm audit and tests enforce CDN/manifest/lock agreement. Every advisory severity now blocks; the old braces exception and proposed relaxation are removed. All 194 installed packages have verified registry signatures, with 67 available attestations.
-- Node must satisfy `^22.15.0 || ^24.0.0 || >=26.0.0`. The preceding 170-test suite passes on minimum Node 22.15 and 24.0 plus Node 26. Ten live-reload checks and real-browser filters pass. All 206 generated files match the old framework output before the intentional Vue URL update.
-- Main remains unchanged. Adopting Eleventy and its dev-server/Nunjucks prereleases requires an explicit owner decision. Stable Eleventy 3 cannot remove the affected watcher without breaking glob compatibility. Zero known findings does not guarantee no undiscovered vulnerability or attest to CDN bytes.
+- Main now uses Eleventy 4.0.0-alpha.10, the maintained 11ty gray-matter alias, Parcel watcher 2.6.0, RSS 3.1.0, Vitest 5.0.3, and Vue 3.5.43. Node must satisfy `^22.15.0 || ^24.0.0 || >=26.0.0`. See [[Tech Stack]].
+- Every advisory severity blocks; the old braces exception is removed. Browser Vue/Motion pins participate in package audit and CDN/manifest/lock agreement tests. Registry signatures are verified.
+- The main ruleset still requires the exact `npm audit (high+)` job name despite its stricter all-severity behavior. Retain that label. See [[Deploy Pipeline]].
+- Security contact expires April 29, 2027. `.htaccess` stays undeployed and `_headers` inactive on Porkbun; static files cannot enforce those HTTP directives.
 
 ## Stable context
 
-- `vault/` is the primary repository knowledge store. Never edit `.raw/`; log entries are append-only; vault changes are reviewed and committed intentionally.
-- Main includes the Phase 4 AD/PXE post from merged PR #123. Phase 4 is complete; Phase 5 and later deployment phases remain outside that post's completion boundary.
-- Until candidate adoption, main remains Eleventy 3.1.6 and Vue 3.5.34. Tailwind 4.3.3 and Motion 10.18.0 are shared by both baselines.
+- PRs #131/#132 publish the custom-domain-email article; no exclusion remains. Its supplied screenshots use flattened solid redactions, and original sensitive images are not repository assets. See [[Custom Domain Email Blog Draft]].
+- `vault/` owns repository knowledge. Never edit `.raw/`; preserve historical log entries. Personal/cross-project knowledge belongs in the separate global vault.
+- Phase 4 AD/PXE from PR #123 is published; later deployment phases remain outside its completion boundary.

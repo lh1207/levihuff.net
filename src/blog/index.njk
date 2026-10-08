@@ -69,12 +69,13 @@ description: Field notes by Levi Huff on IT infrastructure, systems administrati
         <div v-if="allTags.length" class="mb-8">
           <button
             type="button"
+            ref="tagFilterToggle"
             class="w-full md:w-auto md:min-w-64 flex items-center justify-between gap-4 bg-surface-2 border border-hair-1 rounded-d-sm px-4 py-3 font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-2 hover:text-fg-1 hover:border-hair-2 transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2"
             :aria-expanded="tagsExpanded"
             aria-controls="blog-tag-filters"
             @click="tagsExpanded = !tagsExpanded">
             <span>Filter posts</span>
-            <span class="inline-flex items-center gap-2 text-amber">
+            <span class="inline-flex min-w-0 items-center gap-2 text-amber">
               {% raw %}{{ activeTag === 'all' ? 'All' : activeTag }}{% endraw %}
               <svg
                 class="size-3 transition-transform duration-[180ms]"
@@ -130,7 +131,7 @@ description: Field notes by Levi Huff on IT infrastructure, systems administrati
                 loading="lazy"
                 :width="post.thumbnailWidth || undefined"
                 :height="post.thumbnailHeight || undefined"
-                :class="['w-full h-full object-cover', post.thumbnailLogo ? 'object-contain p-6' : '']">
+                :class="['w-full h-full', post.thumbnailLogo ? 'object-contain p-6' : 'object-cover']">
             </div>
 
             <div class="p-6">
@@ -230,7 +231,9 @@ createApp({
   methods: {
     selectTag(tag) {
       this.activeTag = tag;
+      const restoreFocus = this.tagsExpanded;
       this.tagsExpanded = false;
+      if (restoreFocus) this.$nextTick(() => this.$refs.tagFilterToggle.focus());
     }
   },
   mounted() {

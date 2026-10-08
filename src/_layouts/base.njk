@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111317">
   <title>{% if title %}{{ title }} | {% endif %}Levi Huff</title>
   {% if description %}
   <meta name="description" content="{{ description }}">
@@ -58,7 +59,7 @@
   <meta name="twitter:image" content="{{ site.url }}/images/profile.jpg">
   {% endif %}
   <link rel="icon" type="image/svg+xml" href="/images/profile.svg">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/jpeg" href="/images/profile.jpg">
   <link rel="apple-touch-icon" href="/images/profile.jpg">
   <link rel="alternate" type="application/atom+xml" title="{{ site.name }}: Blog" href="/feed.xml">
   <link rel="alternate" type="text/plain" title="{{ site.name }}: AI-readable site guide" href="/llms.txt">
@@ -69,7 +70,6 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="/css/styles.css?v={{ gitHash }}">
   <style>[v-cloak]{display:none;}</style>
-  <script>document.documentElement.setAttribute('data-theme', 'dark');</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -121,7 +121,7 @@
   <a class="skip-link" href="#main-content">Skip to main content</a>
   {% include "components/nav.njk" %}
 
-  <main id="main-content" class="bg-surface-1 text-fg-1">
+  <main id="main-content" tabindex="-1" class="bg-surface-1 text-fg-1">
     {{ content | safe }}
   </main>
 
@@ -133,33 +133,23 @@
     hidden>&#8679;</button>
 
   <script type="module">
-    if (
-      document.querySelector('[data-motion]') &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      const { animate, inView, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm');
+    // Motion is a small enhancement for the hero only. All content remains visible
+    // if the CDN is unavailable or the visitor prefers reduced motion.
+    const hero = document.getElementById('hero');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-      // Hero stagger: only on the homepage
-      const hero = document.getElementById('hero');
-      if (hero) {
-        const items = hero.querySelectorAll('[data-motion="hero-item"]');
-        if (items.length) {
-          animate(items, { y: [20, 0] }, { delay: stagger(0.12), duration: 0.5, easing: [0.25, 0.1, 0.25, 1] });
+    if (hero && !reducedMotion.matches) {
+      try {
+        const { animate, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm');
+        if (!reducedMotion.matches) {
+          const items = hero.querySelectorAll('[data-motion="hero-item"]');
+          if (items.length) {
+            animate(items, { y: [20, 0] }, { delay: stagger(0.12), duration: 0.5, easing: [0.25, 0.1, 0.25, 1] });
+          }
         }
+      } catch (error) {
+        // The static hero is the fallback when the enhancement cannot load.
       }
-
-      // Section reveal: headings and content blocks
-      inView('[data-motion="section"]', ({ target }) => {
-        animate(target, { opacity: [0, 1], y: [20, 0] }, { duration: 0.45, easing: [0.25, 0.1, 0.25, 1] });
-      }, { margin: '-8% 0px' });
-
-      // Stagger grids
-      inView('[data-motion="stagger"]', ({ target }) => {
-        const items = target.querySelectorAll('[data-motion="stagger-item"]');
-        if (items.length) {
-          animate(items, { opacity: [0, 1], y: [12, 0] }, { delay: stagger(0.05), duration: 0.35, easing: [0.25, 0.1, 0.25, 1] });
-        }
-      }, { margin: '-8% 0px' });
     }
   </script>
 
@@ -173,6 +163,8 @@
       var mainContent = document.getElementById('main-content');
       var siteFooter = document.getElementById('site-footer');
       var backToTop = document.querySelector('.back-to-top');
+      var desktopNav = document.getElementById('nav-menu');
+      var desktopBreakpoint = window.matchMedia('(min-width: 801px)');
 
       function getMobileNavFocusables() {
         var items = [navToggle];
@@ -203,6 +195,7 @@
       }
 
       if (navToggle && mobileNav) {
+        navToggle.hidden = false;
         navToggle.addEventListener('click', function () {
           setMobileNavOpen(navToggle.getAttribute('aria-expanded') !== 'true');
         });
@@ -236,6 +229,20 @@
             !mobileNav.contains(e.target) &&
             !navToggle.contains(e.target)
           ) {
+            var restoreToggleFocus = mobileNav.contains(document.activeElement);
+            setMobileNavOpen(false);
+            if (restoreToggleFocus) navToggle.focus();
+          }
+        });
+
+        // This also covers browsers that do not yet support inert. If focus moves
+        // away from the disclosure, close it instead of leaving an open drawer.
+        document.addEventListener('focusin', function (e) {
+          if (
+            navToggle.getAttribute('aria-expanded') === 'true' &&
+            !mobileNav.contains(e.target) &&
+            !navToggle.contains(e.target)
+          ) {
             setMobileNavOpen(false);
           }
         });
@@ -246,6 +253,21 @@
             setMobileNavOpen(false);
           });
         });
+
+        // CSS hides the mobile controls at this breakpoint. Close the drawer and
+        // return focus to the matching desktop link before its mobile target hides.
+        desktopBreakpoint.addEventListener('change', function (e) {
+          if (!e.matches || navToggle.getAttribute('aria-expanded') !== 'true') return;
+
+          var activeElement = document.activeElement;
+          var shouldMoveFocus = activeElement === navToggle || mobileNav.contains(activeElement);
+          setMobileNavOpen(false);
+
+          if (shouldMoveFocus && desktopNav) {
+            var currentLink = desktopNav.querySelector('a[aria-current]') || desktopNav.querySelector('a');
+            if (currentLink) currentLink.focus();
+          }
+        });
       }
 
       var btn = document.querySelector('.back-to-top');
@@ -254,11 +276,15 @@
           if (window.scrollY > 400) {
             btn.removeAttribute('hidden');
           } else {
+            if (document.activeElement === btn && mainContent) {
+              mainContent.focus({ preventScroll: true });
+            }
             btn.setAttribute('hidden', '');
           }
         }, { passive: true });
         btn.addEventListener('click', function () {
           var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (mainContent) mainContent.focus({ preventScroll: true });
           window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
       }

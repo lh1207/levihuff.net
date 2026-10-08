@@ -5,14 +5,14 @@ path: "src/_layouts/, src/_includes/, src/*.njk, src/blog/*.md"
 language: nunjucks + markdown
 purpose: "Page composition: layouts wrap pages, components are reusable partials, blog posts are markdown with frontmatter."
 maintainer: "Levi Huff"
-last_updated: 2026-08-18
+last_updated: 2026-10-07
 depends_on:
   - "[[Data Layer]]"
 used_by: []
 tags:
   - module
 created: 2026-07-14
-updated: 2026-08-18
+updated: 2026-10-07
 status: active
 related:
   - "[[Eleventy Config]]"
@@ -35,7 +35,13 @@ Defines how pages are composed from layouts, includes, and data.
 - **Tag pages** (`src/tags/`): `index.njk` lists all tags, `tag.njk` paginates posts per tag via the `tagSlug` filter.
 - **Vue islands**: `src/projects.njk` (category filter) and `src/blog/index.njk` (tag filter) load Vue 3 as an inline ES module from `cdn.jsdelivr.net`, pinned to `3.5.34`. Data enters these scripts through the `jsonScript` filter so content cannot close the surrounding script tag. See [[Vue Version Pin]].
 
-## Depends on
+## V2 interaction behavior
+
+The base layout emits the dark theme directly in HTML. Mobile navigation has a no-JavaScript fallback, 44px targets, and a short-screen scroll container. Opening the drawer temporarily makes main/footer inert; crossing 801px closes it and restores keyboard access. The main region is focusable for skip-link and back-to-top handling. The blog tag chooser returns focus to its trigger after selection.
+
+Motion only enhances hero items. Section/grid scroll reveals are disabled, and CDN failure leaves static content available. Vue filters preserve static cards until mounting succeeds. See [[V2 Cleanup and Verification]] for browser coverage and limitations.
+
+## Dependencies
 
 - [[Data Layer]] - templates read `site.json`, `navigation.json`, `projects.json`, etc. as globals
 

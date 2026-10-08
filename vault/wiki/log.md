@@ -16,6 +16,12 @@ Append-only. New entries go at the TOP. Never edit past entries.
 
 ---
 
+## 2026-10-08 - Reconciled cleanup PR with merged security work
+
+Merged current main at c4f4d34 into the cleanup branch for PR #136. Security/runtime files already match the PR's 7204c58 head, so conflicts occur only in hot context and the operation log. Preserved all historical entries from both parents verbatim and refreshed current dependency/publication facts. A clean installation succeeds; all 175 tests, including the production build, pass, and the audit reports zero known vulnerabilities. Updated [[V2 Cleanup and Verification]], the index, and hot cache. The PR remains open for review; this task does not merge it into main or deploy.
+
+---
+
 ## 2026-10-07 - Restored the required audit status
 
 The active main ruleset requires `npm audit (high+)`; changing the job display name left this status waiting even though the new audit job passed. Restored the exact legacy label without weakening the every-severity audit or signature verification, and propagated the repair to #137, #135, and #136. Local suites pass 171, 171, and 175 tests respectively. Corrected [[Deploy Pipeline]] to document that required security checks block merges and that rulesets must be inspected separately from classic branch protection. Updated the index and hot cache.
@@ -37,6 +43,20 @@ Updated [[Tech Stack]], [[Vue Version Pin]], [[Deploy Pipeline]], [[Architecture
 Prepared PR #137 with RSS 3.1.0, Vitest 5.0.3, shell-quote 1.12.0, and source-map-js 1.2.2. Clean installation and 159 tests pass; direct dependencies are current. Merged and pushed the dependency commit into #135 (159 tests) and #136 (163 tests). Independent review finds no compatibility regression.
 
 Updated [[Tech Stack]], the index, and hot cache. The existing audit policy remains unchanged and blocks Eleventy's mixed accepted-braces/moderate-sprintf-js advisory chain. Main integration awaits an owner decision; no compatible upstream patch exists for the remaining chain.
+
+---
+
+## 2026-10-07 - Cleanup PR opened and monitored
+
+Opened [PR #136](https://github.com/lh1207/levihuff.net/pull/136) on `codex/v2-cleanup-polish` after incorporating main's existing PR #132 publication change. The optional exclusion test handles the absent `.eleventyignore`; all 163 tests pass. At initial head db4ab30, GitHub CI, CodeQL, secrets, and env checks pass, while unchanged dependencies fail npm audit on critical shell-quote and high source-map-js/Eleventy entries. No reviews are present. A 15-minute heartbeat reports meaningful check/review/state changes without merging, deploying, or posting comments. Updated [[V2 Cleanup and Verification]], the index, and hot cache.
+
+---
+
+## 2026-10-07 - V2 cleanup prepared for review
+
+The focused V2 pass improves responsive wrapping, mobile navigation and keyboard focus, static fallbacks, Markdown scroll access, footer targets, and metadata while retaining the site's identity and static workflow. Documentation follows the actual dark-only WOFF2 implementation. All 163 tests pass, 109 local Chrome responsive cases have no page-wide overflow, and generated references resolve with exact case. External checks reach 38 of 40 destinations; LinkedIn and Handshake block automated checks. No deployment or push occurs.
+
+Updated [[Template System]], [[CSS Pipeline]], [[Eleventy Config]], the index, and hot cache. [[V2 Cleanup and Verification]] holds the file inventory, validation limits, preserved assets/drafts, and deployment handoff.
 
 ---
 

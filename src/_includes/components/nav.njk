@@ -27,6 +27,7 @@
     {# Mobile hamburger #}
     <button
       id="nav-toggle"
+      hidden
       aria-expanded="false"
       aria-controls="mobile-nav"
       aria-label="Toggle navigation"
@@ -42,7 +43,7 @@
   </div>
 
   {# Mobile nav drawer -- full-width panel below the header bar #}
-  <div id="mobile-nav" class="hidden absolute top-[72px] left-0 right-0 bg-surface-1 border-b border-hair-1 shadow-d-lg md:hidden">
+  <div id="mobile-nav" class="hidden absolute top-[72px] left-0 right-0 max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain bg-surface-1 border-b border-hair-1 shadow-d-lg md:hidden">
     <nav aria-label="Mobile navigation">
       <ul class="max-w-site mx-auto px-4 py-4 flex flex-col gap-1">
         {% for item in navigation %}
@@ -51,7 +52,7 @@
           <a
             href="{{ item.url }}"
             {% if page.url == item.url %}aria-current="page"{% elif navActive %}aria-current="true"{% endif %}
-            class="block font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 hover:bg-surface-2 transition-colors duration-[120ms]
+            class="flex min-h-11 items-center font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 hover:bg-surface-2 transition-colors duration-[120ms]
               {% if navActive %}text-amber{% endif %}">
             {{ item.label }}
           </a>
@@ -61,3 +62,21 @@
     </nav>
   </div>
 </header>
+
+<noscript>
+  <nav aria-label="Main navigation" class="border-b border-hair-1 bg-surface-1 md:hidden">
+    <ul class="max-w-site mx-auto px-4 py-3 flex flex-col gap-1">
+      {% for item in navigation %}
+      {% set navActive = page.url == item.url or (item.url != '/' and page.url.startsWith(item.url)) %}
+      <li>
+        <a
+          href="{{ item.url }}"
+          {% if page.url == item.url %}aria-current="page"{% elif navActive %}aria-current="true"{% endif %}
+          class="flex min-h-11 items-center font-plex text-sm font-medium px-3 py-2 rounded-md text-fg-2 hover:text-fg-1 hover:bg-surface-2 transition-colors duration-[120ms]">
+          {{ item.label }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</noscript>

@@ -31,6 +31,10 @@ module.exports = function (eleventyConfig) {
         .replace(/^-+|-+$/g, "")
     });
   eleventyConfig.setLibrary("md", mdLib);
+  // Preserve table semantics while allowing wide Markdown tables to scroll
+  // independently. The wrapper is keyboard reachable without JavaScript.
+  mdLib.renderer.rules.table_open = () => '<div class="table-scroll" role="region" aria-label="Table (scroll horizontally)" tabindex="0"><table>\n';
+  mdLib.renderer.rules.table_close = () => '</table></div>\n';
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/fonts");
@@ -85,6 +89,13 @@ module.exports = function (eleventyConfig) {
       if (!dims) return match;
       return `<img${attrs} width="${dims.width}" height="${dims.height}">`;
     });
+  });
+
+  eleventyConfig.addTransform("code-scroll-access", function (content, outputPath) {
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+    return content.replace(/<pre\b([^>]*)>/g, (match, attrs) =>
+      /\btabindex=/.test(attrs) ? match : `<pre${attrs} tabindex="0" role="region" aria-label="Code example (scroll horizontally)">`
+    );
   });
 
   // Lazy-load below-fold post images; prioritize the first hero image for LCP
