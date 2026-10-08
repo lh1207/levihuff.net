@@ -2,7 +2,7 @@
 type: meta
 title: "V2 Cleanup and Verification"
 created: 2026-10-07
-updated: 2026-10-07
+updated: 2026-10-08
 tags: [website, accessibility, responsive, verification]
 status: active
 related: ["[[Template System]]", "[[CSS Pipeline]]", "[[Eleventy Config]]", "[[Custom Domain Email Blog Draft]]"]
@@ -11,6 +11,14 @@ related: ["[[Template System]]", "[[CSS Pipeline]]", "[[Eleventy Config]]", "[[C
 # V2 Cleanup and Verification
 
 ## Scope and structure
+
+### Current reconciliation, October 8
+
+Main at `c4f4d34` contains merged security PR #137. PR #136 already contains identical package, lockfile, audit script, and security workflow changes at `7204c58`. Merging main into the cleanup branch produces conflicts only in `vault/wiki/hot.md` and `vault/wiki/log.md`. The resolution refreshes current context and retains every historical log entry from both parents verbatim. The site runtime and cleanup code do not change in this reconciliation.
+
+A clean `npm ci` succeeds. All 175 tests pass, including the production build, and `npm run audit:ci` reports zero known vulnerabilities. This supersedes the historical audit blockers and dependency versions recorded below. The required job name remains `npm audit (high+)` while rejecting every severity. The user authorizes updating the PR branch to resolve conflicts; merging the PR into main and deployment remain outside this task.
+
+### Original cleanup and PR preparation record
 
 PR preparation follow-up: the user authorizes committing, pushing a feature branch, opening a PR, and monitoring checks/reviews. The branch is `codex/v2-cleanup-polish`. Main advances to `977828d` through PR #132, which publishes the custom-domain-email article; the cleanup incorporates this existing upstream change rather than restoring the stale exclusion. The exclusion regression accepts an absent `.eleventyignore`. The audit measurements below describe the original pre-integration build; the full suite is rerun after integration. Merging and deployment remain outside authorization.
 

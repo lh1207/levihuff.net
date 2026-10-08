@@ -2,7 +2,7 @@
 type: meta
 title: "Wiki Index"
 created: 2026-07-14
-updated: 2026-10-07
+updated: 2026-10-08
 tags:
   - meta
 status: developing
@@ -40,17 +40,17 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]] - PR #130 dependency consolidation, Vitest 5 requirements, and the owner-approved exact braces advisory exception
+  - [[Tech Stack]] - security work from PR #137 is merged into main; current package policy rejects every advisory severity
 
 ## Flows
 
 - [[Flows Index]]
   - [[Build Pipeline]]
-  - [[Deploy Pipeline]] - CI audit policy retains other high/critical checks
+  - [[Deploy Pipeline]] - CI rejects every vulnerability; the main ruleset requires the legacy audit status name
 
 ## Meta
 
-- [[V2 Cleanup and Verification]] - PR #136, active monitor, dependency-audit blocker, 109 responsive cases, 163 tests, and hosting limits
+- [[V2 Cleanup and Verification]] - PR #136 conflict resolution against c4f4d34, 175 passing tests, zero audit findings, and original responsive evidence
 
 - [[Custom Domain Email Blog Draft]] - merged PR #131, correction of the mistaken blog exclusion, source boundaries, and solid image redactions
 - [[AD PXE Phase 4 Blog PR 123]] - source-grounded Phase 4 publication, evidence assets, validation, and PR status
