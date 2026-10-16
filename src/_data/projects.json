@@ -1,209 +1,123 @@
 [
   {
-    "title": "Multi-LLM Dev Workflow",
-    "category": "ai",
-    "stack": "Claude Code, Codex, Gemini, Ollama",
-    "link": null,
-    "linkLabel": null,
-    "image": "/images/projects/multi-llm-workflow.jpg",
-    "imageAlt": "Dual-monitor developer workstation with VS Code open showing code on both screens",
-    "imageClass": null,
-    "imageWidth": 1200,
-    "imageHeight": 960,
-    "imageLoading": "lazy",
-    "description": "<strong>Architected a three-provider AI development workflow</strong> routing tasks by model strength and context window.",
-    "paragraphs": [
-      { "label": "Stack",   "text": "Claude Code, OpenAI Codex, Gemini 2.5 Pro, Ollama, Open WebUI, Mac Mini 24GB" },
-      { "label": "Design",  "text": "Claude Code as orchestrator (planning/writing), Codex as async adversarial reviewer, Gemini for large-context full-repo analysis." },
-      { "label": "Context", "text": "Documented with real failure cases at levihuff.net." }
-    ],
-    "meta": "Personal project, 2025–2026."
-  },
-  {
-    "title": "Proxmox Homelab & Docker Stack",
+    "title": "Windows and Active Directory lab",
     "category": "infrastructure",
-    "stack": "Proxmox, Docker, Pi-hole",
-    "link": null,
-    "linkLabel": null,
-    "image": "/images/projects/proxmox-homelab.jpg",
-    "imageAlt": "Rack of server units installed in a data center server room",
-    "imageClass": null,
-    "imageWidth": 1200,
-    "imageHeight": 800,
-    "imageLoading": "lazy",
-    "description": "<strong>Self-hosted infrastructure stack</strong> running on Proxmox with Docker Compose and network-level DNS filtering.",
-    "paragraphs": [
-      { "label": "Stack",  "text": "Proxmox, Docker, Pi-hole, Uptime Kuma, Jellyfin, Bookstack, Home Assistant" },
-      { "label": "Impact", "text": "Migrated from individual LXCs to a unified Docker stack; subnet static routing isolates household service availability from upstream failures." }
-    ],
-    "meta": "Personal homelab project, ongoing."
-  },
-  {
-    "title": "Windows Imaging and PXE Automation",
-    "category": "infrastructure",
-    "stack": "FOG, MDT, WDS, UEFI",
-    "link": null,
-    "linkLabel": null,
+    "stack": "Hyper-V, PowerShell, AD DS, DNS, DHCP",
+    "link": "https://github.com/lh1207/ad-pxe-lab",
+    "linkLabel": "View source",
     "image": "/images/projects/windows-pxe-imaging.jpg",
-    "imageAlt": "Hands installing a CPU processor chip onto a motherboard socket",
-    "imageClass": null,
+    "imageAlt": "Hands installing a processor on a motherboard; illustrative photo.",
     "imageWidth": 1200,
     "imageHeight": 800,
     "imageLoading": "lazy",
-    "description": "<strong>Automated imaging pipeline</strong> built across two co-op employers using FOG Project and MDT. Eliminated manual installs and standardized Windows 11 deployments across departments.",
+    "description": "<strong>Personal Windows lab</strong> with PowerShell setup scripts and recorded domain-controller configuration checks.",
     "paragraphs": [
-      { "label": "Stack",   "text": "FOG Project, MDT, Windows Deployment Services, UEFI/BIOS config" },
-      { "label": "Impact",  "text": "Reduced per-machine deployment time from roughly 2 hours to under 20 minutes. Automated Lenovo driver injection, domain enrollment, and department-specific image variants." },
-      { "label": "Context", "text": "Deployed at Tire Discounters (MDT image) and Total Quality Logistics (PXE pipeline with pre-imaging checklist for I/O verification and BIOS configuration)." }
+      {
+        "label": "Evidence",
+        "text": "Host-readiness, virtual-switch, disk and VM scripts; a dated AD/DNS/DHCP verification transcript."
+      },
+      {
+        "label": "Scope",
+        "text": "WDS/PXE runbooks describe further lab work. They are distinct from completed deployment evidence."
+      }
     ],
-    "meta": "Professional co-op project. Tire Discounters and Total Quality Logistics, 2022."
+    "meta": "Personal lab"
+  },
+  {
+    "title": "Homelab configuration",
+    "category": "infrastructure",
+    "stack": "Docker Compose, Proxmox",
+    "link": "https://github.com/lh1207/homelab",
+    "linkLabel": "View source",
+    "image": "/images/projects/proxmox-homelab.jpg",
+    "imageAlt": "Server racks; illustrative photo.",
+    "imageWidth": 1200,
+    "imageHeight": 800,
+    "imageLoading": "lazy",
+    "description": "<strong>Version-controlled homelab configuration</strong> with Compose files and host-specific setup notes.",
+    "paragraphs": [
+      {
+        "label": "Examples",
+        "text": "Jellyfin, Homebridge, Uptime Kuma and Open WebUI service definitions."
+      },
+      {
+        "label": "Scope",
+        "text": "Configuration artifacts and documentation."
+      }
+    ],
+    "meta": "Personal homelab"
   },
   {
     "title": "AeroAssist",
     "category": "software",
-    "stack": "C#, ASP.NET, MSSQL",
-    "link": "https://lh1207.github.io/AeroAssist/",
-    "linkLabel": "View Site",
+    "stack": "C#, ASP.NET, SQL Server, Docker",
+    "link": "https://github.com/lh1207/AeroAssist",
+    "linkLabel": "View source",
     "image": "/images/aeroassist/cloud-logo.png",
     "imageAlt": "AeroAssist cloud logo",
     "imageClass": "logo",
     "imageWidth": 736,
     "imageHeight": 489,
-    "imageLoading": null,
-    "description": "<strong>Full-stack ticketing system</strong> designed to streamline ticket creation, tracking, and management workflows.",
-    "paragraphs": [
-      { "label": "Technologies", "text": "C#, ASP.NET, Bootstrap, MSSQL" },
-      { "label": "Key Features", "text": "Ticket creation and tracking, user management, workflow automation" }
-    ],
-    "meta": null
-  },
-  {
-    "title": "LocoQuest",
-    "category": "software",
-    "link": "https://github.com/lh1207/LocoQuest",
-    "linkLabel": "View on GitHub",
-    "image": "/images/locoquest/hero-outdoor-map.jpg",
-    "imageAlt": "LocoQuest Android app showing map with quest location markers",
-    "imageClass": null,
-    "imageWidth": 1200,
-    "imageHeight": 800,
     "imageLoading": "lazy",
-    "description": "<strong>Android mobile application</strong> that uses geolocation to guide users to real-world benchmarks in an interactive scavenger hunt format.",
+    "description": "<strong>Existing ASP.NET ticketing application</strong> with a C# ticket API. I added Docker Compose configuration.",
     "paragraphs": [
-      { "label": "Technologies", "text": "Kotlin, Android SDK, Firebase, Google Maps API, Geolocation APIs" },
-      { "label": "Key Features", "text": "GPS-based navigation, interactive quest system, Firebase backend for auth and data persistence" }
+      {
+        "label": "Contribution",
+        "text": "Added container configuration to an existing ASP.NET ticketing application."
+      },
+      {
+        "label": "Existing application",
+        "text": "Ticket create/read/update/delete endpoints and Entity Framework SQL Server integration. My contribution here is container configuration."
+      }
     ],
-    "meta": null
+    "meta": "Software project · Contributor"
   },
   {
     "title": "Culinary Mastery",
     "category": "software",
-    "stack": "React Native, Node.js, Azure AI",
+    "stack": "React, Node.js, Express",
     "link": "https://github.com/24-25-UC-Senior-Design-Group-7/Culinary-Mastery",
-    "linkLabel": "View on GitHub",
+    "linkLabel": "View source",
     "image": "/images/culinary-mastery/hero-kitchen.jpg",
-    "imageAlt": "Culinary Mastery educational platform showing video tutorial interface",
-    "imageClass": null,
+    "imageAlt": "Kitchen scene; illustrative photo.",
     "imageWidth": 1200,
     "imageHeight": 800,
     "imageLoading": "lazy",
-    "description": "<strong>Web-based cooking education platform</strong> delivering step-by-step video lessons with a secure Azure backend and backend AI integration.",
+    "description": "<strong>Academic team project</strong> for cooking education, presented by UC Senior Design Team 7 at IT Expo 2025.",
     "paragraphs": [
-      { "label": "Technologies", "text": "React Native, Node.js, YouTube API, Azure Cosmos DB, Azure AI Services" },
-      { "label": "Key Features", "text": "YouTube video integration, Azure Cosmos DB for user and course data, Firebase + Azure Authentication with 2FA, backend Azure AI for explanations and translations" },
-      { "label": "Context",      "text": "University of Cincinnati Senior Design, Team 7. Presented at IT Expo 2025." }
+      {
+        "label": "Role",
+        "text": "Team member. The application and its features were a shared project."
+      },
+      {
+        "label": "Implementation",
+        "text": "React web interface and an Express backend with video and AI service integration."
+      }
     ],
-    "meta": null
+    "meta": "University of Cincinnati · Team project"
   },
   {
-    "title": "UCRelief",
+    "title": "LocoQuest",
     "category": "software",
-    "link": "https://therelievers.weebly.com/",
-    "linkLabel": "View Project",
-    "image": "/images/projects/ucrelief-student-app.jpg",
-    "imageAlt": "Diverse group of university students gathered around a laptop collaborating together",
-    "imageClass": null,
-    "imageWidth": 800,
-    "imageHeight": 533,
-    "imageLoading": "lazy",
-    "description": "<strong>Concept design project</strong> showcasing app design skills without code. UCRelief assists University of Cincinnati students with current challenges by providing up-to-date information.",
-    "paragraphs": [
-      { "label": "Context",  "text": "College advice rapidly becomes outdated. In 2000, student loans averaged $26,160; today the figure is about $36,900. UCRelief addresses this gap for UC students." },
-      { "label": "Role",     "text": "Designer (Concept Pitch)" },
-      { "label": "Timeline", "text": "January 2021 – April 2021" }
-    ],
-    "meta": null
-  },
-  {
-    "title": "Computer Imaging and Provisioning Automation",
-    "category": "work",
-    "link": null,
-    "linkLabel": null,
-    "image": "/images/projects/computer-imaging-provisioning.jpg",
-    "imageAlt": "Computer lab classroom with multiple desks and workstations set up for deployment",
-    "imageClass": null,
+    "stack": "Kotlin, Android, Google Maps",
+    "link": "https://github.com/lh1207/LocoQuest",
+    "linkLabel": "View source",
+    "image": "/images/locoquest/hero-outdoor-map.jpg",
+    "imageAlt": "Outdoor map scene; illustrative photo.",
     "imageWidth": 1200,
     "imageHeight": 800,
     "imageLoading": "lazy",
-    "description": "<strong>Professional project</strong> focused on automating computer imaging and provisioning processes to improve efficiency and accuracy.",
+    "description": "<strong>Academic Android team project</strong> using maps and device location to explore geographic benchmarks.",
     "paragraphs": [
-      { "label": "Impact",       "text": "Reduced manual configuration time, ensured consistent deployments, improved device readiness for end-users" },
-      { "label": "Technologies", "text": "Automation tools, imaging software, device management systems" }
+      {
+        "label": "Role",
+        "text": "Contributed alongside Derrick Adkins and William Bohman."
+      },
+      {
+        "label": "Implementation",
+        "text": "Kotlin source includes Google Maps and Android location APIs."
+      }
     ],
-    "meta": "Professional work at Tire Discounters"
-  },
-  {
-    "title": "IT Support and Process Improvement",
-    "category": "work",
-    "link": null,
-    "linkLabel": null,
-    "image": "/images/projects/it-support-process.jpg",
-    "imageAlt": "IT support professional wearing headphones at desk with laptop computer",
-    "imageClass": null,
-    "imageWidth": 800,
-    "imageHeight": 534,
-    "imageLoading": "lazy",
-    "description": "<strong>Professional IT support work</strong> involving clearing a backlogged ticket queue, supporting multiple locations, and improving the employee onboarding process.",
-    "paragraphs": [
-      { "label": "Impact",    "text": "Restored a reliable support process, reduced onboarding ambiguity through process documentation, and handled on-site and remote requests across Cincinnati and Sharonville." },
-      { "label": "Approach",  "text": "Triaged tickets by priority, documented onboarding workflows and system handoffs, and resolved issues on-site or over the phone depending on what each situation required." }
-    ],
-    "meta": "Professional work at Tire Discounters"
-  },
-  {
-    "title": "Machine Lifecycle and Decommissioning",
-    "category": "work",
-    "link": null,
-    "linkLabel": null,
-    "image": "/images/projects/machine-lifecycle.jpg",
-    "imageAlt": "Close-up macro shot of a computer circuit board showing chips and components",
-    "imageClass": null,
-    "imageWidth": 800,
-    "imageHeight": 533,
-    "imageLoading": "lazy",
-    "description": "<strong>Hands-on professional work</strong> managing hardware retirement based on processor generation standards.",
-    "paragraphs": [
-      { "label": "Impact",   "text": "Kept the hardware fleet current by identifying and staging machines for destruction once they no longer met OS or software requirements." },
-      { "label": "Approach", "text": "Identified machines by processor generation, tracked assets through the decommissioning pipeline, and staged them for destruction by the appropriate team." }
-    ],
-    "meta": "Professional work at Total Quality Logistics"
-  },
-  {
-    "title": "End-User Equipment Moves",
-    "category": "work",
-    "link": null,
-    "linkLabel": null,
-    "image": "/images/projects/equipment-moves.jpg",
-    "imageAlt": "Modern clean desk workspace with keyboard, monitor, and office equipment",
-    "imageClass": null,
-    "imageWidth": 800,
-    "imageHeight": 533,
-    "imageLoading": "lazy",
-    "description": "<strong>Day-to-day IT support work</strong> centered around helping employees move and get set up in new spaces.",
-    "paragraphs": [
-      { "label": "Impact",   "text": "Reduced frustration and downtime by making sure users were fully set up and ready to work as quickly as possible." },
-      { "label": "Approach", "text": "Communicated directly with users, carefully broke down and moved equipment, then rebuilt and tested everything at the new location." }
-    ],
-    "meta": "Professional work at Total Quality Logistics"
+    "meta": "Academic team project"
   }
 ]

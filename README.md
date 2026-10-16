@@ -2,6 +2,10 @@
 
 Personal portfolio website built with [Eleventy](https://www.11ty.dev/).
 
+The career pages focus on help desk, desktop support and IT support. Claims and evidence limits are documented in the [credibility audit](docs/credibility-audit-2026-10-14.md). Current study is separate from earned credentials; personal labs and academic team projects are labeled.
+
+Regenerate the downloadable resume with `python3 scripts/build-resume.py` (requires `reportlab`), then visually review the PDF. It shares career and experience data with the site. There is no configured lint script; `npm test` validates the build and data.
+
 **Live site:** [levihuff.net](https://levihuff.net)
 
 ## Screenshots
@@ -85,7 +89,7 @@ levihuff.net/
 │   │   ├── experience.json
 │   │   ├── skills.json
 │   │   ├── tools.json
-│   │   └── infra.js            # Infrastructure projects, homelab services, AI ops layer
+│   │   └── infra.js            # Evidence-backed personal lab artifacts
 │   │
 │   ├── blog/                   # Markdown posts + index.njk listing (Vue tag filter)
 │   ├── infrastructure/         # index.njk (hub) + entry.njk (paginated detail pages)
@@ -227,11 +231,9 @@ Global site identity consumed by `base.njk` on every page.
   "name": "string (non-empty)",
   "url": "string (must start with https://)",
   "email": "string (must contain @)",
-  "graduationDate": "string",
   "social": {
     "github": "string (must start with https://github.com/)",
-    "linkedin": "string (must start with https://)",
-    "handshake": "string"
+    "linkedin": "string (must start with https://)"
   }
 }
 ```
@@ -273,7 +275,7 @@ Array of project objects for `projects.njk` and the homepage featured cards. All
 
 #### `infra.js`
 
-CommonJS module exporting an array: the single source of truth for infrastructure projects, homelab services, and the AI ops layer. Every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`.
+CommonJS module exporting an array: the single source of truth for evidence-backed personal lab artifacts. Every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`.
 
 ```js
 {
@@ -470,4 +472,4 @@ If you add a new field to any `src/_data/` file, update the corresponding `descr
 - [`DESIGN.md`](DESIGN.md) — Design system: color tokens, typography scale, spacing, motion rules, and accessibility constraints. Read this before touching CSS or adding components.
 - [`AGENT_CONFIG.md`](AGENT_CONFIG.md) — Index of the repo-level agent harness: slash commands, skills, hooks, and the Cursor review monitor.
 - [`AGENTS.md`](AGENTS.md) — Codex-oriented contributor notes; a condensed companion to `CLAUDE.md`.
-- [`PLAN.md`](PLAN.md) — Planning notes for the infrastructure hub and AI ops layer.
+- [`PLAN.md`](PLAN.md) — Career positioning and evidence policy.

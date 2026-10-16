@@ -1,64 +1,29 @@
 ---
 layout: base.njk
 title: Contact
-description: Contact Levi Huff for IT infrastructure, systems administration, and IT operations roles. Based in Washington Court House, Ohio, open to Dayton and Columbus.
+description: Contact Levi Huff about IT support, help desk, desktop support, and endpoint roles.
 ---
 
 <div class="bg-surface-1 text-fg-1">
   <section class="py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
-
-      <div class="flex flex-col sm:flex-row sm:items-center sm:gap-8">
-        <div class="flex-1 min-w-0">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; CONTACT</p>
-          <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Get in touch.</h1>
-          <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">I'm open to full-time positions and collaborative opportunities. Feel free to reach out if you'd like to discuss potential opportunities or have questions about my work.</p>
-        </div>
-        <div class="mt-6 sm:mt-0 flex-shrink-0">
-          <img
-            src="/images/profile.jpg"
-            alt=""
-            class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-hair-1"
-            width="800"
-            height="800"
-            loading="eager">
-        </div>
-      </div>
-
-      <div class="mt-10 grid gap-4 md:grid-cols-2">
-
-        {# Contact info card #}
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">EMAIL</p>
-          <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2">Direct contact</h2>
-          <a href="mailto:{{ site.email }}" class="font-plex text-base text-amber hover:text-amber-hi transition-colors duration-[120ms] mt-3 block focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.email }}</a>
-
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; CONTACT</p>
+      <h1 class="font-syne text-4xl font-bold text-fg-1 mt-3">Let’s talk support work.</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">{{ career.seeking }}</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <p class="font-jb text-mono-xs uppercase text-amber">EMAIL</p>
+          <a href="mailto:{{ site.email }}" class="font-plex text-lg text-amber mt-3 block focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ site.email }}</a>
           <div class="mt-6 flex flex-col gap-3">
-            <a href="{{ site.social.github }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">GitHub &rarr;<span class="sr-only"> (opens in new tab)</span></a>
-            <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LinkedIn &rarr;<span class="sr-only"> (opens in new tab)</span></a>
-            {% if site.social.handshake %}
-            <a href="{{ site.social.handshake }}" target="_blank" rel="noopener noreferrer" class="font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Handshake &rarr;<span class="sr-only"> (opens in new tab)</span></a>
-            {% endif %}
+            <a href="{{ site.social.github }}" class="font-jb text-sm text-fg-2 focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">GitHub &rarr;</a>
+            <a href="{{ site.social.linkedin }}" class="font-jb text-sm text-fg-2 focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">LinkedIn &rarr;</a>
           </div>
         </div>
-
-        {# Looking for card #}
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">LOOKING FOR</p>
-          <h2 class="font-syne text-xl font-semibold text-fg-1 mt-2">What I am seeking</h2>
-          <p class="font-plex text-sm text-fg-2 leading-relaxed mt-3">I am currently seeking full-time roles in IT infrastructure, systems administration, or IT operations, based in or near Washington Court House, OH, with priority given to Fayette County and the surrounding area and openness to hybrid arrangements in Dayton or Columbus.</p>
-          <ul class="mt-4 space-y-2">
-            <li class="font-plex text-sm text-fg-2">IT infrastructure and operations</li>
-            <li class="font-plex text-sm text-fg-2">Systems administration and endpoint management</li>
-            <li class="font-plex text-sm text-fg-2">Imaging, deployment, and provisioning</li>
-            <li class="font-plex text-sm text-fg-2">Process improvement and automation</li>
-            <li class="font-plex text-sm text-fg-2">Software and Application Development</li>
-          </ul>
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3 mt-6">Availability: <span class="normal-case font-plex text-sm text-fg-2 tracking-normal">Available for full-time positions. Graduated {{ site.graduationDate }} from the University of Cincinnati.</span></p>
+        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <p class="font-jb text-mono-xs uppercase text-amber">PREFERENCES</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Based in {{ career.location.base }}. {{ career.location.preference }}</p>
         </div>
-
       </div>
-
     </div>
   </section>
 </div>

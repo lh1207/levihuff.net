@@ -27,6 +27,14 @@
 }
 
 @layer base {
+  .back-to-top[hidden] {
+    display: none !important;
+  }
+
+  [id] {
+    scroll-margin-top: 88px;
+  }
+
   :root {
     /* Surface backgrounds */
     --bg-0:     #0a0b0d;

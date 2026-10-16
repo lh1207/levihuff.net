@@ -1,0 +1,45 @@
+{
+  "headline": "IT support and desktop support",
+  "summary": "IT graduate with prior enterprise support experience and recent customer-facing work at Kroger.",
+  "background": "My background includes Windows support, Active Directory, imaging and deployment, hardware troubleshooting, ticketing, onboarding, email support, and PowerShell.",
+  "location": {
+    "base": "Washington Court House, Ohio",
+    "locality": "Washington Court House",
+    "preference": "Local roles come first; Columbus is my preferred out-of-town market, and remote roles are welcome."
+  },
+  "degree": "Bachelor of Science in Information Technology",
+  "institution": "University of Cincinnati",
+  "study": "Currently studying for CompTIA Network+.",
+  "learning": {
+    "heading": "Networking fundamentals",
+    "text": "Currently studying for CompTIA Network+. Personal lab work provides additional practice with Windows Server, Active Directory, DNS, and DHCP."
+  },
+  "seeking": "Seeking help desk, IT support, desktop support, service desk, and endpoint support roles.",
+  "knowsAbout": [
+    "Windows support",
+    "Active Directory",
+    "Hardware troubleshooting",
+    "Windows imaging",
+    "Ticketing",
+    "Email support",
+    "PowerShell"
+  ],
+  "supportAreas": [
+    {
+      "heading": "Windows and hardware",
+      "text": "Windows support, hardware troubleshooting, and workstation imaging and deployment."
+    },
+    {
+      "heading": "Users and accounts",
+      "text": "Active Directory, support tickets, onboarding, endpoint support, and email troubleshooting."
+    },
+    {
+      "heading": "Customer service",
+      "text": "Recent customer-facing work at Kroger alongside earlier IT support experience."
+    },
+    {
+      "heading": "Scripting and learning",
+      "text": "PowerShell, a personal Windows lab, and current study toward CompTIA Network+."
+    }
+  ]
+}

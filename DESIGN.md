@@ -10,7 +10,7 @@ A consolidated, single-file export of the Levi Huff design system. Drop this in 
 
 ## 1. Brand snapshot
 
-Personal portfolio for an early-career IT and software development professional, graduated May 2026 from the University of Cincinnati (BS Information Technology). Targets AI ops and infrastructure support roles — bridging traditional IT (helpdesk, Active Directory, Windows imaging, networking) with modern AI deployments (Ollama, Docker, Proxmox, local LLM inference).
+Personal portfolio for an Information Technology graduate targeting help desk, IT support and desktop support. Lead with recent customer service and earlier IT support, then evidence-backed personal labs and software contributions. Use `src/_data/career.json` for current career facts, study status and geography. Keep professional work, personal labs and academic team projects distinct.
 
 > Reads like field notes from someone who actually maintains the systems they describe.
 
@@ -20,32 +20,32 @@ Personal portfolio for an early-career IT and software development professional,
 
 **Voice.** Confident, technically grounded, early-career but never junior-feeling. Specifics over abstractions. Verbs over adjectives.
 
-**Person.** First-person ("I built…", "I focus on…") for biographical and project copy. Second-person only on direct CTAs. Never "we" — it's a personal site.
+**Person.** First-person for supported personal contributions. Name team projects and distinguish an individual's contribution from the whole application. Use second-person on direct CTAs.
 
 **Casing.**
 - Sentence case for headings and buttons (`Get in touch`, not `Get In Touch`).
 - Title Case for proper nouns (`Active Directory`, `AeroAssist`, `Tire Discounters`).
 - UPPERCASE reserved for short uppercase mono labels (`STATUS`, `STACK`, `04 / RESUME`).
 
-**Canonical voice samples** (lifted from production copy):
+**Voice examples** (keep the scope tied to the evidence):
 
-> "Engineered PowerShell scripts for Active Directory provisioning at a 1,200+ employee organization, reducing manual setup time by 40%."
+> "Worked with Active Directory and PowerShell for account provisioning tasks."
 
 > "I focus on understanding how systems are used in practice before making changes, with attention to maintainability, clarity, and user impact."
 
-> "Built a new MDT image that automated Lenovo driver installation, domain controller enrollment, and Windows 11 upgrades."
+> "Assisted with Windows imaging using Microsoft Deployment Toolkit."
 
-Each sentence has a verb, names a real system, and quantifies or qualifies the outcome. That's the formula.
+Name the actual task and its context. Do not turn involvement into ownership or infer outcomes.
 
 **Avoid:** "passionate about technology", "synergize", "leverage", "innovative solutions", "cutting-edge", "🚀 crushing it", "in today's fast-paced world", "click here", "learn more".
 
-**Numbers.** Always specific when describing impact (`40%`, `1,200+`, `180+ retail locations`, `200+ tickets`). Never approximate when a real count exists.
+**Numbers.** Publish a metric only when its source and method can be defended. Remove untraceable counts, percentages, time savings, uptime and employer-scale claims.
 
 **Technical names.** Exact: `Windows Server`, `Active Directory`, `MDT`, `SCCM`, `BitLocker`, `Proxmox`, `Ollama`, `Docker`, `PXE boot`, `UEFI`. Never genericize.
 
 **Emoji.** None — body, headings, CTAs, anywhere.
 
-**Punctuation.** Em-dash (—) for asides, en-dash (–) for ranges (`Aug 2022 – Dec 2022`), Oxford comma always, ≤1 exclamation point per page (ideally zero).
+**Punctuation.** Avoid em dashes in site copy. Use commas or separate sentences for asides and en dashes for date ranges. Prefer no exclamation points.
 
 **CTA copy.** Direct verb. `View projects`, `Read blog`, `Get in touch`, `Download PDF`.
 

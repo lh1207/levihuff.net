@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "windows-imaging-zero-touch",
+    "target": "/about/#experience"
+  },
+  {
+    "slug": "ad-provisioning-automation",
+    "target": "/about/#experience"
+  },
+  {
+    "slug": "tailscale-remote-access",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "pi-hole",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "jellyfin",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "home-assistant",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "homebridge",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "bookstack",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "uptime-kuma",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "local-llm-stack",
+    "target": "/infrastructure/proxmox-node/"
+  },
+  {
+    "slug": "openclaw-deployment",
+    "target": "/blog/deploying-openclaw-windows-wsl2/"
+  },
+  {
+    "slug": "multi-model-workflow",
+    "target": "/blog/rebuilding-my-dev-setup-with-three-llms/"
+  }
+]
