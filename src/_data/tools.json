@@ -1,30 +1,34 @@
 [
-  { "name": "Active Directory", "category": "DIRECTORY" },
-  { "name": "Group Policy", "category": "DIRECTORY" },
-  { "name": "Windows Server", "category": "DIRECTORY" },
-  { "name": "PowerShell", "category": "SCRIPTING" },
-  { "name": "MDT", "category": "IMAGING" },
-  { "name": "SCCM", "category": "IMAGING" },
-  { "name": "FOG Project", "category": "IMAGING" },
-  { "name": "WDS", "category": "IMAGING" },
-  { "name": "PXE Boot", "category": "IMAGING" },
-  { "name": "DISM", "category": "IMAGING" },
-  { "name": "BitLocker", "category": "SECURITY" },
-  { "name": "Proxmox", "category": "VIRT" },
-  { "name": "VMware", "category": "VIRT" },
-  { "name": "Hyper-V", "category": "VIRT" },
-  { "name": "Docker", "category": "CONTAINERS" },
-  { "name": "Tailscale", "category": "NETWORKING" },
-  { "name": "Pi-hole", "category": "NETWORKING" },
-  { "name": "Uptime Kuma", "category": "MONITORING" },
-  { "name": "Ollama", "category": "AI OPS" },
-  { "name": "Open WebUI", "category": "AI OPS" },
-  { "name": "Linux", "category": "OS" },
-  { "name": "Windows 11", "category": "OS" },
-  { "name": "Azure", "category": "CLOUD" },
-  { "name": "Python", "category": "LANG" },
-  { "name": "C#", "category": "LANG" },
-  { "name": "Java", "category": "LANG" },
-  { "name": "Git", "category": "TOOLING" },
-  { "name": "SQL", "category": "TOOLING" }
+  {
+    "name": "Windows",
+    "category": "SUPPORT"
+  },
+  {
+    "name": "Active Directory",
+    "category": "SUPPORT"
+  },
+  {
+    "name": "PowerShell",
+    "category": "SCRIPTING"
+  },
+  {
+    "name": "MDT",
+    "category": "INTERNSHIP"
+  },
+  {
+    "name": "PXE",
+    "category": "IMAGING"
+  },
+  {
+    "name": "Hyper-V",
+    "category": "PERSONAL LAB"
+  },
+  {
+    "name": "Docker Compose",
+    "category": "PROJECTS"
+  },
+  {
+    "name": "Git",
+    "category": "PROJECTS"
+  }
 ]

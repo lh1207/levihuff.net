@@ -44,11 +44,13 @@ To add a new utility class, use it directly in a template — Tailwind picks it 
 
 ### Data layer
 
+Career positioning and degree/current-study facts live in `src/_data/career.json`; the PDF generator `scripts/build-resume.py` shares that data. `retiredInfrastructure.json` lists noindex redirects for retired entries. See `docs/credibility-audit-2026-10-14.md` before adding claims. Do not turn study into an earned credential or configuration files into uptime evidence.
+
 All structured content lives in `src/_data/` as JSON files plus one CommonJS module (`infra.js`), automatically available as template globals:
 
 | File | Used by | Key schema |
 |---|---|---|
-| `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `graduationDate` (string, e.g. `"May 2026"`; consumed by `index.njk`/`about.njk`/`contact.njk`/infrastructure pages), `social.{github,linkedin,handshake}` |
+| `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `social.{github,linkedin}` |
 | `navigation.json` | `nav.njk` | Array of `{label, url}` — `url` must be root-relative (start with `/`) |
 | `projects.json` | Projects page & cards | See schema below |
 | `experience.json` | About cards | `company`, `focusAreas`, `description` (required strings); optional `highlights` (array of non-empty strings) |
@@ -77,7 +79,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
 }
 ```
 
-**`src/_data/infra.js` schema** — single source of truth for infrastructure projects, homelab services, and the secondary AI ops layer (see `PLAN.md`). A CommonJS module exporting an array; every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`. Enforced by `test/data.test.js`:
+**`src/_data/infra.js` schema** — single source of truth for evidence-backed personal lab artifacts (see `PLAN.md`). A CommonJS module exporting an array; every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`. Enforced by `test/data.test.js`:
 
 ```js
 {

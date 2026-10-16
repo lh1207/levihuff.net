@@ -1,210 +1,85 @@
 ---
 layout: base.njk
-title: IT Infrastructure
-description: Levi Huff, IT infrastructure. Endpoint management, Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization. University of Cincinnati IT, May 2026. CompTIA A+, CCNA in progress.
+title: IT support and help desk
+description: Levi Huff, Information Technology graduate in Washington Court House, Ohio. Prior IT support and recent Kroger customer service. Seeking help desk and desktop support roles.
 ---
 
 <div class="bg-surface-1 text-fg-1">
-
-  {# ── 0. Hero ─────────────────────────────────────────────────── #}
-  <section id="hero" class="py-16 md:py-20">
+  <section class="py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
       <div class="flex flex-col md:flex-row md:items-center md:gap-12 lg:gap-16">
-
-        <div class="flex-1 min-w-0">
-          <p data-motion="hero-item" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; IT INFRASTRUCTURE</p>
-
-          <h1 data-motion="hero-item" class="font-syne text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">
-            Levi Huff
-          </h1>
-
-          <p data-motion="hero-item" class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-            I build and run IT infrastructure: Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, and virtualization.
-          </p>
-
-          <p data-motion="hero-item" class="font-plex text-sm text-fg-3 mt-3 max-w-prose">
-            B.S. Information Technology, University of Cincinnati, {{ site.graduationDate }}. CompTIA A+ and ITF+. Cisco CCNA in progress. Co-op experience at Tire Discounters and Total Quality Logistics.
-          </p>
-
-          <div data-motion="hero-item" class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="/infrastructure/"
-              class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-              See the infrastructure work
-            </a>
-            <a
-              href="/files/Levi_Huff_Resume.pdf"
-              download="Levi_Huff_Resume.pdf"
-              class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-              Download resume
-            </a>
+        <div class="flex-1 min-w-0 max-w-prose">
+          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; IT SUPPORT</p>
+          <h1 class="font-syne text-4xl md:text-5xl font-bold leading-[1.1] text-fg-1 mt-3">Levi Huff</h1>
+          <h2 class="font-syne text-2xl md:text-3xl font-semibold text-fg-1 mt-4">{{ career.headline }}</h2>
+          <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4">{{ career.summary }}</p>
+          <p class="font-plex text-base text-fg-3 leading-relaxed mt-4">{{ career.background }}</p>
+          <p class="font-plex text-base text-fg-2 mt-3">{{ career.seeking }}</p>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-4"><strong>{{ career.degree }}</strong>, {{ career.institution }}. {{ career.study }}</p>
+          <p class="font-jb text-mono-sm text-fg-3 mt-4">Based in {{ career.location.base }}. {{ career.location.preference }}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/files/Levi_Huff_Resume.pdf" download="Levi_Huff_Resume.pdf" class="inline-flex items-center bg-amber text-surface-0 font-plex font-semibold px-6 py-3 rounded-md focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Download resume</a>
+            <a href="/about/#experience" class="inline-flex items-center bg-surface-2 border border-hair-1 text-fg-1 font-plex font-medium px-6 py-3 rounded-md focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">See experience</a>
+            <a href="mailto:{{ site.email }}" class="inline-flex items-center bg-surface-2 border border-hair-1 text-fg-1 font-plex font-medium px-6 py-3 rounded-md focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Email me</a>
           </div>
         </div>
-
-        <div data-motion="hero-item" class="mt-10 md:mt-0 flex-shrink-0">
-          <img
-            src="/images/profile.jpg"
-            alt=""
-            class="w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-2 border-hair-1 shadow-d-sm"
-            width="800"
-            height="800"
-            loading="eager">
+        <div class="mt-10 md:mt-0 flex-shrink-0">
+          <img src="/images/profile.jpg" alt="Levi Huff" width="800" height="800" loading="eager" class="w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-2 border-hair-1">
         </div>
-
       </div>
     </div>
   </section>
 
-  {# ── 1. Core domains ──────────────────────────────────────────── #}
-  <section id="what" class="py-12 md:py-16">
+  <section id="experience" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; EXPERIENCE</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">Support experience.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {% for entry in experience %}
+          {% if loop.index <= 3 %}
+          <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+            <h3 class="font-syne text-xl font-semibold text-fg-1">{{ entry.company }}</h3>
+            <p class="font-jb text-mono-sm text-fg-3 mt-2">{{ entry.focusAreas }}</p>
+            <p class="font-plex text-base text-fg-2 leading-relaxed mt-4">{{ entry.description }}</p>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <a href="/about/#experience" class="inline-flex mt-6 font-jb text-sm text-amber focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Full experience &rarr;</a>
+    </div>
+  </section>
 
-      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / WHAT I DO</p>
-      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
-        Infrastructure, end to end.
-      </h2>
-      <p data-motion="section" class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
-        From bare metal to a domain-joined, policy-compliant endpoint, and the automation in between.
-      </p>
-
-      <div data-motion="stagger" class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">IMAGING AND DEPLOYMENT</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Zero-touch Windows deployment with WDS, MDT, SCCM, FOG Project, PXE, and DISM. Built in production at two employers.</p>
-        </div>
-
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">AUTOMATION AND SCRIPTING</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">PowerShell, batch, and VBScript for provisioning, onboarding, and the repetitive work that should never be manual.</p>
-        </div>
-
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">ACTIVE DIRECTORY</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Account provisioning, Group Policy, and domain operations across a 1,200+ employee, 180+ location environment.</p>
-        </div>
-
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">VIRTUALIZATION</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Proxmox and VMware Workstation Pro, from a 24/7 homelab node to disposable lab VMs for imaging tests.</p>
-        </div>
-
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">LINUX AND SELF-HOSTING</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Linux administration and a self-hosted service stack: containerized, documented, and monitored.</p>
-        </div>
-
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 hover:border-hair-2 transition-colors duration-[180ms]">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">NETWORKING</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Networking fundamentals with Cisco CCNA in progress. DHCP, DNS, VLANs, and routing in daily homelab use.</p>
-        </div>
-
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; SUPPORT AREAS</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">What I can support.</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {% for area in career.supportAreas %}
+        <article class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
+          <h3 class="font-syne text-xl font-semibold text-fg-1">{{ area.heading }}</h3>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">{{ area.text }}</p>
+        </article>
+        {% endfor %}
       </div>
     </div>
   </section>
 
-  {# ── 2. Featured infrastructure work ──────────────────────────── #}
-  <section id="work" class="py-12 md:py-16">
+  <section class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
-
-      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / WORK</p>
-      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
-        Featured infrastructure work.
-      </h2>
-
-      <div data-motion="stagger" class="mt-8 grid gap-6 md:grid-cols-2">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; LAB NOTES</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">Personal infrastructure work.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
         {% for entry in infra %}
           {% if entry.featured %}
             {% include "components/infra-card.njk" %}
           {% endif %}
         {% endfor %}
       </div>
-
-      <a
-        href="/infrastructure/"
-        class="inline-flex items-center gap-2 mt-8 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-        &rarr; All infrastructure and homelab
-      </a>
-
+      <a href="/infrastructure/" class="inline-flex mt-6 font-jb text-sm text-amber focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">View lab notes &rarr;</a>
     </div>
   </section>
-
-  {# ── 3. Tools ─────────────────────────────────────────── #}
-  <section id="tools" class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-
-      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / TOOLS</p>
-      <h2 data-motion="section" class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
-        Stack and tooling.
-      </h2>
-      <p data-motion="section" class="font-plex text-lg text-fg-2 leading-relaxed mt-3 max-w-prose">
-        Technologies I have deployed, maintained, or built with in production and co-op environments.
-      </p>
-
-      <div data-motion="stagger" class="mt-8 grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {% for tool in tools %}
-        <div data-motion="stagger-item" class="bg-surface-2 border border-hair-1 rounded-d-md p-4 hover:border-amber/[0.32] hover:-translate-y-0.5 hover:shadow-d-sm transition-[transform,border-color,box-shadow] duration-[180ms]">
-          <p class="font-jb text-sm text-fg-1">{{ tool.name }}</p>
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3 mt-2">{{ tool.category }}</p>
-        </div>
-        {% endfor %}
-      </div>
-
-    </div>
-  </section>
-
-  {# ── 4. Staying current: AI ops, intentionally secondary ──────── #}
-  <section id="staying-current" class="py-10 md:py-12">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-
-      <p data-motion="section" class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3" aria-hidden="true">&#9658; 04 / STAYING CURRENT</p>
-      <h2 data-motion="section" class="font-syne text-2xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">
-        AI ops on the side.
-      </h2>
-      <p data-motion="section" class="font-plex text-base text-fg-3 leading-relaxed mt-3 max-w-prose">
-        The industry moves fast, so I run a local AI stack with the same discipline as the rest of the homelab: Ollama and Open WebUI in Docker, an OpenClaw deployment, and a multi-model dev workflow.
-        <a href="/infrastructure/#ai-ops" class="text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">See the AI ops layer &rarr;</a>
-      </p>
-
-    </div>
-  </section>
-
-  {# ── 5. Closing band ──────────────────────────────────────────── #}
-  <section id="contact" class="border-t border-hair-1 mt-4 py-10 md:py-12">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-
-      <p class="font-plex text-lg text-fg-2 max-w-prose">
-        Want to talk infrastructure or a full-time hire?
-        <a
-          href="mailto:{{ site.email }}"
-          class="text-amber hover:text-amber-hi font-semibold transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-          {{ site.email }}
-        </a>
-      </p>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a
-          href="/files/Levi_Huff_Resume.pdf"
-          download="Levi_Huff_Resume.pdf"
-          class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-          Download resume
-        </a>
-        <a
-          href="/about/"
-          class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-          More about me
-        </a>
-        <a
-          href="/blog/"
-          class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-          Read the blog
-        </a>
-      </div>
-
-    </div>
-  </section>
-
 </div>
+
 
 <script type="application/ld+json">
 {
@@ -212,7 +87,7 @@ description: Levi Huff, IT infrastructure. Endpoint management, Windows imaging 
   "@type": "WebPage",
   "@id": "{{ site.url }}/#webpage",
   "url": "{{ site.url }}/",
-  "name": "Levi Huff | IT Infrastructure",
+  "name": "Levi Huff | IT support",
   "description": {{ description | dump | safe }},
   "isPartOf": { "@id": "{{ site.url }}/#website" },
   "about": { "@id": "{{ site.url }}/about/#person" },

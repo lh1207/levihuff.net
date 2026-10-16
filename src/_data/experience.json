@@ -1,36 +1,38 @@
 [
   {
-    "company": "Tire Discounters",
-    "focusAreas": "Infrastructure & Cybersecurity Co-op, Aug 2022 – Dec 2022",
-    "description": "Provided IT support across the Cincinnati and Sharonville offices, with remote phone support for other Midwest locations. Worked through a backlogged ticket queue and handled a range of on-site and remote support tasks. Documented and improved the employee onboarding workflow, clarifying system handoffs and reducing manual steps for new hires. Built a new MDT image that automated Lenovo driver installation, domain controller enrollment, and Windows 11 upgrades, reducing the manual work required per deployment.",
+    "company": "Kroger",
+    "focusAreas": "E-commerce clerk · Recent customer-facing experience",
+    "description": "Customer-facing work in e-commerce order fulfillment. This recent retail experience complements my earlier technical support roles.",
     "highlights": [
-      "Engineered PowerShell scripts for Active Directory provisioning at a 1,200+ employee organization, reducing manual setup time by 40%.",
-      "Deployed Windows systems via MDT and SCCM imaging workflows, supporting 180+ retail locations nationwide."
+      "Customer interaction and communication in a retail setting."
+    ]
+  },
+  {
+    "company": "Tire Discounters",
+    "focusAreas": "Infrastructure & Cybersecurity Co-op · August–December 2022",
+    "description": "Provided on-site and remote IT support during a co-op placement. Worked on support tickets and helped with employee onboarding and Windows workstation setup.",
+    "highlights": [
+      "Worked with Active Directory and PowerShell for account provisioning tasks.",
+      "Assisted with Windows imaging using Microsoft Deployment Toolkit (MDT) and documented onboarding steps."
     ]
   },
   {
     "company": "Total Quality Logistics",
-    "focusAreas": "IT Support Intern, Jan 2022 – Apr 2022",
-    "description": "Managed hardware through its full lifecycle, from PXE boot deployment using department-specific images to staging end-of-life machines for destruction. Coordinated equipment moves under deadlines and handled the pre-imaging checklist including I/O verification, UEFI-compatible adapters, and BIOS configuration.",
+    "focusAreas": "IT Support Intern · January–April 2022",
+    "description": "Helped prepare Windows workstations and troubleshoot hardware during an IT support internship.",
     "highlights": [
-      "Provisioned 50+ workstations for a Fortune 500 freight brokerage, streamlining new-hire onboarding across multiple offices.",
-      "Achieved same-day turnaround on 90% of hardware repair tickets.",
-      "Documented 200+ technical support cases in Jira, building out the team knowledge base."
+      "Used PXE boot workflows for workstation imaging.",
+      "Helped with equipment setup, moves, and preparation of retired hardware."
     ]
   },
   {
-    "company": "Kroger",
-    "focusAreas": "E-commerce fulfillment, inventory management, Jan 2025 – Present",
-    "description": "Maintain 98%+ pick-rate and 51%+ perfect-order accuracy on 100+ daily orders using inventory management and POS systems in a high-throughput, time-sensitive environment."
-  },
-  {
     "company": "UC Conference & Event Services",
-    "focusAreas": "AV/IT setup, event support, Aug 2023 – Dec 2024",
-    "description": "Configured AV and IT systems for 100+ campus events annually. Troubleshot connectivity issues in real-time, maintaining 99% uptime for 46,000+ students and university guests."
+    "focusAreas": "Event staff · August 2023–December 2024",
+    "description": "Supported campus events, including AV setup and basic connectivity troubleshooting."
   },
   {
     "company": "UC RED Housing",
-    "focusAreas": "Desk Assistant, Aug 2021 – Dec 2021",
-    "description": "Managed front desk operations for a university residential hall. Enforced housing policies, processed parcels, and escalated safety concerns appropriately."
+    "focusAreas": "Desk assistant · August–December 2021",
+    "description": "Assisted at a residence hall front desk, handled parcels, and escalated concerns to the appropriate staff."
   }
 ]

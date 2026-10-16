@@ -1,42 +1,53 @@
 [
   {
-    "heading": "Systems & Infrastructure",
+    "heading": "IT support",
     "items": [
-      { "label": "Windows",        "text": "Windows Server, Active Directory, Group Policy, BitLocker" },
-      { "label": "Deployment",     "text": "WDS, MDT, SCCM, FOG, PXE, DISM, Intune, Autopilot" },
-      { "label": "Virtualization", "text": "Proxmox, Docker, VMware Workstation Pro" }
+      {
+        "label": "Windows and hardware",
+        "text": "Windows support, hardware troubleshooting, imaging and deployment."
+      },
+      {
+        "label": "Users and accounts",
+        "text": "Active Directory, onboarding, endpoint support, email support, and support tickets."
+      },
+      {
+        "label": "Communication",
+        "text": "Customer service, on-site and remote user support, and onboarding documentation."
+      }
     ]
   },
   {
-    "heading": "Networking & Security",
+    "heading": "Scripting and lab work",
     "items": [
-      { "label": "Protocols", "text": "DHCP, DNS, VPN, VLAN, TCP/IP, SMTP" },
-      { "label": "Security",  "text": "Firewall, Zero Trust, SIEM, Endpoint Security, Pi-hole" },
-      { "label": "Remote Access", "text": "Tailscale, WireGuard, RDP" }
+      {
+        "label": "PowerShell",
+        "text": "Account provisioning tasks and personal lab setup scripts."
+      },
+      {
+        "label": "Windows lab",
+        "text": "Hyper-V, Active Directory Domain Services, DNS, and DHCP configuration."
+      },
+      {
+        "label": "Networking study",
+        "text": "Currently studying for CompTIA Network+."
+      }
     ]
   },
   {
-    "heading": "Automation & Development",
+    "heading": "Additional project experience",
     "items": [
-      { "label": "Scripting",  "text": "PowerShell, batch, VBScript, Bash, Python, Task Scheduler" },
-      { "label": "Backend",    "text": "C#, ASP.NET, Java, Kotlin" },
-      { "label": "Frontend",   "text": "HTML, CSS, JavaScript, React Native" },
-      { "label": "Data",       "text": "SQL Server, Firebase, REST APIs, Git" }
-    ]
-  },
-  {
-    "heading": "AI & Tools",
-    "items": [
-      { "label": "AI Platforms", "text": "Ollama, Open WebUI, Claude Code, Codex, Gemini 2.5 Pro" },
-      { "label": "Local LLM",    "text": "Local LLM inference, multi-model orchestration" }
-    ]
-  },
-  {
-    "heading": "Support & Platforms",
-    "items": [
-      { "label": "Ticketing", "text": "Jira, ServiceNow, SysAid" },
-      { "label": "Remote",    "text": "TeamViewer, RDP, SharePoint" },
-      { "label": "OS",        "text": "Windows, Linux, macOS, Azure, Android" }
+      {
+        "label": "Containers",
+        "text": "Docker Compose configuration for personal projects and homelab services."
+      },
+      {
+        "label": "Software",
+        "text": "Docker Compose contribution to an existing C# and ASP.NET ticketing application; React web and Kotlin Android team projects."
+      },
+      {
+        "label": "Source and documentation",
+        "text": "Git repositories, configuration files, and technical runbooks."
+      }
     ]
   }
 ]

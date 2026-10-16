@@ -1,5 +1,5 @@
 ---
-title: Systems administration learning path for IT students
+title: Systems administration learning notes
 description: Practical exposure to Linux, Windows, and macOS system administration through troubleshooting, configuration, and reliability work
 date: 2024-12-20
 tags: [systems-administration, linux, windows, education]
@@ -9,7 +9,7 @@ thumbnail: /images/blog/sysadmin-server-room.jpg
 
 ![Server rack in professional data center environment](/images/blog/sysadmin-server-room.jpg)
 
-Systems administration requires understanding how different operating systems work, how to troubleshoot issues, and how to configure systems for reliability. As an IT student, gaining practical exposure to Linux, Windows, and macOS systems provides a foundation for professional work.
+Systems administration requires understanding how different operating systems work, how to troubleshoot issues, and how to configure systems for reliability. Practical exposure to Linux, Windows, and macOS systems provides a foundation for professional work.
 
 ## Multi-platform experience
 
@@ -78,7 +78,7 @@ Academic coursework provides structured learning opportunities, while personal p
 ## Professional application
 
 The skills developed through academic and personal work translate to professional contexts:
-- Supporting production systems
+- Supporting business systems
 - Troubleshooting user issues
 - Implementing system improvements
 - Maintaining system documentation
@@ -93,4 +93,4 @@ The skills developed through academic and personal work translate to professiona
 
 ## Conclusion
 
-Systems administration requires both theoretical understanding and practical experience. By working with Linux, Windows, and macOS systems through troubleshooting, configuration, and reliability work, IT students can develop the skills needed for professional systems administration roles.
+Systems administration requires both theoretical understanding and practical experience. By working with Linux, Windows, and macOS systems through troubleshooting, configuration, and reliability work, IT graduates can continue developing skills for support and systems administration roles.

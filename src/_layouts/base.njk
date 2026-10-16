@@ -90,7 +90,6 @@
         "url": "{{ site.url }}/about/",
         "image": "{{ site.url }}{{ site.image }}",
         "email": "mailto:{{ site.email }}",
-        "jobTitle": {{ site.jobTitle | dump | safe }},
         "description": {{ site.description | dump | safe }},
         "address": {
           "@type": "PostalAddress",
@@ -98,10 +97,6 @@
           "addressRegion": {{ site.location.region | dump | safe }},
           "addressCountry": {{ site.location.country | dump | safe }}
         },
-        "hasCredential": [
-          {% for credential in site.credentials %}{ "@type": "EducationalOccupationalCredential", "name": {{ credential | dump | safe }} }{% if not loop.last %},
-          {% endif %}{% endfor %}
-        ],
         "knowsAbout": {{ site.knowsAbout | dump | safe }},
         "alumniOf": {
           "@type": "CollegeOrUniversity",
@@ -109,8 +104,7 @@
         },
         "sameAs": [
           "{{ site.social.github }}",
-          "{{ site.social.linkedin }}",
-          "{{ site.social.handshake }}"
+          "{{ site.social.linkedin }}"
         ]
       }
     ]

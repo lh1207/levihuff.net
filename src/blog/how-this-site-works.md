@@ -1,201 +1,50 @@
 ---
-title: How this site works - Building with Eleventy and Node.js
-description: A technical overview of how levihuff.net is built using Eleventy (11ty) static site generator, Node.js, and automated deployment via GitHub Actions
+title: How this site works - Eleventy, Tailwind, and GitHub Actions
+description: The source files and build pipeline behind levihuff.net, including Eleventy templates, shared career data, Tailwind CSS, and automated deployment.
 date: 2025-01-19
 tags: [eleventy, nodejs, static-site, web-development, github-actions]
 layout: post.njk
 thumbnail: /images/blog/site-build-terminal.jpg
 ---
 
-This site is built with Eleventy (11ty), a simple and flexible static site generator that runs on Node.js. I chose this approach for its speed, simplicity, and the ability to write content in Markdown while maintaining full control over the HTML output.
+This site uses Eleventy to turn Nunjucks templates, JSON data, and Markdown posts into static pages. These notes were updated in October 2026 to match the current repository.
 
-## Why a static site?
+## Source and content
 
-![Terminal showing Eleventy build process output](/images/blog/site-build-terminal.jpg)
+The [site repository](https://github.com/lh1207/levihuff.net) contains the implementation. The main files are:
 
-Static sites offer several advantages for a portfolio:
+- `eleventy.config.cjs`: collections, filters, image transforms, and asset copying.
+- `src/_layouts/base.njk`: shared page structure, metadata, navigation, and footer.
+- `src/_layouts/post.njk`: blog layout.
+- `src/_data/`: shared career, experience, skills, project, and site information.
+- `src/blog/`: Markdown articles with frontmatter.
+- `src/_includes/css/tailwind.css`: stylesheet source.
 
-- **Fast load times**: No server-side processing means pages load quickly
-- **Security**: No database or server-side code to exploit
-- **Simple hosting**: Static files can be hosted almost anywhere
-- **Version control**: The entire site lives in a Git repository
-- **Low cost**: No need for expensive hosting with server-side capabilities
+Shared data keeps repeated content, such as contact details and the current career summary, consistent across pages. The resume generator also reads the career data.
 
-## The technology stack
+## Build pipeline
 
-### Node.js
+`package.json` declares Eleventy 3 and Tailwind CSS 3. The build command runs Eleventy, then compiles and minifies the Tailwind stylesheet into `_site/css/styles.css`. CSS has a build step; it is not copied unchanged.
 
-Node.js serves as the runtime environment for the build process. The site uses Node.js 20 for building, though the output is plain HTML, CSS, and JavaScript that requires no server-side runtime.
+Images, fonts, downloadable files, and selected site files use Eleventy's passthrough copying. The generated `_site/` directory contains the files served by the host.
 
-The `package.json` is minimal:
+Useful commands are:
 
-```json
-{
-  "name": "levihuff.net",
-  "version": "1.0.0",
-  "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy",
-    "watch": "eleventy --watch"
-  },
-  "dependencies": {
-    "@11ty/eleventy": "^2.0.1"
-  }
-}
-```
+- `npm start`: build once, then run the Eleventy server and CSS watcher.
+- `npm run build`: generate the site and stylesheet.
+- `npm run watch`: watch templates and CSS without starting the server.
+- `npm test`: run the Vitest suite, including a build smoke test.
 
-Three commands handle all development needs:
-- `npm start` - Runs a local dev server with live reload
-- `npm run build` - Builds the production site
-- `npm run watch` - Watches for changes without serving
+The public pages are static files. Client-side JavaScript adds navigation behavior and project/blog filters; templates also provide content for visitors without JavaScript.
 
-### Eleventy (11ty)
+## Checks and deployment
 
-Eleventy is the static site generator that transforms templates and content into HTML. It's known for being zero-config by default while allowing extensive customization when needed.
+Tests cover data schemas, filters, blog frontmatter, and generated pages. The build checks include titles, descriptions, headings, image alternatives, local links, and structured data.
 
-Key features I use:
+The GitHub Actions deployment workflow uses Node.js 22. On a push to `main`, it installs dependencies with `npm ci`, runs tests and the build, then uploads `_site/` through the configured FTP deployment action. Connection values come from repository secrets.
 
-**Template Languages**: The site uses Nunjucks (`.njk`) for layouts and page templates, and Markdown (`.md`) for blog posts. Eleventy processes both and outputs plain HTML.
+These files describe the configured workflow. They do not establish a deployment-time, uptime, security, or accessibility guarantee.
 
-**Collections**: Blog posts are automatically collected from the `src/blog/` directory:
+## Evidence
 
-```javascript
-eleventyConfig.addCollection("posts", function (collectionApi) {
-  return collectionApi.getFilteredByGlob("src/blog/**/*.md");
-});
-```
-
-**Custom Filters**: Date formatting filters convert dates into readable formats:
-
-```javascript
-eleventyConfig.addFilter("dateReadable", function (date) {
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
-});
-```
-
-**Passthrough Copy**: Static assets like CSS and images are copied directly to the output:
-
-```javascript
-eleventyConfig.addPassthroughCopy("src/images");
-eleventyConfig.addPassthroughCopy("src/css");
-```
-
-## Project structure
-
-```
-levihuff.net/
-├── src/
-│   ├── _layouts/        # Base templates (base.njk, post.njk)
-│   ├── _includes/
-│   │   └── components/  # Reusable components (nav.njk, footer.njk)
-│   ├── blog/            # Markdown blog posts
-│   ├── css/             # Stylesheets
-│   ├── images/          # Static images
-│   ├── index.njk        # Homepage
-│   ├── about.njk        # About page
-│   ├── projects.njk     # Projects page
-│   └── contact.njk      # Contact page
-├── _site/               # Built output (generated)
-├── .eleventy.js         # Eleventy configuration
-└── package.json         # Node.js dependencies
-```
-
-The `src/` directory contains all source files. Eleventy processes these and outputs the final site to `_site/`.
-
-## How pages are built
-
-### Layouts
-
-Every page uses a layout defined in frontmatter. The base layout (`base.njk`) provides the HTML structure, head tags, navigation, and footer. Blog posts use `post.njk`, which extends the base layout and adds post-specific elements like the title, date, tags, and author attribution.
-
-### Blog posts
-
-Blog posts are Markdown files with YAML frontmatter:
-
-```markdown
----
-title: Post Title
-description: A brief description
-date: 2025-01-19
-tags: [tag1, tag2]
-layout: post.njk
----
-
-Post content in Markdown...
-```
-
-Eleventy processes the Markdown into HTML and inserts it into the post layout. The `posts` collection makes all posts available for listing on the blog index page.
-
-### CSS
-
-The site uses a single CSS file with CSS custom properties (variables) for consistent theming:
-
-```css
-:root {
-  --color-primary: #004a7c;
-  --color-text: #1a1a1a;
-  --space-md: 1rem;
-  /* ... */
-}
-```
-
-This approach keeps styling maintainable without requiring a CSS preprocessor or build step for styles.
-
-## Automated deployment
-
-The site deploys automatically when changes are pushed to the `main` branch. A GitHub Actions workflow handles the process:
-
-1. **Checkout**: Pull the latest code
-2. **Setup Node.js**: Install Node.js 20
-3. **Install dependencies**: Run `npm ci`
-4. **Build**: Run `npm run build` to generate `_site/`
-5. **Deploy**: Upload `_site/` contents via FTP to the web host
-
-The workflow uses repository secrets for FTP credentials, keeping them secure while enabling automated deployment.
-
-```yaml
-- name: Build project
-  run: npm run build
-
-- name: Upload to FTP
-  uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-  with:
-    server: ${{ secrets.FTP_SERVER }}
-    username: ${{ secrets.FTP_USERNAME }}
-    password: ${{ secrets.FTP_PASSWORD }}
-    local-dir: ./_site/
-```
-
-## Development workflow
-
-My typical workflow:
-
-1. Run `npm start` to start the local dev server
-2. Edit templates, styles, or content
-3. See changes instantly with live reload
-4. Commit and push to `main`
-5. GitHub Actions builds and deploys automatically
-
-The entire process from edit to live takes just a couple of minutes, with most of that time being the FTP upload.
-
-## Why Eleventy?
-
-I chose Eleventy over other static site generators for several reasons:
-
-- **Simplicity**: Minimal configuration needed to get started
-- **Flexibility**: Works with multiple template languages
-- **Speed**: Fast build times even with many pages
-- **No client-side JavaScript required**: The output is pure HTML and CSS
-- **Active community**: Good documentation and community support
-
-Other options like Jekyll, Hugo, or Next.js are also capable, but Eleventy's Node.js foundation and straightforward approach fit my needs well.
-
-## Conclusion
-
-This site demonstrates that a professional portfolio doesn't require complex frameworks or heavy tooling. Eleventy and Node.js provide a simple, fast, and maintainable foundation. The automated deployment via GitHub Actions means I can focus on content rather than deployment processes.
-
-The entire source code follows standard web technologies - HTML, CSS, and Markdown - making it easy to understand, modify, and maintain over time.
+The implementation can be checked directly in [package.json](https://github.com/lh1207/levihuff.net/blob/main/package.json), [the Eleventy configuration](https://github.com/lh1207/levihuff.net/blob/main/eleventy.config.cjs), and [the deployment workflow](https://github.com/lh1207/levihuff.net/blob/main/.github/workflows/deploy.yml).

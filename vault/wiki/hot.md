@@ -10,6 +10,10 @@ related: ["[[AeroAssist Website Case Study]]", "[[V2 Cleanup and Verification]]"
 
 # Recent context
 
+## Support career cleanup
+
+- [[Support Career Cleanup PR]] records `codex/support-credibility-cleanup`, merged with main `195efec`. All 178 tests pass. The original Documents checkout is preserved. Newer main features and AeroAssist case-study evidence remain; FAQ/entity/llms content follows the support-focused audit. PR preparation does not authorize merge or deployment.
+
 ## AeroAssist PR #135
 
 - Website-only changes remain open on `codex/aeroassist-portfolio-case-study`. The owner authorizes resolving its conflict with main and pushing the branch, not merging the PR or deploying. AeroAssist and other source-project repositories remain unchanged.

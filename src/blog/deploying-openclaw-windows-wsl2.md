@@ -1,87 +1,42 @@
 ---
-title: Deploying OpenClaw on Windows with WSL2
-description: "A ground-level look at what it actually takes to get OpenClaw running locally on Windows: the wizard crashes, config schema traps, broken UI elements and a hard lesson about running LLMs on a display GPU"
+title: Troubleshooting Windows, WSL2, and local services
+description: Diagnostic notes for separating configuration, service startup, networking, and resource problems in a local Windows and WSL2 setup.
 date: 2026-04-14
-tags: [ai, local-llm, wsl2, windows, ollama, homelab, devops]
+tags: [troubleshooting, windows, wsl2, documentation]
 layout: post.njk
 thumbnail: /images/blog/openclaw-hero.jpg
 ---
 
-![OpenClaw Logo, which has a cartoon crab with circle claws and rectangle legs](/images/blog/openclaw-hero.jpg)
+![OpenClaw logo](/images/blog/openclaw-hero.jpg)
 
-[OpenClaw](https://github.com/openclaw/openclaw) is an open-source personal AI assistant that runs locally on your hardware. It connects to chat apps like WhatsApp, Telegram and Discord and can act as an autonomous agent: managing calendars, clearing inboxes, controlling your browser, running system commands. The pitch is a self-hosted AI that actually does things, on your own machine, with your own models.
+Updated October 2026: this page is a troubleshooting checklist, not evidence of a completed deployment. Earlier [OpenClaw](https://github.com/openclaw/openclaw) requirements, UI-error descriptions, and GPU measurements have been removed because a versioned configuration and supporting command output were not available.
 
-I deployed it on my main workstation. My utility server is a repurposed Optiplex and wouldn't keep up. Getting OpenClaw running on Windows with WSL2 was more involved than the documentation suggests, and I learned more from where it broke than from where it worked.
+## Record the environment first
 
-## Windows and WSL2 are intertwined
+Write down the Windows and WSL versions, the application version, the command being run, and the exact error. Save a redacted copy of the relevant configuration. Without those details, a fix for one setup can easily be mistaken for a requirement that applies to every setup.
 
-The install guides assume you're on macOS or a clean Linux system. WSL2 is technically supported, but the documentation doesn't cover the Windows-specific surface area in much depth. This sets a misleading expectation: the onboarding wizard looks simple, and the step count shown in current guides doesn't match how many steps actually appear when you run it.
+Keep separate notes for what is documented, what was observed, and what is still a hypothesis.
 
-The first problem I hit was a hard crash in the wizard itself. Skipping the channel selection step, the part where it asks you to connect Zalo or another messaging app you might not want, triggers:
+## Test one layer at a time
 
-```
-TypeError: Cannot read properties of undefined (reading 'trim')
-```
+A local-service problem can sit at several boundaries:
 
-There's no way around it. The "skip for now" option at that step isn't functional. You have to pick a channel to proceed, even if you have no intention of using it.
+- **Configuration:** does the installed application accept the file and its settings?
+- **Process:** does the service start, and what does its log report?
+- **Network:** is the expected address reachable from the environment running the client?
+- **Application:** does a request produce the expected response?
+- **Resources:** what memory and processor usage are actually measured during that request?
 
-## The config is what you're really doing
+Change one relevant setting, repeat the same check, and record the result. A running process does not by itself prove that a browser or another service can reach it.
 
-The wizard doesn't produce a working config. It scaffolds a `openclaw.json` that's missing `gateway.mode`, which means the gateway won't start. Running `openclaw doctor --fix` rewrites the config but still doesn't add that field. You're left with a file that looks complete but fails silently.
+## Use measurements for resource claims
 
-On top of that, the schema has non-obvious requirements. My first attempt at writing the config manually used `host` and `model` as keys at the provider level, reasonable guesses based on similar tools. OpenClaw doesn't recognize them. I had to reverse-engineer the actual expected schema from the error output.
+Record the model, configuration, available memory, and workload alongside any performance result. A hardware capacity figure alone cannot establish whether a particular workload will fit or run acceptably.
 
-Another source of confusion: the model entry created through the UI sets `"api": "ollama"` at the model level. That conflicts with the provider-level setting of `openai-completions`. The UI doesn't warn you. You fix it in JSON directly by correcting the model-level `api` field.
+If the measurements are missing, describe the limitation as unknown. Avoid turning an estimate into a precise memory requirement or a guaranteed fix.
 
-The provider key name the UI generates is something like `"qwen3:8b - ollama"`, specific to the model and adapter combo, not portable or clean. Renaming it to just `"ollama"` directly in the config file makes things considerably easier to reason about.
+## Leave a reproducible record
 
-### What the working config actually requires
+A useful troubleshooting note contains the initial symptom, the evidence used to narrow it down, the change made, and the check that confirmed the result. Redact credentials and private request data before sharing logs.
 
-- `gateway.mode: local`: set manually; the wizard and doctor both skip it
-- Provider-level `api` set to `openai-completions`, not overridden at the model level
-- `contextWindow` at 16,000 or above: OpenClaw enforces a minimum and kills the agent before it replies if you go lower
-- `http://localhost:11434/v1` for the Ollama endpoint, which works correctly with mirrored networking mode set in `.wslconfig`
-
-Bypassing the wizard entirely and writing `openclaw.json` by hand turned out to be the faster path once I understood the schema.
-
-## The UI has broken pieces
-
-The Model Provider API Adapter dropdown deselects itself when you interact with it and won't save your selection. The Save button doesn't appear while a dropdown is actively open. The end result is that configuring providers through the UI reliably doesn't work, which pushes you back to JSON regardless.
-
-This isn't a complaint about the project. It's open source and early. But it does mean the UI should be treated as a reference, not the primary configuration surface.
-
-## The hardware reality of running LLMs on a display GPU
-
-My main workstation has an 8GB VRAM GPU. That sounds like enough for a local model until you account for what Windows is already using.
-
-Windows display composition holds onto a significant portion of the GPU memory. In my case, roughly 7GB of the available 8GB was consumed by the time I accounted for desktop rendering and active applications. That left around 800MB for the model.
-
-Qwen3 8B requires about 5.2GB. With only 800MB free on the GPU, the model runs mostly CPU-offloaded. Token generation becomes noticeably slow: usable, but not the experience you'd have with the model fully resident in VRAM.
-
-This is something worth understanding before you set expectations. Mac Mini users on M-series hardware have unified memory, meaning the full memory pool is available to the model without competing with display output. That's a fundamentally different situation, not a fair comparison.
-
-The right fix on Windows is either a dedicated inference GPU with the display on a separate card or a smaller model. Qwen3 4B or 1.7B would fit in the remaining VRAM and run at full GPU speed. The 16k minimum context window that OpenClaw enforces also costs VRAM, so that factors into the calculation too.
-
-## What the WSL2 setup needs to look like
-
-The environment that actually works:
-
-- WSL2 with systemd enabled: `openclaw` relies on systemd services, so this is not optional
-- Ollama installed and running as a system service inside WSL2, not just a user process
-- CUDA accessible to WSL2, verified with `nvidia-smi` from inside the WSL shell
-- Ollama's systemd service override at `/etc/systemd/system/ollama.service.d/override.conf`, the system-level path, not the user-level one
-- Mirrored networking mode in `.wslconfig` so `localhost:11434` resolves correctly from the OpenClaw gateway
-
-Once those pieces are in place and the config is written correctly, the gateway starts reliably as a user-level systemd service.
-
-## Key takeaways
-
-1. **Read the error output as documentation**: The schema I needed was reverse-engineered from what OpenClaw rejected, not from what the docs described
-2. **Wizards that crash on optional steps are a workflow hazard**: Designing a required action as "skippable" and then crashing when skipped is a real usability problem worth watching for in any tool
-3. **GPU VRAM on a display machine is not your full VRAM**: Windows takes a significant cut before your model sees any of it, plan accordingly
-4. **WSL2 systemd configuration is load-bearing**: Everything from Ollama to OpenClaw depends on it; getting that right first saves time
-5. **The UI can lie by omission**: Fields that look configurable may not save, and the config file is the ground truth
-
-## Conclusion
-
-OpenClaw works, but getting there on Windows required manual config work, workaround research and an honest reckoning with what my GPU can actually do when it's also running a desktop. The local AI assistant category is interesting: persistent memory, real task execution, model flexibility. But the Windows onboarding experience has enough rough edges that you should go in prepared to read JSON and interpret error messages. Once it's running, the foundation is solid. Getting there is the work.
+The same structure is useful for workstation, account, and network support: show what was checked and what the result actually establishes.

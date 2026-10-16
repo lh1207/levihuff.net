@@ -12,6 +12,8 @@ sources: []
 
 # Wiki Index
 
+- [[Support Career Cleanup PR]]: support-focused cleanup branch, main reconciliation and 178-test validation.
+
 Master catalog of every page in this vault. Update this on every change.
 
 ## Overview

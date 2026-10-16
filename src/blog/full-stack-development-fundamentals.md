@@ -1,5 +1,5 @@
 ---
-title: Full-stack development fundamentals for IT students
+title: Full-stack development fundamentals
 description: Practical insights on applying full stack concepts across frontend, backend, and database layers in academic and professional contexts
 date: 2025-01-10
 tags: [full-stack, development, education]
@@ -7,7 +7,7 @@ layout: post.njk
 thumbnail: /images/blog/fullstack-workspace.jpg
 ---
 
-Full stack development means understanding how frontend, backend, and database layers work together to build working applications. As an IT student, I've learned a lot by applying these concepts in academic and personal projects.
+Full stack development means understanding how frontend, backend, and database layers work together to build working applications. I learned these concepts by applying them in academic and personal projects.
 
 ## Understanding the layers
 
@@ -41,7 +41,7 @@ The database stores and manages application data:
 
 ![Laptop on a table with a dark code editor open](/images/blog/fullstack-workspace.jpg)
 
-In both academic coursework and personal projects, I've applied full stack concepts to build applications that reflect real operational needs:
+The following examples show how these layers fit together:
 
 ### Ticketing systems
 
@@ -71,4 +71,4 @@ Academic projects provide opportunities to experiment and learn, while professio
 
 ## Conclusion
 
-Full stack development is about understanding how different layers of an application work together. Building projects that span frontend, backend, and database layers helps IT students understand how applications work as complete systems.
+Full stack development is about understanding how different layers of an application work together. Building projects that span frontend, backend, and database layers helps developers understand applications as complete systems.

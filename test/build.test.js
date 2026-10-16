@@ -114,7 +114,7 @@ describe("build smoke test", () => {
 
   it("about/index.html carries the merged resume content", () => {
     const html = readFileSync(resolve(siteDir, "about/index.html"), "utf8");
-    expect(html).toContain("CompTIA A+");
+    expect(html).toContain("Currently studying for CompTIA Network+");
     expect(html).toContain("/files/Levi_Huff_Resume.pdf");
   });
 
@@ -450,16 +450,39 @@ describe("build smoke test", () => {
     expect(Array.isArray(person.knowsAbout)).toBe(true);
     expect(person.knowsAbout.length).toBeGreaterThan(0);
     expect(person.knowsAbout).toContain("Active Directory");
-    expect(person.sameAs.length).toBeGreaterThanOrEqual(3);
-    expect(person["@id"]).toBe("https://levihuff.net/about/#person");
-    expect(person.url).toBe("https://levihuff.net/about/");
+    expect(person.sameAs).toEqual([site.social.github, site.social.linkedin]);
+    expect(person).not.toHaveProperty("hasCredential");
+    expect(person).not.toHaveProperty("jobTitle");
+  });
+
+  it("career pages present current study separately from earned credentials", () => {
+    for (const route of ["index.html", "about/index.html", "contact/index.html", "projects/index.html", "infrastructure/index.html"]) {
+      const html = readFileSync(resolve(siteDir, route), "utf8");
+      expect(html).not.toMatch(/CCNA|Cisco Certified|CompTIA A\+|CompTIA ITF\+|1,200\+|180\+|40%|90%|98%|51%/i);
+    }
+    const home = readFileSync(resolve(siteDir, "index.html"), "utf8");
+    expect(home).toContain("Currently studying for CompTIA Network+");
+    expect(home).toContain("Kroger");
+    expect(home).toContain("Bachelor of Science in Information Technology");
+  });
+
+  it("retired infrastructure routes redirect to existing pages and anchors", () => {
+    const redirects = JSON.parse(readFileSync(resolve(root, "src/_data/retiredInfrastructure.json"), "utf8"));
+    for (const redirect of redirects) {
+      const html = readFileSync(resolve(siteDir, "infrastructure", redirect.slug, "index.html"), "utf8");
+      expect(html).toContain('content="noindex"');
+      expect(html).toContain(`url=${redirect.target}`);
+      const [path, anchor] = redirect.target.split("#");
+      const target = readFileSync(resolve(siteDir, path.slice(1), "index.html"), "utf8");
+      if (anchor) expect(target).toContain(`id="${anchor}"`);
+    }
   });
 
   it("about page has visible direct answers and ProfilePage JSON-LD", () => {
     const html = readFileSync(resolve(siteDir, "about/index.html"), "utf8");
     expect(html).toContain('id="quick-answers"');
     expect(html).toContain("Who is Levi Huff?");
-    expect(html).toContain("What infrastructure work does Levi Huff specialize in?");
+    expect(html).toContain("What IT support skills does Levi Huff have?");
     const profile = extractJsonLd(html).find((b) => b["@type"] === "ProfilePage");
     expect(profile, "no ProfilePage JSON-LD on about page").toBeTruthy();
     expect(profile.mainEntity["@id"]).toBe("https://levihuff.net/about/#person");
@@ -539,6 +562,7 @@ describe("build smoke test", () => {
     expect(entries.length).toBeGreaterThan(0);
     for (const entry of entries) {
       const html = readFileSync(resolve(infraDir, entry.name, "index.html"), "utf8");
+      if (isNoindexed(html)) continue; // Retired entries redirect to audited content.
       const page = extractJsonLd(html).find((b) => b["@type"] === "WebPage");
       expect(page, `no WebPage JSON-LD in /infrastructure/${entry.name}/`).toBeTruthy();
       expect(page.name).toBeTruthy();
