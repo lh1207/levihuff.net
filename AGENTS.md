@@ -13,11 +13,11 @@ npm test           # Run the Vitest test suite (one-shot)
 npm run test:watch # Vitest in watch mode
 ```
 
-**There is a test suite.** Four Vitest files under `test/` cover filters, data schemas, blog frontmatter, and a full build smoke test. CI runs `npm test` on every PR and non-main push; the deploy workflow runs it before building. Always run `npm test` after making changes. `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.
+**There is a test suite.** Five Vitest files under `test/` cover filters, data schemas, blog frontmatter, the zero-vulnerability audit policy and CDN version coverage, and a full build smoke test. CI runs `npm test` on every PR and non-main push; the deploy workflow runs it before building. Always run `npm test` after making changes. `test/build.test.js` runs `npm run build` in `beforeAll` and can take up to 2 minutes.
 
 ## Architecture
 
-This is an [Eleventy (11ty)](https://www.11ty.dev/) static site (Eleventy 3.x). `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`deploy.yml`: test, build, FTP-deploy). `ci.yml` runs tests on PRs and non-main pushes; `security.yml` runs gitleaks, an `.env` guard, and `npm audit`.
+This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. The security candidate pins the official Eleventy 4.0.0-alpha.10 prerelease; Node must satisfy package.json's supported range (22.15+, 24, or 26+). `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`deploy.yml`: test, build, FTP-deploy). `ci.yml` runs tests on PRs and non-main pushes; `security.yml` runs gitleaks, an `.env` guard, a zero-vulnerability audit with no exceptions, and registry signature verification.
 
 The Eleventy config file is `eleventy.config.cjs` — there is no `.eleventy.js`.
 
@@ -43,7 +43,7 @@ All structured content lives in `src/_data/`, automatically available as templat
 | `tools.json` | Tools section badges |
 | `infra.js` | Infrastructure hub, detail pages, homepage featured cards (CommonJS module; schema in CLAUDE.md) |
 
-`test/data.test.js` validates every one of these; it also bans em dashes in `.njk` templates and infra copy.
+`test/data.test.js` validates the core data schemas; `tools.json` does not yet have a dedicated schema check. It also bans em dashes in `.njk` templates and infra copy.
 
 ### Custom filters (`src/filters.js`, registered in `eleventy.config.cjs`)
 
@@ -51,11 +51,11 @@ All structured content lives in `src/_data/`, automatically available as templat
 
 ### CSS
 
-CSS is not passthrough-copied. Tailwind builds `src/_includes/css/tailwind.css` through PostCSS into `_site/css/styles.css`. Passthrough covers `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, and `_headers` only.
+CSS is not passthrough-copied. Tailwind CSS 4 builds `src/_includes/css/tailwind.css` with `@tailwindcss/cli` into `_site/css/styles.css`. Tailwind handles imports, vendor prefixing, and minification; there is no separate PostCSS configuration. Passthrough covers `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, and `_headers` only.
 
 ### Theme
 
-Dark-first and dark-only at runtime. `base.njk` sets `data-theme="dark"` on `<html>` before first paint. There is no runtime theme toggle and no `localStorage` theme persistence; the `[data-theme="light"]` CSS rules exist only for future opt-in support.
+Dark-first and dark-only at runtime. `base.njk` renders `data-theme="dark"` directly on `<html>`. There is no runtime theme toggle, light-theme CSS, or `localStorage` theme persistence. Light tokens in DESIGN.md are a future reference only.
 
 ## Design rules
 

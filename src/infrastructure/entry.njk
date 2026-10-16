@@ -66,14 +66,17 @@ eleventyComputed:
   "url": "{{ site.url }}{{ page.url }}",
   "isPartOf": {
     "@type": "WebSite",
+    "@id": "{{ site.url }}/#website",
     "name": "{{ site.name }}",
     "url": "{{ site.url }}/"
   },
   "author": {
     "@type": "Person",
+    "@id": "{{ site.url }}/about/#person",
     "name": "{{ site.name }}",
-    "url": "{{ site.url }}/"
+    "url": "{{ site.url }}/about/"
   },
+  "inLanguage": "en-US",
   "about": [
     {% for tech in entry.stack %}{ "@type": "Thing", "name": {{ tech | dump | safe }} }{% if not loop.last %},
     {% endif %}{% endfor %}

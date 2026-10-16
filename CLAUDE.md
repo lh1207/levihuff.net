@@ -11,25 +11,26 @@ npm run build      # Production build → _site/
 npm run watch      # Watch mode without serving
 npm test           # Run the Vitest test suite (one-shot)
 npm run test:watch # Vitest in watch mode
+npm run audit:ci   # Zero known vulnerabilities at every severity; no exceptions
 ```
 
 **Always run `npm test` after making changes** — the test suite catches broken builds, bad frontmatter, broken internal links, and data schema regressions.
 
 ## Architecture
 
-This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`.github/workflows/deploy.yml`), which runs tests, builds, and FTP-deploys `_site/` to the hosting server. A separate CI workflow (`.github/workflows/ci.yml`) runs tests on all PRs and non-main pushes. A third workflow (`.github/workflows/security.yml`) runs gitleaks over the full history, blocks tracked `.env` files, and fails on high/critical `npm audit` advisories.
+This is an [Eleventy (11ty)](https://www.11ty.dev/) static site. The security candidate pins Eleventy 4.0.0-alpha.10; this is an official prerelease, requiring Node 22.15 or newer on supported Node 22, 24, or 26+ lines. `npm run build` reads `src/` and outputs plain HTML/CSS to `_site/`. Deployment happens automatically on push to `main` via GitHub Actions (`.github/workflows/deploy.yml`), which runs tests, builds, and FTP-deploys `_site/` to the hosting server. A separate CI workflow (`.github/workflows/ci.yml`) runs tests on all PRs and non-main pushes. A third workflow (`.github/workflows/security.yml`) runs gitleaks over the full history, blocks tracked `.env` files, rejects every known npm vulnerability, and verifies registry signatures and available provenance.
 
 ### CSS pipeline
 
 CSS is **not** a simple passthrough copy. The build chain is:
 
 ```
-src/_includes/css/tailwind.css  →  PostCSS (autoprefixer)  →  tailwindcss --minify  →  _site/css/styles.css
+src/_includes/css/tailwind.css  →  @tailwindcss/cli --minify  →  _site/css/styles.css
 ```
 
-PostCSS applies `autoprefixer` on every build. `postcss.config.js` also has a `cssnano` branch gated on `process.env.NODE_ENV === 'production'`, but no npm script sets `NODE_ENV`, so that branch never runs in practice — minification actually comes from the `tailwindcss --minify` flag in the `build` script (`package.json`). Treat the cssnano branch as dead code unless a script starts setting `NODE_ENV=production`.
+Tailwind CSS 4 handles imports and vendor prefixing internally. Minification comes from the `tailwindcss --minify` flag in the `build` script (`package.json`); the repo has no separate PostCSS configuration.
 
-Tailwind scans `src/**/*.njk`, `src/**/*.md`, and `src/**/*.html` for class names. The `safelist` in `tailwind.config.js` keeps `header-anchor` (injected by the Markdown anchor plugin at build time, not present in source files).
+Tailwind scans `src/**/*.njk`, `src/**/*.md`, and `src/**/*.html` for class names. `src/_includes/css/tailwind.css` loads the legacy JavaScript theme with `@config` and uses `@source inline()` to keep `header-anchor` (injected by the Markdown anchor plugin at build time, not present in source files).
 
 To add a new utility class, use it directly in a template — Tailwind picks it up automatically. To add a custom CSS rule, add it to `src/_includes/css/tailwind.css` inside the appropriate `@layer`.
 
@@ -73,7 +74,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
   "linkLabel": "string",    // required when link is non-null
   "stack": "string",        // optional — non-empty string, e.g. "Proxmox, Docker, Pi-hole"
   "meta": "string",         // optional — non-empty string, e.g. "Personal project, 2025–2026."
-  "imageClass": "logo",     // optional — non-empty string
+  "imageClass": "logo",     // optional — "logo" or "screenshot"; both preserve the full image
   "imageLoading": "eager | lazy"   // optional
 }
 ```
@@ -118,24 +119,20 @@ Key behaviors defined here:
   - `safeCdata` — escapes `]]>` for valid CDATA in the Atom feed.
   - `readingTime` — estimated read time at 200 wpm (minimum `"1 min read"`).
   - `jsonScript` — JSON-encodes a value for embedding inside an inline `<script>` tag, escaping `<` so a `</script>` substring in the data can never break out; used to pass data into the Vue islands.
-- **Transforms:** `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (uses `imageDimensions`); `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest.
+- **Transforms:** `img-dimensions` adds `width`/`height` to `<img>` tags that lack them (uses `imageDimensions`); `img-lazy-loading` sets `fetchpriority="high"` on the first image inside a blog post's `.post-content` and `loading="lazy"` on the rest. `code-scroll-access` makes code blocks keyboard-scrollable. Markdown tables retain table semantics inside a focusable `.table-scroll` region.
 - **Global data:** `currentYear` (integer), `buildDate` (`YYYY-MM-DD` string), and `gitHash` (short commit hash, used to cache-bust the CSS URL; falls back to `"dev"` outside git).
 - **Passthrough:** `src/images/`, `src/fonts/`, `src/files/`, `src/humans.txt`, `robots.txt`, `_headers`. (`src/.htaccess` is intentionally NOT passthrough — Porkbun static hosting rejects it.)
 - **Directories:** input `src/`, output `_site/`, includes `_includes/`, layouts `_layouts/`.
 
 ### Theme
 
-Dark-first. `base.njk` sets `data-theme="dark"` on `<html>` via an inline `<script>` tag that runs before first paint. There is no runtime toggle — dark is always the active theme. The `[data-theme="light"]` CSS rules in `tailwind.css` and `tailwind.config.js` exist for future opt-in support.
+Dark-only at runtime. `base.njk` renders `data-theme="dark"` directly on `<html>`, including without JavaScript. There is no runtime toggle or light-theme CSS. DESIGN.md retains light tokens as a future reference only.
 
 ### Animations
 
-Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm`) drives three animation patterns in `base.njk`:
+Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm`) provides a small vertical entrance for `data-motion="hero-item"` elements in `#hero`. Content remains visible throughout. Scroll-triggered section/grid reveals are disabled to follow DESIGN.md. Legacy section/stagger attributes are inert.
 
-- **Hero stagger:** `data-motion="hero-item"` elements on `#hero` animate in with opacity + y-slide.
-- **Section reveal:** `data-motion="section"` triggers on scroll into view.
-- **Grid stagger:** `data-motion="stagger"` parent + `data-motion="stagger-item"` children.
-
-All animation code is guarded by `prefers-reduced-motion` — if the user prefers reduced motion, no animations run.
+The import handles CDN failure and checks `prefers-reduced-motion` before and after loading. Vue filter transitions also honor reduced motion. Static cards remain available when Vue cannot load. Mobile navigation has a no-JavaScript fallback and resets its focus/inert state at the 801px desktop breakpoint.
 
 ### Vue islands
 
@@ -144,7 +141,7 @@ Two pages use Vue 3 CDN islands for client-side interactivity:
 - `src/projects.njk` — project category filter
 - `src/blog/index.njk` — blog tag filter
 
-Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.34/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.34` — do not change it to a floating `vue@3` range. SRI cannot be added to inline `import()` statements; the version pin is the supply-chain guard. When upgrading, bump both files together and run `npm test`.
+Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.43/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.43`; do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. The exact Vue and Motion versions also appear in devDependencies so their complete package trees are audited. Tests enforce that CDN URLs match those audited versions. When upgrading, bump both Vue files and the manifest pin together, refresh the lockfile, and run `npm test`.
 
 ### Deploy concurrency
 
@@ -154,10 +151,11 @@ Vue is loaded as an inline ES module import: `import { createApp } from 'https:/
 
 ## Test suite (`test/`)
 
-Tests use [Vitest](https://vitest.dev/) and cover four areas:
+Tests use [Vitest](https://vitest.dev/) and cover five areas:
 
 | File | What it tests |
 |---|---|
+| `test/audit.test.js` | Every-severity vulnerability blocking, audit error handling, vulnerable-package removal, and CDN version coverage |
 | `test/filters.test.js` | Unit tests for every function in `src/filters.js` |
 | `test/data.test.js` | Schema validation for all `src/_data/*.json` files and `src/_data/infra.js`; bans em dashes in `.njk` templates and infra copy |
 | `test/blog.test.js` | Frontmatter validation for every `src/blog/*.md` post |
@@ -166,6 +164,16 @@ Tests use [Vitest](https://vitest.dev/) and cover four areas:
 **`test/build.test.js` runs `npm run build` in `beforeAll`.** It takes up to 2 minutes. If you add a new page or internal link, make sure the linked path exists in `_site/` after building.
 
 ---
+
+## Dependency audit policy
+
+`security.yml` runs `npm run audit:ci`, which invokes unqualified `npm audit --json` over the complete dependency tree. The wrapper in `scripts/audit-dependencies.cjs` blocks every known vulnerability at every severity, including development dependencies. The former braces advisory exception is removed under the owner's zero-vulnerability requirement on 2026-10-07.
+
+Malformed responses, unresolved dependency references, inconsistent unsuccessful exits, and audit execution errors fail closed. There are no advisory exceptions, blanket exclusions, or `continue-on-error` steps. Registry signatures and available provenance are verified with `npm audit signatures`.
+
+The audit job retains the exact `npm audit (high+)` display name because the active main ruleset requires that status. The legacy label does not limit the audit: every severity still blocks. Check repository rulesets as well as classic branch protection before renaming required jobs.
+
+Eleventy 4 replaces the vulnerable Chokidar 3 and gray-matter chains with its maintained packages. The direct `gray-matter` dependency aliases `@11ty/gray-matter@2.1.0` to preserve existing imports while using js-yaml 4. Tailwind CLI pins an older Parcel watcher, so `overrides` selects official `@parcel/watcher@2.6.0`, which uses picomatch instead of micromatch/braces. Remove that override once Tailwind updates its own pin. Eleventy's prerelease status is a compatibility tradeoff and must remain visible in dependency review.
 
 ## Blog post conventions
 
@@ -208,6 +216,16 @@ The site follows the design system defined in `DESIGN.md`. Key rules for AI assi
 Repo-level agent configuration is indexed in `AGENT_CONFIG.md` (what each file does, what is tracked vs gitignored). Slash commands live in `.claude/commands/`, project skills in `.claude/skills/`, hooks in `.claude/settings.json` + `.claude/hooks/`, and the Cursor rule in `.cursor/rules/levihuff.mdc`.
 
 Model routing for this repo follows the owner's ladder: Haiku for mechanical edits, Sonnet for scoped execution, Opus/Fable for planning and judgment, Codex (`!codex`) for adversarial review, Gemini (`!gemini`) for large-context/full-repo analysis, and Qwen (`!qwen-exec`) for approved, scoped auto-apply tasks. See the global `~/.claude/CLAUDE.md` for the full Plan → Execute → Review loop.
+
+## Documentation vault (`vault/`)
+
+The project-local Obsidian wiki at `vault/` is the primary store for durable codebase context: architectural rationale, module notes, dependency risk, and build/deploy flows. It is tracked with the site source. Cross-reference the global personal vault when useful, but keep repository-specific facts here.
+
+- Read `vault/wiki/hot.md` first, then `vault/wiki/index.md`, then the relevant note.
+- Update the corresponding vault note when architecture, dependencies, or non-obvious tradeoffs change.
+- Keep `vault/wiki/log.md` append-only and `vault/wiki/hot.md` under 500 words.
+- Vault changes are never committed automatically; review and commit them intentionally.
+- `.claude/settings.json` loads the hot cache at session start and reminds maintainers about uncommitted vault changes at session stop.
 
 ## Parallel review monitor (Cursor)
 

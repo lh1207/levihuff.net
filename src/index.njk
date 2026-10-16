@@ -80,22 +80,18 @@ description: Levi Huff, Information Technology graduate in Washington Court Hous
   </section>
 </div>
 
+
 <script type="application/ld+json">
-{{ {
+{
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": site.url + "/about/#person",
-  "name": site.name,
-  "url": site.url + "/about/",
-  "email": "mailto:" + site.email,
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": career.location.locality,
-    "addressRegion": "OH",
-    "addressCountry": "US"
-  },
-  "knowsAbout": career.knowsAbout,
-  "alumniOf": { "@type": "CollegeOrUniversity", "name": career.institution },
-  "sameAs": [site.social.github, site.social.linkedin]
-} | jsonScript | safe }}
+  "@type": "WebPage",
+  "@id": "{{ site.url }}/#webpage",
+  "url": "{{ site.url }}/",
+  "name": "Levi Huff | IT support",
+  "description": {{ description | dump | safe }},
+  "isPartOf": { "@id": "{{ site.url }}/#website" },
+  "about": { "@id": "{{ site.url }}/about/#person" },
+  "mainEntity": { "@id": "{{ site.url }}/about/#person" },
+  "inLanguage": "en-US"
+}
 </script>

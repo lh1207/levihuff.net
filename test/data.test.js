@@ -10,6 +10,7 @@ const experience = require("../src/_data/experience.json");
 const skills = require("../src/_data/skills.json");
 const navigation = require("../src/_data/navigation.json");
 const site = require("../src/_data/site.json");
+const answers = require("../src/_data/answers.json");
 const infra = require("../src/_data/infra.js");
 const career = require("../src/_data/career.json");
 
@@ -101,7 +102,7 @@ describe("projects.json", () => {
   });
 
   it("imageClass, when present, is one of the allowed values", () => {
-    const IMAGE_CLASSES = ["logo"];
+    const IMAGE_CLASSES = ["logo", "screenshot"];
     for (const p of projects) {
       if (p.imageClass === undefined || p.imageClass === null) continue;
       expect(IMAGE_CLASSES, `imageClass on "${p.title}"`).toContain(p.imageClass);
@@ -329,9 +330,40 @@ describe("site.json", () => {
     expect(site.email).toContain("@");
   });
 
+  it("defines the canonical professional entity", () => {
+    expect(typeof site.description).toBe("string");
+    expect(site.description.trim()).not.toBe("");
+    expect(site).not.toHaveProperty("jobTitle");
+    expect(site.image).toMatch(/^\/images\//);
+    expect(site.location).toEqual({
+      city: "Washington Court House",
+      region: "OH",
+      country: "US",
+    });
+    expect(Array.isArray(site.knowsAbout)).toBe(true);
+    expect(site.knowsAbout.length).toBeGreaterThan(0);
+    expect(site).not.toHaveProperty("credentials");
+  });
+
   it("has a social object with github and linkedin urls", () => {
     expect(site.social).toBeDefined();
     expect(site.social.github).toMatch(/^https:\/\/github\.com\//);
     expect(site.social.linkedin).toMatch(/^https:\/\//);
+  });
+});
+
+describe("answers.json", () => {
+  it("contains distinct, answer-first profile questions", () => {
+    expect(Array.isArray(answers)).toBe(true);
+    expect(answers.length).toBeGreaterThanOrEqual(5);
+    const questions = new Set();
+    for (const item of answers) {
+      expect(typeof item.question).toBe("string");
+      expect(item.question.trim()).toMatch(/\?$/);
+      expect(typeof item.answer).toBe("string");
+      expect(item.answer.trim().length).toBeGreaterThan(40);
+      questions.add(item.question);
+    }
+    expect(questions.size).toBe(answers.length);
   });
 });

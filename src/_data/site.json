@@ -5,5 +5,21 @@
   "social": {
     "github": "https://github.com/lh1207",
     "linkedin": "https://www.linkedin.com/in/levihuff1207/"
-  }
+  },
+  "description": "IT graduate with prior enterprise support experience and recent customer-facing work at Kroger. Currently studying for CompTIA Network+.",
+  "image": "/images/profile.jpg",
+  "location": {
+    "city": "Washington Court House",
+    "region": "OH",
+    "country": "US"
+  },
+  "knowsAbout": [
+    "Windows support",
+    "Active Directory",
+    "Hardware troubleshooting",
+    "Windows imaging",
+    "Ticketing",
+    "Email support",
+    "PowerShell"
+  ]
 }

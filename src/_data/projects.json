@@ -50,27 +50,27 @@
   {
     "title": "AeroAssist",
     "category": "software",
-    "stack": "C#, ASP.NET, SQL Server, Docker",
-    "link": "https://github.com/lh1207/AeroAssist",
-    "linkLabel": "View source",
-    "image": "/images/aeroassist/cloud-logo.png",
-    "imageAlt": "AeroAssist cloud logo",
-    "imageClass": "logo",
-    "imageWidth": 736,
-    "imageHeight": 489,
+    "stack": "C#, ASP.NET Core 8, SQL Server",
+    "link": "/blog/aeroassist-ticketing-system/",
+    "linkLabel": "Read case study",
+    "image": "/images/aeroassist/app.jpg",
+    "imageAlt": "AeroAssist ticket queue showing title, status, priority, type, and due date",
+    "imageClass": "screenshot",
+    "imageWidth": 1012,
+    "imageHeight": 374,
     "imageLoading": "lazy",
-    "description": "<strong>Existing ASP.NET ticketing application</strong> with a C# ticket API. I added Docker Compose configuration.",
+    "description": "<strong>A shared support-ticket queue</strong> with create, edit, and delete workflows, SQL persistence, and ticket-distribution charts.",
     "paragraphs": [
       {
-        "label": "Contribution",
-        "text": "Added container configuration to an existing ASP.NET ticketing application."
+        "label": "My work",
+        "text": "Razor interface, API and data access, Chart.js visualizations, and Docker configuration. Linked commits in the case study."
       },
       {
-        "label": "Existing application",
-        "text": "Ticket create/read/update/delete endpoints and Entity Framework SQL Server integration. My contribution here is container configuration."
+        "label": "Skills",
+        "text": "Full-stack C#, HTTP APIs, EF Core, relational data, and containers."
       }
     ],
-    "meta": "Software project · Contributor"
+    "meta": "Source-reviewed portfolio project; live demo unverified."
   },
   {
     "title": "Culinary Mastery",
@@ -94,7 +94,7 @@
         "text": "React web interface and an Express backend with video and AI service integration."
       }
     ],
-    "meta": "University of Cincinnati · Team project"
+    "meta": "University of Cincinnati \u00b7 Team project"
   },
   {
     "title": "LocoQuest",

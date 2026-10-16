@@ -7,6 +7,6 @@
   <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber mt-2">{{ entry.status }}</p>
   <p class="font-plex text-base text-fg-2 mt-3 leading-relaxed">{{ entry.summary }}</p>
   <p class="mt-5">
-    <a href="/infrastructure/{{ entry.slug }}/" class="font-jb text-sm text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Details &rarr;</a>
+    <a href="/infrastructure/{{ entry.slug }}/" class="font-jb text-sm text-amber hover:text-amber-hi transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Details<span class="sr-only">: {{ entry.name }}</span> &rarr;</a>
   </p>
 </article>

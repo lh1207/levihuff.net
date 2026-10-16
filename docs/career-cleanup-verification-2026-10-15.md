@@ -1,4 +1,6 @@
 # Career cleanup verification
+
+PR integration addendum: branch `codex/support-credibility-cleanup` merges main at `195efec`. Newer dependencies, articles, UI improvements, canonical entity graph, and source-reviewed AeroAssist case study are preserved. FAQ, entity metadata and llms guide are reconciled with the audited career narrative. The integrated branch passes 178 tests across five files; the snapshot results below describe the earlier Documents-only implementation.
 15 October 2026. Requested checkout: `/Users/levi/Documents/Development/levihuff.net`, based on `3492ab1`.
 
 ## Result and audit
