@@ -134,11 +134,11 @@
 
     if (hero && !reducedMotion.matches) {
       try {
-        const { animate, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm');
+        const { animate, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@14.3.0/+esm');
         if (!reducedMotion.matches) {
           const items = hero.querySelectorAll('[data-motion="hero-item"]');
           if (items.length) {
-            animate(items, { y: [20, 0] }, { delay: stagger(0.12), duration: 0.5, easing: [0.25, 0.1, 0.25, 1] });
+            animate(items, { y: [20, 0] }, { delay: stagger(0.12), duration: 0.5, ease: [0.25, 0.1, 0.25, 1] });
           }
         }
       } catch (error) {
