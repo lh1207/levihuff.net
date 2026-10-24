@@ -34,7 +34,7 @@
       {% for para in project.paragraphs %}
       <div class="flex flex-col gap-1">
         <dt class="font-jb text-sm text-amber">{{ para.label }}</dt>
-        <dd class="font-plex text-sm text-fg-2">{{ para.text }}</dd>
+        <dd class="font-plex text-sm text-fg-2 break-words">{{ para.text }}</dd>
       </div>
       {% endfor %}
     </dl>

@@ -1,26 +1,26 @@
 [
   {
     "question": "Who is Levi Huff?",
-    "answer": "Levi Huff is an IT infrastructure professional based in Washington Court House, Ohio. He works across endpoint management, systems administration, automation, networking, and virtualization."
+    "answer": "IT graduate with prior enterprise support experience and recent customer-facing work at Kroger."
   },
   {
-    "question": "What infrastructure work does Levi Huff specialize in?",
-    "answer": "His core areas are Windows imaging and zero-touch deployment, PowerShell automation, Active Directory, endpoint management, Proxmox virtualization, Linux administration, and networking."
+    "question": "What IT support skills does Levi Huff have?",
+    "answer": "My background includes Windows support, Active Directory, imaging and deployment, hardware troubleshooting, ticketing, onboarding, email support, and PowerShell."
   },
   {
     "question": "What professional IT experience does Levi Huff have?",
-    "answer": "He built hands-on experience through IT co-op roles at Tire Discounters and Total Quality Logistics, working on provisioning, imaging, deployment, support, documentation, and process improvement."
+    "answer": "Earlier IT internships at Tire Discounters and Total Quality Logistics included Windows setup, imaging, hardware troubleshooting, user support, and onboarding tasks."
   },
   {
-    "question": "What education and certifications does Levi Huff have?",
-    "answer": "He earned a Bachelor of Science in Information Technology from the University of Cincinnati in May 2026. He holds CompTIA A+ and CompTIA ITF+ certifications and is working toward Cisco CCNA."
+    "question": "What education and current study does Levi Huff have?",
+    "answer": "Bachelor of Science in Information Technology, University of Cincinnati. Currently studying for CompTIA Network+."
   },
   {
     "question": "What kind of role is Levi Huff seeking?",
-    "answer": "He is seeking full-time roles in IT infrastructure, systems administration, or IT operations near Washington Court House, Ohio, and is open to hybrid opportunities in Dayton or Columbus."
+    "answer": "Seeking help desk, IT support, desktop support, service desk, and endpoint support roles. Local roles come first; Columbus is my preferred out-of-town market, and remote roles are welcome."
   },
   {
     "question": "Where can I review Levi Huff's technical work?",
-    "answer": "The infrastructure hub documents production and homelab systems, the projects page covers software and automation work, and the blog contains first-hand build logs and technical explanations."
+    "answer": "The lab pages link to personal configuration and verification records. Projects distinguish personal contributions from academic team work. Source repositories provide implementation evidence."
   }
 ]

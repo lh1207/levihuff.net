@@ -12,6 +12,11 @@ sources: []
 
 # Wiki Log
 
+## 2026-10-15 - Support career cleanup PR
+
+- [[Support Career Cleanup PR]] records the isolated branch and reconciliation with main at `195efec`.
+- Preserves newer features and source-reviewed AeroAssist content; updates FAQ and machine-readable identity to audited support positioning. All 178 tests pass.
+
 Append-only. New entries go at the TOP. Never edit past entries.
 
 ---

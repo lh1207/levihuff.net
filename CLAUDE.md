@@ -44,11 +44,13 @@ To add a new utility class, use it directly in a template — Tailwind picks it 
 
 ### Data layer
 
+Career positioning and degree/current-study facts live in `src/_data/career.json`; the PDF generator `scripts/build-resume.py` shares that data. `retiredInfrastructure.json` lists noindex redirects for retired entries. See `docs/credibility-audit-2026-10-14.md` before adding claims. Do not turn study into an earned credential or configuration files into uptime evidence.
+
 All structured content lives in `src/_data/` as JSON files plus one CommonJS module (`infra.js`), automatically available as template globals:
 
 | File | Used by | Key schema |
 |---|---|---|
-| `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `graduationDate` (string, e.g. `"May 2026"`; consumed by `index.njk`/`about.njk`/`contact.njk`/infrastructure pages), `social.{github,linkedin,handshake}` |
+| `site.json` | Every page (via `base.njk`) | `name`, `url` (https://), `email`, `social.{github,linkedin}` |
 | `navigation.json` | `nav.njk` | Array of `{label, url}` — `url` must be root-relative (start with `/`) |
 | `projects.json` | Projects page & cards | See schema below |
 | `experience.json` | About cards | `company`, `focusAreas`, `description` (required strings); optional `highlights` (array of non-empty strings) |
@@ -77,7 +79,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
 }
 ```
 
-**`src/_data/infra.js` schema** — single source of truth for infrastructure projects, homelab services, and the secondary AI ops layer (see `PLAN.md`). A CommonJS module exporting an array; every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`. Enforced by `test/data.test.js`:
+**`src/_data/infra.js` schema** — single source of truth for evidence-backed personal lab artifacts (see `PLAN.md`). A CommonJS module exporting an array; every entry renders a card via `components/infra-card.njk` and a detail page at `/infrastructure/<slug>/`. Enforced by `test/data.test.js`:
 
 ```js
 {
@@ -128,7 +130,7 @@ Dark-only at runtime. `base.njk` renders `data-theme="dark"` directly on `<html>
 
 ### Animations
 
-Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm`) provides a small vertical entrance for `data-motion="hero-item"` elements in `#hero`. Content remains visible throughout. Scroll-triggered section/grid reveals are disabled to follow DESIGN.md. Legacy section/stagger attributes are inert.
+Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@14.3.0/+esm`) provides a small vertical entrance for `data-motion="hero-item"` elements in `#hero`. Content remains visible throughout. Scroll-triggered section/grid reveals are disabled to follow DESIGN.md. Legacy section/stagger attributes are inert.
 
 The import handles CDN failure and checks `prefers-reduced-motion` before and after loading. Vue filter transitions also honor reduced motion. Static cards remain available when Vue cannot load. Mobile navigation has a no-JavaScript fallback and resets its focus/inert state at the 801px desktop breakpoint.
 
@@ -139,7 +141,7 @@ Two pages use Vue 3 CDN islands for client-side interactivity:
 - `src/projects.njk` — project category filter
 - `src/blog/index.njk` — blog tag filter
 
-Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.43/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.43`; do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. The exact Vue and Motion versions also appear in devDependencies so their complete package trees are audited. Tests enforce that CDN URLs match those audited versions. When upgrading, bump both Vue files and the manifest pin together, refresh the lockfile, and run `npm test`.
+Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.44/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.44`; do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. The exact Vue and Motion versions also appear in devDependencies so their complete package trees are audited. Tests enforce that CDN URLs match those audited versions. When upgrading, bump both Vue files and the manifest pin together, refresh the lockfile, and run `npm test`.
 
 ### Deploy concurrency
 

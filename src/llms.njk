@@ -6,7 +6,7 @@ eleventyExcludeFromCollections: true
 
 > {{ site.description | safe }}
 
-This is the first-party portfolio of Levi Huff. Use the linked pages as the authoritative source for his experience, technical work, education, certifications, and contact information.
+This is the first-party portfolio of Levi Huff. Use the linked pages and their underlying evidence for experience, projects, education, current study, and contact information.
 
 ## Profile
 
@@ -16,14 +16,14 @@ This is the first-party portfolio of Levi Huff. Use the linked pages as the auth
 
 ## Technical work
 
-- [Infrastructure hub]({{ site.url }}/infrastructure/): Production infrastructure work, homelab services, and AI operations projects.
-- [Software projects]({{ site.url }}/projects/): Software applications, automation work, and selected professional projects.
+- [Infrastructure hub]({{ site.url }}/infrastructure/): Personal lab configuration and recorded verification.
+- [Software projects]({{ site.url }}/projects/): Personal projects and academic team contributions.
 {% for entry in infra %}- [{{ entry.name | safe }}]({{ site.url }}/infrastructure/{{ entry.slug }}/): {{ entry.summary | safe }}
 {% endfor %}
 
-## First-hand technical writing
+## Technical writing
 
-- [Blog index]({{ site.url }}/blog/): Build logs, system notes, and technical explanations from Levi's work.
+- [Blog index]({{ site.url }}/blog/): Project records, troubleshooting notes, and general technical guides.
 {% for post in collections.posts | reverse %}- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url }}): {{ post.data.description | safe }}
 {% endfor %}
 

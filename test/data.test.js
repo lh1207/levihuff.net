@@ -12,6 +12,25 @@ const navigation = require("../src/_data/navigation.json");
 const site = require("../src/_data/site.json");
 const answers = require("../src/_data/answers.json");
 const infra = require("../src/_data/infra.js");
+const career = require("../src/_data/career.json");
+
+describe("career.json", () => {
+  it("provides the shared career content required by the pages and resume", () => {
+    for (const field of ["headline", "summary", "background", "degree", "institution", "study", "seeking"]) {
+      expect(typeof career[field]).toBe("string");
+      expect(career[field].trim()).not.toBe("");
+    }
+    for (const field of ["base", "locality", "preference"]) expect(career.location[field]).toBeTruthy();
+    for (const field of ["heading", "text"]) expect(career.learning[field]).toBeTruthy();
+    expect(career.supportAreas.length).toBeGreaterThan(0);
+    for (const area of career.supportAreas) {
+      expect(area.heading).toBeTruthy();
+      expect(area.text).toBeTruthy();
+    }
+    expect(career.knowsAbout.length).toBeGreaterThan(0);
+    for (const skill of career.knowsAbout) expect(typeof skill).toBe("string");
+  });
+});
 
 describe("projects.json", () => {
   it("is a non-empty array", () => {
@@ -314,7 +333,7 @@ describe("site.json", () => {
   it("defines the canonical professional entity", () => {
     expect(typeof site.description).toBe("string");
     expect(site.description.trim()).not.toBe("");
-    expect(typeof site.jobTitle).toBe("string");
+    expect(site).not.toHaveProperty("jobTitle");
     expect(site.image).toMatch(/^\/images\//);
     expect(site.location).toEqual({
       city: "Washington Court House",
@@ -323,8 +342,7 @@ describe("site.json", () => {
     });
     expect(Array.isArray(site.knowsAbout)).toBe(true);
     expect(site.knowsAbout.length).toBeGreaterThan(0);
-    expect(Array.isArray(site.credentials)).toBe(true);
-    expect(site.credentials).toContain("CompTIA A+");
+    expect(site).not.toHaveProperty("credentials");
   });
 
   it("has a social object with github and linkedin urls", () => {

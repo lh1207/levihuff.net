@@ -1,175 +1,76 @@
 ---
 layout: base.njk
 title: About
-description: About Levi Huff, IT infrastructure. Experience, skills, certifications, and resume. Endpoint management, Windows imaging, PowerShell automation, Active Directory, and virtualization.
+description: IT support experience, technical skills, education, and current learning for Levi Huff.
 ---
 
 <div class="bg-surface-1 text-fg-1">
-
-  {# Page intro #}
   <section class="py-16 md:py-20">
     <div class="max-w-site mx-auto px-4 md:px-6">
-      <div class="flex flex-col md:flex-row md:items-start md:gap-10 lg:gap-14">
-        <div class="flex-1 min-w-0">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; ABOUT</p>
-          <h1 class="font-syne text-4xl font-bold leading-[1.1] tracking-[-0.02em] text-fg-1 mt-3">Levi Huff.</h1>
-          <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-            I'm an IT infrastructure professional based in Washington Court House, OH. My core work is endpoint management and Windows imaging, PowerShell automation, Active Directory administration, and virtualization, built through co-op roles at Tire Discounters and Total Quality Logistics and a homelab that runs every day.
-          </p>
-          <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-            I hold a Bachelor of Science in Information Technology from the University of Cincinnati ({{ site.graduationDate }}, Software and Application Development track), which adds a development background to the infrastructure work: when a problem needs a script, an API, or a full application, I can build it.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="/files/Levi_Huff_Resume.pdf"
-              download="Levi_Huff_Resume.pdf"
-              class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-              Download resume
-            </a>
-            <a
-              href="/contact/"
-              class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-              Get in touch
-            </a>
-          </div>
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; ABOUT</p>
+      <h1 class="font-syne text-4xl font-bold text-fg-1 mt-3">About Levi Huff</h1>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-5">{{ career.summary }}</p>
+      <p class="font-plex text-base text-fg-2 leading-relaxed mt-4">{{ career.background }}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/files/Levi_Huff_Resume.pdf" download="Levi_Huff_Resume.pdf" class="inline-flex items-center bg-amber text-surface-0 font-plex font-semibold px-6 py-3 rounded-md focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Download resume</a>
+        <a href="/contact/" class="inline-flex items-center bg-surface-2 border border-hair-1 text-fg-1 font-plex font-medium px-6 py-3 rounded-md focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Contact me</a>
+      </div>
+      <nav aria-label="About page sections" class="flex flex-wrap gap-x-6 gap-y-2 mt-6 font-jb text-sm text-amber">
+        <a href="#experience" class="py-2 focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Experience</a>
+        <a href="#skills" class="py-2 focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Skills</a>
+        <a href="#education" class="py-2 focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Education</a>
+        <a href="#learning" class="py-2 focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Current study</a>
+      </nav>
+    </div>
+  </section>
+
+  <section id="experience" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; 01 / EXPERIENCE</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">Support experience.</h2>
+      <div class="mt-8">{% for entry in experience %}{% include "components/experience-card.njk" %}{% endfor %}</div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; 02 / SKILLS</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">Technical skills.</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">{% for group in skills %}{% include "components/skill-group.njk" %}{% endfor %}</div>
+    </div>
+  </section>
+
+  <section id="education" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; 03 / EDUCATION</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">Education.</h2>
+      <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 mt-8 max-w-prose">
+        <h3 class="font-syne text-xl font-semibold text-fg-1">{{ career.degree }}</h3>
+        <p class="font-plex text-base text-fg-2 mt-2">{{ career.institution }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; 04 / CURRENT LEARNING</p>
+      <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">{{ career.learning.heading }}</h2>
+      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">{{ career.learning.text }}</p>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <div class="grid gap-6 md:grid-cols-2 items-center">
+        <div>
+          <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; OUTSIDE WORK</p>
+          <h2 class="font-syne text-3xl font-semibold text-fg-1 mt-2">Trombone with UC Bearcat Marching Band.</h2>
+          <p class="font-plex text-base text-fg-2 leading-relaxed mt-4">A photo-supported part of my University of Cincinnati experience.</p>
         </div>
-        <div class="mt-8 md:mt-1 flex-shrink-0">
-          <img
-            src="/images/profile.jpg"
-            alt="Levi Huff"
-            class="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-2 border-hair-1"
-            width="800"
-            height="800"
-            loading="eager">
-        </div>
+        <img src="/images/about/band-action.jpg" alt="Levi Huff playing trombone with the University of Cincinnati Bearcat Marching Band" width="960" height="1200" loading="lazy" class="w-full rounded-d-lg border border-hair-1">
       </div>
     </div>
   </section>
-
-  {# Experience #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 01 / EXPERIENCE</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Professional experience.</h2>
-
-      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
-        <img
-          src="/images/about/tql-office.jpg"
-          alt="Levi Huff outside the Total Quality Logistics office building"
-          class="block w-full h-64 object-cover object-[28%_35%]"
-          width="1200"
-          height="870"
-          loading="lazy">
-      </div>
-
-      <div class="mt-8">
-        {% for entry in experience %}
-          {% include "components/experience-card.njk" %}
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  {# Skills #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 02 / SKILLS</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Technical skills.</h2>
-
-      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
-        <img
-          src="/images/about/developer-workspace.jpg"
-          alt="Developer workspace with keyboard and code on screen"
-          class="w-full h-64 object-cover"
-          width="1200"
-          height="799"
-          loading="lazy">
-      </div>
-
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        {% for group in skills %}
-          {% include "components/skill-group.njk" %}
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  {# Certifications #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 03 / CERTIFICATIONS</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Certifications.</h2>
-
-      <ul class="mt-8 space-y-3">
-        <li class="flex items-baseline gap-3">
-          <span class="font-plex font-semibold text-fg-1">CompTIA A+</span>
-          <span class="font-jb text-mono-sm text-fg-3">Dec 2025</span>
-        </li>
-        <li class="flex items-baseline gap-3">
-          <span class="font-plex font-semibold text-fg-1">CompTIA IT Fundamentals+</span>
-          <span class="font-jb text-mono-sm text-fg-3">Apr 2024</span>
-        </li>
-        <li class="flex items-baseline gap-3">
-          <span class="font-plex font-semibold text-fg-1">Cisco CCNA</span>
-          <span class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">In progress</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  {# Education #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 04 / EDUCATION</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Education.</h2>
-
-      <div class="mt-8 mb-8 rounded-d-lg border border-hair-1 overflow-hidden">
-        <img
-          src="/images/about/graduation-ceremony.jpg"
-          alt="Levi Huff smiling in University of Cincinnati cap and gown at graduation ceremony with crowd in background"
-          class="block w-full h-80 sm:h-64 object-cover object-[50%_22%]"
-          width="802"
-          height="1200"
-          loading="lazy">
-      </div>
-
-      <div class="bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden max-w-prose">
-        <div class="flex flex-col md:flex-row md:items-stretch">
-          <div class="h-64 md:h-auto md:w-52 flex-shrink-0 overflow-hidden">
-            <img
-              src="/images/about/graduation-portrait.jpg"
-              alt="Levi Huff in University of Cincinnati cap and gown holding diploma"
-              class="block w-full h-full object-cover object-[50%_18%]"
-              width="802"
-              height="1200"
-              loading="lazy">
-          </div>
-          <div class="p-6 md:p-8">
-            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">DEGREE</p>
-            <h3 class="font-syne text-xl font-semibold text-fg-1 mt-1">University of Cincinnati</h3>
-            <p class="font-jb text-mono-sm text-fg-3 mt-1">Bachelor of Science in Information Technology</p>
-            <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">Focus: Software and Application Development. Graduated {{ site.graduationDate }}. GPA: 3.56.</p>
-            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-fg-3 mt-4">Coursework: <span class="normal-case font-plex text-sm text-fg-2 tracking-normal">System Administration, Network Infrastructure, Database Management, Enterprise Application Development, Information Security, Web Server Development, Mobile Device Programming</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {# Approach #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 05 / APPROACH</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">How I work.</h2>
-      <p class="font-plex text-base text-fg-1 leading-relaxed mt-4 max-w-prose">
-        I focus on understanding how systems are used in practice before making changes, with attention to maintainability, clarity, and user impact. Hands-on work across provisioning, imaging, scripting, and support has shaped how I approach problems: starting with what's already there before proposing changes.
-      </p>
-      <p class="font-plex text-base text-fg-1 leading-relaxed mt-4 max-w-prose">
-        I incorporate documentation as part of the work itself, not an afterthought. Clear runbooks, onboarding notes, and process records reduce the friction the next person encounters.
-      </p>
-    </div>
-  </section>
-
   {# Direct answers for people and answer engines #}
   <section id="quick-answers" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
@@ -184,94 +85,6 @@ description: About Levi Huff, IT infrastructure. Experience, skills, certificati
           <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">{{ item.answer }}</p>
         </article>
         {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  {# Looking Ahead / CTA #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 07 / LOOKING AHEAD</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">What I am looking for.</h2>
-      <p class="font-plex text-lg text-fg-2 leading-relaxed mt-4 max-w-prose">
-        I'm looking for full-time infrastructure and systems administration roles based in or near Washington Court House, OH. I prioritize positions in Fayette County and the surrounding area, and I'm open to hybrid arrangements in Dayton or Columbus.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/contact/" class="inline-flex items-center gap-2 bg-amber hover:bg-amber-hi text-surface-0 font-plex font-semibold px-6 py-3 rounded-md shadow-d-accent transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Get in touch</a>
-        <a href="/files/Levi_Huff_Resume.pdf" download="Levi_Huff_Resume.pdf" class="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-3 border border-hair-1 hover:border-hair-2 text-fg-1 font-plex font-medium px-6 py-3 rounded-md transition-colors duration-[180ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Download resume</a>
-      </div>
-      <a
-        href="/projects/"
-        class="inline-flex items-center gap-2 mt-6 font-jb text-sm text-fg-2 hover:text-amber transition-colors duration-[120ms] focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">
-        &rarr; View projects
-      </a>
-    </div>
-  </section>
-
-  {# Hobbies #}
-  <section class="py-12 md:py-16">
-    <div class="max-w-site mx-auto px-4 md:px-6">
-      <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber" aria-hidden="true">&#9658; 08 / INTERESTS</p>
-      <h2 class="font-syne text-3xl font-semibold leading-snug tracking-[-0.02em] text-fg-1 mt-2">Hobbies and interests.</h2>
-
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">ART</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
-            I enjoy creating illustrations and exploring visual design as a creative outlet outside of technology.
-          </p>
-        </div>
-
-        <div class="bg-surface-2 border border-hair-1 rounded-d-lg p-6">
-          <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">RETRO TECH</p>
-          <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
-            I have a fascination with retro and niche technologies, exploring older computing systems, vintage hardware, and lesser-known platforms that shaped the technology landscape.
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-6 bg-surface-2 border border-hair-1 rounded-d-lg overflow-hidden">
-        <div class="flex flex-col md:flex-row md:items-stretch">
-          <div class="h-72 md:h-auto md:w-64 lg:w-72 flex-shrink-0 overflow-hidden">
-            <img
-              src="/images/about/band-action.jpg"
-              alt="Levi Huff playing trombone in University of Cincinnati Bearcat Marching Band uniform with sunglasses"
-              class="block w-full h-full object-cover object-[50%_38%]"
-              width="960"
-              height="1200"
-              loading="lazy">
-          </div>
-          <div class="p-6 flex flex-col justify-center">
-            <p class="font-jb text-mono-xs tracking-[0.04em] uppercase text-amber">MUSIC / TROMBONE</p>
-            <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">
-              I play trombone and was a member of the University of Cincinnati Bearcat Marching Band from 2020 to 2024. Performed at the Goodyear Cotton Bowl Classic (2021), DCI Celebration Tour (2021), and Big 12 Basketball Tournament (2024).
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-6 grid gap-4 md:grid-cols-2">
-        <div class="rounded-d-lg border border-hair-1 overflow-hidden">
-          <img
-            src="/images/about/band-marching.jpg"
-            alt="Levi Huff playing trombone with sunlight flare during a University of Cincinnati game performance"
-            class="w-full h-52 object-cover object-center"
-            width="1200"
-            height="1200"
-            loading="lazy">
-        </div>
-        <div class="rounded-d-lg border border-hair-1 overflow-hidden">
-          <figure>
-            <img
-              src="/images/about/band-cotton-bowl.jpg"
-              alt="University of Cincinnati Bearcat Marching Band performing in Cotton Bowl uniforms"
-              class="w-full h-52 object-cover object-center"
-              width="1200"
-              height="800"
-              loading="lazy">
-            <figcaption class="font-jb text-mono-xs text-fg-3 px-3 py-2 border-t border-hair-1">Photo: Chris Southard</figcaption>
-          </figure>
-        </div>
       </div>
     </div>
   </section>
