@@ -134,7 +134,7 @@
 
     if (hero && !reducedMotion.matches) {
       try {
-        const { animate, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@14.3.0/+esm');
+        const { animate, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@14.6.0/+esm');
         if (!reducedMotion.matches) {
           const items = hero.querySelectorAll('[data-motion="hero-item"]');
           if (items.length) {
