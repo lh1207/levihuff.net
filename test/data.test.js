@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 const projects = require("../src/_data/projects.json");
 const experience = require("../src/_data/experience.json");
 const skills = require("../src/_data/skills.json");
+const tools = require("../src/_data/tools.json");
 const navigation = require("../src/_data/navigation.json");
 const site = require("../src/_data/site.json");
 const answers = require("../src/_data/answers.json");
@@ -281,6 +282,28 @@ describe("skills.json", () => {
         expect(item.label.trim()).not.toBe("");
         expect(item.text.trim()).not.toBe("");
       }
+    }
+  });
+});
+
+describe("tools.json", () => {
+  it("is a non-empty array", () => {
+    expect(Array.isArray(tools)).toBe(true);
+    expect(tools.length).toBeGreaterThan(0);
+  });
+
+  it("every tool has non-empty name and category strings", () => {
+    for (const tool of tools) {
+      for (const field of ["name", "category"]) {
+        expect(typeof tool[field], `${field} on "${tool.name}"`).toBe("string");
+        expect(tool[field].trim(), `${field} on "${tool.name}"`).not.toBe("");
+      }
+    }
+  });
+
+  it("every category is uppercase", () => {
+    for (const tool of tools) {
+      expect(tool.category, `category on "${tool.name}"`).toBe(tool.category.toUpperCase());
     }
   });
 });

@@ -43,7 +43,7 @@ All structured content lives in `src/_data/`, automatically available as templat
 | `tools.json` | Tools section badges |
 | `infra.js` | Infrastructure hub, detail pages, homepage featured cards (CommonJS module; schema in CLAUDE.md) |
 
-`test/data.test.js` validates the core data schemas; `tools.json` does not yet have a dedicated schema check. It also bans em dashes in `.njk` templates and infra copy.
+`test/data.test.js` validates the core data schemas, including `tools.json`. It also bans em dashes in `.njk` templates and infra copy.
 
 ### Custom filters (`src/filters.js`, registered in `eleventy.config.cjs`)
 

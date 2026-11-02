@@ -55,7 +55,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
 | `projects.json` | Projects page & cards | See schema below |
 | `experience.json` | About cards | `company`, `focusAreas`, `description` (required strings); optional `highlights` (array of non-empty strings) |
 | `skills.json` | Skill groups | Array of `{heading, items: [{label, text}]}` |
-| `tools.json` | Tools section | Array of `{name, category}` — uppercase category strings. Not yet schema-validated: `test/data.test.js` has no `tools.json` block, unlike the other data files. |
+| `tools.json` | Tools section | Non-empty array of `{name, category}` — both required non-empty strings; category must be uppercase. Validated in `test/data.test.js`. |
 | `infra.js` | Infrastructure hub, detail pages, homepage featured cards | See schema below |
 
 **`projects.json` schema** (all fields required unless noted):
