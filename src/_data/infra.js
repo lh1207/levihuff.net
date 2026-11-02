@@ -40,7 +40,24 @@ module.exports = [
         "url": "https://github.com/lh1207/ad-pxe-lab/blob/main/docs/phase-02-configuration-verification.txt"
       }
     ],
-    "featured": true
+    "featured": true,
+    "diagram": {
+      "src": "/images/infrastructure/windows-lab.svg",
+      "width": 1100,
+      "height": 800,
+      "alt": "Hyper-V lab with DC01 domain services, WDS01 transport, CL02, and planned CM01, CL01 and REF01 roles.",
+      "caption": "Documented Windows lab architecture, reviewed November 2, 2026. Network connections describe the design, not which VMs are running. Configuration Manager and later imaging work remain planned. The page scope remains initial setup and configuration checks.",
+      "sources": [
+        {
+          "label": "Architecture source",
+          "url": "https://github.com/lh1207/ad-pxe-lab/blob/main/docs/architecture.md"
+        },
+        {
+          "label": "Dated execution records",
+          "url": "https://github.com/lh1207/ad-pxe-lab/blob/main/docs/lab-notebook.md"
+        }
+      ]
+    }
   },
   {
     "slug": "proxmox-node",
@@ -61,7 +78,7 @@ module.exports = [
       },
       {
         "label": "Topology",
-        "text": "The host notes distinguish a Docker LXC from separate Pi-hole and BookStack LXCs. Open WebUI is configured to connect to Ollama on a separate host."
+        "text": "October 18–19 migration records place Pi-hole, BookStack, Jellyfin, Homebridge, and Uptime Kuma in Docker LXC CT 105. Home Assistant remains in VM 101. Open WebUI and Ollama share a Docker network; authenticated chat was not verified."
       },
       {
         "label": "Scope",
@@ -74,6 +91,19 @@ module.exports = [
         "url": "https://github.com/lh1207/homelab"
       }
     ],
-    "featured": true
+    "featured": true,
+    "diagram": {
+      "src": "/images/infrastructure/homelab.svg",
+      "width": 1100,
+      "height": 800,
+      "alt": "Proxmox contains Docker LXC CT 105, Home Assistant VM 101 and five archived LXCs; Mac Caddy routes web requests to Docker services.",
+      "caption": "Documented homelab topology from October 18–19, 2026 migration records. Selected services are shown, not live availability. The five old service LXCs are stopped and retained for rollback. Client-local HTTPS names do not provide general LAN DNS.",
+      "sources": [
+        {
+          "label": "Topology and migration records",
+          "url": "https://github.com/lh1207/homelab/blob/main/README.md"
+        }
+      ]
+    }
   }
 ];

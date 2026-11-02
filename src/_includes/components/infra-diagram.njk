@@ -1,0 +1,12 @@
+<figure class="mt-10" aria-labelledby="diagram-caption-{{ entry.slug }}">
+  <img src="{{ entry.diagram.src }}" alt="{{ entry.diagram.alt }}" width="{{ entry.diagram.width }}" height="{{ entry.diagram.height }}" loading="lazy" class="w-full h-auto border border-hair-1 rounded-d-lg">
+  <figcaption id="diagram-caption-{{ entry.slug }}" class="mt-4 font-plex text-base text-fg-2 leading-relaxed max-w-prose">
+    <p>{{ entry.diagram.caption }}</p>
+    <div class="mt-3 flex flex-wrap gap-4">
+      <a href="{{ entry.diagram.src }}" class="text-amber underline focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">Open full-size diagram</a>
+      {% for source in entry.diagram.sources %}
+      <a href="{{ source.url }}" class="text-amber underline focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ source.label }}</a>
+      {% endfor %}
+    </div>
+  </figcaption>
+</figure>

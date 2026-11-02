@@ -367,3 +367,23 @@ describe("answers.json", () => {
     expect(questions.size).toBe(answers.length);
   });
 });
+
+
+describe("Infrastructure diagrams", () => {
+  const entries = require("../src/_data/infra.js");
+  for (const entry of entries.filter(e => e.diagram)) {
+    it(`${entry.slug} has accessible, local diagram metadata`, () => {
+      const d = entry.diagram;
+      expect(d.src).toMatch(/^\/images\/infrastructure\/[a-z-]+\.svg$/);
+      expect(d.alt.length).toBeGreaterThan(40);
+      expect(d.caption.length).toBeGreaterThan(40);
+      expect(d.width).toBeGreaterThan(0);
+      expect(d.height).toBeGreaterThan(0);
+      expect(d.sources.length).toBeGreaterThan(0);
+      for (const source of d.sources) {
+        expect(source.label.length).toBeGreaterThan(0);
+        expect(source.url).toMatch(/^https:\/\/github.com\//);
+      }
+    });
+  }
+});
