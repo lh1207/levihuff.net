@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { execFileSync } from "child_process";
 import {
   tagSlug,
   imageDimensions,
@@ -97,14 +98,38 @@ describe("tagSlug", () => {
 });
 
 describe("dateReadable", () => {
+  it.each(["UTC", "America/New_York", "America/Los_Angeles", "Asia/Tokyo"])(
+    "keeps Eleventy Date objects and ISO timestamps on the UTC calendar day in %s",
+    (timeZone) => {
+      const output = execFileSync(process.execPath, ["-e", `
+        const { dateReadable } = require("./src/filters.js");
+        const inputs = [
+          new Date("2026-06-23T00:00:00Z"),
+          "2026-06-23T00:00:00Z",
+          new Date("2026-12-31T23:30:00Z"),
+          "2027-01-01T01:30:00+02:00",
+        ];
+        process.stdout.write(JSON.stringify(inputs.map(dateReadable)));
+      `], {
+        cwd: root,
+        env: { ...process.env, TZ: timeZone },
+        encoding: "utf8",
+      });
+      expect(JSON.parse(output)).toEqual([
+        "June 23, 2026",
+        "June 23, 2026",
+        "December 31, 2026",
+        "December 31, 2026",
+      ]);
+    }
+  );
   it("returns a string containing the year", () => {
-    // Use Date constructor with explicit year/month/day to avoid timezone shifts
-    const result = dateReadable(new Date(2024, 0, 15)); // Jan 15 2024 local time
+    const result = dateReadable(new Date(Date.UTC(2024, 0, 15)));
     expect(result).toContain("2024");
     expect(result).not.toBe("");
   });
   it("contains the month name for a known date", () => {
-    expect(dateReadable(new Date(2024, 5, 1))).toContain("June");
+    expect(dateReadable(new Date(Date.UTC(2024, 5, 1)))).toContain("June");
   });
   it("formats YYYY-MM-DD frontmatter in UTC so the calendar day is stable", () => {
     expect(dateReadable("2026-06-23")).toBe("June 23, 2026");

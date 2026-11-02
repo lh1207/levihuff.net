@@ -114,12 +114,10 @@ function dateReadable(date) {
       year: "numeric",
       month: "long",
       day: "numeric",
+      // Eleventy passes frontmatter dates as Date objects. Use UTC for every
+      // input so visible dates agree with dateIso/dateYMD on every build host.
+      timeZone: "UTC",
     };
-    // YYYY-MM-DD frontmatter parses as UTC midnight; format in UTC so the
-    // visible date matches the calendar day in datetime.
-    if (typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date.trim())) {
-      opts.timeZone = "UTC";
-    }
     return d.toLocaleDateString("en-US", opts);
   } catch (error) {
     return "";

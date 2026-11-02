@@ -28,7 +28,11 @@ function findHtmlFiles(dir) {
 
 describe("build smoke test", () => {
   beforeAll(() => {
-    execSync("npm run build", { cwd: root, stdio: "pipe" });
+    execSync("npm run build", {
+      cwd: root,
+      stdio: "pipe",
+      env: { ...process.env, TZ: "America/New_York" },
+    });
   }, 120_000);
 
   it("renders accessible infrastructure diagrams and copies their SVG assets", () => {
@@ -44,6 +48,21 @@ describe("build smoke test", () => {
       expect(html).toContain(`href="${d.src}"`);
       expect(html).toContain(d.caption);
       for (const source of d.sources) expect(html).toContain(source.url);
+    }
+  });
+
+  it("keeps visible post dates consistent with their machine-readable UTC dates", () => {
+    const posts = readdirSync(resolve(siteDir, "blog"), { withFileTypes: true })
+      .filter(entry => entry.isDirectory());
+    expect(posts.length).toBeGreaterThan(0);
+    for (const post of posts) {
+      const html = readFileSync(resolve(siteDir, "blog", post.name, "index.html"), "utf8");
+      const time = html.match(/<time\b[^>]*datetime="([^"]+)"[^>]*>([^<]+)<\/time>/);
+      expect(time, post.name).not.toBeNull();
+      const expected = new Date(time[1]).toLocaleDateString("en-US", {
+        year: "numeric", month: "long", day: "numeric", timeZone: "UTC",
+      });
+      expect(time[2].trim(), post.name).toBe(expected);
     }
   });
 
