@@ -168,6 +168,8 @@ Tests use [Vitest](https://vitest.dev/) and cover five areas:
 
 ## Dependency audit policy
 
+The scoped `@11ty/recursive-copy` override installs official `minimatch@11.0.4` to fix GHSA-g3hv-75wg-m249 (versions below 11.0.1). The parent still requests minimatch 10. Remove the override once it supports a patched release. Minimatch 11 replaces its glob matching engine; `test/copy.test.js` checks nested copy filters, brace patterns, exclusions, and dotfiles, alongside the production build smoke tests. No advisory is exempted.
+
 `security.yml` runs `npm run audit:ci`, which invokes unqualified `npm audit --json` over the complete dependency tree. The wrapper in `scripts/audit-dependencies.cjs` blocks every known vulnerability at every severity, including development dependencies. The former braces advisory exception is removed under the owner's zero-vulnerability requirement on 2026-10-07.
 
 Malformed responses, unresolved dependency references, inconsistent unsuccessful exits, and audit execution errors fail closed. There are no advisory exceptions, blanket exclusions, or `continue-on-error` steps. Registry signatures and available provenance are verified with `npm audit signatures`.

@@ -20,6 +20,10 @@ sources:
 
 # Tech Stack
 
+## November 2 dependency patch
+
+Based on current main `049d9e8`, the remaining audit findings originate in minimatch 10 through Eleventy's recursive-copy dependency. A parent-scoped override installs official minimatch 11.0.4, fixing GHSA-g3hv-75wg-m249 without excluding dependencies or changing the audit policy. The latest recursive-copy 5.1.0 still requests minimatch 10; remove the override when upstream adopts a patched major. Node requirements remain compatible. The new matcher changes glob internals, so a copy integration test covers nested inclusions, exclusions, braces, and dotfiles; the full production build also passes. All 179 tests pass and the complete audit reports zero vulnerabilities.
+
 ## What it's used for
 
 Runtime and dev dependencies on the security candidate in [PR #137](https://github.com/lh1207/levihuff.net/pull/137). The candidate has zero known npm vulnerabilities and is also applied to PRs #135 and #136. Main remains unchanged pending an explicit decision to adopt the official Eleventy 4 alpha line.
