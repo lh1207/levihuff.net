@@ -13,6 +13,24 @@ description: Personal lab and configuration notes covering Windows, Active Direc
     </div>
   </section>
 
+  <section id="networking-study" aria-labelledby="networking-study-heading" class="py-12 md:py-16">
+    <div class="max-w-site mx-auto px-4 md:px-6">
+      <h2 id="networking-study-heading" class="font-syne text-3xl font-semibold text-fg-1">{{ networkingStudy.heading }}</h2>
+      <div class="mt-8 bg-surface-2 border border-hair-1 rounded-d-lg p-6 md:p-8 max-w-prose">
+        <p class="font-jb text-mono-xs uppercase text-amber">{{ networkingStudy.status }}</p>
+        <h3 class="font-plex text-xl font-semibold text-fg-1 mt-2">{{ career.learning.heading }}</h3>
+        <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">{{ career.learning.text }}</p>
+        <p class="font-plex text-base text-fg-2 leading-relaxed mt-3">{{ networkingStudy.topics }}</p>
+        <p class="font-plex text-sm text-fg-3 leading-relaxed mt-3">{{ networkingStudy.scope }}</p>
+        <ul class="mt-5 space-y-3">
+          {% for link in networkingStudy.links %}
+          <li><a href="{{ link.url }}" class="font-jb text-sm text-amber hover:text-amber-hi focus-visible:outline-[3px] focus-visible:outline-amber focus-visible:outline-offset-2">{{ link.label }} &rarr;</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="projects" class="py-12 md:py-16">
     <div class="max-w-site mx-auto px-4 md:px-6">
       <p class="font-jb text-mono-xs uppercase text-amber" aria-hidden="true">&#9658; LAB PROJECTS</p>
