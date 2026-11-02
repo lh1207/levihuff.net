@@ -164,3 +164,5 @@ Created:
 MCP: skipped for now (Claude Code already has direct filesystem access to `vault/` in this repo; no separate MCP server needed for this workflow).
 
 Content for modules/decisions/dependencies/flows was seeded from the parent repo's own `CLAUDE.md` architecture documentation plus direct file reads (`package.json`, `eleventy.config.cjs`, `.gitignore`), not from a `.raw/` source dump - there was no external source to ingest, this is first-party documentation of the live codebase.
+
+- 2026-11-02: Added dated infrastructure SVG diagrams and optional figure metadata. Homelab migration topology corrected against source records; planned Windows roles remain labeled. No merge or deployment.

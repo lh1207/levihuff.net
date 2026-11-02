@@ -93,6 +93,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
   summary: "string (card copy)",
   details: [{ label: "string", text: "string" }],
   links: [{ label: "string", url: "/... or https://..." }],
+  // Optional diagram: {src, width, height, alt, caption, sources: [{label, url}]}
   featured: true                         // boolean; featured entries surface on the homepage
 }
 ```

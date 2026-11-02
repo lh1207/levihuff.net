@@ -31,6 +31,22 @@ describe("build smoke test", () => {
     execSync("npm run build", { cwd: root, stdio: "pipe" });
   }, 120_000);
 
+  it("renders accessible infrastructure diagrams and copies their SVG assets", () => {
+    for (const entry of require("../src/_data/infra.js").filter(e => e.diagram)) {
+      const d = entry.diagram;
+      const svg = readFileSync(resolve(siteDir, d.src.slice(1)), "utf8");
+      expect(svg).toContain("<title");
+      expect(svg).toContain("<desc");
+      expect(svg).toContain(`viewBox="0 0 ${d.width} ${d.height}"`);
+      const html = readFileSync(resolve(siteDir, "infrastructure", entry.slug, "index.html"), "utf8");
+      expect(html).toContain(`src="${d.src}"`);
+      expect(html).toContain(`alt="${d.alt}"`);
+      expect(html).toContain(`href="${d.src}"`);
+      expect(html).toContain(d.caption);
+      for (const source of d.sources) expect(html).toContain(source.url);
+    }
+  });
+
   it("produces _site/index.html", () => {
     expect(existsSync(resolve(root, "_site/index.html"))).toBe(true);
   });

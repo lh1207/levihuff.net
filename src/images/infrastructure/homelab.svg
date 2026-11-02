@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="800" viewBox="0 0 1100 800" role="img" aria-labelledby="title desc">
+  <title id="title">Proxmox homelab topology, documented October 18 to 19, 2026</title>
+  <desc id="desc">A dated topology diagram showing Proxmox with a Docker LXC and a separate Home Assistant virtual machine, retained stopped LXC containers in an archive group, selected Docker services, and a Mac local Caddy HTTPS client route with HTTP upstreams to Docker web services. This is documentation, not live status.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L8 4L0 8Z" fill="#f5a524"/>
+    </marker>
+    <style>
+      text { font-family: "IBM Plex Sans", Arial, sans-serif; fill: #e8eaed; }
+      .mono { font-family: "JetBrains Mono", "Courier New", monospace; }
+      .muted { fill: #b4b8c0; }
+      .dim { fill: #87909a; }
+      .amber { fill: #f5a524; }
+      .panel { fill: #111317; stroke: #62676c; stroke-width: 1.5; }
+      .inner { fill: #181b21; stroke: #62676c; stroke-width: 1.2; }
+      .archive { fill: #111317; stroke: #62676c; stroke-width: 1.5; stroke-dasharray: 7 6; }
+      .line { fill: none; stroke: #f5a524; stroke-width: 2; marker-end: url(#arrow); }
+      .rule { stroke: #62676c; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="1100" height="800" fill="#0a0b0d"/>
+
+  <text x="44" y="48" class="mono amber" font-size="13" letter-spacing="1.5">INFRASTRUCTURE / FIELD NOTES</text>
+  <text x="44" y="88" font-size="31" font-weight="700">Proxmox homelab topology</text>
+  <text x="44" y="116" class="muted" font-size="15">Documented October 18–19, 2026 · Snapshot of the documented layout, not live status</text>
+  <line x1="44" y1="138" x2="1056" y2="138" class="rule"/>
+
+  <!-- Host and current guests -->
+  <rect x="44" y="164" width="636" height="366" rx="8" class="panel"/>
+  <text x="68" y="196" class="mono amber" font-size="12" letter-spacing="1">PROXMOX</text>
+  <text x="68" y="224" font-size="21" font-weight="700">Virtualization host</text>
+  <text x="68" y="247" class="muted" font-size="13">Active layout documented in the October snapshot</text>
+
+  <rect x="68" y="269" width="340" height="230" rx="6" class="inner"/>
+  <text x="88" y="298" class="mono amber" font-size="12">LXC · CT105</text>
+  <text x="88" y="324" font-size="18" font-weight="700">Docker environment</text>
+  <text x="88" y="345" class="muted" font-size="12">Selected services shown below</text>
+  <rect x="88" y="365" width="300" height="113" rx="5" fill="#0a0b0d" stroke="#62676c"/>
+  <text x="106" y="391" class="mono" font-size="12">Docker services</text>
+  <text x="106" y="417" font-size="13">Jellyfin · Pi-hole · Homebridge</text>
+  <text x="106" y="439" font-size="13">Uptime Kuma · BookStack</text>
+  <text x="106" y="461" font-size="13">Grafana · Portainer</text>
+
+  <rect x="430" y="269" width="226" height="230" rx="6" class="inner"/>
+  <text x="450" y="298" class="mono amber" font-size="12">VM · 101</text>
+  <text x="450" y="324" font-size="18" font-weight="700">Home Assistant</text>
+  <text x="450" y="352" class="muted" font-size="13">Separate virtual machine</text>
+  <line x1="450" y1="372" x2="636" y2="372" class="rule"/>
+  <text x="450" y="399" class="mono dim" font-size="11">SEPARATE FROM DOCKER</text>
+  <text x="450" y="426" class="muted" font-size="12">Its own guest boundary</text>
+
+  <!-- Retained rollback archive -->
+  <rect x="706" y="164" width="350" height="366" rx="8" class="archive"/>
+  <text x="730" y="196" class="mono amber" font-size="12" letter-spacing="1">PROXMOX ARCHIVE / ROLLBACK</text>
+  <text x="730" y="224" font-size="20" font-weight="700">Stopped LXCs retained</text>
+  <text x="730" y="247" class="muted" font-size="13">Startup disabled · available as rollback copies</text>
+  <line x1="730" y1="266" x2="1032" y2="266" class="rule"/>
+  <text x="730" y="294" class="mono amber" font-size="12">CT100</text><text x="807" y="294" font-size="14">Pi-hole</text>
+  <text x="730" y="330" class="mono amber" font-size="12">CT102</text><text x="807" y="330" font-size="14">Jellyfin</text>
+  <text x="730" y="366" class="mono amber" font-size="12">CT103</text><text x="807" y="366" font-size="14">Homebridge</text>
+  <text x="730" y="402" class="mono amber" font-size="12">CT104</text><text x="807" y="402" font-size="14">Uptime Kuma</text>
+  <text x="730" y="438" class="mono amber" font-size="12">CT106</text><text x="807" y="438" font-size="14">BookStack</text>
+  <text x="730" y="489" class="dim" font-size="12">Retained state, not active services</text>
+
+  <!-- Service details and client routing -->
+  <rect x="44" y="554" width="1012" height="200" rx="8" class="panel"/>
+  <text x="68" y="585" class="mono amber" font-size="12" letter-spacing="1">LOCAL CLIENT ROUTE</text>
+
+  <rect x="68" y="608" width="150" height="82" rx="5" class="inner"/>
+  <text x="87" y="638" font-size="16" font-weight="700">Mac</text>
+  <text x="87" y="662" class="muted" font-size="12">local client</text>
+
+  <path d="M218 648H273" class="line"/>
+  <text x="220" y="628" class="mono amber" font-size="11">HTTPS</text>
+
+  <rect x="282" y="608" width="208" height="82" rx="5" class="inner"/>
+  <text x="302" y="638" font-size="16" font-weight="700">Caddy</text>
+  <text x="302" y="662" class="mono muted" font-size="12">*.localhost</text>
+
+  <path d="M490 648H554" class="line"/>
+  <text x="493" y="594" class="mono amber" font-size="11">HTTP upstream</text>
+
+  <rect x="563" y="608" width="216" height="82" rx="5" class="inner"/>
+  <text x="583" y="638" font-size="16" font-weight="700">Docker web services</text>
+  <text x="583" y="662" class="muted" font-size="12">selected routes</text>
+
+  <rect x="810" y="608" width="222" height="82" rx="5" fill="#0a0b0d" stroke="#62676c"/>
+  <text x="828" y="635" class="mono amber" font-size="11">SCOPE</text>
+  <text x="828" y="657" class="muted" font-size="12">Mac-local HTTPS routing</text>
+  <text x="828" y="676" class="muted" font-size="12">not general LAN DNS</text>
+
+  <text x="68" y="725" class="dim" font-size="12">Ollama and Open WebUI are present in Docker. Their shared AI network provides a backend path; chat flow is unverified.</text>
+  <text x="68" y="744" class="dim" font-size="11">Server Caddy is documented separately; no route or connection is inferred here.</text>
+</svg>
