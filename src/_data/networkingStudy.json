@@ -1,0 +1,20 @@
+{
+  "heading": "Networking study",
+  "status": "CompTIA Network+ · In progress",
+  "topics": "Study notes connect Networking 1 and 2 coursework to addressing and subnetting, switching and routing, Packet Tracer exercises, DNS, DHCP, and a step-by-step troubleshooting sequence.",
+  "scope": "Current study toward certification. Network+ is not listed as an earned credential.",
+  "links": [
+    {
+      "label": "Network+ concepts from Networking 1 and 2",
+      "url": "/blog/network-plus-concepts-from-college/"
+    },
+    {
+      "label": "DNS and DHCP lab configuration",
+      "url": "/infrastructure/imaging-lab/"
+    },
+    {
+      "label": "DHCP and PXE lab notes",
+      "url": "/blog/building-a-supported-windows-11-pxe-path/"
+    }
+  ]
+}
