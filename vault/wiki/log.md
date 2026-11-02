@@ -164,3 +164,6 @@ Created:
 MCP: skipped for now (Claude Code already has direct filesystem access to `vault/` in this repo; no separate MCP server needed for this workflow).
 
 Content for modules/decisions/dependencies/flows was seeded from the parent repo's own `CLAUDE.md` architecture documentation plus direct file reads (`package.json`, `eleventy.config.cjs`, `.gitignore`), not from a `.raw/` source dump - there was no external source to ingest, this is first-party documentation of the live codebase.
+# 2026-11-02 dependency patch
+
+Fetched origin and fast-forwarded the working branch to main 049d9e8 before edits. Scoped recursive-copy's minimatch dependency to official patched 11.0.4; retained every-severity audit enforcement. Clean install, all 179 tests (including a new copy-filter integration test and production build), and the zero-finding audit pass. See [[Tech Stack]].
