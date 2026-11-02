@@ -93,6 +93,7 @@ All structured content lives in `src/_data/` as JSON files plus one CommonJS mod
   summary: "string (card copy)",
   details: [{ label: "string", text: "string" }],
   links: [{ label: "string", url: "/... or https://..." }],
+  // Optional diagram: {src, width, height, alt, caption, sources: [{label, url}]}
   featured: true                         // boolean; featured entries surface on the homepage
 }
 ```
@@ -130,7 +131,7 @@ Dark-only at runtime. `base.njk` renders `data-theme="dark"` directly on `<html>
 
 ### Animations
 
-Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm`) provides a small vertical entrance for `data-motion="hero-item"` elements in `#hero`. Content remains visible throughout. Scroll-triggered section/grid reveals are disabled to follow DESIGN.md. Legacy section/stagger attributes are inert.
+Motion (from CDN: `https://cdn.jsdelivr.net/npm/motion@14.3.0/+esm`) provides a small vertical entrance for `data-motion="hero-item"` elements in `#hero`. Content remains visible throughout. Scroll-triggered section/grid reveals are disabled to follow DESIGN.md. Legacy section/stagger attributes are inert.
 
 The import handles CDN failure and checks `prefers-reduced-motion` before and after loading. Vue filter transitions also honor reduced motion. Static cards remain available when Vue cannot load. Mobile navigation has a no-JavaScript fallback and resets its focus/inert state at the 801px desktop breakpoint.
 
@@ -141,7 +142,7 @@ Two pages use Vue 3 CDN islands for client-side interactivity:
 - `src/projects.njk` — project category filter
 - `src/blog/index.njk` — blog tag filter
 
-Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.43/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.43`; do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. The exact Vue and Motion versions also appear in devDependencies so their complete package trees are audited. Tests enforce that CDN URLs match those audited versions. When upgrading, bump both Vue files and the manifest pin together, refresh the lockfile, and run `npm test`.
+Vue is loaded as an inline ES module import: `import { createApp } from 'https://cdn.jsdelivr.net/npm/vue@3.5.44/dist/vue.esm-browser.prod.js'`. The version is pinned to `3.5.44`; do not change it to a floating `vue@3` range. SRI cannot be attached to the static imports inside these inline module scripts; the version pin is the supply-chain guard. The exact Vue and Motion versions also appear in devDependencies so their complete package trees are audited. Tests enforce that CDN URLs match those audited versions. When upgrading, bump both Vue files and the manifest pin together, refresh the lockfile, and run `npm test`.
 
 ### Deploy concurrency
 
@@ -166,6 +167,8 @@ Tests use [Vitest](https://vitest.dev/) and cover five areas:
 ---
 
 ## Dependency audit policy
+
+The scoped `@11ty/recursive-copy` override installs official `minimatch@11.0.4` to fix GHSA-g3hv-75wg-m249 (versions below 11.0.1). The parent still requests minimatch 10. Remove the override once it supports a patched release. Minimatch 11 replaces its glob matching engine; `test/copy.test.js` checks nested copy filters, brace patterns, exclusions, and dotfiles, alongside the production build smoke tests. No advisory is exempted.
 
 `security.yml` runs `npm run audit:ci`, which invokes unqualified `npm audit --json` over the complete dependency tree. The wrapper in `scripts/audit-dependencies.cjs` blocks every known vulnerability at every severity, including development dependencies. The former braces advisory exception is removed under the owner's zero-vulnerability requirement on 2026-10-07.
 

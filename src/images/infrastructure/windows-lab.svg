@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="800" viewBox="0 0 1100 800" role="img" aria-labelledby="title desc"><title id="title">Windows lab documented architecture</title><desc id="desc">Hyper-V internal LabSwitch connects DC01, WDS01, CL02 and planned CM01, CL01 and REF01. Only one PXE responder may operate. Later Configuration Manager roles are planned.</desc><style>text{font-family:Arial,sans-serif;fill:#e8e8e8;font-size:20px}.heading{font-size:30px;font-weight:bold}.accent{fill:#f5a524}.small{font-size:18px}rect{fill:#202024;stroke:#777;stroke-width:1.5}.planned{stroke-dasharray:8 6}path{fill:none;stroke:#999;stroke-width:2}</style><rect width="1100" height="800" style="fill:#121214;stroke:none"/><text x="40" y="50" class="heading">Windows lab architecture</text><text x="40" y="84" class="small">Documented design · Reviewed November 2, 2026 · Not live status</text><rect x="30" y="110" width="1040" height="450" rx="12"/><text x="55" y="145" class="accent">Hyper-V host · LabNAT 10.0.100.1</text><path d="M100 240H1000 M165 240V280 M550 240V280 M935 240V280 M550 205V240 M350 240V440H185V450 M350 440H730V450"/><text x="55" y="200">LabSwitch · Internal vSwitch · 10.0.100.0/24</text>
+<rect x="50" y="280" width="270" height="145" rx="8"/>
+<text x="68" y="313" class="accent">DC01 · 10.0.100.10</text>
+<text x="68" y="342">AD DS · DNS · DHCP</text>
+<text x="68" y="371">Configuration recorded</text>
+<rect x="415" y="280" width="270" height="145" rx="8"/>
+<text x="433" y="313" class="accent">WDS01 · 10.0.100.20</text>
+<text x="433" y="342">WDS PXE transport</text>
+<text x="433" y="371">Custom ADK WinPE</text>
+<rect x="780" y="280" width="270" height="145" rx="8" class="planned"/>
+<text x="798" y="313" class="accent">CM01 · 10.0.100.30</text>
+<text x="798" y="342">Planned: SQL · ConfigMgr</text>
+<text x="798" y="371">Distribution point / PXE</text>
+<rect x="50" y="450" width="270" height="85" rx="8"/>
+<text x="68" y="483" class="accent">CL02</text>
+<text x="68" y="512">Domain-joined client</text>
+<rect x="415" y="450" width="635" height="85" rx="8" class="planned"/>
+<text x="433" y="483" class="accent">CL01 · REF01</text>
+<text x="433" y="512">Planned golden-image / OSD roles</text>
+<text x="40" y="600" class="accent">PXE sequence · Exactly one responder</text><text x="40" y="636">WDS01 → Custom ADK WinPE → Windows Setup from read-only share</text><text x="40" y="674">Planned handoff: disable and power off WDS01 → prove PXE timeout</text><text x="40" y="706">Then enable CM01 PXE. No concurrent responders.</text><text x="40" y="754" class="small">Solid lines: switch connections. Dashed boxes: planned roles. Source: ad-pxe-lab docs.</text></svg>

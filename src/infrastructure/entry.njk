@@ -45,6 +45,10 @@ eleventyComputed:
       </div>
       {% endif %}
 
+      {% if entry.diagram %}
+        {% include "components/infra-diagram.njk" %}
+      {% endif %}
+
       {% if entry.links.length %}
       <div class="mt-8 flex flex-wrap gap-4">
         {% for link in entry.links %}

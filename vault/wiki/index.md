@@ -25,7 +25,7 @@ Master catalog of every page in this vault. Update this on every change.
 - [[Modules Index]]
   - [[Eleventy Config]] - semantic table wrappers and keyboard code scrolling
   - [[CSS Pipeline]] - shared narrow-screen wrapping and heading scale
-  - [[Data Layer]]
+  - [[Data Layer]] - optional dated infrastructure diagram metadata and SVG figures
   - [[Template System]] - accessible navigation, static fallbacks, and hero-only Motion
 
 ## Components
@@ -42,7 +42,7 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]] - security work from PR #137 is merged into main; current package policy rejects every advisory severity
+  - [[Tech Stack]] - November 2 scoped minimatch 11 patch; current package policy rejects every advisory severity
 
 ## Flows
 

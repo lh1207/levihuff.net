@@ -55,3 +55,7 @@ Project cards accept `imageClass: screenshot` to contain the full image without 
 ## Open questions
 
 - None currently open.
+
+## Infrastructure diagrams (2026-11-02)
+
+Optional `infra.js` diagram metadata holds `src`, intrinsic `width`/`height`, descriptive `alt`, a dated `caption`, and `sources` (`label`/`url`). The reusable `infra-diagram.njk` figure renders only on detail pages and offers a full-size link for narrow screens. Editable SVG assets use existing image passthrough, with no browser diagram dependency. Documentation snapshots describe hosting and routing, not uptime. Windows planned roles are distinguished from recorded configuration; homelab migration records supersede older topology copy.
