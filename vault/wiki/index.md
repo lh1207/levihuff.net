@@ -42,7 +42,7 @@ Master catalog of every page in this vault. Update this on every change.
 ## Dependencies
 
 - [[Dependencies Index]]
-  - [[Tech Stack]] - security work from PR #137 is merged into main; current package policy rejects every advisory severity
+  - [[Tech Stack]] - November 2 scoped minimatch 11 patch; current package policy rejects every advisory severity
 
 ## Flows
 
