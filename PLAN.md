@@ -22,3 +22,26 @@ See [the credibility audit](docs/credibility-audit-2026-10-14.md) for original c
 ## Validation
 
 Run `npm test` and `npm run build`. This checkout currently has no lint script. Check generated content, PDF text/layout, internal links and anchors, external evidence URLs, mobile navigation, keyboard focus, and metadata. Preserve the unpublished email draft exclusion in `.eleventyignore`.
+
+## Roadmap
+
+Reviewed against `origin/main` at `6fa02d9` on November 2, 2026.
+
+### Delivered
+
+- Data-driven lab cards, infrastructure hub and per-entry detail pages use `src/_data/infra.js`.
+- Per-entry JSON-LD already exists in `src/infrastructure/entry.njk`: `WebPage`, technology `about` entries, author/site references and a `BreadcrumbList`. `test/build.test.js` checks every entry page for this markup and validates JSON-LD parsing sitewide.
+- Both current lab entries have source-linked, dated SVG diagrams. They describe documented architecture rather than live availability.
+- The support-focused career cleanup and shared career data are in place, including the generated resume PDF. The former infra-first resume rewrite is superseded by the current evidence policy.
+- Blog posts cover homelab recovery, Network+ study and college concepts, and Phase 05 GPO verification. Study remains labeled as study.
+
+### Next
+
+- Reconcile the Windows lab entry's initial-setup scope with the published Phase 05 verification article, checking the linked source records before broadening claims.
+- Add further service runbooks or lab progress notes when dated configuration or execution evidence supports them; link each article from the relevant lab entry.
+- Keep diagrams, lab summaries and resume content aligned with their sources as evidence changes.
+
+### Superseded directions
+
+- Consolidating employer work into `infra.js` and making Projects software-only no longer fit the content structure: employer duties belong in `experience.json`, while Projects retains evidence-linked labs, software contributions and labeled academic work.
+- CCNA progress notes are replaced by the current Network+ study focus. Per-entry JSON-LD is completed work, not a future task.
