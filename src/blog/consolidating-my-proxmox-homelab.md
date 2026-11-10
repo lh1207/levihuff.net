@@ -1,6 +1,6 @@
 ---
-title: "Consolidating my Proxmox homelab into one Docker stack"
-description: "Why I moved six self-hosted services out of separate LXC containers and into one Docker stack, and what that changed about operating, monitoring, and recovering my homelab."
+title: "Consolidating my Proxmox homelab around Docker"
+description: "Moving five household services into a Docker LXC, preserving their data and rollback paths, and documenting what still needs verification."
 date: 2026-08-20T12:00:00-04:00
 tags: [homelab, proxmox, docker, lxc, self-hosting, systems-administration]
 layout: post.njk
@@ -9,96 +9,74 @@ thumbnail: /images/projects/proxmox-homelab.jpg
 
 ![Rack-mounted servers and network equipment in a data center](/images/projects/proxmox-homelab.jpg)
 
-My homelab runs on a Dell Optiplex with Proxmox VE. It is a small machine, but it supports six services my household actually uses: Jellyfin, Pi-hole, Home Assistant, Homebridge, BookStack, and Uptime Kuma.
+**Updated November 10, 2026.**
 
-I originally separated services into individual LXC containers. That gave each application a clear boundary, but it also gave me several small systems to patch, inspect, document, and recover. I eventually moved the services into one Docker stack on the Proxmox node.
+My Proxmox homelab has been moving from separate service containers toward a shared Docker environment. The useful part of that work has been preserving the things inside the applications: the BookStack library, monitoring configuration, Homebridge identity, DNS settings, and Jellyfin users and watched state.
 
-The migration was not about fitting more logos onto a dashboard. It was about reducing the number of places where routine maintenance could hide.
+This update follows the migration checks recorded on October 18–19, 2026, and the recovery runbooks written afterward. Those records describe what was checked at the time. They are not a fresh live inspection of the lab today.
 
-## LXC separation was useful until it became overhead
+## Docker runs inside an LXC
 
-Running one service per LXC container made sense while I was learning the stack. Each container had a narrow job, and a problem in one service was easier to separate from the others. Proxmox also made the boundaries visible from one interface.
+Proxmox remains the host platform. An unprivileged LXC runs Docker, with separate Compose stacks for groups such as media, monitoring, networking, and application services. Home Assistant remains in its own virtual machine.
 
-The cost showed up over time. Every LXC was another operating-system environment with its own packages, updates, configuration, and failure state. Even when the applications were healthy, I still had to remember how each container had been built and where its persistent data lived.
+The services migrated from standalone LXCs are Pi-hole, Jellyfin, Homebridge, Uptime Kuma, and BookStack. Their source LXCs are stopped in an Archive resource pool with boot startup disabled. Their disks and the original Docker volumes are retained for rollback.
 
-That is manageable for one or two services. With six services, the infrastructure around the applications started taking more attention than the applications themselves.
+That is a more precise description than saying everything moved into one stack. The applications share a Docker environment, but their Compose projects and persistent data remain distinct. Home Assistant still has a separate operating boundary.
 
-The repeated questions were simple:
+Consolidation gives me a more consistent way to manage applications. It also creates a shared failure domain: a problem with the Docker LXC can affect several services together. Keeping separate Compose projects does not remove that dependency.
 
-- Which container needs an update?
-- Where is this service's configuration stored?
-- Which dependencies belong to the host, and which belong to the application?
-- If I rebuild this container, what has to be restored?
-- How do I confirm every household service came back after maintenance?
+## Migration meant checking application state
 
-The problem was not that LXC had failed. The operating model no longer matched the size and purpose of the homelab.
+A first-run screen can look like a successful deployment while hiding an empty volume. I needed evidence that the replacement contained the original service's data.
 
-## One stack gave the services a shared operating model
+For BookStack, that meant migrating both the application files and database, including the original encryption key. The recorded checks matched core records and users, and an original-account sign-in verified the restored library. The application also responded after an application and database restart.
 
-I kept Proxmox as the virtualization layer and consolidated the applications into a unified Docker stack. Proxmox still owns the node and its resources. Docker now owns the application lifecycle inside that environment.
+Uptime Kuma retained its monitors and user account. Its database passed an integrity check, and the migrated service responded after restart. Homebridge's configuration, pairings, accounts, and plugins were restored, with both plugins loading without recent logged errors. Actual device control remains unverified in the migration record.
 
-That split gives each layer a clearer responsibility:
+Pi-hole needed checks beyond its administration page. The migrated instance answered DNS queries over both UDP and TCP. That established that the replacement resolver could answer requests. It did not prove that every household client had switched away from the old address; client DNS cutover remained unresolved.
 
-- **Proxmox VE** provides the host platform and the boundary around the workload.
-- **Docker** packages and runs the services with a consistent deployment model.
-- **Persistent storage** keeps application data separate from disposable containers.
-- **BookStack** holds the runbooks, service notes, and rebuild instructions.
-- **Uptime Kuma** checks whether the services are reachable after a change.
+Jellyfin required separate checks for users, libraries, watched state, and media access. The migration restored two users and five libraries. Authenticated direct streaming returned bytes matching an actual video before and after restart. Watched-state records for retained media were checked, while records associated with unavailable media paths were preserved in a private export and source backup. Visual playback and transcoding were still untested, and metadata scanning was ongoing.
 
-The six applications do different jobs, but they no longer require six different maintenance habits. I can reason about them as one stack while keeping their configurations and data distinct.
+These checks give each migration a concrete acceptance boundary. They also leave an honest list of workflows to finish testing.
 
-That is the main benefit of consolidation: fewer operational patterns, not fewer service boundaries.
+## HTTPS and the dashboard are separate layers
 
-## The services have different consequences when they fail
+Caddy provides local HTTPS routes in front of the web applications. Pi-hole holds the local DNS records, and clients need to trust the relevant Caddy certificate authority. The Mac proxy and server proxy have separate local authorities.
 
-Putting the applications in one stack did not make them equally important.
+That gives troubleshooting several distinct questions: does the backend respond, does the proxy reach it, does the client resolve the name, and does the client trust the certificate? A working backend alone cannot answer all four.
 
-Jellyfin serves a personal media library. If it is down briefly, the impact is inconvenient but limited. Pi-hole acts as the local DNS resolver and provides network-level filtering, so a bad change there can feel like the whole internet is broken. Home Assistant and Homebridge connect household devices and interfaces, which makes availability noticeable even to someone who never opens Proxmox.
+The later Homepage dashboard gives me a central directory for the lab. Its cards include Docker services, Home Assistant, Proxmox, and other local resources. Twelve configured HTTP checks passed during dashboard deployment verification.
 
-BookStack and Uptime Kuma support the rest of the system. BookStack answers how a service was configured and how to rebuild it. Uptime Kuma answers whether the service is available now. One preserves operating knowledge; the other shortens the time between a failure and noticing it.
+Those indicators establish reachability at the checked endpoints. They do not prove that a database connection, media playback, or home automation workflow works. The dashboard also includes a clearly identified staging placeholder whose backend is not deployed. A link on the dashboard is not evidence of a running service.
 
-This is why a homelab becomes real systems-administration practice. The hardware can be small, but the services still have users, dependencies, and different recovery priorities.
+## Repository files and deployed files can drift
 
-## Network resilience matters more than container count
+One important discovery was that the Git checkout is not the live deployment source for most stacks. The running services use external Compose files on the Docker host. The repository contains definitions and references, but editing those files does not update the deployed copies.
 
-The Docker migration simplified application management, but the most important availability boundary sits outside Docker.
+The runbooks now make target identification the first step: confirm the host, Compose project, image, mounts, and actual deployment source before changing a service. That prevents a repository edit from being mistaken for a completed deployment, or a reference definition from accidentally starting a second instance.
 
-I use subnet static routing so household service availability is isolated from upstream failures. Local services should not become unreachable just because an external connection or upstream path has a problem. That is especially important for DNS filtering and home automation, where a local dependency can affect many devices at once.
+It is also a maintenance task I still need to resolve. A clearer relationship between versioned definitions and deployed sources would make future changes easier to trace.
 
-This changed how I think about resilience. A container reporting "running" is only one layer of the answer. A useful service also needs working storage, name resolution, network paths, and a client that can reach it.
+## Backups and rollback have different limits
 
-Uptime Kuma helps test the service-facing side of that chain. Proxmox and Docker show whether the workload is running. Monitoring shows whether the result is actually reachable. Those are related checks, but they are not interchangeable.
+The migration produced a dated manual backup on my Mac, including Docker data and deployment sources. Recorded checksum checks passed, along with disposable SQLite restore checks for selected services. Jellyfin also has separate migration backups and recorded restore checks.
 
-## Consolidation also creates a larger failure domain
+That is useful recovery evidence, but it does not establish a complete host restore. The records do not show a recurring backup schedule or retention policy. A later model installation also postdates the full Docker snapshot and has its own backup.
 
-The new design is easier to operate, but it has a clear tradeoff: more services now share the same Docker environment.
+The archived LXCs provide another recovery option, with a different limitation: they represent the source state at cutover. Returning to one later could discard newer changes. A rollback needs a deliberate recovery point and must avoid running both copies of a service at once.
 
-With separate LXC containers, one container could be restarted or rebuilt without touching the others. A shared stack makes coordinated updates simpler, but a bad host-level change can affect several services at once. Consolidation reduces routine overhead by accepting a larger common failure domain.
+The recovery runbooks cover Pi-hole, BookStack, and Uptime Kuma, plus common restore precautions. They call for isolated restore rehearsals and service-specific acceptance checks. Writing those procedures does not mean every rehearsal has passed. An offline copy also matters, especially when BookStack itself needs recovery.
 
-That tradeoff is reasonable for this homelab because the stack is modest, the services are related, and I am the only administrator. It would need to be reconsidered if one workload required stronger isolation, a different maintenance window, or resources that could interfere with the rest of the node.
+## What remains to verify
 
-The important part is making the tradeoff explicit. "Fewer things to manage" and "fewer things that can fail" are not the same claim.
+The migration records leave several concrete follow-ups:
 
-## Documentation is part of the recovery plan
+- Complete client DNS cutover and test the affected household workflows.
+- Verify Homebridge device control and Jellyfin visual playback and transcoding.
+- Test media mounting and service recovery after a full host reboot.
+- Establish recurring backups, retention, and a broader recovery rehearsal.
+- Reconcile the repository definitions with the live deployment sources.
 
-Moving services is the visible work. Recording how to recover them is what makes the migration durable.
+The lab also has experiments beyond the household services. Ollama passed an embedding request, and its backend was reachable from Open WebUI, but authenticated WebUI use and chat inference were not verified. Gitea remained at initial setup, and staging had no deployed backend. Those are separate pieces of unfinished work.
 
-I use BookStack for the details that are easy to remember while a system is working and difficult to reconstruct during an outage: service purpose, configuration locations, dependencies, update steps, and rebuild notes. The documentation lives on the same homelab, so it is not the only copy I should depend on during a complete node failure, but it remains the working reference for routine maintenance.
-
-The best test of a runbook is whether it removes a decision from the next recovery. A note that says "fix Docker" is not useful. A note that identifies the service, its persistent data, its dependencies, and the check that proves recovery gives me a path back to normal operation.
-
-## What the migration changed
-
-The final stack is not more impressive because it uses Docker. It is better because the operating model is easier to explain and repeat.
-
-The migration gave me:
-
-1. **One application lifecycle.** The services use a consistent container workflow instead of separate host environments.
-2. **Clearer recovery boundaries.** Application containers are replaceable while persistent data and configuration are treated separately.
-3. **Central monitoring.** Uptime Kuma checks the services from the user's side, not just the process list.
-4. **A documentation habit.** BookStack records how the system is maintained and rebuilt.
-5. **An explicit tradeoff.** Routine work is simpler, while the shared Docker environment is a larger failure domain.
-
-The Dell Optiplex still runs 24/7, and the household services still do the same jobs. The improvement is in everything around them: fewer maintenance paths, clearer responsibilities, and a more deliberate way to detect and recover from failure.
-
-That is the part of self-hosting I find most useful. A homelab is not only a place to install software. It is a place to practice choosing boundaries, operating within constraints, and leaving the system easier to understand than it was before.
+The main improvement is a more consistent application environment with better migration evidence and recovery instructions. The next useful milestone is proving that household workflows and recovery procedures hold up beyond the checks already recorded.
